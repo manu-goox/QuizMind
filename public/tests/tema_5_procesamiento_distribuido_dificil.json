@@ -1,0 +1,372 @@
+{
+  "id": "procesamiento-distribuido-consultas-dificil",
+  "title": "Procesamiento Distribuido de Consultas",
+  "description": "Test de dificultad difícil sobre optimización avanzada, métricas de rendimiento y estrategias de ejecución en consultas distribuidas",
+  "category": "Bases de Datos Distribuidas",
+  "difficulty": "hard",
+  "passThreshold": 0.6,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "En el algoritmo de fragmentación horizontal derived, ¿qué requisito es obligatorio para la relación de fragmentación?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Que la cláusula WHERE de cada fragmento sea mutuamente excluyente", "correct": true },
+        { "id": "a2", "text": "Que todos los fragmentos tengan el mismo número de tuplas" },
+        { "id": "a3", "text": "Que se use siempre la clave primaria como criterio" },
+        { "id": "a4", "text": "Que cada fragmento contenga al menos 1000 filas" }
+      ],
+      "explanation": "La derivación correctness requiere que los fragmentos no solapen para evitar duplicados."
+    },
+    {
+      "id": "q2",
+      "text": "¿Qué representa el 'cardinality' de una relación en el contexto de optimización de consultas?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El número estimado de tuplas que devolverá la operación", "correct": true },
+        { "id": "a2", "text": "El número de índices definidos sobre la tabla" },
+        { "id": "a3", "text": "La longitud total de los registros en bytes" },
+        { "id": "a4", "text": "El nivel de normalización de la relación" }
+      ],
+      "explanation": "Cardinality indica el tamaño estimado del resultado, crucial para elegir estrategias de join."
+    },
+    {
+      "id": "q3",
+      "text": "En una join entre relaciones R y S distribuidas, ¿cuál es la técnica de join anidado (nested-loop) con fragmentos?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Para cada tupla de la outer relation, recuperar las tuplas matching de la inner desde los fragmentos", "correct": true },
+        { "id": "a2", "text": "Unir todos los fragmentos en un solo nodo antes de hacer el join" },
+        { "id": "a3", "text": "Ejecutar el join en paralelo en todos los nodos simultáneamente" },
+        { "id": "a4", "text": "Ordenar ambas relaciones por la clave de join antes de combinar" }
+      ],
+      "explanation": "Nested-loop con fragmentos envía laOuter a cada nodo para buscar matches."
+    },
+    {
+      "id": "q4",
+      "text": "¿Cuál es la complejidad computacional del algoritmo de join hash distribuido?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "O(n) para construir la tabla hash y O(m) para probing, donde n y m son los tamaños de las relaciones", "correct": true },
+        { "id": "a2", "text": "O(n^2) independientemente del tamaño de los datos" },
+        { "id": "a3", "text": "O(log n) gracias al índice hash" },
+        { "id": "a4", "text": "O(n*m) donde n y m son bytes de las tablas" }
+      ],
+      "explanation": "Join hash tiene complejidad lineal cuando la tabla hash cabe en memoria."
+    },
+    {
+      "id": "q5",
+      "text": "En la ubicación de fragmentos, ¿qué criterio favorece la replicación horizontal de tablas pequeñas?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Copiar la tabla completa a todos los nodos para evitar transferencias en red", "correct": true },
+        { "id": "a2", "text": "Fragmentar la tabla por la clave primaria" },
+        { "id": "a3", "text": "Almacenar solo en el nodo con más espacio disponible" },
+        { "id": "a4", "text": "Dividir la tabla en fragmentos de 1000 filas cada uno" }
+      ],
+      "explanation": "Replicar tablas pequeñas evita komunikasi costos durante joins."
+    },
+    {
+      "id": "q6",
+      "text": "¿Qué métrica es más importante para minimizar en un sistema distribuido con alta latencia de red?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El número de rondas de comunicación entre nodos", "correct": true },
+        { "id": "a2", "text": "El tiempo total de CPU en el nodo lokal" },
+        { "id": "a3", "text": "El tamaño del resultado final en bytes" },
+        { "id": "a4", "text": "El número de índices utilizados" }
+      ],
+      "explanation": "Minimizar rondas de mensaje es crucial cuando la latencia de red es alta."
+    },
+    {
+      "id": "q7",
+      "text": "El 'semi-join' es una técnica que se usa principalmente para:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Reducir el tamaño de datos transferidos antes de ejecutar el join", "correct": true },
+        { "id": "a2", "text": "Ejecutar joins sin necesidad de clave foránea" },
+        { "id": "a3", "text": "Eliminar tuplas duplicadas después del join" },
+        { "id": "a4", "text": "Ordenar los resultados por múltiples columnas" }
+      ],
+      "explanation": "Semi-join envía solo las claves de join, no toda la tupla, reduciendo transferencia."
+    },
+    {
+      "id": "q8",
+      "text": "En el algoritmo de 'divide and conquer' para join distribuido, ¿cómo se procede?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Se particionan ambas relaciones por la clave de join y se combinan los resultados por partes", "correct": true },
+        { "id": "a2", "text": "Se divide el trabajo en subconsultas secuenciales" },
+        { "id": "a3", "text": "Se ejecuta primero un SELECT y luego un INSERT" },
+        { "id": "a4", "text": "Se parte la tabla en fragmentos horizontales por rango de fechas" }
+      ],
+      "explanation": "Divide and conquer particiona por la join key para parallel procesamiento."
+    },
+    {
+      "id": "q9",
+      "text": "¿Qué representa el 'selectivity' de un predicado de selección?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "La fracción de tuplas que satisfacen el predicado (entre 0 y 1)", "correct": true },
+        { "id": "a2", "text": "El número total de predicados en la consulta" },
+        { "id": "a3", "text": "La velocidad de ejecución del filtro en milisegundos" },
+        { "id": "a4", "text": "El nivel de detalle del plan de ejecución" }
+      ],
+      "explanation": "Selectivity indica qué porcentaje de filas sobrevivirán al filtro."
+    },
+    {
+      "id": "q10",
+      "text": "En el proceso de localización de datos, el 'data shipping' significa:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Trasladar los datos al nodo que ejecutará la consulta", "correct": true },
+        { "id": "a2", "text": "Guardar los datos en múltiples fragmentos" },
+        { "id": "a3", "text": "Crear una copia de seguridad de la tabla" },
+        { "id": "a4", "text": "Exportar los datos a formato CSV" }
+      ],
+      "explanation": "Data shippingmovimientos datos al nodo de procesamiento."
+    },
+    {
+      "id": "q11",
+      "text": "¿Cuál es la diferencia entre 'fragment-and-ship' y 'fetch-and-join'?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "En fragment-and-ship se ejecutan partes de la consulta en cada nodo; en fetch-and-join se traeny se unen los datos", "correct": true },
+        { "id": "a2", "text": "Fetch-and-join requiere menos memoria RAM" },
+        { "id": "a3", "text": "Fragment-and-ship solo funciona con fragmentos verticales" },
+        { "id": "a4", "text": "No hay diferencia, son sinónimos" }
+      ],
+      "explanation": "Fragment-and-ship procesa localmente; fetch-and-join centraliza los datos."
+    },
+    {
+      "id": "q12",
+      "text": "El problema de 'stale metadata' en catálogos distribuidos ocurre cuando:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "La información del catálogo no refleja los cambios recientes en los datos", "correct": true },
+        { "id": "a2", "text": "Los metadatos ocupan demasiado espacio en disco" },
+        { "id": "a3", "text": "El catálogo contiene errores de sintaxis" },
+        { "id": "a4", "text": "Los índices no están sincronizados" }
+      ],
+      "explanation": "Metadatos obsoletos llevan a decisiones incorrectas de localización."
+    },
+    {
+      "id": "q13",
+      "text": "En el árbol de operadores, ¿qué operador representa el punto de partida de la ejecución?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Las hojas del árbol representan las relaciones base", "correct": true },
+        { "id": "a2", "text": "La raíz siempre es el operador PROJECT" },
+        { "id": "a3", "text": "El nodo más profundo del árbol" },
+        { "id": "a4", "text": "El operador JOIN si existe" }
+      ],
+      "explanation": "Las hojas del árbol de operadores son las tablas de entrada."
+    },
+    {
+      "id": "q14",
+      "text": "¿Por qué es preferible ejecutar una selección antes de un join durante la optimización?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Reduce el tamaño de datos antes de la costosa operación de join", "correct": true },
+        { "id": "a2", "text": "Los índices funcionan mejor después de una selección" },
+        { "id": "a3", "text": " Evita el uso de memoria temporal" },
+        { "id": "a4", "text": "Permite paralelización automática" }
+      ],
+      "explanation": "Selection reduce filas tempranamente, bajando el costo del join."
+    },
+    {
+      "id": "q15",
+      "text": "El 'cost model' en optimización de consultas distribuidas considera principalmente:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Costes de CPU, E/S de disco y comunicación de red", "correct": true },
+        { "id": "a2", "text": "Solo el tiempo de CPU" },
+        { "id": "a3", "text": "Únicamente el tamaño del resultado" },
+        { "id": "a4", "text": "La memoria disponible del servidor" }
+      ],
+      "explanation": "El cost model debe incluir todos los recursos del sistema distribuido."
+    },
+    {
+      "id": "q16",
+      "text": "¿En qué consiste la técnica de 'bloom filter' para optimización de joins distribuidos?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Crear una estructura probabilística que represente las claves de una relación para reducir transferencias", "correct": true },
+        { "id": "a2", "text": "Indexar los datos por múltiples columnas" },
+        { "id": "a3", "text": "Comprimir los resultados antes de enviarlos" },
+        { "id": "a4", "text": "Ordenar las tuplas por hash de la clave" }
+      ],
+      "explanation": "Bloom filter permite verificar membership sin transferir todas las tuplas."
+    },
+    {
+      "id": "q17",
+      "text": "La 'horizontal decomposition' de una consulta implica:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Dividir la consulta en subconsultas que se ejecutan en diferentes fragmentos horizontales", "correct": true },
+        { "id": "a2", "text": "Separar las cláusulas SELECT y WHERE" },
+        { "id": "a3", "text": "Particionar verticalmente las columnas" },
+        { "id": "a4", "text": "Crear múltiples índices en paralelo" }
+      ],
+      "explanation": "Decomposition horizontal permite ejecución paralela en fragmentos."
+    },
+    {
+      "id": "q18",
+      "text": "¿Qué representa el 'degree' de una relación en el modelo de optimización?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El número de atributos o columnas de la relación", "correct": true },
+        { "id": "a2", "text": "El número de tuplas totales" },
+        { "id": "a3", "text": "La longitud de la clave primaria" },
+        { "id": "a4", "text": "El nivel de fragmentación" }
+      ],
+      "explanation": "Degree indica el número de columnas, importante para decidir proyecciones."
+    },
+    {
+      "id": "q19",
+      "text": "En el contexto de Join Distribuido, la 'partitioning attribute' es:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El atributo común usado para distribuir y unir las tuplas entre relaciones", "correct": true },
+        { "id": "a2", "text": "La primera columna de cada tabla" },
+        { "id": "a3", "text": "El índice聚集 del sistema" },
+        { "id": "a4", "text": "La columna con más valores únicos" }
+      ],
+      "explanation": "Partitioning attribute es la clave de join y distribución."
+    },
+    {
+      "id": "q20",
+      "text": "¿Cuál es el objetivo principal de la 'query rewrite' en el procesamiento distribuido?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Transformar la consulta a una forma equivalente más eficiente para ejecutar distribuidamente", "correct": true },
+        { "id": "a2", "text": "Cambiar el lenguaje SQL a uno interno" },
+        { "id": "a3", "text": "Simplificar la sintaxis de la consulta" },
+        { "id": "a4", "text": "Añadir más condiciones WHERE" }
+      ],
+      "explanation": "Query rewrite reordena operaciones para mejor rendimiento."
+    },
+    {
+      "id": "q21",
+      "text": "El 'pipeline' en árboles de operadores permite:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Ejecutar múltiples operadores en secuencia sin esperar a que termine completamente el anterior", "correct": true },
+        { "id": "a2", "text": "Ejecutar consultas en orden secuencial" },
+        { "id": "a3", "text": "Crear pipelines de datos entre nodos" },
+        { "id": "a4", "text": "Enlazar múltiples tablas en serie" }
+      ],
+      "explanation": "Pipeline Streaming permite procesamiento continuo sin almacenar resultados intermedios."
+    },
+    {
+      "id": "q22",
+      "text": "Cuando el optimizador global no tiene estadísticas actualizadas, ¿qué técnica puede usar?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Usar heurísticas o defaults basados en la distribución uniforme", "correct": true },
+        { "id": "a2", "text": "Siempre elegir el plan más sencillo" },
+        { "id": "a3", "text": "Ejecutar la consulta en todos los nodos" },
+        { "id": "a4", "text": "Solicitar estadísticas al usuario" }
+      ],
+      "explanation": "Sin estadísticas, se usan heurísticas de distribución uniforme."
+    },
+    {
+      "id": "q23",
+      "text": "El problema del '倾斜' (skew) en joins distribuidos afecta principalmente a:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El balance de carga cuando algunos nodos procesan muchos más datos que otros", "correct": true },
+        { "id": "a2", "text": "La integridad referencial" },
+        { "id": "a3", "text": "El tamaño del buffer pool" },
+        { "id": "a4", "text": "La velocidad de la red" }
+      ],
+      "explanation": "Skew causa desbalance cuando los datos no se distribuyen uniformemente."
+    },
+    {
+      "id": "q24",
+      "text": "¿Qué ventaja ofrece el 'materialization' de vistas en sistemas distribuidos?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Almacenar resultados precomputados para evitar recalcular consultas frecuentes", "correct": true },
+        { "id": "a2", "text": "Crear nuevas tablas físicas" },
+        { "id": "a3", "text": "Reducir el tamaño de las consultas" },
+        { "id": "a4", "text": "Aumentar la seguridad mediante vistas" }
+      ],
+      "explanation": "Vistas materializadas guardan resultados para acceso rápido."
+    },
+    {
+      "id": "q25",
+      "text": "En la técnica de 'distribution keys', ¿qué criterio se usa para fragmentar?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Usar una o más columnas para determinar en qué nodo se almacena cada tupla", "correct": true },
+        { "id": "a2", "text": "Elegir siempre la primera columna como clave" },
+        { "id": "a3", "text": "Crear un índice por cada columna" },
+        { "id": "a4", "text": "Aleatorizar la ubicación de las tuplas" }
+      ],
+      "explanation": "Distribution keys determinan la ubicación de cada registro."
+    },
+    {
+      "id": "q26",
+      "text": "¿Qué representa el 'fanout' en una consulta distribuida?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El número de fragmentos o nodos involucrados en la ejecución", "correct": true },
+        { "id": "a2", "text": "El tiempo máximo de ejecución" },
+        { "id": "a3", "text": "El tamaño del resultado" },
+        { "id": "a4", "text": "La profundidad del árbol de operadores" }
+      ],
+      "explanation": "Fanout indica el grado de paralelismo de la consulta."
+    },
+    {
+      "id": "q27",
+      "text": "El 'coordinator node' en un sistema distribuido es responsable de:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Recibir la consulta del usuario, optimizarla y distribuir el trabajo a los nodos", "correct": true },
+        { "id": "a2", "text": "Solo almacenar datos del catálogo" },
+        { "id": "a3", "text": "Ejecutar únicamente operaciones de lectura" },
+        { "id": "a4", "text": "Administrar la seguridad del sistema" }
+      ],
+      "explanation": "Coordinator recibe y distribuye consultas a los workers."
+    },
+    {
+      "id": "q28",
+      "text": "¿Qué técnica permite reducir la latencia en consultas distribuidas con datos geográficamente dispersos?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Ejecutar la consulta en el nodo más cercano a los datos (data locality)", "correct": true },
+        { "id": "a2", "text": "Aumentar el número de réplicas" },
+        { "id": "a3", "text": "Usar siempre el mismo nodo central" },
+        { "id": "a4", "text": "Comprimir más los datos" }
+      ],
+      "explanation": "Ejecutar cerca de los datos minimiza latencia de red."
+    },
+    {
+      "id": "q29",
+      "text": "El 'subtree reuse' en optimización de consultas se refiere a:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Utilizar el resultado de un subárbol ya calculado para múltiples operaciones", "correct": true },
+        { "id": "a2", "text": "Reutilizar planes de ejecución" },
+        { "id": "a3", "text": "Crear índices en subárboles" },
+        { "id": "a4", "text": "Comprimir los resultados temporales" }
+      ],
+      "explanation": "Subtree reuse evita recalcular operaciones idénticas."
+    },
+    {
+      "id": "q30",
+      "text": "En el modelo de costos, el 'I/O cost' representa:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El coste de leer y escribir páginas de disco", "correct": true },
+        { "id": "a2", "text": "El tiempo de red entre nodos" },
+        { "id": "a3", "text": "El uso de memoria CPU" },
+        { "id": "a4", "text": "El número de usuarios conectados" }
+      ],
+      "explanation": "I/O cost es el principal componente en sistemas de disco."
+    }
+  ]
+}

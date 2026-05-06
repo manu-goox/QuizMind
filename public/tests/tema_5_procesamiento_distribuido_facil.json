@@ -1,0 +1,512 @@
+{
+  "id": "procesamiento-distribuido-consultas-facil",
+  "title": "Procesamiento Distribuido de Consultas",
+  "description": "Descomposición, normalización, reescritura y optimización de consultas distribuidas",
+  "category": "Bases de Datos Distribuidas",
+  "difficulty": "easy",
+  "passThreshold": 0.6,
+  "shuffleQuestions": false,
+  "shuffleAnswers": false,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "¿Para qué se usa la forma normal disyuntiva (FND) en la descomposición de consultas?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Para consultas que se separan en subconsultas independientes, útil en fragmentación horizontal",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Para eliminar índices duplicados del catálogo"
+        },
+        {
+          "id": "a3",
+          "text": "Para ordenar físicamente los datos por clave primaria"
+        },
+        {
+          "id": "a4",
+          "text": "Para fusionar resultados de fragmentos verticales"
+        }
+      ],
+      "explanation": "La FND permite separar la consulta en disyunciones que pueden ejecutarse por partes, especialmente útil con fragmentación horizontal."
+    },
+    {
+      "id": "q2",
+      "text": "¿Qué objetivo principal tiene la validación de una consulta durante la descomposición?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Detectar consultas sintácticamente correctas pero semánticamente o tipológicamente incorrectas",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Elegir el nodo con menos carga de CPU"
+        },
+        {
+          "id": "a3",
+          "text": "Convertir la consulta en SQL físico"
+        },
+        {
+          "id": "a4",
+          "text": "Calcular el tamaño exacto del resultado"
+        }
+      ],
+      "explanation": "La validación rechaza consultas imposibles o incoherentes, por ejemplo cuando un atributo no existe o se usa un tipo incompatible."
+    },
+    {
+      "id": "q3",
+      "text": "¿Cuál de estas reglas es una ley de De Morgan?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "¬(p1 ∧ p2) ≡ ¬p1 ∨ ¬p2",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "p1 ∧ p2 ≡ p2 ∧ p1"
+        },
+        {
+          "id": "a3",
+          "text": "p1 ∨ p2 ≡ p2 ∨ p1"
+        },
+        {
+          "id": "a4",
+          "text": "p1 ∧ (p2 ∨ p3) ≡ (p1 ∧ p2) ∨ (p1 ∧ p3)"
+        }
+      ],
+      "explanation": "La negación de una conjunción se convierte en una disyunción de negaciones."
+    },
+    {
+      "id": "q4",
+      "text": "¿Qué hace la simplificación en una consulta normalizada?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Elimina redundancias usando reglas como idempotencia o contradicciones",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Fragmenta automáticamente los datos"
+        },
+        {
+          "id": "a3",
+          "text": "Convierte atributos en índices"
+        },
+        {
+          "id": "a4",
+          "text": "Replica la consulta en todos los nodos"
+        }
+      ],
+      "explanation": "La simplificación aplica reglas como p ∧ p = p o p ∧ ¬p = false para reducir trabajo inútil."
+    },
+    {
+      "id": "q5",
+      "text": "¿Qué representa un nodo hoja en un árbol de operadores?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Una relación de entrada desde la cláusula FROM",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "La proyección final de atributos"
+        },
+        {
+          "id": "a3",
+          "text": "Un operador binario intermedio"
+        },
+        {
+          "id": "a4",
+          "text": "Una condición de bloqueo distribuido"
+        }
+      ],
+      "explanation": "En el árbol de operadores, las hojas son las relaciones base de la consulta."
+    },
+    {
+      "id": "q6",
+      "text": "¿Qué operador suele estar en la raíz del árbol de operadores?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Proyección",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Producto cartesiano"
+        },
+        {
+          "id": "a3",
+          "text": "Selección"
+        },
+        {
+          "id": "a4",
+          "text": "Unión"
+        }
+      ],
+      "explanation": "La raíz suele ser la proyección sobre los atributos pedidos en SELECT."
+    },
+    {
+      "id": "q7",
+      "text": "¿Cuándo conviene aplicar una selección antes del producto cartesiano?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Cuando el predicado solo afecta a una de las relaciones",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Siempre, sin excepción"
+        },
+        {
+          "id": "a3",
+          "text": "Solo si la consulta usa FNC"
+        },
+        {
+          "id": "a4",
+          "text": "Solo en fragmentación vertical"
+        }
+      ],
+      "explanation": "Mover la selección hacia abajo reduce el número de combinaciones antes del producto cartesiano."
+    },
+    {
+      "id": "q8",
+      "text": "En una consulta distribuida, ¿qué papel tiene el diccionario de datos global?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Recopila información sobre la distribución para reconstruir la vista global",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Guarda solo contraseñas de usuarios"
+        },
+        {
+          "id": "a3",
+          "text": "Sustituye al optimizador local"
+        },
+        {
+          "id": "a4",
+          "text": "Almacena los resultados temporales de cada query"
+        }
+      ],
+      "explanation": "El diccionario global ayuda a localizar datos y reconstruir la vista global a partir de fragmentos."
+    },
+    {
+      "id": "q9",
+      "text": "Si hay replicación, ¿qué suele considerar el optimizador global para escoger sitio?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Coste de comunicación, carga de trabajo y velocidad del servidor",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Solo la longitud del nombre de la tabla"
+        },
+        {
+          "id": "a3",
+          "text": "El color del nodo remoto"
+        },
+        {
+          "id": "a4",
+          "text": "El número de filas del SELECT"
+        }
+      ],
+      "explanation": "Con replicación, el sitio se elige por criterios de coste y rendimiento."
+    },
+    {
+      "id": "q10",
+      "text": "¿Qué técnica evita recalcular subconsultas repetidas varias veces?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Materializar o reutilizar subárboles comunes",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Duplicar la selección en todos los nodos"
+        },
+        {
+          "id": "a3",
+          "text": "Eliminar la cláusula WHERE"
+        },
+        {
+          "id": "a4",
+          "text": "Convertir todo a tablas temporales siempre"
+        }
+      ],
+      "explanation": "Identificar subárboles reutilizables evita trabajo duplicado."
+    },
+    {
+      "id": "q11",
+      "text": "¿Cuál es la idea de desplazar una selección lo más abajo posible en el árbol?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Reducir el volumen de datos cuanto antes",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Aumentar la redundancia para simplificar SQL"
+        },
+        {
+          "id": "a3",
+          "text": "Hacer primero todas las uniones"
+        },
+        {
+          "id": "a4",
+          "text": "Evitar el uso de proyecciones"
+        }
+      ],
+      "explanation": "Filtrar pronto reduce filas intermedias y mejora el rendimiento."
+    },
+    {
+      "id": "q12",
+      "text": "¿Cuál es la combinación correcta para el resultado de fragmentos horizontales?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Unión de los resultados",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Producto cartesiano"
+        },
+        {
+          "id": "a3",
+          "text": "Intersección obligatoria"
+        },
+        {
+          "id": "a4",
+          "text": "Diferencia simétrica"
+        }
+      ],
+      "explanation": "Los fragmentos horizontales se recomponen normalmente mediante unión."
+    },
+    {
+      "id": "q13",
+      "text": "¿Y para fragmentos verticales?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "JOIN",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "UNION"
+        },
+        {
+          "id": "a3",
+          "text": "DISTINCT"
+        },
+        {
+          "id": "a4",
+          "text": "ORDER BY"
+        }
+      ],
+      "explanation": "Los fragmentos verticales se recomponen mediante join."
+    },
+    {
+      "id": "q14",
+      "text": "¿Qué consulta describe mejor la forma normal conjuntiva (FNC)?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Una conjunción de disyunciones",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Una disyunción de conjunciones"
+        },
+        {
+          "id": "a3",
+          "text": "Una lista de joins"
+        },
+        {
+          "id": "a4",
+          "text": "Una selección sobre una sola tabla"
+        }
+      ],
+      "explanation": "La FNC es una conjunción de grupos unidos por OR."
+    },
+    {
+      "id": "q15",
+      "text": "¿Qué pasa si una consulta contiene una contradicción como edad > 30 AND edad < 20?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Debe rechazarse o simplificarse a consulta vacía",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Se ejecuta igual pero más lenta"
+        },
+        {
+          "id": "a3",
+          "text": "Se replica automáticamente"
+        },
+        {
+          "id": "a4",
+          "text": "Se transforma en una unión"
+        }
+      ],
+      "explanation": "La validación detecta consultas semánticamente imposibles."
+    },
+    {
+      "id": "q16",
+      "text": "¿Qué representa el álgebra relacional en la reescritura?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Una secuencia de operaciones con la misma semántica que la consulta",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "El esquema físico de cada disco"
+        },
+        {
+          "id": "a3",
+          "text": "La lista de usuarios conectados"
+        },
+        {
+          "id": "a4",
+          "text": "La política de seguridad del sistema"
+        }
+      ],
+      "explanation": "La misma semántica puede expresarse con secuencias de operaciones distintas."
+    },
+    {
+      "id": "q17",
+      "text": "¿Qué regla permite intercambiar selección y proyección con seguridad?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Solo cuando la selección no usa atributos eliminados por la proyección",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Siempre que la consulta tenga JOIN"
+        },
+        {
+          "id": "a3",
+          "text": "Solo en bases centralizadas"
+        },
+        {
+          "id": "a4",
+          "text": "Nunca se puede conmutar"
+        }
+      ],
+      "explanation": "La selección y la proyección pueden conmutar si la selección no depende de columnas proyectadas fuera."
+    },
+    {
+      "id": "q18",
+      "text": "¿Qué recomendación es correcta para varias selecciones encadenadas?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Aplicar antes las más restrictivas",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Aplicar primero la menos restrictiva"
+        },
+        {
+          "id": "a3",
+          "text": "Fusionarlas siempre en producto cartesiano"
+        },
+        {
+          "id": "a4",
+          "text": "Guardar cada una como vista materializada"
+        }
+      ],
+      "explanation": "Las selecciones más restrictivas reducen antes el tamaño del problema."
+    },
+    {
+      "id": "q19",
+      "text": "¿Qué significa que la consulta se localiza antes de optimizarse globalmente?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Se determina en qué fragmentos o nodos deben ejecutarse las partes de la consulta",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Se cambia el lenguaje de SQL a XML"
+        },
+        {
+          "id": "a3",
+          "text": "Se borra el catálogo de fragmentos"
+        },
+        {
+          "id": "a4",
+          "text": "Se ejecuta solo en el nodo central"
+        }
+      ],
+      "explanation": "La localización asigna la consulta a los fragmentos relevantes."
+    },
+    {
+      "id": "q20",
+      "text": "¿Qué etapa ordena el procesamiento desde las hojas hasta la raíz del árbol?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "La ejecución secuencial del árbol de operadores",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "La normalización"
+        },
+        {
+          "id": "a3",
+          "text": "La validación"
+        },
+        {
+          "id": "a4",
+          "text": "La replicación"
+        }
+      ],
+      "explanation": "El árbol de operadores se ejecuta de abajo arriba, desde las hojas hasta la raíz."
+    }
+  ]
+}

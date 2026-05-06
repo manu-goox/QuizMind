@@ -1,12 +1,28 @@
 {
   "tests": [
     {
-      "id": "matematicas-basicas",
-      "file": "matematicas.json",
-      "title": "Matemáticas Básicas",
-      "category": "Ciencias",
+      "id": "procesamiento-distribuido-consultas-facil",
+      "file": "tema_5_procesamiento_distribuido_facil.json",
+      "title": "Tema 5 - Procesamiento Distribuido de Consultas",
+      "category": "Informatica",
       "difficulty": "easy",
-      "questionCount": 5
+      "questionCount": 30
+    },
+    {
+      "id": "procesamiento-distribuido-consultas-intermedio",
+      "file": "tema_5_procesamiento_intermedio.json",
+      "title": "Tema 5 - Procesamiento Distribuido de Consultas",
+      "category": "Informatica",
+      "difficulty": "intermediate",
+      "questionCount": 30
+    },
+    {
+      "id": "procesamiento-distribuido-consultas-dificil",
+      "file": "tema_5_procesamiento_distribuido_dificil.json",
+      "title": "Tema 5 - Procesamiento Distribuido de Consultas",
+      "category": "Informatica",
+      "difficulty": "hard",
+      "questionCount": 30
     },
     {
       "id": "basesdatosdistribuidas-tema6",
@@ -17,12 +33,44 @@
       "questionCount": 12
     },
     {
+      "id": "administracion-gestion-bbdd-intermedio",
+      "file": "tema_6_administracion_intermedio.json",
+      "title": "Tema 6 - Administración y Gestión de BBDD Distribuidas",
+      "category": "Informatica",
+      "difficulty": "intermediate",
+      "questionCount": 30
+    },
+    {
+      "id": "administracion-gestion-bbdd-dificil",
+      "file": "tema_6_administracion_gestion_dificil.json",
+      "title": "Tema 6 - Administración y Gestión de BBDD Distribuidas",
+      "category": "Informatica",
+      "difficulty": "hard",
+      "questionCount": 30
+    },
+    {
       "id": "basesdatosdistribuidas-tema7",
       "file": "tema_7_bbdd_distribuidas_test.json",
       "title": "Tema 7 - Bases de Datos (Short)",
       "category": "Informatica",
       "difficulty": "easy",
       "questionCount": 15
+    },
+    {
+      "id": "otras-tecnologias-bbdd-intermedio",
+      "file": "tema_7_otras_tecnologias_intermedio.json",
+      "title": "Tema 7 - Otras Tecnologías de BBDD Distribuidas",
+      "category": "Informatica",
+      "difficulty": "intermediate",
+      "questionCount": 30
+    },
+    {
+      "id": "otras-tecnologias-bbdd-distribuidas-dificil",
+      "file": "tema_7_otras_tecnologias_dificil.json",
+      "title": "Tema 7 - Otras Tecnologías de BBDD Distribuidas",
+      "category": "Informatica",
+      "difficulty": "hard",
+      "questionCount": 30
     }
   ]
 }

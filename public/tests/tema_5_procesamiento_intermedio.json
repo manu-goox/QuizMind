@@ -1,0 +1,372 @@
+{
+  "id": "procesamiento-distribuido-consultas-intermedio",
+  "title": "Procesamiento Distribuido de Consultas",
+  "description": "Test de dificultad intermedia sobre descomposición, normalización, reescritura y optimización básica de consultas distribuidas",
+  "category": "Bases de Datos Distribuidas",
+  "difficulty": "intermediate",
+  "passThreshold": 0.6,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "La descomposición de una consulta en SQL distribuido incluye varios pasos. ¿Cuál es el primer paso del proceso?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": " Reescribir la consulta en álgebra relacional", "correct": true },
+        { "id": "a2", "text": "Localizar los fragmentos donde se ejecutará" },
+        { "id": "a3", "text": "Optimizar el plan de ejecución" },
+        { "id": "a4", "text": "Ejecutar la consulta en paralelo" }
+      ],
+      "explanation": "Primero se traduce la consulta SQL a Álgebra Relacional, luego viene la normalización y optimización."
+    },
+    {
+      "id": "q2",
+      "text": "¿Qué objetivo tiene la normalización de consultas?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Convertir la consulta a formato legible por humanos" },
+        { "id": "a2", "text": "Transformar la consulta a una forma canónica para facilitar su procesamiento", "correct": true },
+        { "id": "a3", "text": "Reducir el tamaño de la base de datos" },
+        { "id": "a4", "text": "Crear índices automáticamente" }
+      ],
+      "explanation": "La normalización transforma la consulta a una forma estándar (FNC/FND) para facilitar optimización."
+    },
+    {
+      "id": "q3",
+      "text": "¿Qué forma normal resulta de convertir una consulta con OR a conjunción de disyunciones?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Forma Normal Conjuntiva (FNC)" },
+        { "id": "a2", "text": "Forma Normal Disyuntiva (FND)", "correct": true },
+        { "id": "a3", "text": "Forma Normal Boyce-Codd" },
+        { "id": "a4", "text": "Primera Forma Normal" }
+      ],
+      "explanation": "FND (o forma normal disyuntiva) es una disyunción de conjunciones, útil para fragmentación horizontal."
+    },
+    {
+      "id": "q4",
+      "text": "En la validación de consultas, ¿qué tipo de errores se detectan?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Errores léxicos únicamente" },
+        { "id": "a2", "text": "Errores de sintaxis y semántica", "correct": true },
+        { "id": "a3", "text": "Solo errores de rendimiento" },
+        { "id": "a4", "text": "Errores de red" }
+      ],
+      "explanation": "La validación rechaza consultas semánticamente incorrectas o que referencian atributos inexistentes."
+    },
+    {
+      "id": "q5",
+      "text": "¿Qué representa la Eliminación de Variables en el proceso de normalización?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Eliminar todas las variables de la consulta" },
+        { "id": "a2", "text": "Sustituir variables de rango por constantes", "correct": true },
+        { "id": "a3", "text": "Quitar los índices de las tablas" },
+        { "id": "a4", "text": "Fusionar varias consultas en una" }
+      ],
+      "explanation": "La eliminación de variables de rango sustituye valores por constantes para simplificar."
+    },
+    {
+      "id": "q6",
+      "text": "En el árbol de operadores, ¿qué representan las hojas?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Los resultados finales" },
+        { "id": "a2", "text": "Las relaciones base de la consulta", "correct": true },
+        { "id": "a3", "text": "Los índices creados" },
+        { "id": "a4", "text": "Las cláusulas GROUP BY" }
+      ],
+      "explanation": "Las hojas del árbol de operadores son las tablas o relaciones base."
+    },
+    {
+      "id": "q7",
+      "text": "¿Cuál es el objetivo principal de la reescritura de consultas?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Hacer la consulta más larga" },
+        { "id": "a2", "text": "Transformar a operaciones equivalentes más eficientes", "correct": true },
+        { "id": "a3", "text": "Cambiar el lenguaje a Python" },
+        { "id": "a4", "text": "Agregar más tablas" }
+      ],
+      "explanation": "La reescritura busca operaciones algebraicas equivalentes pero más eficientes."
+    },
+    {
+      "id": "q8",
+      "text": "¿Qué operación del álgebra relacional permite eliminar filas duplicadas?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Selección (σ)" },
+        { "id": "a2", "text": "Proyección (π)" },
+        { "id": "a3", "text": "Unión (∪)" },
+        { "id": "a4", "text": "Duplicación" }
+      ],
+      "explanation": "La operación Duplicate Elimination (duplicación) elimina filas duplicadas."
+    },
+    {
+      "id": "q9",
+      "text": "¿Qué técnica de optimización recomienda ejecutar selecciones lo más temprano posible?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Selection Pushdown", "correct": true },
+        { "id": "a2", "text": "Union Pushdown" },
+        { "id": "a3", "text": "Join Pushdown" },
+        { "id": "a4", "text": "Group Pushdown" }
+      ],
+      "explanation": "Selection Pushdown ejecuta filtros tempranamente para reducir datos pronto."
+    },
+    {
+      "id": "q10",
+      "text": "En el modelo de coste, ¿qué representa el coste de CPU?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Tiempo de procesamiento en milisegundos" },
+        { "id": "a2", "text": "Número de operaciones de CPU", "correct": true },
+        { "id": "a3", "text": "Velocidad del procesador" },
+        { "id": "a4", "text": "Consumo de energía" }
+      ],
+      "explanation": "El coste de CPU se mide por número de operaciones."
+    },
+    {
+      "id": "q11",
+      "text": "¿Qué información搜集 el catálogo de la base de datos distribuida?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Solo estadísticas de tablas" },
+        { "id": "a2", "text": "Esquemas, fragmentos, ubicación y métodos de acceso", "correct": true },
+        { "id": "a3", "text": "Solo claves primarias" },
+        { "id": "a4", "text": "Contraseñas de usuarios" }
+      ],
+      "explanation": "El catálogo global contieneinfo sobre esquemas, fragmentación, asignación y métodos de acceso."
+    },
+    {
+      "id": "q12",
+      "text": "La fragmentación horizontalderived requiere que los fragmentos sean:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Mutuamente excluyentes y completos", "correct": true },
+        { "id": "a2", "text": "Solo completos" },
+        { "id": "a3", "text": "Solo mutuamente excluyentes" },
+        { "id": "a4", "text": "Idénticos entre sí" }
+      ],
+      "explanation": "Derivación correctness requiere fragmentos mutuamente excluyentes y completos."
+    },
+    {
+      "id": "q13",
+      "text": "¿Qué es un predicado de asignación en fragmentación horizontal?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Una condición que determina qué tuplas van a qué fragmento", "correct": true },
+        { "id": "a2", "text": "Una regla de validación" },
+        { "id": "a3", "text": "Un tipo de índice" },
+        { "id": "a4", "text": "Una operación de ordenamiento" }
+      ],
+      "explanation": "El predicado de asignación define la condición para distribuir filas a fragmentos."
+    },
+    {
+      "id": "q14",
+      "text": "¿Qué técnica permite ejecutar partes de una consulta en paralelo?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Serialización" },
+        { "id": "a2", "text": "Paralelización de operadores", "correct": true },
+        { "id": "a3", "text": "Compresión" },
+        { "id": "a4", "text": "Encriptación" }
+      ],
+      "explanation": "La paralelización permite ejecutar operadores simultáneamente en múltiples nodos."
+    },
+    {
+      "id": "q15",
+      "text": "¿Qué es el procesamiento distribuido de consultas?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Ejecutar una consulta en un solo nodo" },
+        { "id": "a2", "text": "Ejecutar consultas que acceden a datos en múltiples nodos", "correct": true },
+        { "id": "a3", "text": "Solo crear bases de datos distribuidas" },
+        { "id": "a4", "text": "Copiar datos a otros servidores" }
+      ],
+      "explanation": "El procesamiento distribuido ejecuta queries sobre datos repartidos en varios nodos."
+    },
+    {
+      "id": "q16",
+      "text": "El diccionario de datos global sirve principalmente para:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Almacenar usuarios y contraseñas" },
+        { "id": "a2", "text": "Localizar datos y reconstruir la vista global", "correct": true },
+        { "id": "a3", "text": "Ejecutar backups automáticos" },
+        { "id": "a4", "text": "Generar informes" }
+      ],
+      "explanation": "El diccionario global ayuda a localizar fragmentos y reconstruir la vista."
+    },
+    {
+      "id": "q17",
+      "text": "¿Qué significa 'data shipping' en el contexto de consultas distribuidas?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Enviar datos al nodo que ejecuta la consulta", "correct": true },
+        { "id": "a2", "text": "Exportar datos a formato CSV" },
+        { "id": "a3", "text": "Crear copias de seguridad" },
+        { "id": "a4", "text": " comprimir datos" }
+      ],
+      "explanation": "Data shipping mueve datos al nodo que procesará la consulta."
+    },
+    {
+      "id": "q18",
+      "text": "¿Qué representa el operador Π (proyección) en álgebra relacional?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Seleccionar filas que cumplen una condición" },
+        { "id": "a2", "text": "Seleccionar columnas específicas", "correct": true },
+        { "id": "a3", "text": "Unir dos tablas" },
+        { "id": "a4", "text": "Ordenar resultados" }
+      ],
+      "explanation": "La proyección (π) selecciona qué columnas mostrar."
+    },
+    {
+      "id": "q19",
+      "text": "La técnica de 'comunicação' en optimización de consultas distribuidas busca:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Minimizar la transferencia de datos entre nodos", "correct": true },
+        { "id": "a2", "text": "Aumentar la velocidad de la red" },
+        { "id": "a3", "text": " comprimir mensajes" },
+        { "id": "a4", "text": "Enviar más datos" }
+      ],
+      "explanation": "Minimizar comunicación reduce latency y mejora rendimiento."
+    },
+    {
+      "id": "q20",
+      "text": "¿Qué función cumple el optimizador global?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Solo validar sintaxis SQL" },
+        { "id": "a2", "text": "Seleccionar el mejor plan de ejecución distribuida", "correct": true },
+        { "id": "a3", "text": "Ejecutar las consultas directamente" },
+        { "id": "a4", "text": "Crear nuevas tablas" }
+      ],
+      "explanation": "El optimizador global elige el mejor plan distribuido."
+    },
+    {
+      "id": "q21",
+      "text": "En una consulta con múltiples join, ¿qué estrategia considera el optimizador?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El orden de join solo afecta al resultado" },
+        { "id": "a2", "text": "El orden afecta significativamente al rendimiento", "correct": true },
+        { "id": "a3", "text": "Siempre ejecuta en orden alphabetical" },
+        { "id": "a4", "text": "No importa el orden" }
+      ],
+      "explanation": "Ordenar joins estratégicamente mejora greatly performance."
+    },
+    {
+      "id": "q22",
+      "text": "¿Qué representa el σ (selección) en álgebra relacional?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Seleccionar columnas" },
+        { "id": "a2", "text": "Seleccionar filas que cumplan una condición", "correct": true },
+        { "id": "a3", "text": "Ordenar resultados" },
+        { "id": "a4", "text": "Eliminar duplicados" }
+      ],
+      "explanation": "Sigma (σ) filtra filas según condición."
+    },
+    {
+      "id": "q23",
+      "text": "La simplificación en normalización busca:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Hacer la consulta más compleja" },
+        { "id": "a2", "text": "Eliminar redundancias y contradicciones", "correct": true },
+        { "id": "a3", "text": "Ampliar la consulta" },
+        { "id": "a4", "text": "Agregar más tablas" }
+      ],
+      "explanation": "Simplificación aplica reglas como idempotencia para reducir trabajo."
+    },
+    {
+      "id": "q24",
+      "text": "¿Qué es el 'álgebra relacional' en este contexto?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Un lenguaje de programación" },
+        { "id": "a2", "text": "Un conjunto de operaciones para manipular datos relacionales", "correct": true },
+        { "id": "a3", "text": "Un tipo de base de datos" },
+        { "id": "a4", "text": "Un sistema operativo" }
+      ],
+      "explanation": "Álgebra relacional ofrece operaciones para manipular datos relacionales."
+    },
+    {
+      "id": "q25",
+      "text": "La localización en procesamiento distribuido determina:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Solo el idioma de la consulta" },
+        { "id": "a2", "text": "En qué fragmentos se ejecutará cada parte", "correct": true },
+        { "id": "a3", "text": "El nombre del archivo" },
+        { "id": "a4", "text": "La clave primaria" }
+      ],
+      "explanation": "La localización asigna la consulta a los fragmentos relevantes."
+    },
+    {
+      "id": "q26",
+      "text": "¿Qué beneficio tiene ejecutar una selección antes de un join?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Aumenta el tamaño del join" },
+        { "id": "a2", "text": "Reduce el número de tuplas a combinar", "correct": true },
+        { "id": "a3", "text": "No tiene efecto" },
+        { "id": "a4", "text": "Retrasa la consulta" }
+      ],
+      "explanation": "Selection reduce filas previo al join, bajando su coste."
+    },
+    {
+      "id": "q27",
+      "text": "En fragmentación vertical, ¿qué debe incluir cada fragmento?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Todas las columnas" },
+        { "id": "a2", "text": "La clave primaria para recombinar", "correct": true },
+        { "id": "a3", "text": "Solo columnas numéricas" },
+        { "id": "a4", "text": "Índices only" }
+      ],
+      "explanation": "Fragmentos verticales incluyen clave primaria para recomponer mediante join."
+    },
+    {
+      "id": "q28",
+      "text": "¿Qué es un PLAN de ejecución de consulta?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Un documento de texto" },
+        { "id": "a2", "text": "La secuencia de operaciones para obtener el resultado", "correct": true },
+        { "id": "a3", "text": "Una tabla" },
+        { "id": "a4", "text": "Un tipo de índice" }
+      ],
+      "explanation": "El plan especifica el orden y tipo de operaciones a ejecutar."
+    },
+    {
+      "id": "q29",
+      "text": "El objetivo de 'location transparency' es:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Ocultar al usuario la ubicación de los datos", "correct": true },
+        { "id": "a2", "text": "Mostrar la ubicación exacta" },
+        { "id": "a3", "text": "Encriptar la ubicación" },
+        { "id": "a4", "text": "Requerir ubicación física" }
+      ],
+      "explanation": "Location transparency permite ao usuário acceder datos sin saber dónde estão."
+    },
+    {
+      "id": "q30",
+      "text": "La reorganización de consultas puede lograr:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Consultas más lentas" },
+        { "id": "a2", "text": "Equivalencia semantics con mejor rendimiento", "correct": true },
+        { "id": "a3", "text": "Cambiar el resultado" },
+        { "id": "a4", "text": "Añadir errores" }
+      ],
+      "explanation": "Reescritura mantiene resultados pero mejora efficiency."
+    }
+  ]
+}
