@@ -1,0 +1,96 @@
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--space-5) var(--space-6);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: var(--text-base);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: left;
+  min-height: 52px;
+  position: relative;
+  overflow: hidden;
+  outline: none;
+}
+
+.option:focus-visible {
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+/* ================================================================
+   Hover — subtle slide right
+   ================================================================ */
+.option:hover:not(:disabled) {
+  background: var(--bg-hover);
+  border-color: var(--border);
+  transform: translateX(3px);
+}
+
+/* ================================================================
+   Active — press click
+   ================================================================ */
+.option:active:not(:disabled) {
+  transform: translateX(3px) scale(0.995);
+}
+
+/* ================================================================
+   Selected — accented, not solid
+   ================================================================ */
+.selected {
+  border-color: var(--accent);
+  background: var(--accent-subtle);
+  color: var(--text-primary);
+  box-shadow: 0 0 0 1px var(--accent), 0 0 16px -6px var(--accent-glow);
+}
+
+.selected:hover:not(:disabled) {
+  background: var(--accent-subtle);
+  border-color: var(--accent);
+  transform: translateX(3px);
+}
+
+/* ================================================================
+   Correct — green glow
+   ================================================================ */
+.correct {
+  border-color: var(--correct);
+  background: var(--correct-subtle);
+  color: var(--correct);
+  box-shadow: 0 0 0 1px var(--correct), 0 0 18px -6px var(--correct-glow);
+  cursor: default;
+}
+
+/* ================================================================
+   Wrong — red subtle
+   ================================================================ */
+.wrong {
+  border-color: var(--wrong);
+  background: var(--wrong-subtle);
+  color: var(--wrong);
+  box-shadow: 0 0 0 1px var(--wrong);
+  cursor: default;
+}
+
+/* ================================================================
+   Text layout
+   ================================================================ */
+.text {
+  flex: 1;
+  font-weight: 500;
+  user-select: none;
+}
+
+/* ================================================================
+   Result icon
+   ================================================================ */
+.icon {
+  font-weight: 700;
+  margin-left: var(--space-3);
+  font-size: var(--text-lg);
+  flex-shrink: 0;
+}

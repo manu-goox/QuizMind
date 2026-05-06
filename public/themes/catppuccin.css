@@ -1,0 +1,14 @@
+:root {
+  --bg-primary: #1e1e2e;
+  --bg-secondary: #313244;
+  --bg-hover: #45475a;
+  --text-primary: #cdd6f4;
+  --text-secondary: #a6adc8;
+  --accent: #cba6f7;
+  --accent-hover: #b689cd;
+  --border: #45475a;
+  --correct: #a6e3a1;
+  --wrong: #f38ba8;
+  --progress-fill: #cba6f7;
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}

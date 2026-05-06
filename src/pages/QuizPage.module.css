@@ -1,0 +1,36 @@
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* ================================================================
+   Top bar — counter + progress
+   ================================================================ */
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+/* ================================================================
+   Question counter
+   ================================================================ */
+.counter {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 640px) {
+  .container {
+    gap: var(--space-4);
+  }
+}

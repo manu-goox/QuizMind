@@ -1,0 +1,99 @@
+.card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ================================================================
+   Gradient overlay — visible on hover / selected
+   ================================================================ */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 50% at 50% 0%,
+    var(--accent-subtle),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--border);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+/* ================================================================
+   Selected — glow ring + elevated
+   ================================================================ */
+.selected {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-glow), 0 0 0 1px var(--accent);
+  background: var(--bg-elevated);
+  transform: translateY(-2px);
+}
+
+.selected::before {
+  opacity: 0.6;
+}
+
+.selected:hover {
+  box-shadow: var(--shadow-glow), 0 0 0 1px var(--accent), var(--shadow-lg);
+}
+
+/* ================================================================
+   Internal layout
+   ================================================================ */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-4);
+  position: relative;
+  z-index: 1;
+}
+
+.category {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+.title {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  margin: 0 0 var(--space-2) 0;
+  letter-spacing: -0.02em;
+  position: relative;
+  z-index: 1;
+  line-height: 1.3;
+}
+
+.questions {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}

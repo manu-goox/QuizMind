@@ -1,0 +1,72 @@
+{
+  "id": "matematicas-basicas",
+  "title": "Matemáticas Básicas",
+  "description": "Operaciones fundamentales y álgebra elemental",
+  "category": "Ciencias",
+  "difficulty": "easy",
+  "passThreshold": 0.6,
+  "shuffleQuestions": false,
+  "shuffleAnswers": false,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "¿Cuánto es 7 × 8?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "54" },
+        { "id": "a2", "text": "56", "correct": true },
+        { "id": "a3", "text": "48" },
+        { "id": "a4", "text": "64" }
+      ],
+      "explanation": "7 × 8 = 56. Tabla del 7."
+    },
+    {
+      "id": "q2",
+      "text": "¿Cuál es el resultado de 144 ÷ 12?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "10" },
+        { "id": "a2", "text": "12", "correct": true },
+        { "id": "a3", "text": "14" },
+        { "id": "a4", "text": "16" }
+      ],
+      "explanation": "144 ÷ 12 = 12, pero 144 ÷ 12 = 12 × 12 = 144, así que es 12... espera, 144 ÷ 12 = 12."
+    },
+    {
+      "id": "q3",
+      "text": "¿Cuánto es 15 + 27?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "41" },
+        { "id": "a2", "text": "42", "correct": true },
+        { "id": "a3", "text": "43" },
+        { "id": "a4", "text": "44" }
+      ],
+      "explanation": "15 + 27 = 42."
+    },
+    {
+      "id": "q4",
+      "text": "¿Cuál es el valor de x en la ecuación 2x + 5 = 15?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "x = 4" },
+        { "id": "a2", "text": "x = 5", "correct": true },
+        { "id": "a3", "text": "x = 6" },
+        { "id": "a4", "text": "x = 7" }
+      ],
+      "explanation": "2x + 5 = 15 → 2x = 10 → x = 5."
+    },
+    {
+      "id": "q5",
+      "text": "¿Cuánto es 3²?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "6" },
+        { "id": "a2", "text": "8" },
+        { "id": "a3", "text": "9", "correct": true },
+        { "id": "a4", "text": "12" }
+      ],
+      "explanation": "3² = 3 × 3 = 9."
+    }
+  ]
+}
