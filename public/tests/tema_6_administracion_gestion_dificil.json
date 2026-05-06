@@ -42,7 +42,7 @@
         { "id": "a3", "text": "El sistema se apaga hasta intervención manual" },
         { "id": "a4", "text": "Los nodos secundarios se reinician automáticamente" }
       ],
-      "explanation": "Los sistemas de replicación necesitan protocolos de elección para选出新primario cuando el original fails."
+      "explanation": "Los sistemas de replicación necesitan protocolos de elección para elegir nuevo primario cuando el original falla."
     },
     {
       "id": "q4",
@@ -112,7 +112,7 @@
         { "id": "a1", "text": "Los datos se distribuyen desigual, causando que algunos nodos tengan muchas más filas", "correct": true },
         { "id": "a2", "text": "Los datos se duplican excesivamente" },
         { "id": "a3", "text": "La clave primaria genera valores duplicados" },
-        { "id": "a4", "text": "El índice ocupan太多 espacio" }
+        { "id": "a4", "text": "El índice ocupa demasiado espacio" }
       ],
       "explanation": "Data skew ocurre cuando la distribución de datos crea desbalance, afectando rendimiento."
     },
@@ -138,7 +138,7 @@
         { "id": "a3", "text": "No soporta transacciones distribuidas" },
         { "id": "a4", "text": "Usa menos memoria RAM" }
       ],
-      "explanation": "En peer-to-peer, qualsquier nodo puede aceptar writes, requiriendo resolución de conflictos."
+      "explanation": "En peer-to-peer, cualquier nodo puede aceptar escrituras, requiriendo resolución de conflictos."
     },
     {
       "id": "q12",
@@ -303,7 +303,7 @@
       "answers": [
         { "id": "a1", "text": "Un usuario siempre verá sus propias actualizaciones", "correct": true },
         { "id": "a2", "text": "Todos los usuarios ven los mismos datos" },
-        { "id": "a3", "text": "Los writes nunca se persisten" },
+        { "id": "a3", "text": "Las escrituras nunca se persisten" },
         { "id": "a4", "text": "Las lecturas siempre devuelven datos antiguos" }
       ],
       "explanation": "Read-my-writes garantiza que un usuario vea sus propios cambios inmediatamente."

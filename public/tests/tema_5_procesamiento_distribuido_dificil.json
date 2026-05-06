@@ -10,7 +10,7 @@
   "questions": [
     {
       "id": "q1",
-      "text": "En el algoritmo de fragmentación horizontal derived, ¿qué requisito es obligatorio para la relación de fragmentación?",
+      "text": "En el algoritmo de fragmentación horizontal derivada, ¿qué requisito es obligatorio para la relación de fragmentación?",
       "type": "single",
       "answers": [
         { "id": "a1", "text": "Que la cláusula WHERE de cada fragmento sea mutuamente excluyente", "correct": true },
@@ -226,12 +226,12 @@
     },
     {
       "id": "q19",
-      "text": "En el contexto de Join Distribuido, la 'partitioning attribute' es:",
+      "text": "En el contexto de Join Distribuido, el atributo de particionado es:",
       "type": "single",
       "answers": [
         { "id": "a1", "text": "El atributo común usado para distribuir y unir las tuplas entre relaciones", "correct": true },
         { "id": "a2", "text": "La primera columna de cada tabla" },
-        { "id": "a3", "text": "El índice聚集 del sistema" },
+        { "id": "a3", "text": "El índice del sistema" },
         { "id": "a4", "text": "La columna con más valores únicos" }
       ],
       "explanation": "Partitioning attribute es la clave de join y distribución."
@@ -274,7 +274,7 @@
     },
     {
       "id": "q23",
-      "text": "El problema del '倾斜' (skew) en joins distribuidos afecta principalmente a:",
+      "text": "El problema del 'desequilibrio' (skew) en joins distribuidos afecta principalmente a:",
       "type": "single",
       "answers": [
         { "id": "a1", "text": "El balance de carga cuando algunos nodos procesan muchos más datos que otros", "correct": true },

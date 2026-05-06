@@ -30,7 +30,7 @@
         { "id": "a3", "text": "Transacciones financieras ACID" },
         { "id": "a4", "text": "Almacenamiento de documentos JSON" }
       ],
-      "explanation": "Key-value stores Priorizan latencia sobre功能和完整性."
+      "explanation": "Key-value stores prioritizan latencia sobre funcionalidad e integridad."
     },
     {
       "id": "q3",
@@ -162,7 +162,7 @@
         { "id": "a3", "text": "Solo una réplica necesita confirmar" },
         { "id": "a4", "text": "Ninguna réplica confirma" }
       ],
-      "explanation": "Quorum asegura mayoría para согласие."
+      "explanation": "Quorum asegura mayoría para acuerdo."
     },
     {
       "id": "q14",
@@ -186,7 +186,7 @@
         { "id": "a3", "text": "Bases de datos relacionales tradicionales" },
         { "id": "a4", "text": "Sistemas de archivos distribuidos" }
       ],
-      "explanation": "LSM tree optimiza writes mediante append-only logs."
+      "explanation": "LSM tree optimiza escrituras mediante logs de solo append."
     },
     {
       "id": "q16",
@@ -330,7 +330,7 @@
         { "id": "a3", "text": "Almacenar datos en múltiples idiomas" },
         { "id": "a4", "text": "Permitir múltiples versiones de datos" }
       ],
-      "explanation": "Polyglot persistence usa el storage óptimo para cadatipo."
+      "explanation": "Polyglot persistence usa el almacenamiento óptimo para cada tipo."
     },
     {
       "id": "q28",

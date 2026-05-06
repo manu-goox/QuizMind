@@ -42,7 +42,7 @@
         { "id": "a3", "text": "Una alternativa a SQL" },
         { "id": "a4", "text": "Un tipo de índice" }
       ],
-      "explanation": "BASE es el modelo opuesto a ACID para sistemas distribuidos eventualment consistentes."
+      "explanation": "BASE es el modelo opuesto a ACID para sistemas distribuidos eventualmente consistentes."
     },
     {
       "id": "q4",
@@ -66,7 +66,7 @@
         { "id": "a3", "text": "Consultas ad-hoc complejas" },
         { "id": "a4", "text": "Datos estructurados complejos" }
       ],
-      "explanation": "Cassandra optimiza writes y escalabilidad horizontal."
+      "explanation": "Cassandra optimiza escrituras y escalabilidad horizontal."
     },
     {
       "id": "q6",
@@ -86,11 +86,11 @@
       "type": "single",
       "answers": [
         { "id": "a1", "text": "Los datos nunca se actualizan" },
-        { "id": "a2", "text": "Eventually todas las réplicas tendrán los mismos datos", "correct": true },
+        { "id": "a2", "text": "Eventualmente todas las réplicas tendrán los mismos datos", "correct": true },
         { "id": "a3", "text": "Los datos siempre son inconsistentes" },
         { "id": "a4", "text": "No hay replicación" }
       ],
-      "explanation": "Consistencia eventual converge eventually."
+      "explanation": "La consistencia eventual converge eventualmente."
     },
     {
       "id": "q8",
@@ -150,7 +150,7 @@
         { "id": "a3", "text": "Sin pérdida de datos" },
         { "id": "a4", "text": "Transacciones garantizadas" }
       ],
-      "explanation": "Async replication no espera confirmación de todas las réplicas."
+      "explanation": "La replicación asíncrona no espera confirmación de todas las réplicas."
     },
     {
       "id": "q13",
@@ -186,7 +186,7 @@
         { "id": "a3", "text": "Bloqueos estrictos" },
         { "id": "a4", "text": "Transacciones síncronas" }
       ],
-      "explanation": "Async propagation permite que réplicas converjan eventually."
+      "explanation": "La propagación asíncrona permite que las réplicas converjan eventualmente."
     },
     {
       "id": "q16",
@@ -328,7 +328,7 @@
         { "id": "a1", "text": "Un solo servidor" },
         { "id": "a2", "text": "Replicación y distribución", "correct": true },
         { "id": "a3", "text": "Sin replicación" },
-        { "id": "a4", "text": "Sin nodos الاحتياطي" }
+        { "id": "a4", "text": "Sin nodos de respaldo" }
       ],
       "explanation": "Replicación elimina puntos únicos de fallo."
     },

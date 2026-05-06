@@ -130,7 +130,7 @@
     },
     {
       "id": "q11",
-      "text": "¿Qué información搜集 el catálogo de la base de datos distribuida?",
+      "text": "¿Qué información almacena el catálogo de la base de datos distribuida?",
       "type": "single",
       "answers": [
         { "id": "a1", "text": "Solo estadísticas de tablas" },
@@ -142,7 +142,7 @@
     },
     {
       "id": "q12",
-      "text": "La fragmentación horizontalderived requiere que los fragmentos sean:",
+      "text": "La fragmentación horizontal derivada requiere que los fragmentos sean:",
       "type": "single",
       "answers": [
         { "id": "a1", "text": "Mutuamente excluyentes y completos", "correct": true },
@@ -255,10 +255,10 @@
       "answers": [
         { "id": "a1", "text": "El orden de join solo afecta al resultado" },
         { "id": "a2", "text": "El orden afecta significativamente al rendimiento", "correct": true },
-        { "id": "a3", "text": "Siempre ejecuta en orden alphabetical" },
+        { "id": "a3", "text": "Siempre ejecuta en orden alfabético" },
         { "id": "a4", "text": "No importa el orden" }
       ],
-      "explanation": "Ordenar joins estratégicamente mejora greatly performance."
+      "explanation": "Ordenar joins stratégicamente mejora significativamente el rendimiento."
     },
     {
       "id": "q22",
@@ -328,7 +328,7 @@
         { "id": "a1", "text": "Todas las columnas" },
         { "id": "a2", "text": "La clave primaria para recombinar", "correct": true },
         { "id": "a3", "text": "Solo columnas numéricas" },
-        { "id": "a4", "text": "Índices only" }
+        { "id": "a4", "text": "Índices únicamente" }
       ],
       "explanation": "Fragmentos verticales incluyen clave primaria para recomponer mediante join."
     },
@@ -354,7 +354,7 @@
         { "id": "a3", "text": "Encriptar la ubicación" },
         { "id": "a4", "text": "Requerir ubicación física" }
       ],
-      "explanation": "Location transparency permite ao usuário acceder datos sin saber dónde estão."
+      "explanation": "Location transparency permite al usuario acceder a datos sin saber dónde están ubicados."
     },
     {
       "id": "q30",
@@ -366,7 +366,7 @@
         { "id": "a3", "text": "Cambiar el resultado" },
         { "id": "a4", "text": "Añadir errores" }
       ],
-      "explanation": "Reescritura mantiene resultados pero mejora efficiency."
+      "explanation": "Reescritura mantiene resultados pero mejora el rendimiento."
     }
   ]
 }
