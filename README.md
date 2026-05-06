@@ -89,7 +89,7 @@ HomePage ──▶ TestStartPage ──▶ QuizPage ──▶ ResultsPage
 
 ```bash
 # clone
-git clone https://github.com/YOUR_USER/QuizMind.git
+git clone https://github.com/manu-goox/QuizMind.git
 cd QuizMind
 
 # install
