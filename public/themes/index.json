@@ -1,0 +1,19 @@
+{
+  "themes": [
+    {
+      "id": "dark",
+      "name": "Dark",
+      "file": "/themes/dark.css"
+    },
+    {
+      "id": "light",
+      "name": "Light",
+      "file": "/themes/light.css"
+    },
+    {
+      "id": "catppuccin",
+      "name": "Catppuccin",
+      "file": "/themes/catppuccin.css"
+    }
+  ]
+}

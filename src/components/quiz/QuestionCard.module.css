@@ -1,0 +1,53 @@
+.card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-md);
+}
+
+/* ================================================================
+   Question text
+   ================================================================ */
+.text {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  margin: 0 0 var(--space-6) 0;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+/* ================================================================
+   Answers container
+   ================================================================ */
+.answers {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* ================================================================
+   Explanation — review mode
+   ================================================================ */
+.explanation {
+  margin-top: var(--space-6);
+  padding: var(--space-5);
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  border-left: 3px solid var(--accent);
+  line-height: 1.6;
+}
+
+.explanation strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: var(--space-6);
+  }
+}

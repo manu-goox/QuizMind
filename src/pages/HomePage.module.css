@@ -1,0 +1,41 @@
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 1.5rem 0;
+}
+
+.message {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: 3rem;
+}
+
+.error {
+  text-align: center;
+  color: var(--wrong);
+  padding: 3rem;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.info strong {
+  font-size: 1.25rem;
+}
+
+.info span {
+  color: var(--text-secondary);
+}

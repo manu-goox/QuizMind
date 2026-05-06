@@ -1,0 +1,38 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  position: relative;
+}
+
+/* Ambient glow at the top — Linear/Arc inspired */
+.page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 50% at 50% -10%,
+    var(--accent-subtle),
+    transparent
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.content {
+  flex: 1;
+  padding: var(--space-8);
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 640px) {
+  .content {
+    padding: var(--space-4);
+  }
+}
