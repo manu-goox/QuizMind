@@ -1,0 +1,234 @@
+Informe Técnico: Resolución de 
+Problemas mediante Búsqueda en 
+Inteligencia Artificial
+1. Introducción y Objetivos del Agente de 
+Búsqueda
+En el ámbito de la Inteligencia Artificial, los agentes de resolución de problemas 
+constituyen una evolución específica de los agentes basados en objetivos. Su función 
+primordial es la identificación de secuencias de acciones que transformen un estado inicial 
+en uno deseable mediante un proceso de búsqueda deliberativa. A diferencia de los 
+agentes de reflejo simple, estos agentes mantienen un modelo simbólico del mundo y 
+evalúan las consecuencias futuras de sus acciones antes de ejecutarlas.
+Como catedráticos, establecemos los siguientes objetivos fundamentales para el estudio 
+de esta materia:
+Entender a fondo el funcionamiento del agente de resolución de problemas: 
+Diferenciar con rigor la formulación del objetivo y la fase de búsqueda frente a la 
+ejecución.
+Comprender con precisión los elementos constitutivos: Definir los componentes que 
+formalizan un problema y los criterios que caracterizan una solución válida.
+Dominar los algoritmos de búsqueda no informada: Analizar mecánicas, ventajas y 
+limitaciones de las estrategias que operan sin conocimiento específico del dominio.
+Evaluar algoritmos de búsqueda informada: Conocer el uso de funciones heurísticas 
+para optimizar la exploración y reducir el costo computacional.
+Para que estas técnicas resulten aplicables, el entorno debe cumplir con cuatro 
+propiedades críticas: ser discreto (estados y acciones finitos), observable (acceso total a la 
+información relevante), estático (el mundo solo cambia por acción del agente) y 
+determinista (el resultado de cada acción es previsible y está definido).
+2. Formulación Formal de Problemas
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13372387 
+.
+ 
+ 
+ 
+ 
+
+La formalización rigurosa de un problema es el paso previo indispensable para cualquier 
+intento de resolución automatizada. Se define mediante cuatro componentes:
+Estado inicial: La representación de la configuración física en la que el agente comienza 1. 
+su proceso.
+Acciones y Función sucesor: Dado un estado x, la función sucesor(x) devuelve un 2. 
+conjunto de pares (acción, sucesor). Es vital comprender que esta función, junto al 
+estado inicial, define de forma implícita el Espacio de estados, que es el conjunto de 
+todos los estados alcanzables.
+Test objetivo: Una función booleana que determina si un estado actual satisface las 3. 
+condiciones de la meta.
+Costo del camino: Función que asigna un valor numérico a una secuencia de acciones. 4. 
+Habitualmente se compone de la suma de costos individuales c(x, a, y) de cada acción a 
+entre los estados x e y.
+El concepto de Abstracción
+Dado que el mundo real es inabarcable, el diseño de espacios de estados requiere 
+Abstracción. Esta consiste en eliminar detalles irrelevantes para que un estado abstracto 
+represente un conjunto de estados reales. Una abstracción es válida si se conserva la 
+integridad del problema y se asegura que las acciones abstractas resultantes sean fáciles 
+de realizar en el mundo físico.
+Ejemplos de Aplicación y Versatilidad
+Rumanía (Búsqueda de rutas): Estados como ciudades y acciones como conducir entre 
+ellas.
+8-puzzle: Movimiento de piezas en un tablero 3 \times 3. El costo del camino es 1 por 
+cada movimiento.
+Mundo de la aspiradora: Limpieza de celdas minimizando desplazamientos.
+Robot manipulador: Estados definidos por coordenadas de ángulos de articulación. El 
+costo es el tiempo de ejecución.
+Mundo de bloques: Manipulación de bloques mediante los operadores apilar(X,Y) 
+(donde X e Y deben estar libres) y quitar(Y) (poner Y en la mesa). El costo es una unidad 
+por operador .
+3. Conceptos Fundamentales de la 
+Búsqueda
+Todos los planes de suscripción incluyen descargas sin publicidad con coins
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13372387 
+.
+ 
+ 
+ 
+ 
+
+Es imperativo para el analista no confundir la estructura del problema con la estructura de 
+datos que lo resuelve.
+Diferencias Críticas: Estado vs. Nodo
+Característica Estado Nodo
+Definición Configuración física o lógica del 
+mundo.
+Estructura de datos en el árbol de 
+búsqueda.
+Componentes Atributos del problema. Padre, Acción, Profundidad, Costo del 
+camino g(n).
+Jerarquía No posee. Conectado a padres e hijos.
+Advertencia pedagógica: ¡Los estados no tienen padres, hijos, profundidad o costo del 
+camino! Estos son atributos exclusivos del nodo generado durante la búsqueda.
+Elementos del Algoritmo de Búsqueda
+Árbol de búsqueda: Estructura dinámica que explora el espacio de estados.
+Frontera (Nodos abiertos): Conjunto de nodos generados que esperan ser expandidos.
+Nodos cerrados (Tabla A): Estructura donde se almacenan nodos ya visitados para 
+evitar ciclos.
+La función EXPANDIR es el núcleo del proceso: para un nodo n, genera sucesores 
+aplicando la función sucesor del problema. Para cada nuevo nodo s, se calcula Estado[s], 
+Nodo-Padre[s] = n, Accion[s] = a, Profundidad[s] = Profundidad[n] + 1 y, fundamentalmente, 
+el costo acumulado: g(s) = g(n) + Costo-Individual(n, a, s)
+Para garantizar la terminación en grafos, se deben evitar ciclos simples (no volver al padre 
+inmediato) y ciclos generales (no añadir antecesores o nodos ya existentes en el árbol).
+4. Criterios de Evaluación de Algoritmos
+El rendimiento de una estrategia de búsqueda se mide mediante cuatro parámetros 
+técnicos:
+Completitud
+Todos los planes de suscripción incluyen descargas sin publicidad con coins
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13372387 
+.
+ 
+ 
+ 
+ 
+
+Garantía de encontrar una solución si esta existe.
+Optimalidad
+Capacidad de hallar la solución con el costo del camino más bajo (C^*).
+Complejidad Temporal
+Número de nodos expandidos durante la búsqueda. Se utiliza la notación Big-O.
+Complejidad Espacial
+Memoria máxima requerida para almacenar nodos en la frontera y en el árbol.
+Variables de medición:
+b: Factor de ramificación (número medio de sucesores).
+d: Profundidad de la solución más superficial.
+m: Profundidad máxima de cualquier camino en el espacio de estados.
+Diferenciamos el Costo de búsqueda (recursos computacionales consumidos) del Costo 
+total, que es la suma del costo de búsqueda y el costo del camino solución.
+5. Estrategias de Búsqueda No Informada 
+(Ciega)
+Búsqueda primero en anchura (BFS)
+Expande los nodos nivel a nivel (cola FIFO). Su virtud es que encuentra el objetivo a la 
+mínima profundidad. Es completa y óptima si los costos son uniformes. Su complejidad es 
+O(b^d), siendo el espacio su mayor limitación.
+Búsqueda de costo uniforme (UCS)
+Expande el nodo con el menor costo acumulado g(n) (cola de prioridad). Es completa y 
+óptima siempre que el costo de cada paso sea superior a una constante \epsilon > 0 para 
+evitar caminos de costo total nulo que generen ciclos infinitos.
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13372387 
+.
+ 
+ 
+ 
+ 
+
+Búsqueda primero en profundidad (DFS)
+Sigue el camino más profundo (pila LIFO). No es completa en espacios infinitos y no es 
+óptima. Sin embargo, su complejidad espacial es lineal O(bm), lo que la hace atractiva para 
+soluciones densas.
+Búsquedas limitadas e iterativas
+Profundidad limitada: Introduce un límite l.
+Profundidad iterativa (IDS): El método preferido en espacios grandes. Ejecuta 
+búsquedas limitadas incrementando l progresivamente. Combina la completitud y 
+optimalidad de BFS con el espacio lineal de DFS (O(bd)).
+Búsqueda bidireccional
+Lanza una búsqueda desde el inicio y otra desde el objetivo. Para ser eficaz, debe 
+comprobar si un nodo generado está en la frontera del otro árbol antes de expandirlo.
+Tabla Resumen de Rendimiento
+Algoritmo Completitud Optimalidad Tiempo Espacio
+Anchura (BFS) Sí Sí* O(b^d) O(b^d)
+Costo Uniforme Sí Sí O(b^{C^*/
+\epsilon})
+O(b^{C^*/
+\epsilon})
+Profundidad 
+(DFS)
+No No O(b^m) O(bm)
+Prof. Iterativa Sí Sí* O(b^d) O(bd)
+*Óptimo si todos los costos de paso son iguales.
+6. Funciones Heurísticas
+Una función heurística h(n) estima el costo desde el nodo n hasta el objetivo. Es la 
+herramienta fundamental para guiar la búsqueda informada.
+Todos los planes de suscripción incluyen descargas sin publicidad con coins
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13372387 
+.
+ 
+ 
+ 
+ 
+
+Propiedades Matemáticas
+Admisibilidad: h(n) nunca sobrestima el costo real: h(n) \leq h^*(n). Es una estimación 
+optimista.
+Consistencia: Para todo sucesor n' de n generado por la acción a: h(n) \leq c(n, a, n') + 
+h(n'). Un hecho crucial es que, si una heurística es consistente, el valor de f(n) = g(n) + 
+h(n) nunca disminuye a lo largo de un camino.
+Las heurísticas suelen obtenerse mediante la relajación de problemas. Por ejemplo, en el 
+8-puzzle, suponer que las piezas pueden moverse a cualquier celda; o en rutas por 
+carretera, utilizar la distancia lineal (euclídea) entre ciudades.
+7. Estrategias de Búsqueda Informada 
+(Heurística)
+Búsqueda Voraz (Greedy Best-First)
+Utiliza f(n) = h(n). Expande el nodo que parece estar más cerca de la meta. Es eficiente pero 
+incompleta y no óptima, pues puede ignorar caminos costosos que llevan a soluciones 
+baratas.
+Algoritmo A*
+Propone la función de evaluación integral: f(n) = g(n) + h(n).
+Optimalidad: Es óptimo en árboles si h(n) es admisible y óptimo en grafos si h(n) es 
+consistente. Expande todos los nodos con f(n) < C^*.
+Comportamiento visual: Mientras que UCS expande en bandas circulares, A* estira las 
+bandas hacia el objetivo, concentrando el esfuerzo en el camino óptimo.
+Variantes con Memoria Acotada
+(A de profundidad iterativa):** Utiliza el f-coste como umbral de corte en lugar de la 
+profundidad.
+BRPM (Búsqueda recursiva del primero el mejor): Algoritmo recursivo que utiliza 
+espacio lineal imitando la búsqueda del primero el mejor .
+Todos los planes de suscripción incluyen descargas sin publicidad con coins
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13372387 
+.
+ 
+ 
+ 
+ 
+
+8. Conclusiones y Resumen de Eficacia
+La elección de una estrategia de búsqueda está condicionada por el balance entre tiempo y 
+memoria. La búsqueda de profundidad iterativa es la solución robusta ante la ausencia 
+de heurísticas y limitaciones de memoria. No obstante, el algoritmo A* representa el 
+estándar de excelencia cuando se dispone de una heurística consistente.
+Es fundamental destacar que variantes como IDA* y BRPM son vitales para resolver 
+problemas de gran escala donde A* agotaría la memoria disponible antes de hallar la 
+solución. En última instancia, la calidad de la función heurística es el factor determinante: 
+una heurística más informada (h_2 > h_1) reduce drásticamente el espacio de búsqueda, 
+convirtiendo problemas teóricamente intratables en soluciones computacionalmente 
+eficientes.
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13372387 
+.
+ 
+ 
+ 
+ 
+

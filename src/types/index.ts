@@ -44,6 +44,7 @@ export interface QuizState {
   startTime: number | null;
   activeTest: Test | null;
   status: 'idle' | 'starting' | 'in-progress' | 'reviewing' | 'finished';
+  answerOrder: Record<string, string[]>;
 }
 
 export interface QuizResult {

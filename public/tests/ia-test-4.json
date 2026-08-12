@@ -1,0 +1,512 @@
+{
+  "id": "ia-test-4",
+  "title": "Inteligencia Artificial - Test 4: Mixto",
+  "description": "Preguntas mixtas de toda la asignatura de Inteligencia Artificial, diferentes a los tests 1-3",
+  "category": "Inteligencia Artificial",
+  "difficulty": "mixed",
+  "passThreshold": 0.6,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "¿Qué es un agente inteligente según la definición del temario?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Un programa que ejecuta cálculos numéricos complejos"
+        },
+        {
+          "id": "a2",
+          "text": "Un ente activo embebido en un entorno, capaz de percibir y ejecutar acciones",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Un sistema operativo con capacidades de red"
+        },
+        {
+          "id": "a4",
+          "text": "Una base de datos con capacidad de consulta"
+        }
+      ],
+      "explanation": "Un agente es un ente activo embebido en un entorno, capaz de percibir su medio ambiente y ejecutar acciones para modificarlo."
+    },
+    {
+      "id": "q2",
+      "text": "¿Qué propiedad del entorno de búsqueda implica que el resultado de cada acción es previsible?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Discreto"
+        },
+        {
+          "id": "a2",
+          "text": "Estático"
+        },
+        {
+          "id": "a3",
+          "text": "Determinista",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Observable"
+        }
+      ],
+      "explanation": "Un entorno determinista asegura que el resultado de cada acción es previsible y está definido."
+    },
+    {
+      "id": "q3",
+      "text": "En el contexto de agentes, ¿qué diferencia a la función de agente del programa de agente?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "La función proyecta toda secuencia de percepciones posible; el programa recibe solo la percepción actual",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "La función es la implementación; el programa es la abstracción matemática"
+        },
+        {
+          "id": "a3",
+          "text": "Ambos términos son equivalentes"
+        },
+        {
+          "id": "a4",
+          "text": "La función recibe la percepción actual; el programa proyecta toda secuencia"
+        }
+      ],
+      "explanation": "La Función de agente describe el mapeo de toda la historia de percepciones, mientras que el Programa recibe solo la percepción actual."
+    },
+    {
+      "id": "q4",
+      "text": "¿Qué algoritmo de búsqueda no informada utiliza una cola FIFO?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Búsqueda primero en anchura (BFS)",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Búsqueda primero en profundidad (DFS)"
+        },
+        {
+          "id": "a3",
+          "text": "Búsqueda de costo uniforme (UCS)"
+        },
+        {
+          "id": "a4",
+          "text": "Búsqueda de profundidad iterativa (IDS)"
+        }
+      ],
+      "explanation": "BFS usa una cola FIFO, expandiendo los nodos nivel a nivel. Es completa y óptima si los costos son uniformes."
+    },
+    {
+      "id": "q5",
+      "text": "En el algoritmo A*, la función de evaluación f(n) se define como:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "f(n) = h(n)"
+        },
+        {
+          "id": "a2",
+          "text": "f(n) = g(n) + h(n)",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "f(n) = g(n) * h(n)"
+        },
+        {
+          "id": "a4",
+          "text": "f(n) = g(n) - h(n)"
+        }
+      ],
+      "explanation": "A* usa f(n) = g(n) + h(n), donde g(n) es el costo acumulado desde el inicio y h(n) la estimación heurística al objetivo."
+    },
+    {
+      "id": "q6",
+      "text": "En la poda alfa-beta, el parámetro α (alfa) representa:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "El mejor valor asegurado para MIN"
+        },
+        {
+          "id": "a2",
+          "text": "El peor valor posible para MAX"
+        },
+        {
+          "id": "a3",
+          "text": "El mejor valor asegurado para MAX hasta el momento",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "El valor medio de todos los sucesores"
+        }
+      ],
+      "explanation": "α es el mejor valor (el más alto) asegurado para MAX hasta el momento en el camino de búsqueda."
+    },
+    {
+      "id": "q7",
+      "text": "¿Cuál es la complejidad espacial del algoritmo Minimax?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "O(b^m)"
+        },
+        {
+          "id": "a2",
+          "text": "O(bm)",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "O(m^2)"
+        },
+        {
+          "id": "a4",
+          "text": "O(b + m)"
+        }
+      ],
+      "explanation": "Minimax tiene complejidad espacial O(bm) debido a la exploración primero en profundidad del árbol de juego."
+    },
+    {
+      "id": "q8",
+      "text": "En juegos simultáneos de un único movimiento, una estrategia mixta es:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Una decisión determinista única"
+        },
+        {
+          "id": "a2",
+          "text": "La estrategia que maximiza el mínimo beneficio"
+        },
+        {
+          "id": "a3",
+          "text": "Una estrategia que ignora al adversario"
+        },
+        {
+          "id": "a4",
+          "text": "Una distribución de probabilidad sobre las acciones posibles",
+          "correct": true
+        }
+      ],
+      "explanation": "Una estrategia mixta es una distribución de probabilidad sobre las acciones posibles, a diferencia de la estrategia pura que es determinista."
+    },
+    {
+      "id": "q9",
+      "text": "¿Qué nombre recibe la función que asigna un valor numérico a los estados terminales en teoría de juegos?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Función heurística"
+        },
+        {
+          "id": "a2",
+          "text": "Función sucesor"
+        },
+        {
+          "id": "a3",
+          "text": "Función de utilidad",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Función de costo"
+        }
+      ],
+      "explanation": "La función de utilidad asigna un valor numérico a los estados terminales (ej. +1, 0, -1) en un juego."
+    },
+    {
+      "id": "q10",
+      "text": "En Simulated Annealing, ¿cómo evoluciona la temperatura a lo largo del proceso?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Aumenta progresivamente"
+        },
+        {
+          "id": "a2",
+          "text": "Se mantiene constante"
+        },
+        {
+          "id": "a3",
+          "text": "Oscila entre dos valores"
+        },
+        {
+          "id": "a4",
+          "text": "Disminuye progresivamente",
+          "correct": true
+        }
+      ],
+      "explanation": "La temperatura en Simulated Annealing disminuye progresivamente, reduciendo la probabilidad de aceptar estados peores con el tiempo."
+    },
+    {
+      "id": "q11",
+      "text": "¿Qué tipo de conocimiento es fácil de estructurar, compartir y procesar?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Conocimiento explícito",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Conocimiento tácito"
+        },
+        {
+          "id": "a3",
+          "text": "Conocimiento heurístico"
+        },
+        {
+          "id": "a4",
+          "text": "Conocimiento subjetivo"
+        }
+      ],
+      "explanation": "El conocimiento explícito puede existir fuera de los seres humanos, es fácil de estructurar, compartir, procesar y guardar."
+    },
+    {
+      "id": "q12",
+      "text": "El componente 'Clases' en una ontología representa:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Elementos concretos del dominio"
+        },
+        {
+          "id": "a2",
+          "text": "Los conceptos del dominio en su sentido más amplio",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Las afirmaciones siempre ciertas"
+        },
+        {
+          "id": "a4",
+          "text": "Las relaciones entre conceptos"
+        }
+      ],
+      "explanation": "Las Clases representan los conceptos del dominio en su sentido más amplio (ej. lugares, alojamientos)."
+    },
+    {
+      "id": "q13",
+      "text": "El modelo de neurona de McCulloch & Pitts (1943) define la salida como:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "y = w·x + b"
+        },
+        {
+          "id": "a2",
+          "text": "y = φ(Σ wi·xi)",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "y = Σ wi·xi"
+        },
+        {
+          "id": "a4",
+          "text": "y = max(0, w·x)"
+        }
+      ],
+      "explanation": "La salida de una neurona es y = φ(Σ wi·xi), donde φ es la función de activación y wi los pesos sinápticos."
+    },
+    {
+      "id": "q14",
+      "text": "En aprendizaje automático, ¿qué mide el error cuadrático medio (MSE)?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "El porcentaje de aciertos en clasificación"
+        },
+        {
+          "id": "a2",
+          "text": "El error en problemas de regresión",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "La ganancia de información de un atributo"
+        },
+        {
+          "id": "a4",
+          "text": "El margen de separación de una SVM"
+        }
+      ],
+      "explanation": "El MSE es una métrica utilizada en problemas de regresión para medir el error cuadrático medio entre predicciones y valores reales."
+    },
+    {
+      "id": "q15",
+      "text": "¿Qué requisito clave de la IA fiable se corresponde con el principio ético de 'explicabilidad'?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Solidez técnica y seguridad"
+        },
+        {
+          "id": "a2",
+          "text": "Gestión de privacidad y datos"
+        },
+        {
+          "id": "a3",
+          "text": "Transparencia",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Rendición de cuentas"
+        }
+      ],
+      "explanation": "El principio de explicabilidad se corresponde con el requisito de Transparencia: trazabilidad, explicabilidad y comunicación clara al usuario."
+    },
+    {
+      "id": "q16",
+      "text": "¿Qué hace el 'truco del kernel' en SVM?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Proyectar los datos a un espacio de mayor dimensión sin calcular explícitamente la proyección",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Reducir la dimensionalidad de los datos de entrada"
+        },
+        {
+          "id": "a3",
+          "text": "Aumentar el número de vectores soporte"
+        },
+        {
+          "id": "a4",
+          "text": "Eliminar los datos ruidosos del conjunto de entrenamiento"
+        }
+      ],
+      "explanation": "El truco del kernel proyecta datos a un espacio de mayor dimensión donde sean separables, sin calcular explícitamente dicha proyección."
+    },
+    {
+      "id": "q17",
+      "text": "En un árbol de decisión, ¿qué representa una hoja?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Una prueba sobre un atributo"
+        },
+        {
+          "id": "a2",
+          "text": "Un posible resultado de una prueba"
+        },
+        {
+          "id": "a3",
+          "text": "La categoría de salida o valor de regresión",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Un subconjunto de entrenamiento"
+        }
+      ],
+      "explanation": "Una hoja en un árbol de decisión representa la categoría de salida (clasificación) o un valor continuo (regresión)."
+    },
+    {
+      "id": "q18",
+      "text": "¿Cuál de los siguientes es un enfoque reactivo en ética de IA?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Definir de antemano qué queremos de la IA"
+        },
+        {
+          "id": "a2",
+          "text": "Diseñar la IA con valores éticos desde el inicio"
+        },
+        {
+          "id": "a3",
+          "text": "Actuar una vez que los daños ya han ocurrido",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Incorporar supervisión humana continua"
+        }
+      ],
+      "explanation": "El enfoque ex-post o reactivo actúa cuando los daños ya han ocurrido. El enfoque proactivo es el recomendado."
+    },
+    {
+      "id": "q19",
+      "text": "Una heurística h(n) es consistente si para todo sucesor n' de n:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "h(n) ≥ h(n')"
+        },
+        {
+          "id": "a2",
+          "text": "h(n) ≤ h*(n)"
+        },
+        {
+          "id": "a3",
+          "text": "h(n) ≤ c(n,a,n') + h(n')",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "h(n) = g(n) + h(n')"
+        }
+      ],
+      "explanation": "Consistencia: h(n) ≤ c(n,a,n') + h(n'). Si es consistente, f(n) = g(n) + h(n) nunca disminuye a lo largo del camino."
+    },
+    {
+      "id": "q20",
+      "text": "¿Qué red neuronal es capaz de aprender representaciones comprimidas de los datos de entrada?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Red convolucional (CNN)"
+        },
+        {
+          "id": "a2",
+          "text": "Autoencoder",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Red recurrente (RNN)"
+        },
+        {
+          "id": "a4",
+          "text": "Perceptrón simple"
+        }
+      ],
+      "explanation": "Un autoencoder aprende una representación comprimida (encoding) de la entrada, útil para reducción de dimensionalidad y detección de anomalías."
+    }
+  ]
+}

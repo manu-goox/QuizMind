@@ -1,0 +1,530 @@
+Inteligencia Artificial
+Tema 7 — Aprendizaje
+Resumen estructurado para examen
+Basado en las diapositivas del Dpto. de Informática·UJA
+Ingeniería Informática·Universidad de Jaén
+Curso 2025/2026
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13601945 
+.
+ 
+ 
+ 
+ 
+
+Ingeniería Informática IA·Tema 7: Aprendizaje·UJA
+Índice
+1. Introducción: ¿Qué es el Aprendizaje? 3
+1.1. Definición . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+1.2. Agente de Aprendizaje . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+1.3. Aprendizaje Automático (Machine Learning) . . . . . . . . . . . . . . . . . 3
+1.3.1. Tipos de Aprendizaje Automático . . . . . . . . . . . . . . . . . . . 3
+2. Conceptos Clave del Aprendizaje 4
+2.1. Conjuntos de Datos . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+2.2. Clasificación vs. Regresión . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+2.3. Parámetros vs. Hiperparámetros . . . . . . . . . . . . . . . . . . . . . . . . 5
+2.4. Aprendizaje Basado en Modelos vs. Basado en Instancias . . . . . . . . . . 5
+2.5. Aprendizaje Superficial vs. Profundo . . . . . . . . . . . . . . . . . . . . . 5
+3. Aprendizaje Inductivo Supervisado 5
+3.1. Definición Formal . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+3.2. Selección de Hipótesis: Navaja de Ockham . . . . . . . . . . . . . . . . . . 5
+3.3. Evaluación del Rendimiento . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+3.3.1. Métricas en Clasificación . . . . . . . . . . . . . . . . . . . . . . . . 6
+3.3.2. Métricas en Regresión . . . . . . . . . . . . . . . . . . . . . . . . . 6
+3.3.3. Sobreajuste (Overfitting) . . . . . . . . . . . . . . . . . . . . . . . . 6
+4. Árboles de Decisión 6
+4.1. Definición y Estructura . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+4.2. Algoritmo de Aprendizaje . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+4.3. Expresividad y Limitaciones . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+5. SVM — Máquina de Vectores Soporte 8
+5.1. Idea Central . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+5.2. Vectores Soporte y Margen . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+6. Aprendizaje Basado en Instancias: kNN 8
+6.1. Características . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+6.2. Funcionamiento . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+6.3. Hiperparámetroky su Impacto . . . . . . . . . . . . . . . . . . . . . . . . 9
+7. Redes Neuronales Artificiales (RNA) 10
+7.1. Definición y Modelo de Neurona . . . . . . . . . . . . . . . . . . . . . . . . 10
+7.2. Arquitectura . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+7.3. Entrenamiento: Backpropagation . . . . . . . . . . . . . . . . . . . . . . . 10
+7.4. Tipos de RNA . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+8. Aprendizaje Profundo (Deep Learning) 12
+8.1. Definición y Motivación . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+8.2. Funcionamiento Jerárquico . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+8.3. Reto:Vanishing Gradient. . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+8.4. Principales Arquitecturas DL . . . . . . . . . . . . . . . . . . . . . . . . . 12
+8.4.1. Autoencoders . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+1
+Elimina la publicidad de este documento con 1 coin
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13601945 
+.
+ 
+ 
+ 
+ 
+
+Ingeniería Informática IA·Tema 7: Aprendizaje·UJA
+8.4.2. Redes Convolucionales (CNN) . . . . . . . . . . . . . . . . . . . . . 12
+8.4.3. Redes Recurrentes (RNN / LSTM) . . . . . . . . . . . . . . . . . . 13
+8.4.4. Otras Arquitecturas . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+8.5. ¿Por Qué Tiene Tanto Éxito el DL Actualmente? . . . . . . . . . . . . . . 13
+9. Resumen Comparativo de Técnicas 14
+10.Puntos Clave para el Examen 14
+Bibliografía 16
+2
+Elimina la publicidad de este documento con 1 coin
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13601945 
+.
+ 
+ 
+ 
+ 
+
+Ingeniería Informática IA·Tema 7: Aprendizaje·UJA
+1. Introducción: ¿Qué es el Aprendizaje?
+1.1. Definición
+Elaprendizajeen IA consiste en utilizar las percepciones para mejorar la habilidad
+del agente de actuar en el futuro, sin haber sido programado explícitamente para la
+tarea.
+Algunas definiciones relevantes en el ámbito de la IA:
+H. Simon:cualquier cambio en un sistema que permita realizar la misma tarea de
+manera más eficiente.
+T.M. Mitchell:se dice que aprendemos de la experiencia al realizar alguna tarea si
+la realización mejora con la experiencia respecto a alguna medida de rendimiento.
+1.2. Agente de Aprendizaje
+Un agente de aprendizaje tiene dos elementos principales:
+Elemento de acción (Performance element):decide qué acciones llevar a cabo.
+Elemento de aprendizaje (Learning element):modifica el elemento de acción
+para tomar mejores decisiones en el futuro.
+El diseño del elemento de aprendizaje depende de:
+1. Qué componentes del elemento de acción deben aprenderse.
+2. Qué realimentación (feedback) está disponible.
+3. Qué tipo de medida de rendimiento se utiliza.
+4. Qué representación se usa para los componentes.
+1.3. Aprendizaje Automático (Machine Learning)
+Objetivo:Construir algoritmos que, a partir de datos y percepciones, mejoran su
+rendimiento en una tarea sin haber sido programados explícitamente para ella.
+1.3.1. Tipos de Aprendizaje Automático
+Supervisado:aprende un modelo a partir de ejemplosetiquetados(entrada + salida
+correcta). Es el más común.Ej: clasificación de imágenes, detección de spam.
+No supervisado:aprende patrones a partir de entradas sin salidas especificadas.Ej:
+clustering, reducción de dimensionalidad.
+Semi-supervisado:combina datos etiquetados y no etiquetados.
+Por refuerzo:el agente aprende mediante recompensas o penalizaciones según las
+acciones ejecutadas en un entorno. La decisión es secuencial con objetivo a medio/largo
+plazo.Ej: juegos, robótica.
+3
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13601945 
+.
+ 
+ 
+ 
+ 
+
+Ingeniería Informática IA·Tema 7: Aprendizaje·UJA
+Figura 1: Arquitectura de un agente de aprendizaje: el crítico evalúa el rendimiento y el
+elemento de aprendizaje modifica la actuación. (Fuente: Diapositiva 6 del temario)
+2. Conceptos Clave del Aprendizaje
+2.1. Conjuntos de Datos
+Conjunto de entrenamiento:datos usados para aprender el modelo/función. Puede
+subdividirse en entrenamiento + validación para ajuste de hiperparámetros.
+Conjunto de test:datos usados para estimar el rendimiento del modelo con datos
+nuevos (nunca vistos durante el entrenamiento).
+Figura 2: División deldataseten Train / Validate / Test. (Fuente: Diapositiva 12 del
+temario)
+2.2. Clasificación vs. Regresión
+Tipo Salida Ejemplo
+Clasificación Valor discreto (etiqueta) Detección de spam
+Regresión Valor numérico continuo Precio de un inmueble
+4
+Elimina la publicidad de este documento con 1 coin
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13601945 
+.
+ 
+ 
+ 
+ 
+
+Ingeniería Informática IA·Tema 7: Aprendizaje·UJA
+2.3. Parámetros vs. Hiperparámetros
+Hiperparámetros:propiedades del algoritmo de aprendizaje quenoaprende el al-
+goritmo; deben configurarlos el experto antes del entrenamiento.Ej: el valor deken
+kNN.
+Parámetros:variables que definen el modelo aprendido, determinadas por el algorit-
+mo a partir del conjunto de entrenamiento.Ej: pesos en una red neuronal.
+2.4. Aprendizaje Basado en Modelos vs. Basado en Instancias
+Basado en modelos:el entrenamiento produce un modelo compacto; luego se des-
+carta el conjunto de entrenamiento.Ej: árbol de decisión C4.5.
+Basado en instancias:el conjunto de entrenamiento es el modelo; se consulta en
+cada predicción.Ej: kNN.
+2.5. Aprendizaje Superficial vs. Profundo
+Superficial (shallow):los parámetros se aprenden directamente de las característi-
+cas del dato.Ej: árbol de decisión.
+Profundo (deep):la mayoría de parámetros se aprenden a partir de la salida de
+capas anteriores, no de los datos originales.Ej: CNN, Transformers.
+3. Aprendizaje Inductivo Supervisado
+3.1. Definición Formal
+Dado un conjunto de ejemplos{(x,f(x))}, el objetivo es encontrar una hipótesish
+tal queh≈fpara nuevos ejemplos no vistos.
+f: función objetivo (desconocida).
+h: hipótesis aprendida.
+Elespacio de hipótesisHes el conjunto de funciones candidatas consideradas.
+Una hipótesis esconsistentesi predice correctamente todos los ejemplos de entrena-
+miento.
+Una hipótesisgeneraliza biensi predice correctamente ejemplos nuevos (conjunto
+de test).
+3.2. Selección de Hipótesis: Navaja de Ockham
+Ante múltiples hipótesis consistentes con los datos, se prefiere lamás sencilla. Esto
+es elprincipio de la navaja de Ockhamy es la base teórica de la regularización
+en ML.
+5
+Elimina la publicidad de este documento con 1 coin
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13601945 
+.
+ 
+ 
+ 
+ 
+
+Ingeniería Informática IA·Tema 7: Aprendizaje·UJA
+Figura 3: Múltiples hipótesis consistentes con el mismo conjunto de entrenamiento; se
+prefiere la más simple. (Fuente: Diapositiva 19 del temario)
+3.3. Evaluación del Rendimiento
+Para comprobar queh≈fse pruebahsobre elconjunto de test.
+3.3.1. Métricas en Clasificación
+Matriz de confusión, exactitud (accuracy), precisión/sensibilidad (precision/recall),
+área bajo la curva ROC, etc.
+3.3.2. Métricas en Regresión
+Error cuadrático medio (MSE), calculado por separado en entrenamiento y test.
+3.3.3. Sobreajuste (Overfitting)
+Si la medida de rendimiento en entrenamiento essustancialmente mayorque en
+test, haysobreajuste: el modelo memoriza los datos de entrenamiento y pierde ca-
+pacidad de generalización.
+4. Árboles de Decisión
+4.1. Definición y Estructura
+Unárbol de decisiónes un modelo basado en modelos que clasifica (o regresa) una
+instancia recorriendo una estructura jerárquica de condiciones sobre sus atributos.
+Nodo de decisión:especifica una prueba simple sobre un atributo.
+Rama:posible resultado de la prueba.
+Hoja:categoría de salida (clasificación) o valor continuo (regresión).
+6
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13601945 
+.
+ 
+ 
+ 
+ 
+
+Ingeniería Informática IA·Tema 7: Aprendizaje·UJA
+El árbol es directamente expresable como un conjunto de reglasSI-ENTONCES.
+Figura 4: Árbol de decisión para clasificación de plantasirissegún el ancho y largo del
+pétalo/sépalo. (Fuente: Diapositiva 27 del temario)
+4.2. Algoritmo de Aprendizaje
+Estrategiadivide y vencerástop-down:
+1. Partir de todos los ejemplos en la raíz.
+2. Seleccionar el atributo más significativo según una medida deganancia de informa-
+ción(criterio de selección).
+3. Distribuir los ejemplos entre los descendientes según los valores del atributo.
+4. Repetir recursivamente hasta que todos los ejemplos de un nodo pertenezcan a la
+misma clase, no queden atributos o los ejemplos sean vacíos.
+Figura 5: Pseudocódigo del algoritmoLearn-Decision-Tree. (Fuente: Diapositiva 30 del
+temario)
+7
+Elimina la publicidad de este documento con 1 coin
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13601945 
+.
+ 
+ 
+ 
+ 
+
+Ingeniería Informática IA·Tema 7: Aprendizaje·UJA
+4.3. Expresividad y Limitaciones
+Pueden expresarcualquierfunción booleana de los atributos de entrada.
+Un árbol muy profundo memorizará el entrenamiento (overfitting); se prefieren árboles
+más compactos(navaja de Ockham).
+Algoritmos clásicos:ID3,C4.5,CART.
+5. SVM — Máquina de Vectores Soporte
+5.1. Idea Central
+LasSVM(Support Vector Machines) buscan elhiperplano de máximo margen
+que separa las clases en el espacio de características.
+Se basan en el principio deminimización del riesgo estructural: prefieren modelos
+fiables con buen margen antes que modelos que cometen pocos errores en entrenamien-
+to pero generalizan mal.
+Cada instancia deNvariables se trata como un punto enRN.
+El hiperplano separador tiene ecuaciónw·x−b= 0, conwvector de pesos.
+El objetivo de aprendizaje es encontrarwybóptimos (problema de optimización
+cuadrática).
+5.2. Vectores Soporte y Margen
+Losvectores soporteson los ejemplos más cercanos al hiperplano separador (uno
+por cada clase).
+Elmargenes la distancia entre los dos hiperplanos de margen (w·x−b=±1). La
+SVM lo maximiza.
+Un margen mayor implica mejor generalización.
+Para datosno linealmente separablesse usa eltruco del kernel: proyectar los
+datos a un espacio de mayor dimensión donde sí sean separables, sin calcular explíci-
+tamente dicha proyección.
+6. Aprendizaje Basado en Instancias: kNN
+6.1. Características
+El algoritmok-Nearest Neighbours (kNN)es un método de aprendizaje basado
+en instancias y no paramétrico: usa todo el conjunto de entrenamiento como modelo.
+Diferencia clave con métodos basados en modelos:kNN no extrae ningún mode-
+locompacto;losejemplosdeentrenamientoseconservanyseconsultanencadapredicción.
+8
+Elimina la publicidad de este documento con 1 coin
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13601945 
+.
+ 
+ 
+ 
+ 
+
+Ingeniería Informática IA·Tema 7: Aprendizaje·UJA
+Figura 6: Separadores lineales candidatos (izq.) y separador de máximo margen con vec-
+tores soporte marcados (der.). (Fuente: Diapositiva 34 del temario)
+6.2. Funcionamiento
+Dado un nuevo ejemplox:
+1. Calcular la distancia dexa todos los ejemplos del conjunto de entrenamiento (eucli-
+diana, Hamming, Mahalanobis...).
+2. Seleccionar loskejemplos más cercanos (vecinos).
+3.Clasificación:devolver la etiqueta mayoritaria entre loskvecinos.
+Regresión:devolver la media aritmética de sus valores.
+Figura 7: Fronteras de decisión de kNN conk= 1(izq.) yk= 5(der.). Unkmayor
+suaviza la frontera y reduce el sobreajuste. (Fuente: Diapositiva 37 del temario)
+6.3. Hiperparámetroky su Impacto
+k= 1: frontera de decisión muy irregular, alta varianza (overfitting).
+kgrande: frontera más suave, mayor sesgo (underfitting).
+Nota:kes un hiperparámetro que debe ajustarse mediante validación cruzada.
+9
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13601945 
+.
+ 
+ 
+ 
+ 
+
+Ingeniería Informática IA·Tema 7: Aprendizaje·UJA
+7. Redes Neuronales Artificiales (RNA)
+7.1. Definición y Modelo de Neurona
+UnaRed Neuronal Artificial (RNA)es un paradigma de procesamiento de infor-
+macióninspiradoenlaestructuradelcerebro,compuestoporunidadesinterconectadas
+(neuronas) con pesos asociados.
+Modelo matemático de neurona (McCulloch & Pitts, 1943):
+y=ϕ
+( m∑
+i=1
+wi·x i
+)
+dondeϕes lafunción de activación(escalón, sigmoidal, ReLU, gaussiana, etc.) ywi
+son los pesos sinápticos.
+Figura 8: Modelo de neurona artificial con entradasxi, pesosωi, biasb, función de acti-
+vaciónφy saliday. (Fuente: Diapositiva 40 del temario)
+7.2. Arquitectura
+La arquitectura de una RNA queda definida por:
+Número de capas(entrada, ocultas, salida).
+Número de neuronas por capa.
+Tipo de conexiones(densas, recurrentes, convolucionales...).
+Perceptrón:la RNA más sencilla; solo capa de entrada y de salida.
+Perceptrón Multicapa (MLP):incluye capas ocultas intermedias; puede aproximar
+cualquier función continua con suficiente precisión.
+Una RNA deLcapas puede verse como función anidada:
+y=f RNA(x) =f L
+(
+fL−1(···f 1(x)···)
+)
+7.3. Entrenamiento: Backpropagation
+10
+Elimina la publicidad de este documento con 1 coin
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13601945 
+.
+ 
+ 
+ 
+ 
+
+Ingeniería Informática IA·Tema 7: Aprendizaje·UJA
+Figura 9: Arquitectura de una RNA con capa de entrada, capas ocultas y capa de salida.
+(Fuente: Diapositiva 42 del temario)
+El algoritmo debackpropagationes el método estándar para aprender los pesos de
+una RNA. Es un proceso iterativo con dos etapas por iteración:
+1.Propagación hacia delante (forward pass):se calculan las predicciones de la red
+con los pesos actuales y se obtiene el error.
+2.Propagación hacia atrás (backward pass):se calcula el gradiente del error res-
+pecto a cada peso (regla de la cadena) y se actualizan los pesos.
+Lospesos sinápticosrepresentan el conocimiento almacenado.
+Hiperparámetros definidos por el experto: número de capas, número de neuronas,
+función de activación, tasa de aprendizaje, etc.
+7.4. Tipos de RNA
+Redes de función de base radial (RBF).
+Redes de Hopfield (asociativas / memoria).
+Redes de Kohonen (mapas autoorganizativos, aprendizaje no supervisado).
+Redes recurrentes (RNN, LSTM).
+11
+Elimina la publicidad de este documento con 1 coin
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13601945 
+.
+ 
+ 
+ 
+ 
+
+Ingeniería Informática IA·Tema 7: Aprendizaje·UJA
+8. Aprendizaje Profundo (Deep Learning)
+8.1. Definición y Motivación
+Elaprendizaje profundo (DL)hace referencia al entrenamiento de RNA conmúl-
+tiples capas ocultas(>2), que aprenden representaciones jerárquicas de los datos.
+¿Por qué es necesario?
+Datos de alta dimensionalidad (imágenes100×100→10 000características).
+La cantidad de parámetros crece rápidamente: añadir una capa conslneuronas agrega
+(sl−1+ 1)·sl parámetros.
+Las RNA poco profundas no capturan relaciones complejas en datos brutos.
+8.2. Funcionamiento Jerárquico
+Capa 1:aprende características simples (bordes, frecuencias básicas).
+Capa 2:combina características simples en patrones más complejos.
+Capan:aprende representaciones de alto nivel (caras, objetos, conceptos).
+8.3. Reto:Vanishing Gradient
+Lasprimerascapasderedesprofundasseentrenanmuylentamenteporqueelgradiente
+se desvanece al propagarse hacia atrás (vanishing gradient problem). Soluciones:
+funciones de activaciónReLU, conexiones residuales (skip connections), normaliza-
+ción de lotes (batch normalization).
+8.4. Principales Arquitecturas DL
+8.4.1. Autoencoders
+Red cuya salida es idéntica a la entrada. Aprende una representación comprimida
+(encoding) útil para reducción de dimensionalidad y detección de anomalías.
+8.4.2. Redes Convolucionales (CNN)
+Especialmente adecuadas para datos con estructura espacial (imágenes, señales). Ha-
+bitualmente tienen tres tipos de capas:
+Convolucional:aplica filtros aprendibles para detectar características locales.
+Pooling:reduce la dimensionalidad preservando las características relevantes.
+Clasificadora (fully connected):produce la predicción final.
+12
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13601945 
+.
+ 
+ 
+ 
+ 
+
+Ingeniería Informática IA·Tema 7: Aprendizaje·UJA
+Figura 10: Arquitectura de unautoencoder: la capa central fuerza una representación
+compacta de la entrada. (Fuente: Diapositiva 52 del temario)
+8.4.3. Redes Recurrentes (RNN / LSTM)
+Incorporanbucles de realimentaciónque permiten persistir información a lo largo
+del tiempo. Adecuadas para secuencias: texto, audio, series temporales.
+8.4.4. Otras Arquitecturas
+GANs (Generative Adversarial Networks),Capsule Networks, redes siamesas, etc.
+8.5. ¿Por Qué Tiene Tanto Éxito el DL Actualmente?
+Datos masivosdisponibles (Big Data).
+Computación paralelaen GPU.
+Funciones de activaciónReLU y variantes, amigables parabackpropagation.
+Optimizadoresmás robustos (Adam, RMSProp).
+Plataformas SW: TensorFlow, PyTorch, Keras.
+Aprendizaje por transferencia (Transfer Learning):reutilizar un modelo pre-
+entrenado y ajustar solo la última capa para una nueva tarea.
+9. Resumen Comparativo de Técnicas
+13
+Elimina la publicidad de este documento con 1 coin
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13601945 
+.
+ 
+ 
+ 
+ 
+
+Ingeniería Informática IA·Tema 7: Aprendizaje·UJA
+Figura 11: Arquitectura típica de una CNN para reconocimiento de dígitos. (Fuente:
+Diapositiva 53 del temario)
+Técnica Tipo Fortalezas Limitaciones
+Árbol de decisión Modelo Interpretable, rápi-
+do
+Sobreajuste si es pro-
+fundo
+SVM Modelo Máximo margen,
+robusto
+Costoso con muchos
+datos
+kNN Instancias Simple, sin entre-
+namiento
+Lento en predicción,
+sensible a escala
+RNA (MLP) Modelo Muy expresivo Caja negra, necesita
+muchos datos
+Deep Learning Modelo Estado del arte en
+imágenes/texto
+Gran coste compu-
+tacional
+10. Puntos Clave para el Examen
+1.Tipos de aprendizaje:supervisado, no supervisado, semi-supervisado, por refuerzo.
+Saber distinguirlos con ejemplos.
+2.Parámetros vs. hiperparámetros:los parámetros los aprende el algoritmo; los
+hiperparámetros los fija el expertoantesdel entrenamiento.
+3.Navaja de Ockham:ante hipótesis igualmente consistentes, preferir la más sencilla
+para evitar sobreajuste.
+4.Sobreajuste:rendimiento en entrenamiento≫rendimiento en test. Indica falta de
+generalización.
+14
+Elimina la publicidad de este documento con 1 coin
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13601945 
+.
+ 
+ 
+ 
+ 
+
+Ingeniería Informática IA·Tema 7: Aprendizaje·UJA
+Figura 12: Arquitectura de una red recurrente con conexiones de realimentación entre
+neuronas ocultas. (Fuente: Diapositiva 54 del temario)
+5.Árbol de decisión:estrategia divide y vencerás + ganancia de información. Función
+Learn-Decision-Tree.
+6.SVM:maximiza el margen entre clases; los vectores soporte son los ejemplos más
+cercanos al hiperplano separador.
+7.kNN:basado en instancias, no paramétrico.kes un hiperparámetro. Mayork⇒
+frontera más suave.
+8.RNA:la salida de una neurona esy=ϕ(∑wixi). Se entrena conbackpropagation
+(forward + backward pass).
+9.Deep Learning:RNA con muchas capas; aprende representaciones jerárquicas. Pro-
+blemadelvanishing gradient.Principalesarquitecturas:CNN(imágenes),RNN/LSTM
+(secuencias), Autoencoders (representación comprimida).
+10.Transfer Learning:reutilizar red preentrenada y ajustar solo la última capa para
+una tarea nueva con pocos datos.
+15
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13601945 
+.
+ 
+ 
+ 
+ 
+
+Ingeniería Informática IA·Tema 7: Aprendizaje·UJA
+Bibliografía
+1. Goodfellow, Bengio, Courville.Deep Learning. MIT Press, 2016.
+2. Burkow, A.The Hundred-Page Machine Learning Book, 2019.
+3. Mitchell, T.M.Machine Learning. McGraw-Hill, 1997.
+4. Russell, S.; Norvig, P.Artificial Intelligence: A Modern Approach, 3.ªed. Prentice
+Hall, 2010.
+5. Rich, E.; Knight, K.Inteligencia Artificial. McGraw-Hill, 2006.
+16
+Elimina la publicidad de este documento con 1 coin
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13601945 
+.
+ 
+ 
+ 
+ 
+

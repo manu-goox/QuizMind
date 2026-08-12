@@ -1,0 +1,512 @@
+{
+  "id": "ia-test-3",
+  "title": "Inteligencia Artificial - Test 3: Aprendizaje y Ética",
+  "description": "Preguntas sobre aprendizaje automático (T7) y ética en inteligencia artificial (T8)",
+  "category": "Inteligencia Artificial",
+  "difficulty": "mixed",
+  "passThreshold": 0.6,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "¿Cuál de los siguientes NO es un tipo de aprendizaje automático?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Supervisado"
+        },
+        {
+          "id": "a2",
+          "text": "No supervisado"
+        },
+        {
+          "id": "a3",
+          "text": "Transductivo",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Por refuerzo"
+        }
+      ],
+      "explanation": "Los tipos principales son: supervisado, no supervisado, semi-supervisado y por refuerzo. Transductivo no es una categoría estándar."
+    },
+    {
+      "id": "q2",
+      "text": "En aprendizaje automático, ¿qué distingue a los hiperparámetros de los parámetros?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Los hiperparámetros los aprende el algoritmo; los parámetros los fija el experto"
+        },
+        {
+          "id": "a2",
+          "text": "Ambos son aprendidos por el algoritmo"
+        },
+        {
+          "id": "a3",
+          "text": "Los hiperparámetros los fija el experto antes del entrenamiento; los parámetros los aprende el algoritmo",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "No existe diferencia entre ambos conceptos"
+        }
+      ],
+      "explanation": "Los hiperparámetros los configura el experto antes del entrenamiento; los parámetros los determina el algoritmo a partir de los datos."
+    },
+    {
+      "id": "q3",
+      "text": "El principio de la navaja de Ockham en aprendizaje automático establece que:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Se prefiere la hipótesis más compleja"
+        },
+        {
+          "id": "a2",
+          "text": "Ante hipótesis igualmente consistentes, se prefiere la más sencilla",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Todas las hipótesis son igualmente válidas"
+        },
+        {
+          "id": "a4",
+          "text": "Solo existe una hipótesis correcta"
+        }
+      ],
+      "explanation": "La navaja de Ockham prefiere la hipótesis más sencilla entre las consistentes con los datos, base de la regularización en ML."
+    },
+    {
+      "id": "q4",
+      "text": "¿Qué indica un sobreajuste (overfitting) en un modelo de aprendizaje?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Rendimiento en entrenamiento muy superior al rendimiento en test",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Rendimiento similar en entrenamiento y test"
+        },
+        {
+          "id": "a3",
+          "text": "Rendimiento en test superior al de entrenamiento"
+        },
+        {
+          "id": "a4",
+          "text": "El modelo es demasiado simple para los datos"
+        }
+      ],
+      "explanation": "El sobreajuste ocurre cuando el rendimiento en entrenamiento es mucho mayor que en test, indicando falta de generalización."
+    },
+    {
+      "id": "q5",
+      "text": "En un árbol de decisión, ¿qué criterio se usa para seleccionar el atributo más significativo?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "La profundidad del árbol"
+        },
+        {
+          "id": "a2",
+          "text": "La ganancia de información",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "El número de hojas"
+        },
+        {
+          "id": "a4",
+          "text": "La distancia euclídea"
+        }
+      ],
+      "explanation": "El algoritmo divide y vencerás selecciona el atributo con mayor ganancia de información para construir el árbol."
+    },
+    {
+      "id": "q6",
+      "text": "Las SVM (Máquinas de Vectores Soporte) buscan:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "El hiperplano de máximo margen que separa las clases",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "La hipótesis más compleja posible"
+        },
+        {
+          "id": "a3",
+          "text": "El árbol de menor profundidad"
+        },
+        {
+          "id": "a4",
+          "text": "La media de los k vecinos más cercanos"
+        }
+      ],
+      "explanation": "Las SVM buscan el hiperplano de máximo margen entre clases, basándose en la minimización del riesgo estructural."
+    },
+    {
+      "id": "q7",
+      "text": "En kNN, un valor de k muy pequeño (ej. k=1) produce:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Una frontera de decisión muy suave, alto sesgo"
+        },
+        {
+          "id": "a2",
+          "text": "Un modelo con bajo overfitting"
+        },
+        {
+          "id": "a3",
+          "text": "Una frontera de decisión muy irregular, alta varianza",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Un modelo que ignora todos los vecinos"
+        }
+      ],
+      "explanation": "Con k=1 la frontera es muy irregular, alta varianza (overfitting). Con k grande la frontera se suaviza (mayor sesgo)."
+    },
+    {
+      "id": "q8",
+      "text": "¿Cuál es la función de activación que ayudó a mitigar el problema del vanishing gradient en Deep Learning?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Sigmoide"
+        },
+        {
+          "id": "a2",
+          "text": "Tangente hiperbólica"
+        },
+        {
+          "id": "a3",
+          "text": "Escalón"
+        },
+        {
+          "id": "a4",
+          "text": "ReLU",
+          "correct": true
+        }
+      ],
+      "explanation": "ReLU (Rectified Linear Unit) y sus variantes ayudaron significativamente a mitigar el vanishing gradient, facilitando el entrenamiento de redes profundas."
+    },
+    {
+      "id": "q9",
+      "text": "En una red neuronal, el algoritmo de backpropagation consta de dos etapas por iteración:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Propagación hacia arriba y hacia abajo"
+        },
+        {
+          "id": "a2",
+          "text": "División y conquista"
+        },
+        {
+          "id": "a3",
+          "text": "Exploración y explotación"
+        },
+        {
+          "id": "a4",
+          "text": "Propagación hacia delante y hacia atrás",
+          "correct": true
+        }
+      ],
+      "explanation": "Backpropagation tiene forward pass (calcular predicciones y error) y backward pass (calcular gradiente y actualizar pesos)."
+    },
+    {
+      "id": "q10",
+      "text": "¿Qué tipo de red neuronal es especialmente adecuada para datos con estructura espacial como imágenes?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Redes Convolucionales (CNN)",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Redes Recurrentes (RNN)"
+        },
+        {
+          "id": "a3",
+          "text": "Autoencoders"
+        },
+        {
+          "id": "a4",
+          "text": "Redes de Hopfield"
+        }
+      ],
+      "explanation": "Las CNN son especialmente adecuadas para datos con estructura espacial (imágenes) usando capas convolucionales, pooling y fully connected."
+    },
+    {
+      "id": "q11",
+      "text": "Transfer Learning consiste en:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Entrenar una red desde cero con nuevos datos"
+        },
+        {
+          "id": "a2",
+          "text": "Reutilizar un modelo preentrenado y ajustar solo la última capa para una nueva tarea",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Transferir pesos entre dos redes iguales simultáneamente"
+        },
+        {
+          "id": "a4",
+          "text": "Convertir una CNN en una RNN"
+        }
+      ],
+      "explanation": "Transfer Learning reutiliza un modelo preentrenado y ajusta solo la última capa para una nueva tarea con pocos datos."
+    },
+    {
+      "id": "q12",
+      "text": "Según el marco de la Comisión Europea, una IA fiable debe ser simultáneamente:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Rápida, precisa y económica"
+        },
+        {
+          "id": "a2",
+          "text": "Lícita, ética y robusta",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Completa, óptima y escalable"
+        },
+        {
+          "id": "a4",
+          "text": "Segura, supervisada y autónoma"
+        }
+      ],
+      "explanation": "Una IA fiable requiere satisfacer tres condiciones: ser lícita (legal), ética (principios) y robusta (técnica y socialmente)."
+    },
+    {
+      "id": "q13",
+      "text": "¿Cuál de los siguientes NO es uno de los 4 principios éticos fundamentales para una IA fiable?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Respeto de la autonomía humana"
+        },
+        {
+          "id": "a2",
+          "text": "Prevención del daño"
+        },
+        {
+          "id": "a3",
+          "text": "Rendición de cuentas",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Explicabilidad"
+        }
+      ],
+      "explanation": "Los 4 principios éticos son: autonomía, prevención del daño, equidad y explicabilidad. Rendición de cuentas es uno de los 7 requisitos."
+    },
+    {
+      "id": "q14",
+      "text": "¿Qué nivel de riesgo en el EU AI Act incluye los sistemas de identificación biométrica?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Inaceptable"
+        },
+        {
+          "id": "a2",
+          "text": "Alto riesgo",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Limitado"
+        },
+        {
+          "id": "a4",
+          "text": "Mínimo"
+        }
+      ],
+      "explanation": "Todos los sistemas de identificación biométrica se clasifican como alto riesgo según el EU AI Act."
+    },
+    {
+      "id": "q15",
+      "text": "¿En qué año se aprobó la Ley de Inteligencia Artificial (AI Act) europea?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "2019"
+        },
+        {
+          "id": "a2",
+          "text": "2021"
+        },
+        {
+          "id": "a3",
+          "text": "2022"
+        },
+        {
+          "id": "a4",
+          "text": "2024",
+          "correct": true
+        }
+      ],
+      "explanation": "La Comisión Europea aprobó la Ley de Inteligencia Artificial el 13 de marzo de 2024."
+    },
+    {
+      "id": "q16",
+      "text": "¿Qué obligación tienen los sistemas de IA de riesgo limitado según el EU AI Act?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Prohibición total"
+        },
+        {
+          "id": "a2",
+          "text": "Obligaciones de transparencia (informar al usuario)",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Evaluación y mitigación de riesgos"
+        },
+        {
+          "id": "a4",
+          "text": "Ninguna obligación"
+        }
+      ],
+      "explanation": "Los sistemas de riesgo limitado (ej. chatbots) deben cumplir obligaciones de transparencia: informar al usuario de que interactúa con una máquina."
+    },
+    {
+      "id": "q17",
+      "text": "¿Qué principio ético exige que los sistemas de IA aumenten las capacidades humanas sin subordinarlas?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Respeto de la autonomía humana",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Prevención del daño"
+        },
+        {
+          "id": "a3",
+          "text": "Equidad"
+        },
+        {
+          "id": "a4",
+          "text": "Explicabilidad"
+        }
+      ],
+      "explanation": "El respeto de la autonomía humana exige que la IA aumente y potencie las capacidades humanas, nunca las subordine o manipule."
+    },
+    {
+      "id": "q18",
+      "text": "La Oficina Europea de Inteligencia Artificial se creó en:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Marzo de 2024"
+        },
+        {
+          "id": "a2",
+          "text": "Enero de 2024",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Abril de 2021"
+        },
+        {
+          "id": "a4",
+          "text": "Diciembre de 2023"
+        }
+      ],
+      "explanation": "La Oficina Europea de IA se creó el 24 de enero de 2024 para supervisar modelos de IA de uso general."
+    },
+    {
+      "id": "q19",
+      "text": "El principio de equidad en IA ética está ligado a:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "La velocidad de cálculo"
+        },
+        {
+          "id": "a2",
+          "text": "El costo computacional"
+        },
+        {
+          "id": "a3",
+          "text": "El número de parámetros del modelo"
+        },
+        {
+          "id": "a4",
+          "text": "La explicabilidad, para poder impugnar decisiones automáticas",
+          "correct": true
+        }
+      ],
+      "explanation": "La equidad está ligada a la explicabilidad: para impugnar una decisión automática hay que poder entender cómo se generó."
+    },
+    {
+      "id": "q20",
+      "text": "¿Qué tipo de aprendizaje usa el agente cuando aprende mediante recompensas según sus acciones en un entorno?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Aprendizaje por refuerzo",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Aprendizaje supervisado"
+        },
+        {
+          "id": "a3",
+          "text": "Aprendizaje no supervisado"
+        },
+        {
+          "id": "a4",
+          "text": "Aprendizaje semi-supervisado"
+        }
+      ],
+      "explanation": "En aprendizaje por refuerzo, el agente aprende mediante recompensas o penalizaciones según las acciones ejecutadas en un entorno."
+    }
+  ]
+}

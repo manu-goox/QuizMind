@@ -1,0 +1,512 @@
+{
+  "id": "ia-test-6",
+  "title": "Inteligencia Artificial - Test 6: Mixto II",
+  "description": "Tercer bloque de preguntas mixtas de toda la asignatura de Inteligencia Artificial, sin repetir tests 1-5",
+  "category": "Inteligencia Artificial",
+  "difficulty": "mixed",
+  "passThreshold": 0.6,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "¿Qué diferencia un agente reactivo simple de uno basado en objetivos?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "El reactivo simple usa función de utilidad; el basado en objetivos no"
+        },
+        {
+          "id": "a2",
+          "text": "El reactivo simple mantiene estado interno; el basado en objetivos no"
+        },
+        {
+          "id": "a3",
+          "text": "El reactivo simple solo usa la percepción actual; el basado en objetivos introduce metas y planificación",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "El reactivo simple aprende de la experiencia; el basado en objetivos no"
+        }
+      ],
+      "explanation": "Los agentes reactivos simples seleccionan acciones solo con la percepción actual. Los basados en objetivos usan metas y procesos de búsqueda y planificación."
+    },
+    {
+      "id": "q2",
+      "text": "¿Qué tipo de entorno tiene el ajedrez con reloj?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Semidinámico",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Estático"
+        },
+        {
+          "id": "a3",
+          "text": "Dinámico"
+        },
+        {
+          "id": "a4",
+          "text": "Episódico"
+        }
+      ],
+      "explanation": "El ajedrez con reloj es semidinámico: el entorno no cambia mientras el agente delibera, pero el rendimiento (tiempo) sí cambia."
+    },
+    {
+      "id": "q3",
+      "text": "En la búsqueda bidireccional, ¿qué condición debe verificarse para tener éxito?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Que ambas búsquedas usen el mismo algoritmo"
+        },
+        {
+          "id": "a2",
+          "text": "Que un nodo generado esté en la frontera del otro árbol antes de expandirlo",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Que se use exclusivamente DFS"
+        },
+        {
+          "id": "a4",
+          "text": "Que la profundidad máxima sea impar"
+        }
+      ],
+      "explanation": "La búsqueda bidireccional lanza una búsqueda desde inicio y otra desde el objetivo, verificando si un nodo está en la frontera del otro."
+    },
+    {
+      "id": "q4",
+      "text": "El costo total en un problema de búsqueda se compone de:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Solo el costo del camino solución"
+        },
+        {
+          "id": "a2",
+          "text": "Solo el costo de búsqueda"
+        },
+        {
+          "id": "a3",
+          "text": "El número de nodos expandidos"
+        },
+        {
+          "id": "a4",
+          "text": "La suma del costo de búsqueda y el costo del camino solución",
+          "correct": true
+        }
+      ],
+      "explanation": "El costo total = costo de búsqueda (recursos computacionales) + costo del camino solución."
+    },
+    {
+      "id": "q5",
+      "text": "¿Qué es primero, la formulación del objetivo o la fase de búsqueda en un agente de resolución de problemas?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Primero la formulación del objetivo, luego la búsqueda y finalmente la ejecución",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Primero la búsqueda, luego la formulación del objetivo"
+        },
+        {
+          "id": "a3",
+          "text": "Ambas ocurren simultáneamente"
+        },
+        {
+          "id": "a4",
+          "text": "La ejecución precede a la búsqueda"
+        }
+      ],
+      "explanation": "El orden es: formulación del objetivo, búsqueda de la secuencia de acciones y finalmente ejecución."
+    },
+    {
+      "id": "q6",
+      "text": "En el juego del Nim, ¿cuándo obtiene MAX utilidad +1?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Cuando MAX retira la primera ficha"
+        },
+        {
+          "id": "a2",
+          "text": "Cuando el estado final (0 fichas) ocurre en el turno de MIN",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Cuando el estado final ocurre en el turno de MAX"
+        },
+        {
+          "id": "a4",
+          "text": "Cuando MAX retira todas las fichas de golpe"
+        }
+      ],
+      "explanation": "MAX obtiene +1 si el estado final (0 fichas) ocurre en el turno de MIN (MIN retira la última ficha). -1 si ocurre en el turno de MAX."
+    },
+    {
+      "id": "q7",
+      "text": "En un juego de suma cero, ¿qué relación tienen las utilidades de los jugadores?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Son siempre positivas para ambos"
+        },
+        {
+          "id": "a2",
+          "text": "La suma de utilidades en cada celda de la matriz es siempre cero",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Son independientes entre sí"
+        },
+        {
+          "id": "a4",
+          "text": "La suma es siempre positiva"
+        }
+      ],
+      "explanation": "En juegos de suma cero, la suma de utilidades en cada celda de la matriz es siempre cero: lo que uno gana, el otro lo pierde."
+    },
+    {
+      "id": "q8",
+      "text": "MuZero se diferencia de AlphaZero principalmente en que:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Aprende incluso las reglas del juego sin que le sean suministradas previamente",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Juega exclusivamente al Go"
+        },
+        {
+          "id": "a3",
+          "text": "Usa bases de datos de partidas humanas"
+        },
+        {
+          "id": "a4",
+          "text": "No utiliza aprendizaje por refuerzo"
+        }
+      ],
+      "explanation": "MuZero es capaz de aprender las reglas que gobiernan el proceso sin que le sean suministradas previamente, a diferencia de AlphaZero."
+    },
+    {
+      "id": "q9",
+      "text": "¿Qué ventaja tiene la escalada simple frente a la escalada por máxima pendiente?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Encuentra siempre el óptimo global"
+        },
+        {
+          "id": "a2",
+          "text": "Consume más memoria"
+        },
+        {
+          "id": "a3",
+          "text": "Prioriza la velocidad sobre la calidad del avance",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Evalúa todos los sucesores antes de decidir"
+        }
+      ],
+      "explanation": "La escalada simple se mueve hacia la primera operación que mejore la calidad, priorizando la velocidad sobre la calidad del avance."
+    },
+    {
+      "id": "q10",
+      "text": "En el paisaje de estados (landscape), la 'elevación' representa:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "La profundidad del estado en el árbol"
+        },
+        {
+          "id": "a2",
+          "text": "El número de acciones posibles"
+        },
+        {
+          "id": "a3",
+          "text": "La posición geográfica del estado"
+        },
+        {
+          "id": "a4",
+          "text": "El valor de la función objetivo o de coste",
+          "correct": true
+        }
+      ],
+      "explanation": "La elevación representa el valor de la función. Según el problema, buscamos la elevación máxima (objetivo) o mínima (coste)."
+    },
+    {
+      "id": "q11",
+      "text": "¿Qué relación existe entre los objetos/individuos y las clases en la representación del conocimiento?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Los objetos son abstracciones de las clases"
+        },
+        {
+          "id": "a2",
+          "text": "No existe relación entre ambos conceptos"
+        },
+        {
+          "id": "a3",
+          "text": "Las clases agrupan objetos que comparten características comunes",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Las clases son instancias de los objetos"
+        }
+      ],
+      "explanation": "Las clases o conceptos agrupan objetos que comparten características comunes. Los objetos son instancias concretas de una clase."
+    },
+    {
+      "id": "q12",
+      "text": "¿Qué propiedad de una red semántica permite que un objeto tome propiedades de su categoría si no tiene asignada esa propiedad?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Subsunción"
+        },
+        {
+          "id": "a2",
+          "text": "Clasificación"
+        },
+        {
+          "id": "a3",
+          "text": "Consistencia"
+        },
+        {
+          "id": "a4",
+          "text": "Valores por defecto",
+          "correct": true
+        }
+      ],
+      "explanation": "Las redes semánticas son apropiadas para representar valores por defecto: si un objeto no tiene una propiedad, toma la de su categoría."
+    },
+    {
+      "id": "q13",
+      "text": "¿Qué criterio usan los árboles de decisión clásicos para seleccionar el atributo de división?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "La profundidad del subárbol resultante"
+        },
+        {
+          "id": "a2",
+          "text": "La ganancia de información",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "El número de ramas generadas"
+        },
+        {
+          "id": "a4",
+          "text": "El costo computacional del atributo"
+        }
+      ],
+      "explanation": "Los árboles de decisión seleccionan el atributo con mayor ganancia de información usando la estrategia divide y vencerás."
+    },
+    {
+      "id": "q14",
+      "text": "En una RNA, el proceso de backpropagation utiliza para calcular los gradientes:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "La regla de Bayes"
+        },
+        {
+          "id": "a2",
+          "text": "El método de Newton"
+        },
+        {
+          "id": "a3",
+          "text": "La descomposición LU"
+        },
+        {
+          "id": "a4",
+          "text": "La regla de la cadena",
+          "correct": true
+        }
+      ],
+      "explanation": "Backpropagation calcula el gradiente del error respecto a cada peso usando la regla de la cadena (derivadas encadenadas)."
+    },
+    {
+      "id": "q15",
+      "text": "¿Cuál de los siguientes NO es un factor que explique el éxito actual del Deep Learning?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Disponibilidad de datos masivos (Big Data)"
+        },
+        {
+          "id": "a2",
+          "text": "Uso exclusivo de CPU para entrenamiento",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Funciones de activación como ReLU"
+        },
+        {
+          "id": "a4",
+          "text": "Optimizadores robustos como Adam"
+        }
+      ],
+      "explanation": "El Deep Learning se beneficia de GPU (no solo CPU), datos masivos, ReLU, optimizadores robustos y plataformas como TensorFlow/PyTorch."
+    },
+    {
+      "id": "q16",
+      "text": "¿Qué requisito clave de la IA fiable exige que los sistemas sean resistentes a ataques y tengan plan de repliegue?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Solidez técnica y seguridad",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Transparencia"
+        },
+        {
+          "id": "a3",
+          "text": "Rendición de cuentas"
+        },
+        {
+          "id": "a4",
+          "text": "Bienestar social y ambiental"
+        }
+      ],
+      "explanation": "La solidez técnica y seguridad exige resistencia a ataques, plan de repliegue, fiabilidad y reproducibilidad de resultados."
+    },
+    {
+      "id": "q17",
+      "text": "¿Qué es una estrategia pura en juegos simultáneos?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Una distribución de probabilidad sobre las acciones"
+        },
+        {
+          "id": "a2",
+          "text": "Una estrategia que maximiza el riesgo"
+        },
+        {
+          "id": "a3",
+          "text": "Una decisión determinista única",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Una estrategia que ignora al adversario"
+        }
+      ],
+      "explanation": "Una estrategia pura es una decisión determinista única, a diferencia de la estrategia mixta que usa distribuciones de probabilidad."
+    },
+    {
+      "id": "q18",
+      "text": "¿Qué afirmación sobre la racionalidad es correcta?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Un agente racional siempre alcanza el éxito garantizado"
+        },
+        {
+          "id": "a2",
+          "text": "Un agente racional maximiza el resultado esperado basándose en la información disponible",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "La racionalidad es equivalente a la omnisciencia"
+        },
+        {
+          "id": "a4",
+          "text": "Un agente racional no necesita recopilar información"
+        }
+      ],
+      "explanation": "La racionalidad no es sinónimo de perfección. Un agente racional maximiza el resultado esperado con la información disponible, incluyendo la recopilación de información."
+    },
+    {
+      "id": "q19",
+      "text": "La función de pertenencia en un conjunto borroso puede tomar valores:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Únicamente 0 o 1"
+        },
+        {
+          "id": "a2",
+          "text": "Únicamente enteros entre 0 y 10"
+        },
+        {
+          "id": "a3",
+          "text": "Únicamente valores negativos"
+        },
+        {
+          "id": "a4",
+          "text": "Cualquier valor real en el intervalo [0, 1]",
+          "correct": true
+        }
+      ],
+      "explanation": "Un predicado vago tiene una función de pertenencia μ: X → [0,1] que captura el grado de pertenencia del elemento al conjunto."
+    },
+    {
+      "id": "q20",
+      "text": "¿Qué componente del agente que aprende sugiere acciones de exploración que pueden no ser óptimas a corto plazo?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Elemento de actuación"
+        },
+        {
+          "id": "a2",
+          "text": "Crítica"
+        },
+        {
+          "id": "a3",
+          "text": "Generador de problemas",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Elemento de aprendizaje"
+        }
+      ],
+      "explanation": "El Generador de problemas sugiere acciones de exploración que no son óptimas a corto plazo pero permiten obtener experiencias informativas para mejorar a largo plazo."
+    }
+  ]
+}

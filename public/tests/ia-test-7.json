@@ -1,0 +1,512 @@
+{
+  "id": "ia-test-7",
+  "title": "Inteligencia Artificial - Test 7: Mixto III",
+  "description": "Cuarto bloque de preguntas mixtas de toda la asignatura de Inteligencia Artificial, sin repetir tests anteriores",
+  "category": "Inteligencia Artificial",
+  "difficulty": "mixed",
+  "passThreshold": 0.6,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "¿Cuál de las siguientes NO es una dimensión de clasificación de entornos REAS?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Observabilidad"
+        },
+        {
+          "id": "a2",
+          "text": "Episodicidad"
+        },
+        {
+          "id": "a3",
+          "text": "Velocidad de cómputo",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Dinamismo"
+        }
+      ],
+      "explanation": "Las dimensiones son: observabilidad, determinismo, episodicidad, dinamismo, continuidad y tipo de agente. Velocidad de cómputo no es una dimensión."
+    },
+    {
+      "id": "q2",
+      "text": "Un agente posee autonomía cuando:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Su comportamiento se rige por su propia experiencia más que por el conocimiento inicial del diseñador",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Sigue exactamente las instrucciones del diseñador"
+        },
+        {
+          "id": "a3",
+          "text": "No necesita sensores para percibir el entorno"
+        },
+        {
+          "id": "a4",
+          "text": "Siempre encuentra la solución óptima"
+        }
+      ],
+      "explanation": "Un agente es autónomo cuando su comportamiento se basa en su propia experiencia y aprendizaje, no solo en el conocimiento inicial del diseñador."
+    },
+    {
+      "id": "q3",
+      "text": "¿Qué significa que una heurística sea admisible?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "h(n) ≥ h*(n)"
+        },
+        {
+          "id": "a2",
+          "text": "h(n) ≤ h*(n)",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "h(n) = h*(n)"
+        },
+        {
+          "id": "a4",
+          "text": "h(n) no tiene relación con h*(n)"
+        }
+      ],
+      "explanation": "Una heurística admisible nunca sobrestima el costo real: h(n) ≤ h*(n). Es una estimación optimista del costo restante."
+    },
+    {
+      "id": "q4",
+      "text": "¿Cuál es la principal limitación de los agentes reactivos simples?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Consumen demasiada memoria"
+        },
+        {
+          "id": "a2",
+          "text": "Requieren mucha potencia de cálculo"
+        },
+        {
+          "id": "a3",
+          "text": "Necesitan función de utilidad"
+        },
+        {
+          "id": "a4",
+          "text": "Solo funcionan en entornos totalmente observables",
+          "correct": true
+        }
+      ],
+      "explanation": "Los agentes reactivos simples solo funcionan en entornos totalmente observables y son propensos a ciclos infinitos si no se incorpora aleatoriedad."
+    },
+    {
+      "id": "q5",
+      "text": "En el espacio de hipótesis del aprendizaje supervisado, una hipótesis es consistente si:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Predice correctamente todos los ejemplos de test"
+        },
+        {
+          "id": "a2",
+          "text": "Es la hipótesis más compleja posible"
+        },
+        {
+          "id": "a3",
+          "text": "Predice correctamente todos los ejemplos de entrenamiento",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Generaliza bien en el conjunto de validación"
+        }
+      ],
+      "explanation": "Una hipótesis es consistente si predice correctamente todos los ejemplos de entrenamiento. Generalizar bien significa predecir correctamente ejemplos nuevos."
+    },
+    {
+      "id": "q6",
+      "text": "¿Qué algoritmo de búsqueda combina la completitud de BFS con la complejidad espacial lineal de DFS?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Búsqueda de profundidad iterativa (IDS)",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Búsqueda de costo uniforme (UCS)"
+        },
+        {
+          "id": "a3",
+          "text": "Búsqueda voraz (Greedy)"
+        },
+        {
+          "id": "a4",
+          "text": "Búsqueda primero en anchura (BFS)"
+        }
+      ],
+      "explanation": "IDS combina la completitud y optimalidad de BFS con el espacio lineal O(bd) de DFS, ejecutando búsquedas limitadas con profundidad creciente."
+    },
+    {
+      "id": "q7",
+      "text": "¿Qué nombre recibe el árbol de búsqueda en Minimax cuando se incorporan nodos de azar?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Árbol alfa-beta"
+        },
+        {
+          "id": "a2",
+          "text": "Minimax Esperado (Expected Minimax)",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Árbol de Nash"
+        },
+        {
+          "id": "a4",
+          "text": "Maximin tree"
+        }
+      ],
+      "explanation": "El Minimax Esperado (Expected Minimax) incorpora nodos de posibilidad que calculan el valor como suma de utilidades ponderadas por probabilidad."
+    },
+    {
+      "id": "q8",
+      "text": "¿Cuál es la diferencia entre el enfoque proactivo y el reactivo en ética de IA?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "El reactivo diseña la IA con valores éticos desde el inicio; el proactivo actúa después del daño"
+        },
+        {
+          "id": "a2",
+          "text": "El proactivo define de antemano qué queremos de la IA; el reactivo actúa cuando los daños ya han ocurrido",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Ambos enfoques son equivalentes"
+        },
+        {
+          "id": "a4",
+          "text": "El proactivo solo se aplica a chatbots"
+        }
+      ],
+      "explanation": "El enfoque proactivo define de antemano los valores y diseña la IA en consecuencia. El reactivo (ex-post) actúa cuando los daños ya han ocurrido."
+    },
+    {
+      "id": "q9",
+      "text": "¿Qué tipo de aprendizaje usaríamos para agrupar clientes en segmentos sin conocer sus categorías?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Aprendizaje supervisado"
+        },
+        {
+          "id": "a2",
+          "text": "Aprendizaje por refuerzo"
+        },
+        {
+          "id": "a3",
+          "text": "Aprendizaje semi-supervisado"
+        },
+        {
+          "id": "a4",
+          "text": "Aprendizaje no supervisado",
+          "correct": true
+        }
+      ],
+      "explanation": "El clustering (agrupamiento) es un problema de aprendizaje no supervisado: buscamos patrones en datos sin etiquetas de salida."
+    },
+    {
+      "id": "q10",
+      "text": "¿Qué mide la exactitud (accuracy) en clasificación?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "El error cuadrático medio de las predicciones"
+        },
+        {
+          "id": "a2",
+          "text": "La distancia entre las clases"
+        },
+        {
+          "id": "a3",
+          "text": "La proporción de predicciones correctas sobre el total",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "El margen del hiperplano separador"
+        }
+      ],
+      "explanation": "La exactitud (accuracy) mide la proporción de predicciones correctas sobre el total de predicciones realizadas."
+    },
+    {
+      "id": "q11",
+      "text": "En un sistema multiagente, ¿qué tipo de entorno tenemos cuando los agentes compiten?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Multiagente competitivo",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Multiagente cooperativo"
+        },
+        {
+          "id": "a3",
+          "text": "Episódico"
+        },
+        {
+          "id": "a4",
+          "text": "Semidinámico"
+        }
+      ],
+      "explanation": "Un entorno multiagente puede ser competitivo (los agentes compiten) o cooperativo (trabajan juntos hacia un objetivo común)."
+    },
+    {
+      "id": "q12",
+      "text": "¿Qué permite que un perceptrón multicapa (MLP) pueda aproximar cualquier función continua?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Una única neurona en la capa de salida"
+        },
+        {
+          "id": "a2",
+          "text": "Las capas ocultas intermedias",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "La función de activación lineal"
+        },
+        {
+          "id": "a4",
+          "text": "El uso exclusivo de backpropagation"
+        }
+      ],
+      "explanation": "El MLP incluye capas ocultas intermedias que le permiten aproximar cualquier función continua con suficiente precisión (teorema de aproximación universal)."
+    },
+    {
+      "id": "q13",
+      "text": "¿Qué lógica permite 'volver atrás' en las conclusiones cuando llega nueva información?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Lógica de primer orden"
+        },
+        {
+          "id": "a2",
+          "text": "Lógica no monótona",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Lógica proposicional"
+        },
+        {
+          "id": "a4",
+          "text": "Lógica descriptiva"
+        }
+      ],
+      "explanation": "Las lógicas no monótonas permiten retractarse de conclusiones previas cuando aparece nueva información, necesarias para el razonamiento por defecto."
+    },
+    {
+      "id": "q14",
+      "text": "¿Cuál de los siguientes NO puede ser un componente de una ontología?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Clases"
+        },
+        {
+          "id": "a2",
+          "text": "Funciones heurísticas",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Relaciones"
+        },
+        {
+          "id": "a4",
+          "text": "Instancias"
+        }
+      ],
+      "explanation": "Los componentes de una ontología son: clases, relaciones, axiomas e instancias. Las funciones heurísticas no son parte de una ontología."
+    },
+    {
+      "id": "q15",
+      "text": "¿Cuál es la principal desventaja del conocimiento procedimental frente al declarativo?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Dificulta la inferencia, modificación y verificación",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Es difícil de aplicar directamente"
+        },
+        {
+          "id": "a3",
+          "text": "No responde a la pregunta '¿cómo?'"
+        },
+        {
+          "id": "a4",
+          "text": "No puede representar pasos e instrucciones"
+        }
+      ],
+      "explanation": "El conocimiento procedimental es muy fácil de aplicar directamente pero dificulta la inferencia, modificación y verificación del conocimiento."
+    },
+    {
+      "id": "q16",
+      "text": "¿Qué sucede con la temperatura en Simulated Annealing al final del proceso?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Alcanza su valor máximo"
+        },
+        {
+          "id": "a2",
+          "text": "Se estabiliza en un valor intermedio"
+        },
+        {
+          "id": "a3",
+          "text": "Tiende a cero, por lo que solo se aceptan mejoras",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Oscila aleatoriamente"
+        }
+      ],
+      "explanation": "Al final del proceso, la temperatura tiende a cero y solo se aceptan movimientos que mejoran la solución (como en Hill Climbing)."
+    },
+    {
+      "id": "q17",
+      "text": "¿Qué tipo de agente utiliza una función de utilidad para cuantificar el grado de satisfacción de un estado?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Agente basado en utilidad",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Agente reactivo simple"
+        },
+        {
+          "id": "a3",
+          "text": "Agente basado en objetivos"
+        },
+        {
+          "id": "a4",
+          "text": "Agente reactivo basado en modelos"
+        }
+      ],
+      "explanation": "El agente basado en utilidad usa una función de utilidad para cuantificar el grado de satisfacción, siendo la arquitectura más robusta para decisiones racionales."
+    },
+    {
+      "id": "q18",
+      "text": "¿Qué son los nodos cerrados (tabla A) en un algoritmo de búsqueda?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Los nodos que aún no han sido generados"
+        },
+        {
+          "id": "a2",
+          "text": "Los nodos que esperan ser expandidos en la frontera"
+        },
+        {
+          "id": "a3",
+          "text": "Los nodos que forman la solución final"
+        },
+        {
+          "id": "a4",
+          "text": "Los nodos ya visitados para evitar ciclos",
+          "correct": true
+        }
+      ],
+      "explanation": "Los nodos cerrados (tabla A) almacenan nodos ya visitados para evitar ciclos y garantizar la terminación en grafos."
+    },
+    {
+      "id": "q19",
+      "text": "¿Qué permite el enfoque de Diseño de Mecanismos (Teoría Inversa de Juegos)?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Predecir el comportamiento de un agente racional"
+        },
+        {
+          "id": "a2",
+          "text": "Definir las reglas del entorno para que el comportamiento egoísta resulte en utilidad global",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Calcular el equilibrio de Nash en cualquier juego"
+        },
+        {
+          "id": "a4",
+          "text": "Eliminar la incertidumbre en juegos con azar"
+        }
+      ],
+      "explanation": "El Diseño de Mecanismos busca definir reglas del entorno para que el comportamiento egoísta de los agentes maximice la utilidad global."
+    },
+    {
+      "id": "q20",
+      "text": "¿Cuál de las siguientes es una aplicación del conocimiento relacional?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Redes bayesianas para diagnóstico médico"
+        },
+        {
+          "id": "a2",
+          "text": "Tablas de bases de datos con hechos declarativos",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Sistemas de reglas para diagnóstico experto"
+        },
+        {
+          "id": "a4",
+          "text": "Ontologías para la web semántica"
+        }
+      ],
+      "explanation": "El conocimiento relacional es la forma más sencilla: hechos declarativos representados como tablas (al estilo de una base de datos)."
+    }
+  ]
+}

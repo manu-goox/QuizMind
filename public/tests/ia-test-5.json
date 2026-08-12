@@ -1,0 +1,512 @@
+{
+  "id": "ia-test-5",
+  "title": "Inteligencia Artificial - Test 5: Mixto",
+  "description": "Segundo bloque de preguntas mixtas de toda la asignatura de Inteligencia Artificial, sin repetir tests anteriores",
+  "category": "Inteligencia Artificial",
+  "difficulty": "mixed",
+  "passThreshold": 0.6,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "¿Cuál de las siguientes dimensiones de entorno indica si el estado siguiente es predecible o incierto?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Observabilidad"
+        },
+        {
+          "id": "a2",
+          "text": "Determinismo",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Episodicidad"
+        },
+        {
+          "id": "a4",
+          "text": "Dinamismo"
+        }
+      ],
+      "explanation": "La dimensión de determinismo distingue entornos deterministas (predecibles) de estocásticos (inciertos)."
+    },
+    {
+      "id": "q2",
+      "text": "¿Qué algoritmo usa una cola de prioridad ordenada por el costo acumulado g(n)?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "BFS"
+        },
+        {
+          "id": "a2",
+          "text": "DFS"
+        },
+        {
+          "id": "a3",
+          "text": "UCS (Búsqueda de costo uniforme)",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Búsqueda voraz"
+        }
+      ],
+      "explanation": "UCS expande el nodo con menor costo acumulado g(n) usando una cola de prioridad. Es completa y óptima si cada paso tiene costo > 0."
+    },
+    {
+      "id": "q3",
+      "text": "Para juegos con N > 2 jugadores, ¿cómo se representa la utilidad en Minimax?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Con un único valor escalar"
+        },
+        {
+          "id": "a2",
+          "text": "Con un valor booleano"
+        },
+        {
+          "id": "a3",
+          "text": "Con una probabilidad"
+        },
+        {
+          "id": "a4",
+          "text": "Con un vector de valores, uno por jugador",
+          "correct": true
+        }
+      ],
+      "explanation": "Para N > 2 jugadores, el valor escalar se sustituye por un vector de valores, uno por jugador."
+    },
+    {
+      "id": "q4",
+      "text": "¿Qué estrategia en juegos reiterativos replica la última acción del adversario?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Ojo por ojo (Tit-for-tat)",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Castigo perpetuo (Grim Trigger)"
+        },
+        {
+          "id": "a3",
+          "text": "Estrategia mixta"
+        },
+        {
+          "id": "a4",
+          "text": "Estrategia dominante"
+        }
+      ],
+      "explanation": "Tit-for-tat replica la acción anterior del adversario. Grim Trigger colabora hasta la primera traición y luego castiga permanentemente."
+    },
+    {
+      "id": "q5",
+      "text": "En búsqueda local, ¿qué estrategia de escape consiste en comenzar desde un punto distinto cuando no hay progreso?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Backtracking"
+        },
+        {
+          "id": "a2",
+          "text": "Reinicio aleatorio",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Operaciones múltiples"
+        },
+        {
+          "id": "a4",
+          "text": "Optimización en paralelo"
+        }
+      ],
+      "explanation": "El reinicio aleatorio consiste en comenzar desde un punto distinto si no hay progreso, ayudando a escapar de máximos locales."
+    },
+    {
+      "id": "q6",
+      "text": "¿Qué modo de inferencia en SBR está dirigido por datos?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Encadenamiento hacia atrás"
+        },
+        {
+          "id": "a2",
+          "text": "Razonamiento mixto"
+        },
+        {
+          "id": "a3",
+          "text": "Encadenamiento hacia adelante",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Razonamiento por defecto"
+        }
+      ],
+      "explanation": "El encadenamiento hacia adelante (forward chaining) parte de hechos conocidos y aplica reglas hasta no generar nuevos hechos. Está dirigido por datos."
+    },
+    {
+      "id": "q7",
+      "text": "¿Qué propiedad de los métodos de deducción asegura que solo devuelven conclusiones verdaderas?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Completitud"
+        },
+        {
+          "id": "a2",
+          "text": "Poder expresivo"
+        },
+        {
+          "id": "a3",
+          "text": "Eficiencia"
+        },
+        {
+          "id": "a4",
+          "text": "Corrección",
+          "correct": true
+        }
+      ],
+      "explanation": "La corrección (soundness) asegura que solo se devuelven conclusiones verdaderas. La completitud asegura que se devuelven todas las conclusiones verdaderas."
+    },
+    {
+      "id": "q8",
+      "text": "En aprendizaje supervisado, ¿qué representa el conjunto de test?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Datos usados para estimar el rendimiento con datos nuevos nunca vistos",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Datos usados para aprender el modelo"
+        },
+        {
+          "id": "a3",
+          "text": "Datos usados para ajustar hiperparámetros"
+        },
+        {
+          "id": "a4",
+          "text": "Datos usados para el entrenamiento inicial"
+        }
+      ],
+      "explanation": "El conjunto de test se usa para estimar el rendimiento del modelo con datos nuevos (nunca vistos durante el entrenamiento)."
+    },
+    {
+      "id": "q9",
+      "text": "¿Qué arquitectura de Deep Learning es más adecuada para procesar secuencias de texto?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Redes Convolucionales (CNN)"
+        },
+        {
+          "id": "a2",
+          "text": "Redes Recurrentes (RNN / LSTM)",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Autoencoders"
+        },
+        {
+          "id": "a4",
+          "text": "Redes de Hopfield"
+        }
+      ],
+      "explanation": "Las RNN/LSTM incorporan bucles de realimentación que permiten persistir información a lo largo del tiempo, ideales para secuencias."
+    },
+    {
+      "id": "q10",
+      "text": "¿Cuál de los siguientes NO es un requisito clave de la IA fiable según la Comisión Europea?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Maximización de beneficios",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Acción y supervisión humanas"
+        },
+        {
+          "id": "a3",
+          "text": "Transparencia"
+        },
+        {
+          "id": "a4",
+          "text": "Bienestar social y ambiental"
+        }
+      ],
+      "explanation": "Los 7 requisitos incluyen supervisión humana, solidez técnica, privacidad, transparencia, no discriminación, bienestar social y rendición de cuentas."
+    },
+    {
+      "id": "q11",
+      "text": "¿Qué nivel de riesgo en el EU AI Act conlleva la prohibición total del sistema?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Alto riesgo"
+        },
+        {
+          "id": "a2",
+          "text": "Riesgo inaceptable",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Riesgo limitado"
+        },
+        {
+          "id": "a4",
+          "text": "Riesgo mínimo"
+        }
+      ],
+      "explanation": "El nivel de riesgo inaceptable implica prohibición total, incluyendo sistemas que manipulan el comportamiento humano o permiten puntuación social."
+    },
+    {
+      "id": "q12",
+      "text": "En el mundo de la aspiradora, si el agente percibe [A, Limpio] repetidamente, ¿qué debería hacer un agente reactivo simple?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Nada, quedarse en A"
+        },
+        {
+          "id": "a2",
+          "text": "Aspirar"
+        },
+        {
+          "id": "a3",
+          "text": "Esperar una señal externa"
+        },
+        {
+          "id": "a4",
+          "text": "Desplazarse a la localización B",
+          "correct": true
+        }
+      ],
+      "explanation": "Un agente reactivo simple sigue reglas condición-acción: si estado = Sucio, aspirar; si localización = A y limpio, moverse a B."
+    },
+    {
+      "id": "q13",
+      "text": "La abstracción en la formulación de problemas de búsqueda consiste en:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Eliminar detalles irrelevantes para que un estado abstracto represente un conjunto de estados reales",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Añadir detalles para hacer el problema más preciso"
+        },
+        {
+          "id": "a3",
+          "text": "Usar únicamente variables binarias"
+        },
+        {
+          "id": "a4",
+          "text": "Reducir el número de acciones posibles"
+        }
+      ],
+      "explanation": "La abstracción elimina detalles irrelevantes para que un estado abstracto represente un conjunto de estados reales, haciendo el problema manejable."
+    },
+    {
+      "id": "q14",
+      "text": "Las heurísticas en búsqueda informada suelen obtenerse mediante:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Experimentos aleatorios"
+        },
+        {
+          "id": "a2",
+          "text": "Búsqueda exhaustiva del espacio de estados"
+        },
+        {
+          "id": "a3",
+          "text": "Relajación de problemas (eliminando restricciones)",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Reducción de la profundidad de búsqueda"
+        }
+      ],
+      "explanation": "Las heurísticas suelen obtenerse relajando el problema. Ej: en 8-puzzle, suponer que las piezas pueden moverse a cualquier celda."
+    },
+    {
+      "id": "q15",
+      "text": "¿Qué diferencia hay entre aprendizaje basado en modelos y basado en instancias?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "El basado en instancias produce un modelo compacto; el basado en modelos conserva los datos"
+        },
+        {
+          "id": "a2",
+          "text": "No hay diferencia práctica"
+        },
+        {
+          "id": "a3",
+          "text": "El basado en modelos produce un modelo compacto; el basado en instancias conserva los datos de entrenamiento",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "El basado en modelos es no paramétrico"
+        }
+      ],
+      "explanation": "El aprendizaje basado en modelos produce un modelo compacto (ej. árbol de decisión). El basado en instancias conserva los datos (ej. kNN)."
+    },
+    {
+      "id": "q16",
+      "text": "¿Qué ventana temporal separa la creación de la Oficina Europea de IA y la aprobación de la Ley de IA?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "3 meses"
+        },
+        {
+          "id": "a2",
+          "text": "Menos de 3 meses (enero a marzo 2024)",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "1 año"
+        },
+        {
+          "id": "a4",
+          "text": "2 años"
+        }
+      ],
+      "explanation": "La Oficina Europea de IA se creó el 24 de enero de 2024 y la Ley de IA se aprobó el 13 de marzo de 2024, menos de 3 meses después."
+    },
+    {
+      "id": "q17",
+      "text": "Un agente basado en utilidad se diferencia de uno basado en objetivos porque:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "No necesita función de evaluación"
+        },
+        {
+          "id": "a2",
+          "text": "Solo funciona con entornos deterministas"
+        },
+        {
+          "id": "a3",
+          "text": "Usa únicamente reglas condición-acción"
+        },
+        {
+          "id": "a4",
+          "text": "Cuantifica el grado de satisfacción de un estado con una función de utilidad",
+          "correct": true
+        }
+      ],
+      "explanation": "El agente basado en utilidad usa una función de utilidad para cuantificar el grado de satisfacción, permitiendo decisiones ante objetivos conflictivos."
+    },
+    {
+      "id": "q18",
+      "text": "¿Qué representan los vectores soporte en una SVM?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Los ejemplos más cercanos al hiperplano separador",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Los ejemplos más alejados del hiperplano"
+        },
+        {
+          "id": "a3",
+          "text": "Todos los ejemplos del conjunto de entrenamiento"
+        },
+        {
+          "id": "a4",
+          "text": "Los ejemplos mal clasificados"
+        }
+      ],
+      "explanation": "Los vectores soporte son los ejemplos más cercanos al hiperplano separador (uno por cada clase). El margen es la distancia entre ellos."
+    },
+    {
+      "id": "q19",
+      "text": "En el aprendizaje profundo, ¿por qué el vanishing gradient es un problema?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Porque el gradiente crece exponencialmente"
+        },
+        {
+          "id": "a2",
+          "text": "Porque las primeras capas se entrenan muy lentamente al desvanecerse el gradiente",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Porque la red no puede aproximar funciones no lineales"
+        },
+        {
+          "id": "a4",
+          "text": "Porque los datos de entrada son insuficientes"
+        }
+      ],
+      "explanation": "El vanishing gradient hace que las primeras capas se entrenen muy lentamente. Soluciones: ReLU, conexiones residuales, batch normalization."
+    },
+    {
+      "id": "q20",
+      "text": "¿Cuál de los siguientes es un ejemplo de juego con información imperfecta?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Ajedrez"
+        },
+        {
+          "id": "a2",
+          "text": "Damas"
+        },
+        {
+          "id": "a3",
+          "text": "Juegos de cartas",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Tres en raya"
+        }
+      ],
+      "explanation": "Los juegos de cartas tienen información imperfecta porque los jugadores no conocen las cartas del oponente. Ajedrez y damas tienen información perfecta."
+    }
+  ]
+}

@@ -2,75 +2,115 @@
   "tests": [
     {
       "id": "procesamiento-distribuido-consultas-facil",
-      "file": "tema_5_procesamiento_distribuido_facil.json",
+      "file": "tema_5_facil.json",
       "title": "Tema 5 - Procesamiento Distribuido de Consultas",
-      "category": "Informatica",
+      "category": "Bases de Datos Distribuidas",
       "difficulty": "easy",
       "questionCount": 30
     },
     {
-      "id": "procesamiento-distribuido-consultas-intermedio",
-      "file": "tema_5_procesamiento_intermedio.json",
-      "title": "Tema 5 - Procesamiento Distribuido de Consultas",
-      "category": "Informatica",
-      "difficulty": "intermediate",
-      "questionCount": 30
+      "id": "sistemas-concurrentes-test-generado",
+      "file": "concurrentes-1.json",
+      "title": "Sistemas Concurrentes y Distribuidos - Test Generado 1",
+      "category": "Sistemas Concurrentes y Distribuidos",
+      "difficulty": "mixed",
+      "questionCount": 20
     },
     {
-      "id": "procesamiento-distribuido-consultas-dificil",
-      "file": "tema_5_procesamiento_distribuido_dificil.json",
-      "title": "Tema 5 - Procesamiento Distribuido de Consultas",
-      "category": "Informatica",
-      "difficulty": "hard",
-      "questionCount": 30
+      "id": "sistemas-concurrentes-examenes-2122",
+      "file": "concurrentes-2.json",
+      "title": "Sistemas Concurrentes y Distribuidos - Exámenes 2021-22",
+      "category": "Sistemas Concurrentes y Distribuidos",
+      "difficulty": "mixed",
+      "questionCount": 20
     },
     {
-      "id": "basesdatosdistribuidas-tema6",
-      "file": "tema_6_bbdd_distribuidas_test.json",
-      "title": "Tema 6 - Bases de Datos (Short)",
-      "category": "Informatica",
-      "difficulty": "easy",
-      "questionCount": 12
-    },
-    {
-      "id": "administracion-gestion-bbdd-intermedio",
-      "file": "tema_6_administracion_intermedio.json",
-      "title": "Tema 6 - Administración y Gestión de BBDD Distribuidas",
-      "category": "Informatica",
-      "difficulty": "intermediate",
-      "questionCount": 30
-    },
-    {
-      "id": "administracion-gestion-bbdd-dificil",
-      "file": "tema_6_administracion_gestion_dificil.json",
-      "title": "Tema 6 - Administración y Gestión de BBDD Distribuidas",
-      "category": "Informatica",
-      "difficulty": "hard",
-      "questionCount": 30
-    },
-    {
-      "id": "basesdatosdistribuidas-tema7",
-      "file": "tema_7_bbdd_distribuidas_test.json",
-      "title": "Tema 7 - Bases de Datos (Short)",
-      "category": "Informatica",
-      "difficulty": "easy",
+      "id": "sistemas-concurrentes-examen-junio-22-23",
+      "file": "concurrentes-3.json",
+      "title": "Sistemas Concurrentes y Distribuidos - Examen Junio 22-23",
+      "category": "Sistemas Concurrentes y Distribuidos",
+      "difficulty": "mixed",
       "questionCount": 15
     },
     {
-      "id": "otras-tecnologias-bbdd-intermedio",
-      "file": "tema_7_otras_tecnologias_intermedio.json",
-      "title": "Tema 7 - Otras Tecnologías de BBDD Distribuidas",
-      "category": "Informatica",
-      "difficulty": "intermediate",
-      "questionCount": 30
+      "id": "sistemas-concurrentes-examen-2019",
+      "file": "concurrentes-4.json",
+      "title": "Sistemas Concurrentes y Distribuidos - Examen 2019",
+      "category": "Sistemas Concurrentes y Distribuidos",
+      "difficulty": "mixed",
+      "questionCount": 40
     },
     {
-      "id": "otras-tecnologias-bbdd-distribuidas-dificil",
-      "file": "tema_7_otras_tecnologias_dificil.json",
-      "title": "Tema 7 - Otras Tecnologías de BBDD Distribuidas",
-      "category": "Informatica",
-      "difficulty": "hard",
-      "questionCount": 30
+      "id": "sistemas-concurrentes-test-5",
+      "file": "concurrentes-5.json",
+      "title": "Sistemas Concurrentes y Distribuidos - Examen 5",
+      "category": "Sistemas Concurrentes y Distribuidos",
+      "difficulty": "mixed",
+      "questionCount": 20
+    },
+    {
+      "id": "sistemas-concurrentes-test-6",
+      "file": "concurrentes-6.json",
+      "title": "Sistemas Concurrentes y Distribuidos - Examen 6",
+      "category": "Sistemas Concurrentes y Distribuidos",
+      "difficulty": "mixed",
+      "questionCount": 20
+    },
+    {
+      "id": "ia-test-1",
+      "file": "ia-test-1.json",
+      "title": "Inteligencia Artificial - Test 1: Agentes, B\u00fasqueda y Juegos",
+      "category": "Inteligencia Artificial",
+      "difficulty": "mixed",
+      "questionCount": 20
+    },
+    {
+      "id": "ia-test-2",
+      "file": "ia-test-2.json",
+      "title": "Inteligencia Artificial - Test 2: Optimizaci\u00f3n y Rep. del Conocimiento",
+      "category": "Inteligencia Artificial",
+      "difficulty": "mixed",
+      "questionCount": 20
+    },
+    {
+      "id": "ia-test-3",
+      "file": "ia-test-3.json",
+      "title": "Inteligencia Artificial - Test 3: Aprendizaje y \u00c9tica",
+      "category": "Inteligencia Artificial",
+      "difficulty": "mixed",
+      "questionCount": 20
+    },
+    {
+      "id": "ia-test-4",
+      "file": "ia-test-4.json",
+      "title": "Inteligencia Artificial - Test 4: Mixto",
+      "category": "Inteligencia Artificial",
+      "difficulty": "mixed",
+      "questionCount": 20
+    },
+    {
+      "id": "ia-test-5",
+      "file": "ia-test-5.json",
+      "title": "Inteligencia Artificial - Test 5: Mixto",
+      "category": "Inteligencia Artificial",
+      "difficulty": "mixed",
+      "questionCount": 20
+    },
+    {
+      "id": "ia-test-6",
+      "file": "ia-test-6.json",
+      "title": "Inteligencia Artificial - Test 6: Mixto II",
+      "category": "Inteligencia Artificial",
+      "difficulty": "mixed",
+      "questionCount": 20
+    },
+    {
+      "id": "ia-test-7",
+      "file": "ia-test-7.json",
+      "title": "Inteligencia Artificial - Test 7: Mixto III",
+      "category": "Inteligencia Artificial",
+      "difficulty": "mixed",
+      "questionCount": 20
     }
   ]
 }

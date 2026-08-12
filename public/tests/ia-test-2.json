@@ -1,0 +1,512 @@
+{
+  "id": "ia-test-2",
+  "title": "Inteligencia Artificial - Test 2: Optimización y Representación del Conocimiento",
+  "description": "Preguntas sobre algoritmos de optimización (T5) y representación del conocimiento (T6)",
+  "category": "Inteligencia Artificial",
+  "difficulty": "mixed",
+  "passThreshold": 0.6,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "¿Cuál es el propósito principal de la búsqueda local en IA?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Encontrar una secuencia de acciones hacia la meta"
+        },
+        {
+          "id": "a2",
+          "text": "Explorar todo el espacio de estados sistemáticamente"
+        },
+        {
+          "id": "a3",
+          "text": "Mejorar iterativamente un estado candidato hasta hallar el óptimo",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Garantizar la solución óptima global"
+        }
+      ],
+      "explanation": "La búsqueda local parte de una solución candidata y la mejora iterativamente mediante movimientos hacia estados vecinos."
+    },
+    {
+      "id": "q2",
+      "text": "¿Qué obstáculo en Hill Climbing ocurre cuando la función tiene el mismo valor en una región extensa?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Máximo local"
+        },
+        {
+          "id": "a2",
+          "text": "Ciclo infinito"
+        },
+        {
+          "id": "a3",
+          "text": "Reinicio aleatorio"
+        },
+        {
+          "id": "a4",
+          "text": "Terrazas o planicies",
+          "correct": true
+        }
+      ],
+      "explanation": "Las terrazas o planicies son áreas donde el valor de la función es constante, impidiendo que el algoritmo avance."
+    },
+    {
+      "id": "q3",
+      "text": "En Hill Climbing, la variante que evalúa todos los sucesores y elige el mejor se denomina:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Escalada por máxima pendiente",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Escalada simple"
+        },
+        {
+          "id": "a3",
+          "text": "Escalada estocástica"
+        },
+        {
+          "id": "a4",
+          "text": "Reinicio aleatorio"
+        }
+      ],
+      "explanation": "La escalada por máxima pendiente evalúa todos los sucesores y elige el mejor, siendo más costosa pero con mayor avance local."
+    },
+    {
+      "id": "q4",
+      "text": "¿Qué diferencia a la búsqueda por haz local (Local Beam Search) del Hill Climbing?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Usa una única solución candidata"
+        },
+        {
+          "id": "a2",
+          "text": "Mantiene k estados en paralelo en lugar de uno solo",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Solo funciona con funciones de coste"
+        },
+        {
+          "id": "a4",
+          "text": "No necesita función de evaluación"
+        }
+      ],
+      "explanation": "Local Beam Search mantiene k estados simultáneamente en lugar de uno solo, explorando múltiples regiones en paralelo."
+    },
+    {
+      "id": "q5",
+      "text": "¿Qué permite el criterio de Metropolis en el algoritmo de Simulated Annealing?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Seleccionar siempre el mejor sucesor"
+        },
+        {
+          "id": "a2",
+          "text": "Aceptar estados peores con cierta probabilidad para escapar de máximos locales",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Reiniciar desde un estado aleatorio"
+        },
+        {
+          "id": "a4",
+          "text": "Duplicar la temperatura progresivamente"
+        }
+      ],
+      "explanation": "El criterio de Metropolis permite aceptar estados peores con probabilidad decreciente, facilitando escapar de máximos locales."
+    },
+    {
+      "id": "q6",
+      "text": "Según la jerarquía DIKW, ¿cuál es el nivel más elevado?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Datos"
+        },
+        {
+          "id": "a2",
+          "text": "Información"
+        },
+        {
+          "id": "a3",
+          "text": "Conocimiento"
+        },
+        {
+          "id": "a4",
+          "text": "Sabiduría",
+          "correct": true
+        }
+      ],
+      "explanation": "La jerarquía DIKW asciende desde Datos -> Información -> Conocimiento -> Sabiduría, siendo esta última el nivel más elevado."
+    },
+    {
+      "id": "q7",
+      "text": "¿Qué caracteriza a la IA simbólica frente a la subsimbólica?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "El conocimiento se representa mediante unidades discretas (símbolos) combinados en un formalismo",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "El conocimiento queda implícito en pesos y probabilidades"
+        },
+        {
+          "id": "a3",
+          "text": "Utiliza exclusivamente redes neuronales"
+        },
+        {
+          "id": "a4",
+          "text": "No permite manipular el conocimiento explícitamente"
+        }
+      ],
+      "explanation": "La IA simbólica representa el conocimiento con símbolos discretos combinados en formalismos, mientras que la subsimbólica usa representaciones implícitas."
+    },
+    {
+      "id": "q8",
+      "text": "¿Qué tipo de conocimiento responde a la pregunta '¿cómo?' especificando pasos e instrucciones?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Conocimiento declarativo"
+        },
+        {
+          "id": "a2",
+          "text": "Conocimiento procedimental",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Conocimiento relacional"
+        },
+        {
+          "id": "a4",
+          "text": "Conocimiento tácito"
+        }
+      ],
+      "explanation": "El conocimiento procedimental especifica pasos e instrucciones para alcanzar un objetivo (responde a '¿cómo?')."
+    },
+    {
+      "id": "q9",
+      "text": "En un Sistema Basado en Reglas (SBR), ¿cuál es la función del Motor de Inferencia?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Almacenar los hechos establecidos"
+        },
+        {
+          "id": "a2",
+          "text": "Contener las reglas SI-ENTONCES"
+        },
+        {
+          "id": "a3",
+          "text": "Examinar la Base de Hechos y decidir qué reglas disparar",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Proporcionar la interfaz de usuario"
+        }
+      ],
+      "explanation": "El Motor de Inferencia examina la Base de Hechos y decide qué reglas disparar mediante equiparación y resolución de conflictos."
+    },
+    {
+      "id": "q10",
+      "text": "El encadenamiento hacia atrás (backward chaining) en un SBR:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Parte de hechos conocidos y aplica reglas hasta no generar nuevos hechos"
+        },
+        {
+          "id": "a2",
+          "text": "Combina datos y metas simultáneamente"
+        },
+        {
+          "id": "a3",
+          "text": "Parte de hipótesis e intenta verificarlas usando hechos de la base",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Solo funciona con lógica borrosa"
+        }
+      ],
+      "explanation": "El backward chaining parte de hipótesis y trata de verificarlas usando hechos. Es dirigido por metas."
+    },
+    {
+      "id": "q11",
+      "text": "Una ontología se define como:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Una especificación formal de una conceptualización compartida",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Un tipo de red semántica para valores por defecto"
+        },
+        {
+          "id": "a3",
+          "text": "Un sistema de lógica de primer orden"
+        },
+        {
+          "id": "a4",
+          "text": "Un conjunto de reglas probabilísticas"
+        }
+      ],
+      "explanation": "Una ontología es una especificación formal de una conceptualización compartida que define conceptos de un dominio y sus interrelaciones."
+    },
+    {
+      "id": "q12",
+      "text": "¿Qué formalismo utilizan las Redes Bayesianas para realizar inferencia?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Lógica de primer orden"
+        },
+        {
+          "id": "a2",
+          "text": "La Regla de Bayes",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Modus ponens"
+        },
+        {
+          "id": "a4",
+          "text": "Funciones de pertenencia difusas"
+        }
+      ],
+      "explanation": "El motor de inferencia de las Redes Bayesianas se basa fundamentalmente en la Regla de Bayes para actualizar probabilidades."
+    },
+    {
+      "id": "q13",
+      "text": "En lógica borrosa, ¿qué caracteriza a un predicado vago?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Su función de pertenencia solo toma valores {0,1}"
+        },
+        {
+          "id": "a2",
+          "text": "Su función de pertenencia toma valores continuos en [0,1]",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "No tiene función de pertenencia"
+        },
+        {
+          "id": "a4",
+          "text": "Solo puede aplicarse a conjuntos finitos"
+        }
+      ],
+      "explanation": "Un predicado vago tiene función de pertenencia μ: X → [0,1] continua, que captura el grado de pertenencia."
+    },
+    {
+      "id": "q14",
+      "text": "¿Qué problema introduce el razonamiento por defecto cuando se recibe nueva información?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Pérdida de completitud"
+        },
+        {
+          "id": "a2",
+          "text": "Sobreajuste de los datos"
+        },
+        {
+          "id": "a3",
+          "text": "Incremento de la complejidad espacial"
+        },
+        {
+          "id": "a4",
+          "text": "El razonamiento se vuelve no monótono",
+          "correct": true
+        }
+      ],
+      "explanation": "Al recibir nueva información, conclusiones anteriores pueden volverse falsas, haciendo que el razonamiento sea no monótono."
+    },
+    {
+      "id": "q15",
+      "text": "En lógica descriptiva, ¿qué tarea de inferencia determina si la categoría A es subconjunto de B?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Subsunción",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Clasificación"
+        },
+        {
+          "id": "a3",
+          "text": "Consistencia"
+        },
+        {
+          "id": "a4",
+          "text": "Resolución"
+        }
+      ],
+      "explanation": "La subsunción determina si una categoría A es subconjunto de B. Clasificación determina si un objeto pertenece a una categoría."
+    },
+    {
+      "id": "q16",
+      "text": "¿Qué permite la herencia en las redes semánticas?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Eliminar relaciones entre nodos"
+        },
+        {
+          "id": "a2",
+          "text": "Calcular el costo del camino en el grafo"
+        },
+        {
+          "id": "a3",
+          "text": "Que los objetos hereden propiedades de su categoría",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Generar automáticamente nuevas ontologías"
+        }
+      ],
+      "explanation": "En redes semánticas, los objetos heredan propiedades de su categoría. Una propiedad asignada al objeto sobrescribe el valor heredado."
+    },
+    {
+      "id": "q17",
+      "text": "¿Qué tipo de lógica extiende la lógica proposicional con variables y cuantificadores?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Lógica modal"
+        },
+        {
+          "id": "a2",
+          "text": "Lógica no monótona"
+        },
+        {
+          "id": "a3",
+          "text": "Lógica de primer orden",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Lógica descriptiva"
+        }
+      ],
+      "explanation": "La lógica de primer orden extiende la proposicional con variables, cuantificadores (∀,∃) y predicados."
+    },
+    {
+      "id": "q18",
+      "text": "Un SMV (Sistema de Mantenimiento de Verdad) se encarga de:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Aprender nuevas reglas a partir de ejemplos"
+        },
+        {
+          "id": "a2",
+          "text": "Revisar creencias eficientemente al retraer hechos",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Generar árboles de decisión"
+        },
+        {
+          "id": "a4",
+          "text": "Calcular la utilidad en juegos"
+        }
+      ],
+      "explanation": "Los SMV revisan creencias de forma eficiente: anotan justificaciones y al retraer un hecho eliminan las sentencias dependientes."
+    },
+    {
+      "id": "q19",
+      "text": "¿Cuál es una ventaja de la búsqueda local frente a la búsqueda sistemática?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Bajo consumo de memoria, generalmente constante",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Garantía de encontrar la solución óptima global"
+        },
+        {
+          "id": "a3",
+          "text": "Exploración completa del espacio de estados"
+        },
+        {
+          "id": "a4",
+          "text": "No requiere función de evaluación"
+        }
+      ],
+      "explanation": "La búsqueda local tiene bajo consumo de memoria (generalmente constante) al no almacenar el árbol de búsqueda completo."
+    },
+    {
+      "id": "q20",
+      "text": "La lógica proposicional es un lenguaje de orden:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Primer orden"
+        },
+        {
+          "id": "a2",
+          "text": "Segundo orden"
+        },
+        {
+          "id": "a3",
+          "text": "Tercer orden"
+        },
+        {
+          "id": "a4",
+          "text": "Orden 0",
+          "correct": true
+        }
+      ],
+      "explanation": "La lógica proposicional es de orden 0, con proposiciones atómicas que solo pueden ser verdaderas o falsas."
+    }
+  ]
+}

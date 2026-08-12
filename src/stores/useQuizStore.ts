@@ -1,6 +1,7 @@
 import { create } from 'zustand';
-import type { Test, QuizState, QuizResult } from '../types';
+import type { Test, QuizState, QuizResult, Question } from '../types';
 import { calculateResults } from '../utils/scoring';
+import { shuffle } from '../utils/shuffle';
 
 interface QuizStore extends QuizState {
   startTest: (test: Test) => void;
@@ -10,8 +11,9 @@ interface QuizStore extends QuizState {
   goToPrevious: () => void;
   finishTest: () => QuizResult;
   resetQuiz: () => void;
-  getCurrentQuestion: () => Test['questions'][number] | null;
+  getCurrentQuestion: () => Question | null;
   getResults: () => QuizResult | null;
+  getAnswerOrder: (questionId: string) => string[];
 }
 
 const initialState: QuizState = {
@@ -21,19 +23,42 @@ const initialState: QuizState = {
   startTime: null,
   activeTest: null,
   status: 'idle',
+  answerOrder: {},
 };
 
 export const useQuizStore = create<QuizStore>((set, get) => ({
   ...initialState,
 
   startTest: (test: Test) => {
+    let questions = [...test.questions];
+    
+    if (test.shuffleQuestions) {
+      questions = shuffle(questions);
+    }
+
+    const answerOrder: Record<string, string[]> = {};
+    const shuffledQuestions = questions.map((q) => {
+      let answers = [...q.answers];
+      if (test.shuffleAnswers) {
+        answers = shuffle(answers);
+      }
+      answerOrder[q.id] = answers.map((a) => a.id);
+      return { ...q, answers };
+    });
+
+    const shuffledTest: Test = {
+      ...test,
+      questions: shuffledQuestions,
+    };
+
     set({
-      activeTest: test,
+      activeTest: shuffledTest,
       currentQuestionIndex: 0,
       answers: {},
       skipped: new Set(),
       startTime: Date.now(),
       status: 'in-progress',
+      answerOrder,
     });
   },
 
@@ -99,5 +124,10 @@ export const useQuizStore = create<QuizStore>((set, get) => ({
       state.answers,
       state.startTime ? Date.now() - state.startTime : 0
     );
+  },
+
+  getAnswerOrder: (questionId: string) => {
+    const state = get();
+    return state.answerOrder[questionId] || [];
   },
 }));

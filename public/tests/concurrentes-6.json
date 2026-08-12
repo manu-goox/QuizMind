@@ -1,0 +1,439 @@
+{
+  "id": "sistemas-concurrentes-test-6",
+  "title": "Sistemas Concurrentes y Distribuidos - Test 6: Java, Monitores y Algoritmos Clásicos",
+  "description": "Preguntas sobre hilos Java, semántica de monitores, RPC, algoritmos de Dekker/Peterson y condiciones de Bernstein",
+  "category": "Sistemas Concurrentes y Distribuidos",
+  "difficulty": "mixed",
+  "passThreshold": 0.6,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "Si en nuestra aplicación Java se produce una división por cero:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Finalizará la ejecución de todos los hilos de la aplicación."
+        },
+        {
+          "id": "a2",
+          "text": "Finalizará la ejecución del hilo asociado a esa operación.",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "La aplicación continuará con la siguiente sentencia."
+        },
+        { "id": "a4", "text": "Ninguna de las respuestas es correcta." }
+      ],
+      "explanation": "La excepción ArithmeticException termina únicamente el hilo donde se produjo, no afecta al resto."
+    },
+    {
+      "id": "q2",
+      "text": "Cuando el hilo principal de una aplicación Java termina:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Ninguna de las respuestas es correcta." },
+        {
+          "id": "a2",
+          "text": "Todos los hilos de la aplicación terminan inmediatamente."
+        },
+        {
+          "id": "a3",
+          "text": "No tiene efecto sobre la terminación del resto de hilos de la aplicación.",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Se solicita la terminación de los hilos de la aplicación."
+        }
+      ],
+      "explanation": "En Java, los hilos no daemon continúan ejecutándose aunque el hilo principal haya terminado."
+    },
+    {
+      "id": "q3",
+      "text": "El atributo status de la clase Thread permite almacenar:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "No es un atributo de la clase Thread." },
+        { "id": "a2", "text": "Ninguna de las respuestas es correcta." },
+        {
+          "id": "a3",
+          "text": "El estado de ejecución de un hilo.",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "El estado de ejecución de todos los hilos de la aplicación."
+        }
+      ],
+      "explanation": "El atributo status de Thread almacena el estado actual del hilo (NEW, RUNNABLE, BLOCKED, WAITING, etc.)."
+    },
+    {
+      "id": "q4",
+      "text": "El método sleep(.) es:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Es un método de la clase Runnable." },
+        { "id": "a2", "text": "Es un método de la clase Object." },
+        { "id": "a3", "text": "Es un método de la clase String." },
+        {
+          "id": "a4",
+          "text": "Es un método de la clase Thread.",
+          "correct": true
+        }
+      ],
+      "explanation": "sleep() es un método estático de la clase Thread que suspende el hilo actual durante un tiempo especificado."
+    },
+    {
+      "id": "q5",
+      "text": "Dado el código: for(int i=0; i<maxI; i++) { trabajoCon(i); if(Thread.interrupted()) { return; } } — ¿qué podemos afirmar?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "El ciclo se ejecuta entre 1 y maxI veces.",
+          "correct": true
+        },
+        { "id": "a2", "text": "El ciclo se ejecutará maxI veces." },
+        { "id": "a3", "text": "Ninguna de las respuestas es correcta." },
+        {
+          "id": "a4",
+          "text": "El ciclo se ejecuta una sola vez porque luego se interrumpe el hilo."
+        }
+      ],
+      "explanation": "El ciclo puede terminar antes si el hilo es interrumpido, por lo que se ejecutará entre 1 y maxI veces."
+    },
+    {
+      "id": "q6",
+      "text": "El método join(.) de la clase Thread en Java:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Lanzará la ejecución de un hilo." },
+        { "id": "a2", "text": "Ninguna de las respuestas es correcta." },
+        {
+          "id": "a3",
+          "text": "Permite unir las ejecuciones de múltiples hilos.",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Permite conocer la finalización de la aplicación."
+        }
+      ],
+      "explanation": "join() bloquea el hilo que lo invoca hasta que el hilo referenciado completa su ejecución."
+    },
+    {
+      "id": "q7",
+      "text": "La sentencia resume de un monitor:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Tiene la misma lógica de funcionamiento que la operación signal de un semáforo."
+        },
+        {
+          "id": "a2",
+          "text": "Permite bloquear a un proceso en el monitor dentro de una variable de condición."
+        },
+        {
+          "id": "a3",
+          "text": "Solo se aplica a una variable de condición del monitor si hay procesos bloqueados en la misma."
+        },
+        {
+          "id": "a4",
+          "text": "Librará a un proceso bloqueado en la variable de condición del monitor. Si no hay, no tiene efecto.",
+          "correct": true
+        }
+      ],
+      "explanation": "Resume desbloquea al primer proceso en la cola de la variable de condición; si la cola está vacía, no hace nada."
+    },
+    {
+      "id": "q8",
+      "text": "En los monitores los procesos bloqueados:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Se bloquean únicamente en las colas asociadas a variables de condición."
+        },
+        {
+          "id": "a2",
+          "text": "Se bloquean únicamente en las colas de acceso al propio monitor."
+        },
+        {
+          "id": "a3",
+          "text": "Solo puede haber un proceso bloqueado dentro del monitor."
+        },
+        {
+          "id": "a4",
+          "text": "Pueden bloquearse en colas de condición o en la cola de acceso al monitor, y pueden ser múltiples.",
+          "correct": true
+        }
+      ],
+      "explanation": "Dentro de un monitor pueden acumularse múltiples procesos bloqueados en distintas variables de condición o esperando entrar."
+    },
+    {
+      "id": "q9",
+      "text": "El algoritmo de Dekker frente al de Peterson:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Tiene una mejor solución para el problema de sincronización entre procesos."
+        },
+        {
+          "id": "a2",
+          "text": "No tiene el problema de espera ocupada que sí tiene el de Peterson."
+        },
+        {
+          "id": "a3",
+          "text": "Es más eficiente que el algoritmo de Peterson."
+        },
+        {
+          "id": "a4",
+          "text": "Ninguna de las respuestas es correcta.",
+          "correct": true
+        }
+      ],
+      "explanation": "Ambos algoritmos usan espera ocupada y son soluciones equivalentes a la exclusión mutua para dos procesos."
+    },
+    {
+      "id": "q10",
+      "text": "¿Qué son las condiciones de Bernstein?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Indican si dos o más procesos pueden ejecutarse concurrentemente."
+        },
+        {
+          "id": "a2",
+          "text": "Sirven para determinar las secciones críticas de los procesos."
+        },
+        {
+          "id": "a3",
+          "text": "Determinan si un conjunto de instrucciones pueden ejecutarse concurrentemente.",
+          "correct": true
+        },
+        { "id": "a4", "text": "Ayudan a la sincronización de los procesos." }
+      ],
+      "explanation": "Las condiciones de Bernstein determinan la independencia entre instrucciones para poder ejecutarlas en paralelo de forma segura."
+    },
+    {
+      "id": "q11",
+      "text": "La operación signal(.) de un semáforo:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Incrementará siempre el valor de la variable del semáforo."
+        },
+        { "id": "a2", "text": "Es una operación idempotente." },
+        { "id": "a3", "text": "Permite el bloqueo de un proceso." },
+        {
+          "id": "a4",
+          "text": "Ninguna de las respuestas es correcta.",
+          "correct": true
+        }
+      ],
+      "explanation": "Signal no siempre incrementa el valor visible (puede despertar un proceso bloqueado sin cambiar el contador externo) y no es idempotente."
+    },
+    {
+      "id": "q12",
+      "text": "En la comunicación síncrona entre procesos usando canales (Pascal-FC):",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "La primitiva de recepción bloqueará al proceso si no hay datos en el canal."
+        },
+        { "id": "a2", "text": "La primitiva de envío bloqueará al emisor." },
+        {
+          "id": "a3",
+          "text": "Ambas primitivas bloquearán a los procesos implicados hasta que la comunicación se realice.",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Ninguna primitiva bloqueará a los procesos implicados."
+        }
+      ],
+      "explanation": "En comunicación síncrona con canales, tanto el envío como la recepción esperan hasta que ambas partes estén listas."
+    },
+    {
+      "id": "q13",
+      "text": "La inicialización de la variable de un semáforo:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "No se inicializa en el ciclo de vida." },
+        {
+          "id": "a2",
+          "text": "Puede inicializarse tantas veces como se quiera."
+        },
+        { "id": "a3", "text": "Ninguna de las respuestas es correcta." },
+        {
+          "id": "a4",
+          "text": "Sólo puede hacerse una única vez en su ciclo de vida.",
+          "correct": true
+        }
+      ],
+      "explanation": "Un semáforo se inicializa una sola vez; reinicializarlo rompe las garantías de sincronización."
+    },
+    {
+      "id": "q14",
+      "text": "Los monitores en relación a los semáforos:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Son herramientas de más bajo nivel de programación."
+        },
+        {
+          "id": "a2",
+          "text": "Son herramientas de más alto nivel de programación con una estructura que ayuda a la corrección del programa.",
+          "correct": true
+        },
+        { "id": "a3", "text": "No ayudan más que los semáforos." },
+        { "id": "a4", "text": "Ninguna de las respuestas es correcta." }
+      ],
+      "explanation": "Los monitores encapsulan datos y procedimientos de acceso, siendo una abstracción más segura y de mayor nivel que los semáforos."
+    },
+    {
+      "id": "q15",
+      "text": "El problema del interbloqueo en programación concurrente:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Se resuelve automáticamente mediante el uso de semáforos."
+        },
+        {
+          "id": "a2",
+          "text": "Se resuelve automáticamente mediante el uso de monitores."
+        },
+        {
+          "id": "a3",
+          "text": "No es un problema que se da en la programación concurrente."
+        },
+        {
+          "id": "a4",
+          "text": "Ninguna de las respuestas es correcta.",
+          "correct": true
+        }
+      ],
+      "explanation": "El interbloqueo no se resuelve automáticamente con ninguna primitiva; requiere diseño específico para prevenirlo, evitarlo o detectarlo."
+    },
+    {
+      "id": "q16",
+      "text": "En la llamada a procedimiento remoto (RPC), ¿cuál de las siguientes condiciones se requiere para construir el mecanismo?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Los programas deben haberse escrito usando el mismo lenguaje."
+        },
+        {
+          "id": "a2",
+          "text": "Mismo tratamiento de RPC en todas las máquinas implicadas."
+        },
+        { "id": "a3", "text": "Más de una máquina.", "correct": true },
+        { "id": "a4", "text": "Iguales arquitectura de máquinas." }
+      ],
+      "explanation": "La única condición indispensable para RPC es tener más de una máquina (entorno distribuido)."
+    },
+    {
+      "id": "q17",
+      "text": "Dada la configuración de procesos P0 (A; signal(s); B;), P1 (C; wait(s); wait(t); D;), P2 (E; signal(t); F;): ¿qué se puede afirmar?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "B se ejecutará siempre después de C." },
+        {
+          "id": "a2",
+          "text": "D se ejecutará después de E y A.",
+          "correct": true
+        },
+        { "id": "a3", "text": "D se ejecutará siempre después de B y C." },
+        { "id": "a4", "text": "A se ejecutará antes de F." }
+      ],
+      "explanation": "D necesita que se hayan ejecutado signal(s) —que ocurre después de A— y signal(t) —después de E—, garantizando que D va después de A y E."
+    },
+    {
+      "id": "q18",
+      "text": "¿Cuáles son las diferencias clave entre programación concurrente y programación distribuida?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "En la concurrente los procesos comparten memoria; en la distribuida se comunican por paso de mensajes.",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "La concurrente solo funciona en sistemas monoprocesador; la distribuida en multiprocesador."
+        },
+        {
+          "id": "a3",
+          "text": "En la concurrente no hay sincronización; en la distribuida sí."
+        },
+        {
+          "id": "a4",
+          "text": "No hay diferencias significativas entre ambos modelos."
+        }
+      ],
+      "explanation": "La concurrencia generalmente implica memoria compartida, mientras que los sistemas distribuidos se comunican mediante paso de mensajes al no compartir memoria."
+    },
+    {
+      "id": "q19",
+      "text": "Los semáforos son:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Herramientas que garantizan automáticamente la ausencia de deadlock."
+        },
+        {
+          "id": "a2",
+          "text": "Herramientas para solucionar exclusivamente la exclusión mutua."
+        },
+        {
+          "id": "a3",
+          "text": "Una estructura de datos con operaciones atómicas para su manejo.",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Herramientas exclusivas de sistemas distribuidos."
+        }
+      ],
+      "explanation": "Los semáforos son estructuras de datos cuyos operaciones wait y signal son atómicas, usables tanto para exclusión mutua como para sincronización."
+    },
+    {
+      "id": "q20",
+      "text": "En la semántica resume & exit del monitor, el proceso desbloqueado por resume(v) es:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "El primer proceso que estuviera bloqueado en la cola de la variable de condición v.",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "El primer proceso que estuviera esperando para acceder al monitor."
+        },
+        {
+          "id": "a3",
+          "text": "Se elige aleatoriamente entre procesos bloqueados en la variable o en el monitor."
+        },
+        {
+          "id": "a4",
+          "text": "La operación resume no desbloquea ningún proceso."
+        }
+      ],
+      "explanation": "Resume & exit desbloquea al primero de la cola FIFO de la variable de condición v, y el proceso que llama a resume sale del monitor inmediatamente."
+    }
+  ]
+}
