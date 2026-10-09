@@ -12,7 +12,6 @@
   --border: rgba(255, 255, 255, 0.06);
   --correct: #10b981;
   --wrong: #ef4444;
-  --progress-fill: #e94560;
   --font-family: 'Inter', system-ui, -apple-system, sans-serif;
 
   /* ================================================================
@@ -82,7 +81,30 @@
   /* ================================================================
      Texto muted y glassmorphism
      ================================================================ */
-  --text-muted: #5c6077;
+  --text-muted: #7c819c;
   --glass-bg: rgba(255, 255, 255, 0.02);
   --glass-border: rgba(255, 255, 255, 0.06);
+
+  /* ================================================================
+     AURORA — Color
+     ================================================================ */
+  --accent-2: #a855f7;
+  --accent-3: #38bdf8;
+  --accent-gradient: linear-gradient(
+    135deg,
+    var(--accent) 0%,
+    var(--accent-2) 100%
+  );
+  --warning: #fbbf24;
+  --warning-glow: rgba(251, 191, 36, 0.25);
+  --warning-subtle: rgba(251, 191, 36, 0.1);
+  --correct-2: #6ee7b7;
+  --overlay: rgba(4, 4, 14, 0.62);
+  --on-accent: #ffffff;
+  --border-strong: rgba(255, 255, 255, 0.12);
+  --glass-highlight: rgba(255, 255, 255, 0.08);
+  --aurora-1: rgba(233, 69, 96, 0.14);
+  --aurora-2: rgba(168, 85, 247, 0.12);
+  --aurora-3: rgba(56, 189, 248, 0.08);
+  --grain-opacity: 0;
 }

@@ -21,15 +21,21 @@ export function ThemeSelector() {
         setOpen(false);
       }
     }
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') setOpen(false);
+    }
     if (open) {
       document.addEventListener('mousedown', handleClick);
-      return () => document.removeEventListener('mousedown', handleClick);
+      document.addEventListener('keydown', handleKeyDown);
+      return () => {
+        document.removeEventListener('mousedown', handleClick);
+        document.removeEventListener('keydown', handleKeyDown);
+      };
     }
   }, [open]);
 
   const handleSelect = (theme: Theme) => {
     setTheme(theme);
-    themeManager.applyTheme(theme);
     setOpen(false);
   };
 
@@ -40,6 +46,8 @@ export function ThemeSelector() {
         onClick={() => setOpen(!open)}
         title="Cambiar tema"
         aria-label="Cambiar tema"
+        aria-haspopup="listbox"
+        aria-expanded={open}
       >
         <svg
           width="18"
@@ -78,10 +86,12 @@ export function ThemeSelector() {
       </button>
 
       {open && (
-        <div className={styles.menu}>
+        <div className={styles.menu} role="listbox" aria-label="Temas">
           {themes.map((theme) => (
             <button
               key={theme.id}
+              role="option"
+              aria-selected={theme.id === currentTheme.id}
               className={`${styles.option} ${theme.id === currentTheme.id ? styles.selected : ''}`}
               onClick={() => handleSelect(theme)}
             >

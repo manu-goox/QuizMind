@@ -1,0 +1,435 @@
+{
+  "id": "sistemas-concurrentes-test-5",
+  "title": "Sistemas Concurrentes y Distribuidos - Test 5: Vivacidad y Comunicación",
+  "description": "Preguntas sobre livelock, inanición, vivacidad, paso de mensajes y select, extraídas de exámenes de la UJA",
+  "category": "Sistemas Concurrentes y Distribuidos",
+  "difficulty": "mixed",
+  "passThreshold": 0.6,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "¿Cuál de las siguientes afirmaciones describe mejor el problema de vivacidad?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Dos o más procesos continúan ejecutándose pero no hacen progreso debido a que cada uno está esperando que el otro libere un recurso.",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Un proceso continúa ejecutándose sin liberar los recursos que tiene, evitando que otros procesos los usen."
+        },
+        {
+          "id": "a3",
+          "text": "Dos o más procesos no pueden continuar porque cada uno está esperando que el otro libere un recurso."
+        },
+        {
+          "id": "a4",
+          "text": "Un proceso es privado de recursos de manera indefinida por otros procesos de mayor prioridad."
+        }
+      ],
+      "explanation": "El livelock es la falta de vivacidad: los procesos ejecutan pero sin avanzar, respondiendo continuamente al estado de los demás."
+    },
+    {
+      "id": "q2",
+      "text": "¿Qué es la inanición en la programación concurrente?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Es cuando un proceso consume todos los recursos disponibles."
+        },
+        {
+          "id": "a2",
+          "text": "Es cuando un proceso queda en espera indefinida de algún recurso.",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Es una situación en la que un proceso se bloquea porque necesita un recurso que está siendo utilizado por otro proceso."
+        },
+        {
+          "id": "a4",
+          "text": "Es cuando un proceso se ejecuta continuamente sin parar."
+        }
+      ],
+      "explanation": "La inanición (starvation) ocurre cuando un proceso espera indefinidamente porque otros procesos con más prioridad siempre acceden primero al recurso."
+    },
+    {
+      "id": "q3",
+      "text": "¿Qué problema puede ocurrir si dos o más procesos están esperando indefinidamente a que el otro libere un recurso?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Condición de carrera." },
+        { "id": "a2", "text": "Inanición." },
+        { "id": "a3", "text": "Livelock." },
+        { "id": "a4", "text": "Deadlock.", "correct": true }
+      ],
+      "explanation": "El deadlock ocurre cuando dos o más procesos se bloquean mutuamente esperando recursos que el otro retiene."
+    },
+    {
+      "id": "q4",
+      "text": "En un sistema distribuido que utiliza paso de mensajes, el proceso A envía un mensaje a B y luego espera una respuesta antes de continuar. Si B tarda demasiado en responder, A puede quedar bloqueado indefinidamente. ¿Qué estrategia puede ayudar a evitar este problema?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Utilizar comunicación asincrónica.",
+          "correct": true
+        },
+        { "id": "a2", "text": "Aumentar la prioridad del proceso B." },
+        { "id": "a3", "text": "Utilizar comunicación síncrona." },
+        { "id": "a4", "text": "Ninguna de las anteriores es correcta." }
+      ],
+      "explanation": "La comunicación asíncrona permite que A continúe su ejecución sin esperar la respuesta de B, evitando el bloqueo indefinido."
+    },
+    {
+      "id": "q5",
+      "text": "Supón que estás diseñando un sistema distribuido de alto rendimiento. ¿Qué estrategia de gestión de datos podría mejorar la eficiencia de la lectura de datos?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Todas las escrituras deben realizarse en el servidor principal."
+        },
+        {
+          "id": "a2",
+          "text": "Los datos se deben replicar en varios nodos.",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Los datos deben almacenarse en un solo nodo para garantizar la coherencia."
+        },
+        {
+          "id": "a4",
+          "text": "Los datos deben almacenarse en una base de datos SQL."
+        }
+      ],
+      "explanation": "Replicar datos en varios nodos permite que las lecturas se distribuyan, mejorando la eficiencia y la disponibilidad."
+    },
+    {
+      "id": "q6",
+      "text": "En la instrucción de espera selectiva select, el proceso que la ejecuta se bloquea si:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "La instrucción select no genera bloqueo del proceso."
+        },
+        {
+          "id": "a2",
+          "text": "No disponga de alternativa else.",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "No se cumple ninguna de las guardas, si las tuviera."
+        },
+        {
+          "id": "a4",
+          "text": "No existe ningún mensaje en los buzones/canales que se manejan."
+        }
+      ],
+      "explanation": "Sin alternativa else, si ninguna guarda/cláusula está lista el proceso se bloquea hasta que alguna lo esté."
+    },
+    {
+      "id": "q7",
+      "text": "La utilización de un canal de sincronización:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Se utilizarán como elemento de sincronización entre procesos en entornos remotos.",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Permite definir un tipo por defecto en la comunicación síncrona."
+        },
+        { "id": "a3", "text": "No existe ese tipo de canales." },
+        {
+          "id": "a4",
+          "text": "Es el tipo de canales habituales en las comunicaciones síncronas."
+        }
+      ],
+      "explanation": "Los canales de sincronización son elementos específicos para sincronizar procesos en entornos distribuidos remotos."
+    },
+    {
+      "id": "q8",
+      "text": "En el direccionamiento asimétrico del paso de mensajes:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "El emisor no identifica al receptor y el receptor no identifica al emisor."
+        },
+        {
+          "id": "a2",
+          "text": "El emisor identifica al receptor y el receptor identifica al emisor."
+        },
+        {
+          "id": "a3",
+          "text": "El emisor identifica al receptor, pero el receptor no identifica al emisor.",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "El emisor no identifica al receptor pero el receptor identifica al emisor."
+        }
+      ],
+      "explanation": "En el direccionamiento asimétrico, el emisor sabe a quién envía, pero el receptor puede recibir de cualquier proceso."
+    },
+    {
+      "id": "q9",
+      "text": "En la comunicación directa entre procesos es necesario:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Conocer el destinatario del mensaje." },
+        { "id": "a2", "text": "Conocer el remitente del mensaje." },
+        { "id": "a3", "text": "No se requiere ningún tipo de identificación." },
+        {
+          "id": "a4",
+          "text": "El emisor debe conocer al destinatario y el receptor al remitente.",
+          "correct": true
+        }
+      ],
+      "explanation": "La comunicación directa simétrica exige que ambos extremos se identifiquen mutuamente."
+    },
+    {
+      "id": "q10",
+      "text": "Las primitivas de envío y recepción de mensajes:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Tienen una ejecución atómica.",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Son necesarias en los problemas de memoria compartida."
+        },
+        { "id": "a3", "text": "Siempre serán asíncronas." },
+        { "id": "a4", "text": "Ninguna de las respuestas es correcta." }
+      ],
+      "explanation": "Las primitivas de comunicación son operaciones atómicas: se ejecutan completamente o no se ejecutan."
+    },
+    {
+      "id": "q11",
+      "text": "En la comunicación asíncrona entre procesos:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "La primitiva de recepción bloqueará al proceso si no hay datos en el buzón.",
+          "correct": true
+        },
+        { "id": "a2", "text": "La primitiva de envío bloqueará al emisor." },
+        {
+          "id": "a3",
+          "text": "Ninguna primitiva de envío o recepción bloqueará a los procesos implicados."
+        },
+        {
+          "id": "a4",
+          "text": "Ambas primitivas de envío o recepción bloquearán a los procesos implicados."
+        }
+      ],
+      "explanation": "En asíncrono: el envío deposita en el buzón sin bloquear; la recepción sí bloquea si el buzón está vacío."
+    },
+    {
+      "id": "q12",
+      "text": "En los sistemas distribuidos el problema de exclusión mutua:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Nunca puede producirse." },
+        { "id": "a2", "text": "Aparece por el uso de variables compartidas." },
+        { "id": "a3", "text": "Aparece por el uso de la memoria compartida." },
+        {
+          "id": "a4",
+          "text": "Ninguna de las respuestas es correcta.",
+          "correct": true
+        }
+      ],
+      "explanation": "En sistemas distribuidos no hay memoria compartida, pero pueden existir recursos compartidos que requieren acceso exclusivo."
+    },
+    {
+      "id": "q13",
+      "text": "En términos de eficiencia entre técnicas de sincronización:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Los algoritmos de espera ocupada son más eficientes que los semáforos."
+        },
+        {
+          "id": "a2",
+          "text": "Los monitores son más eficientes que los semáforos."
+        },
+        {
+          "id": "a3",
+          "text": "A priori, no puede determinarse qué técnica de sincronización es la más eficiente.",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "La eficiencia de los semáforos depende exclusivamente de la CPU."
+        }
+      ],
+      "explanation": "La eficiencia depende del caso de uso concreto; no existe una técnica universalmente más eficiente."
+    },
+    {
+      "id": "q14",
+      "text": "En la comunicación síncrona entre procesos (con canales):",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Ninguna primitiva de envío o recepción bloqueará a los procesos implicados."
+        },
+        { "id": "a2", "text": "La primitiva de envío bloqueará al emisor." },
+        {
+          "id": "a3",
+          "text": "Ambas primitivas de envío o recepción bloquearán a los procesos implicados.",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "La primitiva de recepción bloqueará al proceso si no hay datos en el buzón."
+        }
+      ],
+      "explanation": "En comunicación síncrona con canales, tanto el envío como la recepción se bloquean hasta que ambos procesos están listos."
+    },
+    {
+      "id": "q15",
+      "text": "La gestión de los procesos bloqueados en un semáforo:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Debe ser siempre FIFO para evitar la inanición."
+        },
+        { "id": "a2", "text": "Puede ser FIFO o LIFO.", "correct": true },
+        {
+          "id": "a3",
+          "text": "El Sistema Operativo desbloqueará los procesos en función de la prioridad."
+        },
+        {
+          "id": "a4",
+          "text": "Mediante el uso de semáforos, los procesos no pasan a estado bloqueado."
+        }
+      ],
+      "explanation": "El estándar no impone la política de la cola del semáforo; puede ser FIFO, LIFO o por prioridad según la implementación."
+    },
+    {
+      "id": "q16",
+      "text": "En los sistemas distribuidos debemos garantizar principalmente:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "La exclusión mutua de las secciones críticas." },
+        {
+          "id": "a2",
+          "text": "La correcta sincronización de los procesos.",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "El acceso de los procesos a los recursos locales."
+        },
+        { "id": "a4", "text": "Todas las respuestas son correctas." }
+      ],
+      "explanation": "En sistemas distribuidos, la sincronización correcta entre procesos es el objetivo fundamental."
+    },
+    {
+      "id": "q17",
+      "text": "¿Cuándo hablamos que dos o más procesos son concurrentes?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Cuando tenemos al menos tantas unidades de procesamiento como procesos."
+        },
+        {
+          "id": "a2",
+          "text": "Es suficiente si las instrucciones de los procesos se intercalan en la ejecución.",
+          "correct": true
+        },
+        { "id": "a3", "text": "Cuando se ejecutan en ordenadores diferentes." },
+        { "id": "a4", "text": "Sólo en el caso de ejecución paralela." }
+      ],
+      "explanation": "La concurrencia solo requiere intercalación de instrucciones, no ejecución simultánea real."
+    },
+    {
+      "id": "q18",
+      "text": "En los programas concurrentes:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Podemos determinar de forma clara el orden de ejecución de las diferentes instrucciones."
+        },
+        {
+          "id": "a2",
+          "text": "El tiempo empleado para terminar la ejecución siempre es el mismo."
+        },
+        {
+          "id": "a3",
+          "text": "Se pueden producir resultados diferentes para el mismo conjunto de datos de entrada.",
+          "correct": true
+        },
+        { "id": "a4", "text": "Ninguna de las respuestas es correcta." }
+      ],
+      "explanation": "Los programas concurrentes son no deterministas: el mismo input puede dar resultados distintos según el orden de ejecución."
+    },
+    {
+      "id": "q19",
+      "text": "La utilización de un canal en comunicación síncrona:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Establecerá el tipo de información que se transmitirán emisor y receptor.",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Establecerá el tipo de sincronización necesaria en la comunicación."
+        },
+        {
+          "id": "a3",
+          "text": "Permitirá el almacenamiento de información para la comunicación entre procesos."
+        },
+        { "id": "a4", "text": "Ninguna de las respuestas es correcta." }
+      ],
+      "explanation": "Un canal define el tipo de datos que pueden fluir entre emisor y receptor."
+    },
+    {
+      "id": "q20",
+      "text": "Un semáforo s inicializado a 2:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Permite que dos procesos estén simultáneamente en su sección crítica."
+        },
+        {
+          "id": "a2",
+          "text": "Dos procesos podrán ejecutar wait(s) sin bloquearse.",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Los semáforos se inicializan siempre a valor 1."
+        },
+        {
+          "id": "a4",
+          "text": "El primer proceso que alcance la sentencia wait podrá acceder a su sección crítica."
+        }
+      ],
+      "explanation": "Con valor 2, los dos primeros wait reducen el semáforo a 0 sin bloquear; el tercero sí se bloquea."
+    }
+  ]
+}

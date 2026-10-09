@@ -1,0 +1,192 @@
+{
+  "id": "linux-fork-exec-wait",
+  "title": "Aprendiendo Linux - Fork, Exec, Wait y Exit",
+  "description": "El ciclo fork() -> execlp() -> exit() -> waitpid() explicado paso a paso: BCP, copy-on-write, zombis, huérfanos y códigos de salida. Basado en las 4 infografías.",
+  "category": "Sistemas Operativos",
+  "difficulty": "mixed",
+  "passThreshold": 0.6,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "En el ciclo del shell, ¿qué hace el proceso padre inmediatamente después de fork()?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Se bloquea en waitpid esperando al hijo", "correct": true },
+        { "id": "a2", "text": "Ejecuta execlp con la orden" },
+        { "id": "a3", "text": "Llama a exit(0)" },
+        { "id": "a4", "text": "Lee la siguiente orden del teclado" }
+      ],
+      "explanation": "El padre llama a waitpid(pid, &estado, 0) y queda bloqueado hasta que el hijo termina."
+    },
+    {
+      "id": "q2",
+      "text": "¿Y el hijo, inmediatamente después de fork()?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Llama a execlp para convertirse en la orden leída", "correct": true },
+        { "id": "a2", "text": "Espera al padre con waitpid" },
+        { "id": "a3", "text": "Vuelve a mostrar el prompt" },
+        { "id": "a4", "text": "Termina con exit sin más" }
+      ],
+      "explanation": "El hijo ejecuta execlp: reemplaza su imagen de memoria por la del programa pedido."
+    },
+    {
+      "id": "q3",
+      "text": "¿Qué es el BCP (Bloque de Control de Proceso)?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "La estructura que guarda los datos del proceso: PID, PPID, estado, contadores, descriptores abiertos…", "correct": true },
+        { "id": "a2", "text": "El código binario del programa" },
+        { "id": "a3", "text": "La memoria dinámica (heap) del proceso" },
+        { "id": "a4", "text": "El fichero donde se guarda la salida" }
+      ],
+      "explanation": "El BCP se crea al hacer fork y permite al núcleo gestionar el proceso (estado, recursos, contabilidad…)."
+    },
+    {
+      "id": "q4",
+      "text": "¿Qué hereda el hijo del padre al crearse?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Los descriptores de ficheros abiertos y el directorio de trabajo", "correct": true },
+        { "id": "a2", "text": "Solo la memoria RAM" },
+        { "id": "a3", "text": "Nada en absoluto" },
+        { "id": "a4", "text": "Solo el PID" }
+      ],
+      "explanation": "El nuevo BCP hereda los descriptores (0, 1, 2…) y el directorio de trabajo del padre."
+    },
+    {
+      "id": "q5",
+      "text": "¿Qué es copy-on-write (copia en escritura)?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Las páginas de memoria se comparten hasta que uno de los procesos las modifica; entonces se copian", "correct": true },
+        { "id": "a2", "text": "Se copia toda la memoria al crear el hijo" },
+        { "id": "a3", "text": "El hijo escribe siempre sobre la memoria del padre" },
+        { "id": "a4", "text": "El disco se copia cada minuto" }
+      ],
+      "explanation": "Es una optimización de fork: padre e hijo comparten páginas (solo lectura) hasta que alguien escribe."
+    },
+    {
+      "id": "q6",
+      "text": "¿Qué valores puede devolver fork()?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "0 en el hijo, el PID del hijo en el padre y -1 si falla", "correct": true },
+        { "id": "a2", "text": "Siempre 0" },
+        { "id": "a3", "text": "El PID del padre en el hijo" },
+        { "id": "a4", "text": "true o false" }
+      ],
+      "explanation": "El doble retorno es lo que permite a cada proceso saber quién es tras el fork."
+    },
+    {
+      "id": "q7",
+      "text": "Tras fork(), ¿quién se ejecuta primero, el padre o el hijo?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Lo decide el planificador; no está determinado", "correct": true },
+        { "id": "a2", "text": "Siempre el padre" },
+        { "id": "a3", "text": "Siempre el hijo" },
+        { "id": "a4", "text": "Se ejecutan a la vez, literalmente" }
+      ],
+      "explanation": "Ambos continúan en la instrucción siguiente al fork; el orden depende del planificador de la CPU."
+    },
+    {
+      "id": "q8",
+      "text": "Al llamar execlp() con éxito, ¿qué se conserva del proceso?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El PID y el BCP (descriptores, directorio de trabajo); se reemplaza la imagen", "correct": true },
+        { "id": "a2", "text": "El código anterior del shell" },
+        { "id": "a3", "text": "Las variables globales del shell" },
+        { "id": "a4", "text": "La pila anterior del proceso" }
+      ],
+      "explanation": "exec reemplaza pila, heap, datos y código por los del nuevo programa, pero el proceso sigue siendo el mismo (mismo PID)."
+    },
+    {
+      "id": "q9",
+      "text": "¿Por qué execlp() no retorna si tiene éxito?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Porque la imagen del proceso fue reemplazada: el código que la llamó ya no existe", "correct": true },
+        { "id": "a2", "text": "Porque se queda en un bucle infinito" },
+        { "id": "a3", "text": "Porque el padre se lo impide" },
+        { "id": "a4", "text": "Porque está deshabilitada por seguridad" }
+      ],
+      "explanation": "Solo retorna -1 si falla; de ahí el perror + _exit(127/126) como red de seguridad."
+    },
+    {
+      "id": "q10",
+      "text": "En execlp, ¿qué significa la letra p?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Que busca el ejecutable en los directorios de la variable PATH", "correct": true },
+        { "id": "a2", "text": "Que imprime la orden por pantalla" },
+        { "id": "a3", "text": "Que es un proceso padre" },
+        { "id": "a4", "text": "Que usa pipes" }
+      ],
+      "explanation": "l = argumentos como lista terminada en NULL; p = búsqueda en PATH. Sin p (execl) habría que dar la ruta completa."
+    },
+    {
+      "id": "q11",
+      "text": "¿En qué llamada del núcleo acaba toda la familia exec (execl, execv, execvp…)?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "execve", "correct": true },
+        { "id": "a2", "text": "fork" },
+        { "id": "a3", "text": "waitpid" },
+        { "id": "a4", "text": "exit" }
+      ],
+      "explanation": "Todas las variantes de exec acaban llamando a execve() en el núcleo."
+    },
+    {
+      "id": "q12",
+      "text": "¿Qué es un proceso zombi?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Un proceso que ya terminó pero cuyo BCP sigue en la tabla hasta que el padre recoge su estado", "correct": true },
+        { "id": "a2", "text": "Un proceso que no consume CPU" },
+        { "id": "a3", "text": "Un proceso hijo de init" },
+        { "id": "a4", "text": "Un proceso bloqueado en waitpid" }
+      ],
+      "explanation": "El hijo llama a exit, pero su estado de salida queda guardado; en ps aparece con estado Z. Desaparece cuando el padre hace wait()."
+    },
+    {
+      "id": "q13",
+      "text": "¿Qué ocurre si el padre termina antes que el hijo?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El hijo queda huérfano y lo adopta init/systemd (PID 1), que recogerá su estado", "correct": true },
+        { "id": "a2", "text": "El hijo se destruye inmediatamente" },
+        { "id": "a3", "text": "El hijo se convierte en zombi para siempre" },
+        { "id": "a4", "text": "El sistema operativo se bloquea" }
+      ],
+      "explanation": "Los procesos huérfanos son adoptados por el proceso 1 para que alguien recoja su estado de salida."
+    },
+    {
+      "id": "q14",
+      "text": "¿Qué aviso recibe el padre del núcleo cuando el hijo termina?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "La señal SIGCHLD", "correct": true },
+        { "id": "a2", "text": "SIGKILL" },
+        { "id": "a3", "text": "SIGTERM" },
+        { "id": "a4", "text": "Un mensaje en /var/log" }
+      ],
+      "explanation": "El núcleo envía SIGCHLD al padre y lo despierta si estaba bloqueado en waitpid."
+    },
+    {
+      "id": "q15",
+      "text": "¿Qué permiten comprobar las macros WIFEXITED y WEXITSTATUS?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Si el hijo terminó normalmente y cuál fue su código de salida", "correct": true },
+        { "id": "a2", "text": "Si el hijo sigue vivo" },
+        { "id": "a3", "text": "El PID del hijo" },
+        { "id": "a4", "text": "La memoria que usó el hijo" }
+      ],
+      "explanation": "En bash, el código de salida de la última orden queda en la variable $? (0 = éxito)."
+    }
+  ]
+}

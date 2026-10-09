@@ -1,0 +1,216 @@
+{
+  "id": "linux-p02-estudio",
+  "title": "Aprendiendo Linux - P02: El Shell (Estudio)",
+  "description": "Preguntas básicas con explicación tras cada respuesta para aprender la teoría poco a poco. Ideal como primera vuelta antes del test de repaso.",
+  "category": "Sistemas Operativos",
+  "difficulty": "easy",
+  "passThreshold": 0.5,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "¿Qué significa que Linux sea un sistema multiusuario?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Que varios usuarios pueden usarlo a la vez, cada uno con su cuenta y permisos", "correct": true },
+        { "id": "a2", "text": "Que puede ejecutar varios programas al mismo tiempo" },
+        { "id": "a3", "text": "Que solo admite una sesión abierta a la vez" },
+        { "id": "a4", "text": "Que todos los usuarios comparten la misma cuenta" }
+      ],
+      "explanation": "Multiusuario = varias cuentas conviven en el sistema con permisos propios. Que ejecute varios programas a la vez es ser multiproceso."
+    },
+    {
+      "id": "q2",
+      "text": "¿Qué prompt muestra bash por defecto para un usuario normal?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "$", "correct": true },
+        { "id": "a2", "text": "%" },
+        { "id": "a3", "text": "#" },
+        { "id": "a4", "text": ">" }
+      ],
+      "explanation": "bash usa $ (y # cuando es root). tcsh usa %."
+    },
+    {
+      "id": "q3",
+      "text": "¿Qué combinación de teclas envía el fin de fichero (EOF) y cierra la shell?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Ctrl+D", "correct": true },
+        { "id": "a2", "text": "Ctrl+C" },
+        { "id": "a3", "text": "Ctrl+Z" },
+        { "id": "a4", "text": "Ctrl+Alt+T" }
+      ],
+      "explanation": "Ctrl+D genera EOF; en una shell de login equivale a salir (exit). Ctrl+C interrumpe y Ctrl+Z suspende. Ctrl+Alt+T abre una terminal."
+    },
+    {
+      "id": "q4",
+      "text": "¿Qué orden muestra el manual de una orden o de una llamada al sistema?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "man", "correct": true },
+        { "id": "a2", "text": "apropos" },
+        { "id": "a3", "text": "less" },
+        { "id": "a4", "text": "touch" }
+      ],
+      "explanation": "man muestra el manual; apropos busca por palabra clave y less es un paginador."
+    },
+    {
+      "id": "q5",
+      "text": "¿Qué sección del manual contiene las llamadas al sistema como fork o waitpid?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "La sección 2", "correct": true },
+        { "id": "a2", "text": "La sección 1" },
+        { "id": "a3", "text": "La sección 3" },
+        { "id": "a4", "text": "La sección 9" }
+      ],
+      "explanation": "Sección 1: órdenes; 2: llamadas al sistema (man 2 fork); 3: funciones de biblioteca."
+    },
+    {
+      "id": "q6",
+      "text": "¿Qué hace la orden pwd?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Muestra la trayectoria del directorio de trabajo actual", "correct": true },
+        { "id": "a2", "text": "Cambia de directorio" },
+        { "id": "a3", "text": "Lista el contenido del directorio" },
+        { "id": "a4", "text": "Muestra la variable PATH" }
+      ],
+      "explanation": "pwd = print working directory. Para cambiar de directorio se usa cd y para listar, ls."
+    },
+    {
+      "id": "q7",
+      "text": "¿Qué hace la orden cd sin argumentos?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Cambia al directorio personal (home)", "correct": true },
+        { "id": "a2", "text": "No hace nada" },
+        { "id": "a3", "text": "Va al directorio raíz /" },
+        { "id": "a4", "text": "Muestra el directorio personal" }
+      ],
+      "explanation": "cd sin argumentos va a $HOME, igual que cd ~."
+    },
+    {
+      "id": "q8",
+      "text": "¿Qué es el shell?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El intérprete de órdenes: la interfaz entre el usuario y el sistema operativo", "correct": true },
+        { "id": "a2", "text": "El núcleo del sistema operativo" },
+        { "id": "a3", "text": "Un editor de textos" },
+        { "id": "a4", "text": "El gestor de arranque del sistema" }
+      ],
+      "explanation": "El shell lee órdenes, las interpreta y pide al núcleo que las ejecute (con fork + exec)."
+    },
+    {
+      "id": "q9",
+      "text": "En el shell simplificado (shell.cpp), ¿qué llamada crea el proceso hijo?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "fork()", "correct": true },
+        { "id": "a2", "text": "execlp()" },
+        { "id": "a3", "text": "waitpid()" },
+        { "id": "a4", "text": "getpid()" }
+      ],
+      "explanation": "fork() duplica el proceso; execlp() reemplaza la imagen del hijo; waitpid() hace esperar al padre."
+    },
+    {
+      "id": "q10",
+      "text": "¿Qué hace el proceso hijo justo después de fork()?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Llama a execlp() para ejecutar la orden", "correct": true },
+        { "id": "a2", "text": "Llama a waitpid() para esperar" },
+        { "id": "a3", "text": "Muestra el prompt" },
+        { "id": "a4", "text": "Termina sin hacer nada" }
+      ],
+      "explanation": "El hijo (pid == 0) llama a execlp(orden, orden, NULL); el padre (pid > 0) espera con waitpid()."
+    },
+    {
+      "id": "q11",
+      "text": "¿Qué hace execlp(\"ls\", \"ls\", \"-l\", NULL)?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Sustituye la imagen del proceso por el programa ls ejecutado con el argumento -l", "correct": true },
+        { "id": "a2", "text": "Crea un proceso nuevo para ejecutar ls" },
+        { "id": "a3", "text": "Espera a que termine la orden ls" },
+        { "id": "a4", "text": "Ejecuta ls sin ningún argumento" }
+      ],
+      "explanation": "execlp no crea procesos: reemplaza código, datos, heap y pila del proceso actual por los de ls, conservando el mismo PID."
+    },
+    {
+      "id": "q12",
+      "text": "¿Qué hace el proceso padre después de crear al hijo?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Se bloquea en waitpid() hasta que el hijo termina", "correct": true },
+        { "id": "a2", "text": "Ejecuta la misma orden que el hijo a la vez" },
+        { "id": "a3", "text": "Termina su ejecución" },
+        { "id": "a4", "text": "Llama también a execlp()" }
+      ],
+      "explanation": "El padre espera la sincronización: waitpid() lo bloquea hasta recoger el estado de salida del hijo."
+    },
+    {
+      "id": "q13",
+      "text": "¿Qué hace la redirección >>?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Añade la salida al final del fichero sin borrar lo que había", "correct": true },
+        { "id": "a2", "text": "Sobrescribe el fichero desde el principio" },
+        { "id": "a3", "text": "Redirige solo los errores" },
+        { "id": "a4", "text": "Conecta la salida con otra orden" }
+      ],
+      "explanation": "> crea o sobrescribe; >> añade al final. Para errores se usa 2>."
+    },
+    {
+      "id": "q14",
+      "text": "¿Qué es un pipe (|)?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Conecta la salida estándar de una orden con la entrada estándar de la siguiente", "correct": true },
+        { "id": "a2", "text": "Guarda la salida de una orden en un fichero" },
+        { "id": "a3", "text": "Ejecuta dos órdenes a la vez sin relación" },
+        { "id": "a4", "text": "Redirige los errores a un fichero" }
+      ],
+      "explanation": "who | sort, ls | wc -l... el stdout del primero se convierte en el stdin del segundo."
+    },
+    {
+      "id": "q15",
+      "text": "¿Para qué sirve la variable PATH?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Indica los directorios en los que el shell busca las órdenes", "correct": true },
+        { "id": "a2", "text": "Guarda la trayectoria del directorio actual" },
+        { "id": "a3", "text": "Lista los procesos en ejecución" },
+        { "id": "a4", "text": "Define el texto del prompt" }
+      ],
+      "explanation": "Si un programa no está en ningún directorio del PATH hay que indicar su trayectoria: ./miprograma."
+    },
+    {
+      "id": "q16",
+      "text": "En main(int argc, char *argv[]), ¿qué contiene argv[0]?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El nombre del programa", "correct": true },
+        { "id": "a2", "text": "El primer argumento de la orden" },
+        { "id": "a3", "text": "El número de argumentos" },
+        { "id": "a4", "text": "La variable PATH" }
+      ],
+      "explanation": "argv[0] es el nombre del programa; los argumentos empiezan en argv[1]. En vi pepe.txt, argc = 2."
+    },
+    {
+      "id": "q17",
+      "text": "¿Qué imprime la orden `echo \\*`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El carácter * literal", "correct": true },
+        { "id": "a2", "text": "La lista de ficheros del directorio" },
+        { "id": "a3", "text": "Nada" },
+        { "id": "a4", "text": "Un mensaje de error" }
+      ],
+      "explanation": "La barra invertida \\ desactiva el significado especial del comodín. Sin el escape, el shell expandiría * a los nombres de ficheros."
+    }
+  ]
+}

@@ -11,7 +11,13 @@ export function PageWrapper({ children, showHeader = true }: PageWrapperProps) {
   return (
     <div className={styles.page}>
       {showHeader && <Header />}
-      <main className={styles.content}>{children}</main>
+      <div className={styles.glints} aria-hidden="true" />
+      <a href="#main-content" className={styles.skipLink}>
+        Saltar al contenido
+      </a>
+      <main id="main-content" tabIndex={-1} className={styles.content}>
+        {children}
+      </main>
     </div>
   );
 }

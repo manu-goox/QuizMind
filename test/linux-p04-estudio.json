@@ -1,0 +1,204 @@
+{
+  "id": "linux-p04-estudio",
+  "title": "Aprendiendo Linux - P04: Gestión de Ficheros (Estudio)",
+  "description": "Preguntas básicas con explicación tras cada respuesta sobre inodos, enlaces, cp/mv/rm y find. Primera vuelta de estudio del tema.",
+  "category": "Sistemas Operativos",
+  "difficulty": "easy",
+  "passThreshold": 0.5,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "¿Qué es un nodo i (inodo)?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "La estructura con los datos de un fichero (permisos, fechas, tamaño, bloques...), sin su nombre", "correct": true },
+        { "id": "a2", "text": "La primera parte del contenido de un fichero" },
+        { "id": "a3", "text": "Una copia de seguridad del fichero" },
+        { "id": "a4", "text": "Un directorio oculto del sistema" }
+      ],
+      "explanation": "Cada fichero tiene un inodo con número único dentro de su sistema de ficheros. El nombre no está en el inodo."
+    },
+    {
+      "id": "q2",
+      "text": "¿Qué guarda un directorio?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Entradas con pares (nombre → número de inodo)", "correct": true },
+        { "id": "a2", "text": "El contenido de todos sus ficheros" },
+        { "id": "a3", "text": "Solo los nombres de los ficheros" },
+        { "id": "a4", "text": "Los permisos de los ficheros que contiene" }
+      ],
+      "explanation": "Un directorio es un fichero especial: una tabla de enlaces nombre → inodo."
+    },
+    {
+      "id": "q3",
+      "text": "¿Qué muestra la opción -i de ls?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El número de inodo", "correct": true },
+        { "id": "a2", "text": "El tamaño en bloques" },
+        { "id": "a3", "text": "Los permisos en octal" },
+        { "id": "a4", "text": "El número de enlaces duros" }
+      ],
+      "explanation": "ls -li combina inodo y formato largo. El contador de enlaces aparece en la columna tras los permisos."
+    },
+    {
+      "id": "q4",
+      "text": "¿Qué comparten dos enlaces duros al mismo fichero?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El mismo inodo: mismos datos y metadatos", "correct": true },
+        { "id": "a2", "text": "Solo el nombre" },
+        { "id": "a3", "text": "Nada en absoluto" },
+        { "id": "a4", "text": "El mismo directorio obligatoriamente" }
+      ],
+      "explanation": "Son dos nombres equivalentes del mismo fichero; ninguno es 'el original'."
+    },
+    {
+      "id": "q5",
+      "text": "¿Qué es un enlace simbólico?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Un fichero especial cuyo contenido es una trayectoria", "correct": true },
+        { "id": "a2", "text": "Otro nombre del mismo inodo" },
+        { "id": "a3", "text": "Una copia exacta del fichero" },
+        { "id": "a4", "text": "Un directorio enlazado" }
+      ],
+      "explanation": "Al abrirlo, el SO lee la trayectoria y busca su inodo (más lento). Se muestra con l y una flecha ->."
+    },
+    {
+      "id": "q6",
+      "text": "¿Cuándo se elimina realmente un fichero con enlaces duros?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Cuando se borra su último enlace duro", "correct": true },
+        { "id": "a2", "text": "Al borrar el primer nombre que se creó" },
+        { "id": "a3", "text": "Nunca: los enlaces duros son permanentes" },
+        { "id": "a4", "text": "Al cerrar la sesión" }
+      ],
+      "explanation": "El SO libera el inodo y los datos cuando el contador de enlaces llega a 0."
+    },
+    {
+      "id": "q7",
+      "text": "¿Qué es un enlace roto?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Un enlace simbólico cuya trayectoria ya no existe", "correct": true },
+        { "id": "a2", "text": "Un enlace duro sin permisos de lectura" },
+        { "id": "a3", "text": "Un fichero de tamaño 0" },
+        { "id": "a4", "text": "Un enlace con set-uid desactivado" }
+      ],
+      "explanation": "Si borras el fichero apuntado, el enlace simbólico conserva la trayectoria y da error al usarlo: «No existe el fichero o el directorio»."
+    },
+    {
+      "id": "q8",
+      "text": "¿Qué hace mv con los datos de un fichero dentro del mismo sistema de ficheros?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Solo cambia los enlaces: los datos no se mueven", "correct": true },
+        { "id": "a2", "text": "Copia los datos y borra el original siempre" },
+        { "id": "a3", "text": "No permite mover ficheros" },
+        { "id": "a4", "text": "Duplica el fichero en la nueva ubicación" }
+      ],
+      "explanation": "Entre sistemas de ficheros distintos sí copia los datos y borra el origen; la propiedad pasa a quien ejecuta mv."
+    },
+    {
+      "id": "q9",
+      "text": "¿Qué opción de cp conserva modo, propiedad y fechas del fichero?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "-p", "correct": true },
+        { "id": "a2", "text": "-r" },
+        { "id": "a3", "text": "-i" },
+        { "id": "a4", "text": "-u" }
+      ],
+      "explanation": "-p es esencial en administración y copias de seguridad. -r copia directorios, -i pregunta y -u copia solo si el origen es más reciente."
+    },
+    {
+      "id": "q10",
+      "text": "¿Qué hace `cp -r origen/. destino`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Copia el contenido de origen dentro de destino, sin crear origen dentro de destino", "correct": true },
+        { "id": "a2", "text": "Copia origen como subdirectorio de destino" },
+        { "id": "a3", "text": "Copia solo los directorios vacíos" },
+        { "id": "a4", "text": "Da error de sintaxis" }
+      ],
+      "explanation": "El truco del punto final: origen/. copia lo de dentro de origen."
+    },
+    {
+      "id": "q11",
+      "text": "¿Qué hace `mkdir -p a/b/c`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Crea a, a/b y a/b/c, incluidos los directorios intermedios", "correct": true },
+        { "id": "a2", "text": "Falla si el directorio a no existe" },
+        { "id": "a3", "text": "Crea solo el directorio a" },
+        { "id": "a4", "text": "Crea los directorios ocultos" }
+      ],
+      "explanation": "Sin -p, mkdir exige que el padre exista. -m permite fijar permisos (mkdir -m 700)."
+    },
+    {
+      "id": "q12",
+      "text": "¿Qué elimina la orden rmdir?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Solo directorios vacíos", "correct": true },
+        { "id": "a2", "text": "Cualquier directorio, con o sin contenido" },
+        { "id": "a3", "text": "Ficheros ordinarios" },
+        { "id": "a4", "text": "Enlaces simbólicos" }
+      ],
+      "explanation": "Para directorios con contenido se usa rm -r. rmdir -p elimina también los padres si quedan vacíos."
+    },
+    {
+      "id": "q13",
+      "text": "¿Qué hace la opción -f de rm?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Fuerza el borrado sin preguntar", "correct": true },
+        { "id": "a2", "text": "Pregunta antes de cada borrado" },
+        { "id": "a3", "text": "Borra recursivamente" },
+        { "id": "a4", "text": "Mueve a la papelera" }
+      ],
+      "explanation": "-i pregunta antes de borrar; -r borra ramas enteras; -f tiene precedencia sobre -i."
+    },
+    {
+      "id": "q14",
+      "text": "¿Qué muestra `find . -name 'f*'`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Los ficheros y directorios cuyo nombre empieza por f bajo el directorio actual", "correct": true },
+        { "id": "a2", "text": "El contenido de los ficheros que empiezan por f" },
+        { "id": "a3", "text": "Solo los ficheros con permisos de ejecución" },
+        { "id": "a4", "text": "Únicamente el fichero llamado f" }
+      ],
+      "explanation": "El patrón va entre comillas para que lo interprete find y no el shell. -type f filtra solo ficheros."
+    },
+    {
+      "id": "q15",
+      "text": "¿Cuántos enlaces duros tiene un directorio con 3 subdirectorios?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "5: su entrada en el padre, '.', y el '..' de cada subdirectorio", "correct": true },
+        { "id": "a2", "text": "3: uno por subdirectorio" },
+        { "id": "a3", "text": "2: el directorio y la raíz" },
+        { "id": "a4", "text": "6: uno por cada entrada" }
+      ],
+      "explanation": "Fórmula: 2 + número de subdirectorios (2+3 = 5)."
+    },
+    {
+      "id": "q16",
+      "text": "¿Qué muestra `df -i`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Los inodos usados y libres de cada sistema de ficheros", "correct": true },
+        { "id": "a2", "text": "El espacio libre en disco" },
+        { "id": "a3", "text": "Los puntos de montaje" },
+        { "id": "a4", "text": "Los permisos de los dispositivos" }
+      ],
+      "explanation": "Un sistema puede quedarse sin espacio de dos formas: agotar los bloques o agotar los inodos. df -h muestra el espacio."
+    }
+  ]
+}

@@ -1,0 +1,188 @@
+Tema 4
+Resumen de Teoría de Juegos 
+aplicada a la Inteligencia Artificial
+1. Introducción y Fundamentos de Juegos 
+en IA
+En el contexto de la Inteligencia Artificial, la Teoría de Juegos se orienta a determinar y 
+resolver problemas de planificación en entornos donde otros agentes (adversarios) 
+planean activamente en contra de nuestros intereses. A diferencia de los entornos 
+estáticos, aquí el agente debe tomar decisiones bajo incertidumbre, considerando que las 
+acciones de terceros impactan directamente en su propia utilidad.
+La especificación formal de un juego difiere de los problemas de búsqueda clásicos en 
+puntos clave que el ingeniero debe dominar:
+Característica Problemas de Búsqueda Juegos
+Naturaleza del 
+entorno
+Estático o predecible Presencia de adversarios "impredecibles"
+Solución Secuencia de acciones 
+hacia la meta
+Estrategia (especifica un movimiento 
+para cada réplica posible)
+Limitaciones de 
+tiempo
+Generalmente menos 
+críticas
+Críticas (obligan a usar aproximación en 
+lugar de búsqueda del óptimo)
+Clasificación de los juegos según el material de estudio:
+Información: Perfecta (ej. ajedrez) o Incompleta (ej. juegos de cartas).
+Determinismo: Deterministas (ej. damas) o con Incertidumbre/Azar (ej. 
+backgammon).
+Turnos: Movimientos alternativos (ej. parchís) o Simultáneos (ej. piedra, papel, tijera). 
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13508551 
+.
+ 
+ 
+ 
+ 
+
+Además, se distinguen por su duración en una única jugada o varias jugadas.
+2. Juegos de Movimientos Alternativos con 
+Información Perfecta
+La formalización de estos juegos requiere la definición precisa de ocho elementos 
+fundamentales:
+Jugadores: Definidos usualmente como MAX (el agente) y MIN (el adversario).1. 
+Estados: Conjunto de situaciones posibles por las que puede transcurrir el juego.2. 
+Estado inicial: Describe la posición de comienzo y el turno inicial.3. 
+Movimientos: Operadores que permiten la transición entre estados.4. 
+Función sucesor: Devuelve una lista de pares (movimiento, estado).5. 
+Estado(s) final(es): Representan el término del juego e indican el resultado.6. 
+Test terminal: Lógica que determina si se ha alcanzado un estado final.7. 
+Función de utilidad: Asignación numérica a los estados terminales (ej. +1, 0, -1).8. 
+Análisis de casos prácticos:
+Nim: Juego de retirar fichas (1, 2 o 3) de una pila de N. Su función de utilidad otorga 1 si 
+el estado final (0 fichas) ocurre en el turno de MAX y -1 si ocurre en el de MIN. El éxito 
+radica en forzar al oponente a retirar la última ficha.
+Tres en raya: Los estados ganadores son estados finales donde el jugador no tiene 
+turno pendiente (ya ha completado la línea). La utilidad es 1 para victoria de MAX, -1 para 
+MIN y 0 para tablas.
+3. El Algoritmo Minimax
+El algoritmo Minimax establece la "jugada perfecta" bajo la premisa de que ambos 
+jugadores actúan de forma racional. El proceso implica la generación del árbol de juego y la 
+propagación de valores desde las hojas (utilidades) hacia la raíz.
+Nodos MAX: Seleccionan el valor máximo de sus sucesores (optimización propia).
+Nodos MIN: Seleccionan el valor mínimo de sus sucesores (optimización del adversario).
+Propiedades del algoritmo
+Completitud: Garantizada solo si el árbol es finito.
+Optimalidad: Sí, asumiendo un oponente óptimo.
+Complejidad temporal: O(b^m), donde b es el factor de ramificación y m la profundidad 
+1 descarga sin publicidad = 1 coin
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13508551 
+.
+ 
+ 
+ 
+ 
+
+máxima del árbol.
+Complejidad espacial: O(bm), debido a la exploración primero en profundidad.
+Extensión a Juegos Multijugador
+Para juegos con N > 2 jugadores, el valor escalar se sustituye por un vector de valores 
+(uno por jugador). En cada nodo, el jugador que tiene el turno elige el sucesor que 
+maximiza la componente correspondiente a su propia utilidad en dicho vector .
+Definición Formal del VALOR-MINIMAX(n)
+\text{VALOR-MINIMAX}(n) = \begin{cases} \text{UTILIDAD}(n) & \text{si } n \text{ es estado 
+terminal} \\ \max_{s \in \text{Sucesores}(n)} \text{VALOR-MINIMAX}(s) & \text{si } n \text{ es 
+estado MAX} \\ \min_{s \in \text{Sucesores}(n)} \text{VALOR-MINIMAX}(s) & \text{si } n 
+\text{ es estado MIN} \end{cases} 
+4. Optimización mediante Poda Alfa-Beta
+La poda Alfa-Beta es una técnica de metarazonamiento que descarta ramas que no 
+alteran el resultado final. Es una optimización exacta (no afecta a la calidad de la solución) 
+que se basa en dos parámetros:
+\alpha (alfa): El mejor valor (el más alto) asegurado para MAX hasta el momento.
+\beta (beta): El mejor valor (el más bajo) asegurado para MIN hasta el momento.
+Propiedades clave:
+Eficiencia: Su rendimiento depende del orden de exploración. Con una ordenación de 
+nodos perfecta, la complejidad se reduce a O(b^{m/2}), lo que permite duplicar la 
+profundidad de búsqueda con el mismo tiempo de cómputo.
+Lógica de poda: Si en cualquier punto se descubre que un valor es peor que el \alpha o 
+\beta ya establecido en el camino, se detiene la expansión de esa rama.
+5. Limitaciones de Recursos y Funciones de 
+Evaluación
+En juegos de alta complejidad (ej. ajedrez), la exploración hasta estados terminales es 
+infactible. Se recurre a:
+1 descarga sin publicidad = 1 coin
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13508551 
+.
+ 
+ 
+ 
+ 
+
+Profundidad límite: Truncar la búsqueda en un nivel d.1. 
+Función de evaluación estática: Heurística que estima la utilidad en estados no 2. 
+terminales mediante el análisis de características (piezas, posición, etc.).
+El Efecto Horizonte y la Búsqueda Estable: El "efecto horizonte" ocurre cuando una 
+jugada desastrosa queda oculta justo detrás del límite de profundidad. Para mitigarlo, se 
+implementa el Test de límite razonable con búsqueda estable (Quiescence Search). Esta 
+técnica expande nodos "inestables" (ej. situaciones de captura inmediata) más allá del 
+límite establecido hasta alcanzar un estado cuya evaluación sea fiable.
+6. Juegos con Elementos de Azar
+En juegos como el Backgammon, la incertidumbre se modela mediante nodos de 
+posibilidad (o azar), que representan resultados estocásticos (ej. dados). El valor de estos 
+nodos se calcula mediante el Minimaxesperado, utilizando el sumatorio de las utilidades 
+de los sucesores ponderadas por su probabilidad.
+\text{MINIMAXESPERADO}(n) = \sum_{s \in \text{Sucesores}(n)} P(s) \cdot 
+\text{Minimaxesperado}(s) 
+7. Juegos Simultáneos de un Único 
+Movimiento
+Representan escenarios donde los agentes deciden sin conocer la acción del otro. Sus 
+elementos son los Jugadores, las Acciones y la Matriz de balances finales.
+Estrategia Pura: Decisión determinista.
+Estrategia Mixta: Distribución de probabilidad sobre las acciones posibles.
+El Dilema del Prisionero y Estrategias Dominantes
+B: Testifica B: Rechaza
+A: Testifica A=-5, B=-5 A=0, B=-10
+A: Rechaza A=-10, B=0 A=-1, B=-1
+Se definen dos tipos de estrategias dominantes:
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13508551 
+.
+ 
+ 
+ 
+ 
+
+Fuerte: Su resultado es estrictamente mejor para todas las acciones del contrincante.
+Débil: Su resultado es el mejor en al menos un perfil de estrategia y no es peor en el 
+resto.
+En el dilema del prisionero, testificar es la estrategia dominante (racionalmente óptima a 
+nivel individual), aunque el equilibrio resultante sea inferior al beneficio mutuo de la 
+colaboración.
+Conceptos de Equilibrio:
+Equilibrio de Nash: Perfil de estrategias donde ningún jugador mejora cambiando su 
+decisión unilateralmente.
+Juegos de Suma Cero: La suma de utilidades en cada celda de la matriz es siempre cero.
+8. Juegos Reiterativos y Diseño de 
+Mecanismos
+En juegos repetidos, la estrategia depende de la historia previa:
+Castigo perpetuo (Grim Trigger): Colaboración inicial hasta que el oponente traiciona; 
+luego, hostilidad permanente.
+Ojo por ojo (Tit-for-tat): Se replica la acción anterior del adversario.
+El Diseño de Mecanismos (Teoría Inversa de Juegos) busca definir las reglas del entorno 
+para que el comportamiento egoísta de los agentes resulte en la maximización de una 
+utilidad global. Sus aplicaciones incluyen protocolos de Internet, sistemas multiagente y 
+robótica cooperativa.
+9. Hitos Históricos en Programas de Juegos
+2002 - Deep Blue (Ajedrez): Sistema de IBM que utilizaba profundidad iterativa y 
+extensiones en líneas críticas, procesando 126 millones de nodos/segundo para alcanzar 
+14 capas. (Nota: Fecha según material de curso).
+2007 - Damas: El juego es oficialmente solucionado de forma matemática.
+2016 - AlphaGo: Venció al campeón mundial de Go (Lee Sedol) combinando bases de 
+datos profesionales con aprendizaje por refuerzo.
+2017 - AlphaZero: Logró la maestría en Ajedrez, Shogi y Go en horas, aprendiendo 
+desde cero (tabula rasa) solo con las reglas y partidas aleatorias contra sí mismo.
+2019 - MuZero: Evolución capaz de aprender incluso las reglas que gobiernan el proceso 
+sin que le sean suministradas previamente.
+1 descarga sin publicidad = 1 coin
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13508551 
+.
+ 
+ 
+ 
+ 
+

@@ -2,7 +2,6 @@ import type { SoundType } from '../types';
 
 class AudioManager {
   private ctx: AudioContext | null = null;
-  private musicGain: GainNode | null = null;
   private unlocked = false;
   private volume = { music: 0.5, effects: 0.7 };
   private enabled = { music: false, effects: true };
@@ -14,13 +13,13 @@ class AudioManager {
   }
 
   unlock() {
-    if (this.unlocked) return;
+    if (this.unlocked) {
+      if (this.enabled.music && !this.musicPlaying) this.playMusic();
+      return;
+    }
     this.unlocked = true;
     try {
       this.ctx = new AudioContext();
-      this.musicGain = this.ctx.createGain();
-      this.musicGain.gain.value = this.volume.music;
-      this.musicGain.connect(this.ctx.destination);
       if (this.enabled.music) this.playMusic();
     } catch {
       console.warn('Web Audio API not available');
@@ -54,50 +53,6 @@ class AudioManager {
     osc.stop(this.ctx.currentTime + duration + 0.01);
   }
 
-  private ascendingTone(start: number, end: number, duration: number) {
-    if (!this.unlocked || !this.enabled.effects || !this.ctx) return;
-    const vol = this.volume.effects;
-    const osc = this.ctx.createOscillator();
-    const gain = this.ctx.createGain();
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(start, this.ctx.currentTime);
-    osc.frequency.linearRampToValueAtTime(
-      end,
-      this.ctx.currentTime + duration,
-    );
-    gain.gain.setValueAtTime(vol * 0.3, this.ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(
-      0.001,
-      this.ctx.currentTime + duration + 0.05,
-    );
-    osc.connect(gain);
-    gain.connect(this.ctx.destination);
-    osc.start(this.ctx.currentTime);
-    osc.stop(this.ctx.currentTime + duration + 0.06);
-  }
-
-  private descendingTone(start: number, end: number, duration: number) {
-    if (!this.unlocked || !this.enabled.effects || !this.ctx) return;
-    const vol = this.volume.effects;
-    const osc = this.ctx.createOscillator();
-    const gain = this.ctx.createGain();
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(start, this.ctx.currentTime);
-    osc.frequency.linearRampToValueAtTime(
-      end,
-      this.ctx.currentTime + duration,
-    );
-    gain.gain.setValueAtTime(vol * 0.25, this.ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(
-      0.001,
-      this.ctx.currentTime + duration + 0.05,
-    );
-    osc.connect(gain);
-    gain.connect(this.ctx.destination);
-    osc.start(this.ctx.currentTime);
-    osc.stop(this.ctx.currentTime + duration + 0.06);
-  }
-
   private arpeggio(notes: number[], totalDuration: number) {
     if (!this.unlocked || !this.enabled.effects || !this.ctx) return;
     const vol = this.volume.effects;
@@ -110,7 +65,10 @@ class AudioManager {
       const startTime = this.ctx!.currentTime + i * noteDuration;
       osc.frequency.setValueAtTime(freq, startTime);
       gain.gain.setValueAtTime(vol * 0.25, startTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, startTime + noteDuration + 0.03);
+      gain.gain.exponentialRampToValueAtTime(
+        0.001,
+        startTime + noteDuration + 0.03,
+      );
       osc.connect(gain);
       gain.connect(this.ctx!.destination);
       osc.start(startTime);
@@ -134,16 +92,6 @@ class AudioManager {
         this.tone(900, 0.06, 'sine', this.volume.effects * 0.5);
         break;
 
-      /* Correct — gentle ascending confirmation (600→900Hz, 150ms) */
-      case 'correct':
-        this.ascendingTone(600, 900, 0.15);
-        break;
-
-      /* Wrong — subtle descending (600→400Hz, 150ms) */
-      case 'wrong':
-        this.descendingTone(600, 400, 0.15);
-        break;
-
       /* Skip — neutral thin tone (~500Hz, triangle, 80ms) */
       case 'skip':
         this.tone(500, 0.08, 'triangle');
@@ -163,6 +111,16 @@ class AudioManager {
       case 'start':
         this.tone(700, 0.15, 'triangle');
         break;
+
+      /* Correct — soft two-note ascending chime (E5→B5, 140ms) */
+      case 'correct':
+        this.arpeggio([659, 988], 0.14);
+        break;
+
+      /* Incorrect — low muted tone (~160Hz, triangle, 180ms) */
+      case 'incorrect':
+        this.tone(160, 0.18, 'triangle');
+        break;
     }
   }
 
@@ -174,6 +132,7 @@ class AudioManager {
   private musicFiles: string[] = [];
   private currentMusicIndex = -1;
   private musicPlaying = false;
+  private trackFailures = 0;
 
   async loadMusicFiles() {
     try {
@@ -184,6 +143,11 @@ class AudioManager {
     } catch {
       this.musicFiles = [];
     }
+    /* Retry autostart: covers the race where music was enabled and the
+       context unlocked before the track index finished loading. */
+    if (this.enabled.music && this.unlocked && !this.musicPlaying) {
+      this.playMusic();
+    }
   }
 
   playMusic() {
@@ -191,19 +155,27 @@ class AudioManager {
     if (this.musicPlaying) return;
     if (this.musicFiles.length === 0) return;
 
-    this.musicPlaying = true;
-
     if (!this.musicAudio) {
       this.musicAudio = new Audio();
       this.musicAudio.volume = this.volume.music;
       this.musicAudio.addEventListener('ended', () => this.playRandomTrack());
+      this.musicAudio.addEventListener('error', () => {
+        if (!this.musicPlaying) return;
+        this.trackFailures += 1;
+        if (this.trackFailures >= this.musicFiles.length) {
+          this.stopMusic();
+          return;
+        }
+        this.playRandomTrack();
+      });
     }
 
     this.playRandomTrack();
   }
 
   private playRandomTrack() {
-    if (!this.musicPlaying || this.musicFiles.length === 0 || !this.musicAudio) return;
+    if (!this.enabled.music || this.musicFiles.length === 0 || !this.musicAudio)
+      return;
 
     let nextIndex: number;
     if (this.musicFiles.length === 1) {
@@ -216,7 +188,15 @@ class AudioManager {
 
     this.currentMusicIndex = nextIndex;
     this.musicAudio.src = this.musicFiles[nextIndex];
-    this.musicAudio.play().catch(() => {});
+    this.musicAudio
+      .play()
+      .then(() => {
+        this.musicPlaying = true;
+        this.trackFailures = 0;
+      })
+      .catch(() => {
+        this.musicPlaying = false;
+      });
   }
 
   stopMusic() {

@@ -1,0 +1,132 @@
+{
+  "id": "linux-scripts-estudio",
+  "title": "Aprendiendo Linux - Scripts creacap y createmp (Estudio)",
+  "description": "Preguntas básicas con explicación sobre los scripts creacap y createmp y los ficheros que generan para practicar comodines.",
+  "category": "Sistemas Operativos",
+  "difficulty": "easy",
+  "passThreshold": 0.5,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "¿Para qué sirven los scripts creacap y createmp?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Para generar ficheros de ejemplo con los que practicar los comodines del shell", "correct": true },
+        { "id": "a2", "text": "Para comprimir ficheros" },
+        { "id": "a3", "text": "Para hacer copias de seguridad" },
+        { "id": "a4", "text": "Para cambiar permisos en masa" }
+      ],
+      "explanation": "Los usa la práctica P02 (§5.3) junto a cat cap*, rm temp[a-z], etc."
+    },
+    {
+      "id": "q2",
+      "text": "¿Cuántos ficheros crea el script creacap?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "30", "correct": true },
+        { "id": "a2", "text": "10" },
+        { "id": "a3", "text": "108" },
+        { "id": "a4", "text": "26" }
+      ],
+      "explanation": "10 capítulos × 3 ficheros (capN, capN.1, capN.2)."
+    },
+    {
+      "id": "q3",
+      "text": "¿Qué contenido tienen los ficheros cap3 y cap3.1?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "capitulo3 y capitulo3.1", "correct": true },
+        { "id": "a2", "text": "cap3 y cap3.1" },
+        { "id": "a3", "text": "3 y 3.1" },
+        { "id": "a4", "text": "Están vacíos" }
+      ],
+      "explanation": "El script escribe con echo: echo capitulo$i > cap$i."
+    },
+    {
+      "id": "q4",
+      "text": "¿Cuántos ficheros crea en total el script createmp?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "108", "correct": true },
+        { "id": "a2", "text": "30" },
+        { "id": "a3", "text": "78" },
+        { "id": "a4", "text": "36" }
+      ],
+      "explanation": "30 del primer bucle (temp1..temp10 ×3) + 78 del segundo (tempa..tempz ×3)."
+    },
+    {
+      "id": "q5",
+      "text": "¿Cómo se ejecuta el script creacap?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Dándole permiso de ejecución (chmod +x) y lanzándolo con ./creacap", "correct": true },
+        { "id": "a2", "text": "Directamente con ./creacap, sin más" },
+        { "id": "a3", "text": "Compilándolo con g++" },
+        { "id": "a4", "text": "Copiándolo a /bin" }
+      ],
+      "explanation": "Sin permiso x da «Permiso denegado». También vale invocarlo como bash creacap."
+    },
+    {
+      "id": "q6",
+      "text": "Después de ejecutar createmp, ¿qué borra la orden `rm temp?`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "temp1..temp9 y tempa..tempz: 35 ficheros", "correct": true },
+        { "id": "a2", "text": "temp1..temp10: 10 ficheros" },
+        { "id": "a3", "text": "Solo tempa..tempz: 26 ficheros" },
+        { "id": "a4", "text": "No borra nada" }
+      ],
+      "explanation": "? casa exactamente un carácter: temp10 no coincide porque tiene dos caracteres tras temp."
+    },
+    {
+      "id": "q7",
+      "text": "¿Qué borra la orden `rm temp[a-z]`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Los ficheros tempa..tempz: 26", "correct": true },
+        { "id": "a2", "text": "Los temp1..temp10" },
+        { "id": "a3", "text": "Todos los ficheros temp" },
+        { "id": "a4", "text": "Los ficheros .1 y .2" }
+      ],
+      "explanation": "[a-z] casa una sola letra minúscula."
+    },
+    {
+      "id": "q8",
+      "text": "Tras mover los cap* a temp, ¿qué muestra `cat temp/cap?`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El contenido de cap1..cap9", "correct": true },
+        { "id": "a2", "text": "El de cap1..cap10" },
+        { "id": "a3", "text": "El de todos los ficheros cap" },
+        { "id": "a4", "text": "Da error" }
+      ],
+      "explanation": "cap? = cap + exactamente 1 carácter → cap1..cap9. cap10 (5 caracteres) no coincide."
+    },
+    {
+      "id": "q9",
+      "text": "¿Por qué falla la orden `mv cap* capitulo*`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Los comodines se expanden solo a ficheros existentes y capitulo* no coincide con ninguno", "correct": true },
+        { "id": "a2", "text": "Porque falta permiso de escritura" },
+        { "id": "a3", "text": "Porque mv no admite comodines nunca" },
+        { "id": "a4", "text": "Porque capitulo no es una orden del sistema" }
+      ],
+      "explanation": "Para renombrar en lote haría falta un bucle for. mv solo renombra a un destino concreto."
+    },
+    {
+      "id": "q10",
+      "text": "¿Qué muestra la orden `echo cap1.*`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "cap1.1 cap1.2", "correct": true },
+        { "id": "a2", "text": "cap1" },
+        { "id": "a3", "text": "Todos los ficheros cap" },
+        { "id": "a4", "text": "*" }
+      ],
+      "explanation": "El shell expande el comodín antes de ejecutar echo: cap1.* casa cap1.1 y cap1.2."
+    }
+  ]
+}

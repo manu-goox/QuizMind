@@ -1,0 +1,371 @@
+Agentes Inteligentes: Fundamentos, 
+Entornos y Arquitecturas
+1. Introducción y Definición de Agente
+En el ámbito de la Inteligencia Artificial, un agente se define como un ente activo embebido 
+en un entorno, capaz de percibir su medio ambiente y ejecutar acciones para modificar 
+dicho estado. Técnicamente, la interacción se produce mediante interfaces de entrada y 
+salida:
+Sensores: Actúan como transductores que permiten al agente recibir entradas o 
+percepciones del entorno en cualquier instante (ej. cámaras, sensores infrarrojos o 
+lectores de archivos HTML).
+Actuadores y Efectores: Son los mecanismos mediante los cuales el agente ejecuta 
+acciones físicas o virtuales (ej. motores, brazos robóticos o visualización de datos en 
+pantalla).
+Un concepto fundamental es la secuencia de percepciones, que constituye el historial 
+completo de lo que el agente ha recibido hasta un momento dado. El comportamiento del 
+agente está determinado por su toma de decisiones basada en esta secuencia. Por 
+ejemplo, en el "Mundo de la aspiradora", el agente percibe su localización y el estado del 
+suelo (ej. [A, Sucio]). Una secuencia como [[A, Limpio], [A, Limpio]] podría indicar al agente 
+que debe desplazarse a la localización B, al haber verificado la ausencia de suciedad en A 
+de forma persistente.
+2. Estructura del Agente: Arquitectura, Programa y 
+Función
+Para un arquitecto de sistemas, la definición técnica de un agente se resume en la 
+siguiente ecuación: Agente = Arquitectura + Programa
+Arquitectura: Es el soporte físico o plataforma de computación (cuerpo) que hace que 
+las percepciones de los sensores estén disponibles para el software, ejecuta el programa 
+y controla los actuadores.
+Programa de Agente: Es la implementación informática (mente) que procesa la 
+percepción actual para devolver una acción.
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13372370 
+.
+ 
+ 
+ 
+ 
+
+Función de Agente: Es una descripción matemática abstracta que proyecta cualquier 
+secuencia de percepciones posible hacia una acción.
+Es vital distinguir que, mientras la Función describe el mapeo de toda la historia de 
+percepciones, el Programa recibe únicamente la percepción actual como entrada. Si la 
+acción requiere considerar eventos pasados, el programa debe gestionar internamente 
+dicha memoria a través de su arquitectura.
+3. El Concepto de Racionalidad
+La racionalidad define la calidad del comportamiento de un agente. Un agente racional es 
+aquel que, para cada secuencia de percepciones posible, selecciona la acción que maximiza 
+su medida de rendimiento, basándose en las evidencias de la secuencia y en su 
+conocimiento almacenado.
+Determinantes de la Racionalidad
+El comportamiento racional depende de cuatro pilares:
+Medida de rendimiento: Criterios objetivos que definen el éxito (ej. cantidad de 1. 
+suciedad aspirada, consumo energético).
+Secuencia de percepciones: La experiencia acumulada del agente.2. 
+Conocimiento a priori: La inteligencia que el diseñador ha compilado en el agente 3. 
+sobre el entorno.
+Capacidades de acción: El conjunto de operaciones que el agente puede ejecutar 4. 
+legalmente.
+Racionalidad vs. Omnisciencia
+La racionalidad no es sinónimo de perfección o éxito garantizado. Un agente omnisciente 
+conoce el resultado real de su acción, mientras que un agente racional maximiza el 
+resultado esperado basándose en la información disponible. Esto incluye la recopilación 
+de información, donde el agente realiza acciones con el fin explícito de modificar 
+percepciones futuras para reducir la incertidumbre.
+Autonomía y Aprendizaje
+Un agente posee autonomía cuando su comportamiento se rige por su propia experiencia 
+(percepciones y aprendizaje) más que por el conocimiento inicial del diseñador . La 
+capacidad de aprendizaje permite al agente evolucionar y operar con éxito en situaciones 
+no anticipadas originalmente.
+Todos los planes de suscripción incluyen descargas sin publicidad con coins
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13372370 
+.
+ 
+ 
+ 
+ 
+
+4. Especificación de Entornos de Trabajo (REAS)
+La metodología REAS permite formalizar el problema que el agente debe resolver . Antes de 
+diseñar el programa, el arquitecto debe definir:
+Rendimiento: Criterios de éxito (Seguridad, legalidad, confort).
+Entorno: Contexto externo (Carreteras, peatones, tráfico).
+Actuadores: Medios para actuar (Dirección, freno, acelerador).
+Sensores: Medios para percibir (GPS, cámaras, acelerómetros).
+Ejemplos de aplicación:
+Taxi Autónomo: Maximizar seguridad y rapidez en un entorno dinámico y estocástico 
+(tráfico) usando actuadores físicos (volante).
+Compra en Internet: Maximizar eficiencia y calidad de precio en un entorno virtual 
+(páginas HTML) mediante actuadores de software (rellenado de formularios).
+5. Propiedades y Clasificación de los Entornos
+El diseño del programa depende críticamente de las dimensiones del entorno de trabajo:
+Dimensión Descripción Ejemplos
+Observable Totalmente (sensores detectan todo) vs. 
+Parcialmente (ruido o información 
+incompleta).
+Ajedrez (Total) vs. Póker 
+(Parcial)
+Determinismo Determinista (estado siguiente predecible) 
+vs. Estocástico (incierto).
+Crucigrama (Det.) vs. Taxi 
+(Est.)
+Episodicidad Episódico (acción actual no afecta futuras) 
+vs. Secuencial (cadena de dependencias).
+Clasificador de objetos 
+(Epis.) vs. Taxi (Sec.)
+Dinamismo Estático (no cambia al deliberar) vs. 
+Dinámico (cambia). Semidinámico si solo 
+cambia el rendimiento.
+Laberinto (Est.) vs. Ajedrez 
+con reloj (Semi)
+Continuidad Discreto (estados definidos) vs. Continuo 
+(infinitos valores).
+Backgammon (Discr .) vs. 
+Diagnóstico Médico (Cont.)
+Agentes Individual vs. Multiagente (competitivo o 
+cooperativo).
+Crucigrama (Indiv.) vs. 
+Tutor Interactivo (Multi)
+Todos los planes de suscripción incluyen descargas sin publicidad con coins
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13372370 
+.
+ 
+ 
+ 
+ 
+
+Como síntesis, el mundo real se caracteriza por ser un entorno parcialmente observable, 
+estocástico, secuencial, dinámico, continuo y multiagente, lo que representa el máximo 
+desafío para la arquitectura de sistemas de IA.
+6. Tipologías de Arquitecturas de Agentes
+Las arquitecturas evolucionan en complejidad según cómo procesan la información del 
+entorno:
+Agentes reactivos simples
+Seleccionan acciones basadas únicamente en la percepción actual mediante reglas 
+condición-acción.
+Lógica del Mundo de la aspiradora: si estado = Sucio entonces devolver Aspirar; si no, si 
+localización = A entonces devolver Derecha.
+Limitación: Solo funcionan en entornos totalmente observables. Son propensos a ciclos 
+infinitos si no se incorpora aleatoriedad (randomization) en la selección de acciones.
+Agentes reactivos basados en modelos
+Gestionan la visibilidad parcial manteniendo un estado interno. Este actúa como un 
+modelo simbólico del mundo que registra cómo evoluciona el entorno 
+independientemente del agente y cómo le afectan sus propias acciones.
+Agentes basados en objetivos
+Introducen metas para decidir entre estados posibles. Requieren procesos de búsqueda y 
+planificación para evaluar secuencias complejas de acciones que permitan alcanzar el 
+objetivo deseado.
+Agentes basados en utilidad
+Utilizan una función de utilidad para cuantificar el "grado de satisfacción" de un estado. Es 
+la arquitectura más robusta para tomar decisiones racionales ante objetivos conflictivos o 
+cuando no hay certeza de alcanzar una meta.
+7. Agentes que Aprenden
+Cualquier arquitectura puede mejorarse mediante un marco de aprendizaje dividido en 
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13372370 
+.
+ 
+ 
+ 
+ 
+
+cuatro componentes funcionales:
+Elemento de actuación: Selecciona y ejecuta las acciones externas (el agente base).1. 
+Elemento de aprendizaje: Responsable de realizar mejoras globales en el sistema 2. 
+basándose en la realimentación.
+Crítica: Evalúa la actuación del agente comparándola con un Estándar de actuación 3. 
+(Performance Standard) externo. Es vital porque las percepciones directas no siempre 
+indican éxito.
+Generador de problemas: Sugiere acciones de exploración que pueden no ser óptimas 4. 
+a corto plazo, pero permiten obtener experiencias informativas para mejorar el 
+desempeño a largo plazo.
+8. Conclusiones Sintetizadas
+Un agente inteligente es la integración de un programa de software sobre una 
+arquitectura física o virtual.
+La función del agente es la abstracción matemática del comportamiento, mientras que 
+el programa es su implementación técnica.
+La metodología REAS es el paso previo indispensable para caracterizar el problema y las 
+propiedades del entorno.
+La transición de agentes reactivos a agentes que aprenden permite gestionar la 
+incertidumbre y complejidad de los entornos reales mediante la autonomía y la 
+optimización de la utilidad.# Agentes Inteligentes: Fundamentos, Entornos y 
+Arquitecturas
+1. Introducción y Definición de Agente
+En el ámbito de la Inteligencia Artificial, un agente se define como un ente activo embebido 
+en un entorno, capaz de percibir su medio ambiente y ejecutar acciones para modificar 
+dicho estado. Técnicamente, la interacción se produce mediante interfaces de entrada y 
+salida:
+Sensores: Actúan como transductores que permiten al agente recibir entradas o 
+percepciones del entorno en cualquier instante (ej. cámaras, sensores infrarrojos o 
+lectores de archivos HTML).
+Actuadores y Efectores: Son los mecanismos mediante los cuales el agente ejecuta 
+acciones físicas o virtuales (ej. motores, brazos robóticos o visualización de datos en 
+pantalla).
+Un concepto fundamental es la secuencia de percepciones, que constituye el historial 
+completo de lo que el agente ha recibido hasta un momento dado. El comportamiento del 
+agente está determinado por su toma de decisiones basada en esta secuencia. Por 
+Todos los planes de suscripción incluyen descargas sin publicidad con coins
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13372370 
+.
+ 
+ 
+ 
+ 
+
+ejemplo, en el "Mundo de la aspiradora", el agente percibe su localización y el estado del 
+suelo (ej. [A, Sucio]). Una secuencia como [[A, Limpio], [A, Limpio]] podría indicar al agente 
+que debe desplazarse a la localización B, al haber verificado la ausencia de suciedad en A 
+de forma persistente.
+2. Estructura del Agente: Arquitectura, Programa y 
+Función
+Para un arquitecto de sistemas, la definición técnica de un agente se resume en la 
+siguiente ecuación: Agente = Arquitectura + Programa
+Arquitectura: Es el soporte físico o plataforma de computación (cuerpo) que hace que 
+las percepciones de los sensores estén disponibles para el software, ejecuta el programa 
+y controla los actuadores.
+Programa de Agente: Es la implementación informática (mente) que procesa la 
+percepción actual para devolver una acción.
+Función de Agente: Es una descripción matemática abstracta que proyecta cualquier 
+secuencia de percepciones posible hacia una acción.
+Es vital distinguir que, mientras la Función describe el mapeo de toda la historia de 
+percepciones, el Programa recibe únicamente la percepción actual como entrada. Si la 
+acción requiere considerar eventos pasados, el programa debe gestionar internamente 
+dicha memoria a través de su arquitectura.
+3. El Concepto de Racionalidad
+La racionalidad define la calidad del comportamiento de un agente. Un agente racional es 
+aquel que, para cada secuencia de percepciones posible, selecciona la acción que maximiza 
+su medida de rendimiento, basándose en las evidencias de la secuencia y en su 
+conocimiento almacenado.
+Determinantes de la Racionalidad
+El comportamiento racional depende de cuatro pilares:
+Medida de rendimiento: Criterios objetivos que definen el éxito (ej. cantidad de 1. 
+suciedad aspirada, consumo energético).
+Secuencia de percepciones: La experiencia acumulada del agente.2. 
+Conocimiento a priori: La inteligencia que el diseñador ha compilado en el agente 3. 
+sobre el entorno.
+Capacidades de acción: El conjunto de operaciones que el agente puede ejecutar 4. 
+Todos los planes de suscripción incluyen descargas sin publicidad con coins
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13372370 
+.
+ 
+ 
+ 
+ 
+
+legalmente.
+Racionalidad vs. Omnisciencia
+La racionalidad no es sinónimo de perfección o éxito garantizado. Un agente omnisciente 
+conoce el resultado real de su acción, mientras que un agente racional maximiza el 
+resultado esperado basándose en la información disponible. Esto incluye la recopilación 
+de información, donde el agente realiza acciones con el fin explícito de modificar 
+percepciones futuras para reducir la incertidumbre.
+Autonomía y Aprendizaje
+Un agente posee autonomía cuando su comportamiento se rige por su propia experiencia 
+(percepciones y aprendizaje) más que por el conocimiento inicial del diseñador . La 
+capacidad de aprendizaje permite al agente evolucionar y operar con éxito en situaciones 
+no anticipadas originalmente.
+4. Especificación de Entornos de Trabajo (REAS)
+La metodología REAS permite formalizar el problema que el agente debe resolver . Antes de 
+diseñar el programa, el arquitecto debe definir:
+Rendimiento: Criterios de éxito (Seguridad, legalidad, confort).
+Entorno: Contexto externo (Carreteras, peatones, tráfico).
+Actuadores: Medios para actuar (Dirección, freno, acelerador).
+Sensores: Medios para percibir (GPS, cámaras, acelerómetros).
+Ejemplos de aplicación:
+Taxi Autónomo: Maximizar seguridad y rapidez en un entorno dinámico y estocástico 
+(tráfico) usando actuadores físicos (volante).
+Compra en Internet: Maximizar eficiencia y calidad de precio en un entorno virtual 
+(páginas HTML) mediante actuadores de software (rellenado de formularios).
+5. Propiedades y Clasificación de los Entornos
+El diseño del programa depende críticamente de las dimensiones del entorno de trabajo:
+Dimensión Descripción Ejemplos
+Observable Totalmente (sensores detectan todo) vs. Ajedrez (Total) vs. Póker 
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13372370 
+.
+ 
+ 
+ 
+ 
+
+Parcialmente (ruido o información 
+incompleta).
+(Parcial)
+Determinismo Determinista (estado siguiente predecible) 
+vs. Estocástico (incierto).
+Crucigrama (Det.) vs. Taxi 
+(Est.)
+Episodicidad Episódico (acción actual no afecta futuras) 
+vs. Secuencial (cadena de dependencias).
+Clasificador de objetos 
+(Epis.) vs. Taxi (Sec.)
+Dinamismo Estático (no cambia al deliberar) vs. 
+Dinámico (cambia). Semidinámico si solo 
+cambia el rendimiento.
+Laberinto (Est.) vs. Ajedrez 
+con reloj (Semi)
+Continuidad Discreto (estados definidos) vs. Continuo 
+(infinitos valores).
+Backgammon (Discr .) vs. 
+Diagnóstico Médico (Cont.)
+Agentes Individual vs. Multiagente (competitivo o 
+cooperativo).
+Crucigrama (Indiv.) vs. 
+Tutor Interactivo (Multi)
+Como síntesis, el mundo real se caracteriza por ser un entorno parcialmente observable, 
+estocástico, secuencial, dinámico, continuo y multiagente, lo que representa el máximo 
+desafío para la arquitectura de sistemas de IA.
+6. Tipologías de Arquitecturas de Agentes
+Las arquitecturas evolucionan en complejidad según cómo procesan la información del 
+entorno:
+Agentes reactivos simples
+Seleccionan acciones basadas únicamente en la percepción actual mediante reglas 
+condición-acción.
+Lógica del Mundo de la aspiradora: si estado = Sucio entonces devolver Aspirar; si no, si 
+localización = A entonces devolver Derecha.
+Limitación: Solo funcionan en entornos totalmente observables. Son propensos a ciclos 
+infinitos si no se incorpora aleatoriedad (randomization) en la selección de acciones.
+Agentes reactivos basados en modelos
+Todos los planes de suscripción incluyen descargas sin publicidad con coins
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13372370 
+.
+ 
+ 
+ 
+ 
+
+Gestionan la visibilidad parcial manteniendo un estado interno. Este actúa como un 
+modelo simbólico del mundo que registra cómo evoluciona el entorno 
+independientemente del agente y cómo le afectan sus propias acciones.
+Agentes basados en objetivos
+Introducen metas para decidir entre estados posibles. Requieren procesos de búsqueda y 
+planificación para evaluar secuencias complejas de acciones que permitan alcanzar el 
+objetivo deseado.
+Agentes basados en utilidad
+Utilizan una función de utilidad para cuantificar el "grado de satisfacción" de un estado. Es 
+la arquitectura más robusta para tomar decisiones racionales ante objetivos conflictivos o 
+cuando no hay certeza de alcanzar una meta.
+7. Agentes que Aprenden
+Cualquier arquitectura puede mejorarse mediante un marco de aprendizaje dividido en 
+cuatro componentes funcionales:
+Elemento de actuación: Selecciona y ejecuta las acciones externas (el agente base).1. 
+Elemento de aprendizaje: Responsable de realizar mejoras globales en el sistema 2. 
+basándose en la realimentación.
+Crítica: Evalúa la actuación del agente comparándola con un Estándar de actuación 3. 
+(Performance Standard) externo. Es vital porque las percepciones directas no siempre 
+indican éxito.
+Generador de problemas: Sugiere acciones de exploración que pueden no ser óptimas 4. 
+a corto plazo, pero permiten obtener experiencias informativas para mejorar el 
+desempeño a largo plazo.
+8. Conclusiones Sintetizadas
+Un agente inteligente es la integración de un programa de software sobre una 
+arquitectura física o virtual.
+La función del agente es la abstracción matemática del comportamiento, mientras que 
+el programa es su implementación técnica.
+La metodología REAS es el paso previo indispensable para caracterizar el problema y las 
+propiedades del entorno.
+La transición de agentes reactivos a agentes que aprenden permite gestionar la 
+incertidumbre y complejidad de los entornos reales mediante la autonomía y la 
+Todos los planes de suscripción incluyen descargas sin publicidad con coins
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13372370 
+.
+ 
+ 
+ 
+ 
+

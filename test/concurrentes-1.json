@@ -1,0 +1,307 @@
+{
+  "id": "sistemas-concurrentes-test-generado",
+  "title": "Sistemas Concurrentes y Distribuidos - Test Generado",
+  "description": "Preguntas generadas automáticamente a partir de exámenes y cuestionarios de respuesta múltiple",
+  "category": "Sistemas Concurrentes y Distribuidos",
+  "difficulty": "mixed",
+  "passThreshold": 0.6,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "¿Qué propiedad debe garantizar un programa concurrente correcto?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Viveza y seguridad", "correct": true },
+        { "id": "a2", "text": "Interbloqueo e inanición" },
+        { "id": "a3", "text": "Sólo exclusión mutua" },
+        { "id": "a4", "text": "Paralelismo obligatorio" }
+      ],
+      "explanation": "Los programas concurrentes correctos deben garantizar propiedades de seguridad y viveza."
+    },
+    {
+      "id": "q2",
+      "text": "¿Qué ocurre en un interbloqueo (deadlock)?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Todos los procesos esperan indefinidamente un evento que nunca ocurrirá",
+          "correct": true
+        },
+        { "id": "a2", "text": "Un proceso monopoliza la CPU" },
+        { "id": "a3", "text": "Los procesos finalizan automáticamente" },
+        { "id": "a4", "text": "Se produce un acceso concurrente correcto" }
+      ],
+      "explanation": "En un deadlock, los procesos quedan esperando recursos o eventos indefinidamente."
+    },
+    {
+      "id": "q3",
+      "text": "La operación wait() de un semáforo:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Incrementa siempre el valor del semáforo" },
+        {
+          "id": "a2",
+          "text": "Bloquea el proceso si el valor del semáforo es 0",
+          "correct": true
+        },
+        { "id": "a3", "text": "Destruye el semáforo" },
+        { "id": "a4", "text": "Finaliza el hilo actual" }
+      ],
+      "explanation": "La operación wait decrementa el semáforo y bloquea si no hay recursos disponibles."
+    },
+    {
+      "id": "q4",
+      "text": "¿Cuál es una ventaja principal de los monitores frente a los semáforos?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Funcionan sin sincronización" },
+        {
+          "id": "a2",
+          "text": "Son herramientas de más alto nivel",
+          "correct": true
+        },
+        { "id": "a3", "text": "No requieren exclusión mutua" },
+        { "id": "a4", "text": "Evitan automáticamente la inanición" }
+      ],
+      "explanation": "Los monitores ofrecen una abstracción de más alto nivel que los semáforos."
+    },
+    {
+      "id": "q5",
+      "text": "¿Qué permite un sistema multihilo?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Una mejor paralelización del problema",
+          "correct": true
+        },
+        { "id": "a2", "text": "Eliminar la sincronización" },
+        { "id": "a3", "text": "Evitar los cambios de contexto" },
+        { "id": "a4", "text": "Sustituir al sistema operativo" }
+      ],
+      "explanation": "Los sistemas multihilo permiten dividir tareas y ejecutarlas concurrentemente."
+    },
+    {
+      "id": "q6",
+      "text": "En el algoritmo de Dekker:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "No existe exclusión mutua" },
+        { "id": "a2", "text": "Se basa en espera ocupada", "correct": true },
+        { "id": "a3", "text": "Sólo funciona con monitores" },
+        { "id": "a4", "text": "Requiere semáforos" }
+      ],
+      "explanation": "Dekker es un algoritmo clásico de exclusión mutua basado en espera activa."
+    },
+    {
+      "id": "q7",
+      "text": "¿Qué condición indica que dos instrucciones pueden ejecutarse concurrentemente?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Que accedan exactamente a la misma variable" },
+        {
+          "id": "a2",
+          "text": "Que cumplan las condiciones de Bernstein",
+          "correct": true
+        },
+        { "id": "a3", "text": "Que pertenezcan al mismo hilo" },
+        { "id": "a4", "text": "Que usen semáforos" }
+      ],
+      "explanation": "Las condiciones de Bernstein determinan independencia entre instrucciones."
+    },
+    {
+      "id": "q8",
+      "text": "¿Qué problema puede aparecer en sistemas concurrentes si no existe sincronización adecuada?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Condiciones de carrera", "correct": true },
+        { "id": "a2", "text": "Compilación cruzada" },
+        { "id": "a3", "text": "Fragmentación de disco" },
+        { "id": "a4", "text": "Dead code" }
+      ],
+      "explanation": "Las condiciones de carrera ocurren cuando varios procesos acceden concurrentemente a datos compartidos."
+    },
+    {
+      "id": "q9",
+      "text": "La operación signal() de un semáforo:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Bloquea al proceso actual" },
+        {
+          "id": "a2",
+          "text": "Incrementa el valor del semáforo",
+          "correct": true
+        },
+        { "id": "a3", "text": "Elimina procesos bloqueados" },
+        { "id": "a4", "text": "Reduce la prioridad de los hilos" }
+      ],
+      "explanation": "Signal libera recursos incrementando el contador del semáforo."
+    },
+    {
+      "id": "q10",
+      "text": "¿Qué caracteriza a la concurrencia?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "La intercalación de procesos", "correct": true },
+        { "id": "a2", "text": "La ejecución exclusivamente paralela" },
+        { "id": "a3", "text": "La ausencia de procesos" },
+        { "id": "a4", "text": "La ejecución secuencial obligatoria" }
+      ],
+      "explanation": "La concurrencia implica procesos que se intercalan en ejecución."
+    },
+    {
+      "id": "q11",
+      "text": "En Java, la palabra synchronized permite:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Garantizar exclusión mutua", "correct": true },
+        { "id": "a2", "text": "Evitar cambios de contexto" },
+        { "id": "a3", "text": "Duplicar hilos" },
+        { "id": "a4", "text": "Eliminar monitores" }
+      ],
+      "explanation": "Synchronized protege secciones críticas garantizando acceso exclusivo."
+    },
+    {
+      "id": "q12",
+      "text": "¿Qué sucede cuando finaliza el hilo principal de una aplicación Java?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Todos los hilos terminan inmediatamente" },
+        {
+          "id": "a2",
+          "text": "No tiene efecto directo sobre otros hilos",
+          "correct": true
+        },
+        { "id": "a3", "text": "Se reinicia la aplicación" },
+        { "id": "a4", "text": "Se destruyen todos los objetos" }
+      ],
+      "explanation": "Los demás hilos pueden seguir ejecutándose tras finalizar el principal."
+    },
+    {
+      "id": "q13",
+      "text": "¿Qué técnica utiliza el algoritmo de Peterson?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Paso de mensajes" },
+        { "id": "a2", "text": "Espera ocupada", "correct": true },
+        { "id": "a3", "text": "RPC" },
+        { "id": "a4", "text": "Memoria virtual" }
+      ],
+      "explanation": "Peterson implementa exclusión mutua mediante espera activa."
+    },
+    {
+      "id": "q14",
+      "text": "¿Cuál es el objetivo de la exclusión mutua?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Permitir acceso simultáneo a la sección crítica"
+        },
+        {
+          "id": "a2",
+          "text": "Evitar accesos concurrentes inseguros",
+          "correct": true
+        },
+        { "id": "a3", "text": "Eliminar todos los hilos" },
+        { "id": "a4", "text": "Reducir el tamaño de memoria" }
+      ],
+      "explanation": "La exclusión mutua protege recursos compartidos evitando inconsistencias."
+    },
+    {
+      "id": "q15",
+      "text": "En comunicación síncrona entre procesos:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "El envío y recepción pueden bloquearse",
+          "correct": true
+        },
+        { "id": "a2", "text": "Nunca existe bloqueo" },
+        { "id": "a3", "text": "No se usan buzones" },
+        { "id": "a4", "text": "Siempre existe paralelismo" }
+      ],
+      "explanation": "La comunicación síncrona implica sincronización temporal entre emisor y receptor."
+    },
+    {
+      "id": "q16",
+      "text": "¿Qué representa la inanición (starvation)?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Un proceso nunca obtiene los recursos necesarios",
+          "correct": true
+        },
+        { "id": "a2", "text": "Todos los procesos finalizan" },
+        { "id": "a3", "text": "La memoria se llena" },
+        { "id": "a4", "text": "El procesador deja de funcionar" }
+      ],
+      "explanation": "La inanición ocurre cuando un proceso espera indefinidamente recursos."
+    },
+    {
+      "id": "q17",
+      "text": "¿Qué mecanismo utilizan los monitores para sincronización condicional?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Variables de condición", "correct": true },
+        { "id": "a2", "text": "Memoria caché" },
+        { "id": "a3", "text": "Paginación" },
+        { "id": "a4", "text": "Tuberías Unix" }
+      ],
+      "explanation": "Las variables de condición permiten bloquear y despertar procesos en monitores."
+    },
+    {
+      "id": "q18",
+      "text": "¿Qué ventaja aporta el paralelismo?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Mayor rendimiento en tareas divididas",
+          "correct": true
+        },
+        { "id": "a2", "text": "Eliminar la necesidad de CPU" },
+        { "id": "a3", "text": "Evitar memoria compartida" },
+        { "id": "a4", "text": "Reducir el número de instrucciones" }
+      ],
+      "explanation": "El paralelismo permite ejecutar varias tareas simultáneamente para mejorar rendimiento."
+    },
+    {
+      "id": "q19",
+      "text": "¿Qué ocurre si una aplicación Java produce una división por cero en un hilo?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Finaliza únicamente el hilo asociado",
+          "correct": true
+        },
+        { "id": "a2", "text": "Se apaga el sistema operativo" },
+        { "id": "a3", "text": "Todos los hilos finalizan automáticamente" },
+        { "id": "a4", "text": "La excepción se ignora siempre" }
+      ],
+      "explanation": "La excepción afecta normalmente al hilo donde se produce."
+    },
+    {
+      "id": "q20",
+      "text": "¿Qué requisito debe cumplir una solución al problema de la exclusión mutua?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Permitir acceso simultáneo ilimitado" },
+        {
+          "id": "a2",
+          "text": "Garantizar acceso exclusivo a la sección crítica",
+          "correct": true
+        },
+        { "id": "a3", "text": "Evitar cualquier espera" },
+        { "id": "a4", "text": "Usar siempre semáforos binarios" }
+      ],
+      "explanation": "La exclusión mutua asegura que sólo un proceso acceda a la sección crítica cada vez."
+    }
+  ]
+}

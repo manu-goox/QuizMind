@@ -32,9 +32,9 @@
    Warning — subtle amber
    ================================================================ */
 .warning {
-  background: rgba(251, 191, 36, 0.1);
-  color: #fbbf24;
-  border-color: rgba(251, 191, 36, 0.2);
+  background: var(--warning-subtle);
+  color: var(--warning);
+  border-color: var(--warning-glow);
 }
 
 /* ================================================================
@@ -44,4 +44,22 @@
   background: var(--wrong-subtle);
   color: var(--wrong);
   border-color: var(--wrong-glow);
+}
+
+/* ================================================================
+   Info — accent tint
+   ================================================================ */
+.info {
+  background: var(--accent-subtle);
+  color: var(--accent);
+  border-color: var(--accent-glow);
+}
+
+/* ================================================================
+   Outline — neutral border only
+   ================================================================ */
+.outline {
+  background: transparent;
+  color: var(--text-secondary);
+  border-color: var(--border-strong);
 }

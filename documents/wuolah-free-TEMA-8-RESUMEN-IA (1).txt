@@ -1,0 +1,350 @@
+Tema 8 — Ética en IA Inteligencia Artificial·UJA
+Inteligencia Artificial·Ingeniería Informática·UJA
+Tema 8: Ética en la Inteligencia Artificial
+Resumen completo para examen·Basado en las diapositivas
+Índice
+1. Introducción: Miedos y retos de la IA 2
+1.1. ¿Qué se necesita de la IA? . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+1.2. Enfoque proactivo vs. reactivo . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+2. Directrices Éticas para una IA Fiable 2
+2.1. Marco de la Comisión Europea . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+2.2. Tres componentes de la fiabilidad . . . . . . . . . . . . . . . . . . . . . . . . . 3
+2.3. Los 4 Principios Éticos Fundamentales . . . . . . . . . . . . . . . . . . . . . . 3
+2.3.1. 1. Respeto de la autonomía humana . . . . . . . . . . . . . . . . . . . 3
+2.3.2. 2. Prevención del daño . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+2.3.3. 3. Equidad . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+2.3.4. 4. Explicabilidad . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+2.4. Los 7 Requisitos Clave de la IA Fiable . . . . . . . . . . . . . . . . . . . . . . 5
+2.5. IA Fiable a lo Largo del Ciclo de Vida Software . . . . . . . . . . . . . . . . . 5
+3. Propuesta Europea de Reglamento sobre la IA 5
+3.1. Planteamiento Basado en el Riesgo . . . . . . . . . . . . . . . . . . . . . . . . 6
+4. Oficina Europea de Inteligencia Artificial 7
+5. Ley de Inteligencia Artificial 8
+5.1. Objetivos de la Ley . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+5.2. Relación con los marcos anteriores . . . . . . . . . . . . . . . . . . . . . . . . 8
+6. Resumen Final — Todo de un Vistazo 9
+6.1. Ideas Clave del Tema . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+6.2. Comparativa: Principios vs. Requisitos . . . . . . . . . . . . . . . . . . . . . . 9
+6.3. Puntos Clave para el Examen . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+1
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13602163 
+.
+ 
+ 
+ 
+ 
+
+Tema 8 — Ética en IA Inteligencia Artificial·UJA
+1. Introducción: Miedos y retos de la IA
+La IA ya está transformando aspectos cotidianos —salud, seguridad, productividad,
+educación y ocio— de forma a menudo invisible para el usuario final. Pese a ello, los
+sistemas actuales siguen siendoIA especializada: resuelven tareas concretas pero no poseen
+inteligencia general comparable a la humana.
+Premisa fundamental
+Las IAs futuras, por muy capaces que sean, serándistintasa la inteligencia humana: sus
+cuerpos, sus datos y su entorno de diseño condicionan su comportamiento. Por ello, su
+alineación con valores humanosno es automática y debe diseñarse explícitamente.
+1.1. ¿Qué se necesita de la IA?
+Los sistemas de IA se enfrentan simultáneamente a cuatro tipos de cuestiones:
+Técnicas: robustez, precisión, resistencia a ataques.
+Legales: cumplimiento de normativas vigentes.
+Éticas: respeto a valores y derechos fundamentales.
+Regulatorias: sujeción a marcos de supervisión institucional.
+Figura 1: Ejemplos de aplicaciones de IA que plantean retos técnicos, éticos y regulatorios:
+vehículos autónomos, reconocimiento facial, policía predictiva y robots de almacén. (Fuente:
+Diapositiva 6 del temario)
+1.2. Enfoque proactivo vs. reactivo
+Enfoqueex-post(reactivo):actuar una vez que los daños ya han ocurrido. Este enfoqueno
+es el adecuado.
+Enfoque proactivo:definir de antemano qué queremos de la IA y diseñarla en consecuencia. Es
+nuestra responsabilidad como diseñadores.
+El objetivo final es lograr unaIA fiable, confiable y ética, resumida en la pregunta:
+¿podemos construir sistemas autónomos que no fallen en entornos extremos y que respeten
+los derechos de las personas?
+2. Directrices Éticas para una IA Fiable
+2.1. Marco de la Comisión Europea
+La Comisión Europea, a través de sus comunicaciones de 2018, definió una visión de IA
+ética y segura«made in Europe», apoyada en tres pilares:
+1. Aumentar inversiones públicas y privadas en IA.
+2
+Las descargas sin publicidad se realizan con las coins
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13602163 
+.
+ 
+ 
+ 
+ 
+
+Tema 8 — Ética en IA Inteligencia Artificial·UJA
+Figura 2: Preguntas clave que definen el desafío de una IA fiable y confiable en aplicaciones
+reales. (Fuente: Diapositiva 8 del temario)
+2. Prepararse para los cambios socioeconómicos derivados.
+3. Garantizar un marcoético y legalacorde con los valores europeos.
+Para ello encargó alGrupo de Expertos de Alto Nivella elaboración de:
+Directrices éticas sobre IA.
+Recomendaciones sobre política e inversión.
+2.2. Tres componentes de la fiabilidad
+IA Fiable
+La fiabilidad de un sistema de IA requiere satisfacersimultáneamentetres condiciones
+a lo largo de todo su ciclo de vida:
+1.IA lícita: cumple toda la legislación aplicable.
+2.IA ética: respeta principios y valores éticos.
+3. IA robusta: sólida técnica y socialmente; minimiza daños accidentales incluso con
+buenas intenciones.
+2.3. Los 4 Principios Éticos Fundamentales
+2.3.1. 1. Respeto de la autonomía humana
+Los sistemas de IA debenaumentar, completar y potenciarlas capacidades humanas,
+nunca subordinarlas o manipularlas. Esto implica:
+No coaccionar ni condicionar injustificadamente el comportamiento de las personas.
+Diseñar mecanismos desupervisión y control humanosobre los sistemas de IA.
+Garantizar que los usuarios puedan participar en el proceso democrático con plena
+autonomía.
+2.3.2. 2. Prevención del daño
+Los sistemas de IA no deben perjudicar a los seres humanos. Implica atender a:
+3
+Las descargas sin publicidad se realizan con las coins
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13602163 
+.
+ 
+ 
+ 
+ 
+
+Tema 8 — Ética en IA Inteligencia Artificial·UJA
+Figura 3: Marco completo para una IA fiable: principios éticos, requisitos clave y métodos de
+evaluación a lo largo del ciclo de vida del sistema. (Fuente: Diapositiva 14 del temario)
+Seguridadyrobustezdel sistema.
+Protección especial depersonas vulnerablespara evitar asimetrías de poder o informa-
+ción.
+2.3.3. 3. Equidad
+El desarrollo, despliegue y uso de la IA debe ser equitativo:
+Ausencia desesgos injustos(p.ej. sesgos en los datos de entrenamiento).
+Proporcionalidad entre medios y fines.
+La equidad está ligada a la explicabilidad: para impugnar una decisión automática hay
+que poder entender cómo se generó.
+2.3.4. 4. Explicabilidad
+Crucial para que los usuariosconfíenen la IA. Abarca:
+Transparenciaen los procesos de decisión.
+Trazabilidad y auditabilidad, especialmente en sistemas de caja negra (black box).
+El grado de explicabilidad requerido depende del contexto y tipo de sistema.
+4
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13602163 
+.
+ 
+ 
+ 
+ 
+
+Tema 8 — Ética en IA Inteligencia Artificial·UJA
+⋆Para el examen — Los 4 principios
+AutonomíaLos humanos conservan el control y la toma de decisiones.
+No dañoLa IA no puede perjudicar a las personas.
+EquidadSin sesgos injustos; proporcionalidad.
+ExplicabilidadTransparencia y trazabilidad de las decisiones.
+2.4. Los 7 Requisitos Clave de la IA Fiable
+Figura 4: Los 7 requisitos clave de una IA fiable, interconectados y a evaluar continuamente
+a lo largo del ciclo de vida del sistema. (Fuente: Diapositiva 18 del temario)
+2.5. IA Fiable a lo Largo del Ciclo de Vida Software
+Los requisitos no se evalúan una sola vez: deben aplicarse entodas las fasesdel desarrollo.
+Ejemplo práctico — Evaluación de privacidad y datos:
+¿Se han analizado los tipos de datos usados (personales, sensibles)?
+¿Se ha minimizado el uso de datos personales?
+¿Existen mecanismos de consentimiento y revocación?
+¿Se aplican técnicas de cifrado, anonimización o agregación?
+3. Propuesta Europea de Reglamento sobre la IA
+Enabril de 2021, la Comisión Europea propuso un nuevo Reglamento con el objetivo de
+convertir a Europa en el centro mundial de unaIA confiable y centrada en las personas.
+Sus características principales:
+5
+Las descargas sin publicidad se realizan con las coins
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13602163 
+.
+ 
+ 
+ 
+ 
+
+Tema 8 — Ética en IA Inteligencia Artificial·UJA
+Requisito Descripción
+1. Acción y supervisión humanas Salvaguarda de derechos fundamentales
+y control humano efectivo sobre los siste-
+mas de IA.
+2. Solidez técnica y seguridad Resistencia a ataques, plan de repliegue,
+fiabilidad y reproducibilidad de resulta-
+dos.
+3. Gestión de privacidad y datos Respeto a la privacidad, calidad e inte-
+gridad de los datos y control de acceso.
+4. Transparencia Trazabilidad, explicabilidad y comunica-
+ción clara hacia el usuario.
+5. Diversidad, no discriminación y equidadAusencia de sesgos injustos, accesibilidad
+y diseño universal.
+6. Bienestar social y ambiental Sostenibilidad, impacto social positivo y
+respeto al medio ambiente y la democra-
+cia.
+7. Rendición de cuentas Auditabilidad, minimización de efectos
+negativos y búsqueda de compensaciones
+adecuadas.
+Cuadro 1: Los 7 requisitos clave para la realización de una IA fiable según las Directrices de
+la Comisión Europea.
+Normasproporcionadas y flexiblesadaptadas al nivel de riesgo de cada sistema.
+Aplicacióndirecta y uniformeen todos los Estados miembros.
+Definición de IA«a prueba de futuro».
+3.1. Planteamiento Basado en el Riesgo
+El reglamento clasifica los sistemas de IA en cuatro niveles de riesgo.
+⋆Para el examen — Alto riesgo: obligaciones
+Un sistema de IA de alto riesgo debe garantizar:
+Evaluación y mitigación de riesgos adecuada.
+Conjuntos de datos de alta calidad (minimizar resultados discriminatorios).
+Registro de actividad (trazabilidad de resultados).
+Documentación completa para evaluación de conformidad.
+Información clara y adecuada al usuario.
+Supervisión humana apropiada.
+Alto nivel de solidez, seguridad y precisión.
+4. Oficina Europea de Inteligencia Artificial
+6
+Las descargas sin publicidad se realizan con las coins
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13602163 
+.
+ 
+ 
+ 
+ 
+
+Tema 8 — Ética en IA Inteligencia Artificial·UJA
+Figura 5: La IA fiable debe integrarse en el ciclo completo: análisis, rediseño, desarrollo y
+utilización, con evaluación y justificación continua en cada iteración. (Fuente: Diapositiva 19
+del temario)
+Figura 6: Pirámide de riesgo del EU AI Act: cuatro niveles desde riesgo mínimo hasta riesgo
+inaceptable. (Fuente: Diapositiva 22 del temario)
+Creación
+La Comisión Europea aprueba el24 de enero de 2024la creación de laOficina
+Europea de Inteligencia Artificial.
+Sus funciones principales:
+Supervisar los avances enmodelos de IA de uso general(General Purpose AI /
+GPAI).
+Coordinar la interacción con la comunidad científica (investigaciones y pruebas).
+Ejecutar las normas del reglamento a escala europea.
+Actuar conforme a los procesos internos de la Comisión, sin menoscabar las competencias
+de las autoridades nacionales.
+Cada Estado miembro deberá establecer su propiaAgencia Nacional de Inteligencia Artificial,
+que trabajará en coordinación con la Oficina Europea.
+7
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13602163 
+.
+ 
+ 
+ 
+ 
+
+Tema 8 — Ética en IA Inteligencia Artificial·UJA
+Nivel de riesgo Descripción y ejemplos
+Inaceptable Prohibición total.Sistemas que manipulan el comportamiento
+humano de forma subliminal, o que permiten «puntuación social»
+(social scoring) gubernamental.
+Alto Obligaciones estrictasantes de comercializarse: evaluación y
+mitigación de riesgos, alta calidad de datos, registro de actividad
+(trazabilidad), documentación detallada, información clara al usuario
+y supervisión humana. Incluye: infraestructuras críticas, formación,
+empleo, servicios esenciales, aplicación de la ley, justicia.Todos los
+sistemas de identificación biométrica se incluyen aquí.
+Limitado Obligaciones de transparencia.El usuario debe saber que inter-
+actúa con una máquina (p.ej., chatbots).
+Mínimo o nulo Sin restricciones.La gran mayoría de sistemas de IA: videojuegos,
+filtros de spam, etc.
+Cuadro 2: Clasificación de sistemas de IA según el nivel de riesgo en el EU AI Act.
+5. Ley de Inteligencia Artificial
+Aprobación
+La Comisión Europea aprueba el13 de marzo de 2024laLey de Inteligencia
+Artificial(AI Act), elevando a rango de ley el reglamento propuesto en 2021.
+5.1. Objetivos de la Ley
+Proteger losderechos fundamentales, la democracia, el Estado de derecho y la sosteni-
+bilidad medioambiental frente a la IA de alto riesgo.
+Impulsar lainnovaciónposicionando a Europa como líder del sector.
+Establecer obligaciones para la IA en función de susriesgos potencialesy sunivel de
+impacto.
+5.2. Relación con los marcos anteriores
+Hito Descripción
+2018 Comunicaciones de la Comisión; visión IA éticamade in Europe.
+2019 Directrices éticas del Grupo de Expertos de Alto Nivel; 4 principios y 7 requisi-
+tos.
+Abril 2021 Propuesta de Reglamento con planteamiento basado en riesgo.
+Enero 2024 Creación de la Oficina Europea de IA.
+Marzo 2024 Ley de Inteligencia Artificial(AI Act) aprobada.
+Cuadro 3: Cronología de la regulación europea de la IA.
+8
+Las descargas sin publicidad se realizan con las coins
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13602163 
+.
+ 
+ 
+ 
+ 
+
+Tema 8 — Ética en IA Inteligencia Artificial·UJA
+6. Resumen Final — Todo de un Vistazo
+6.1. Ideas Clave del Tema
+1. La ética en IA no es diferentea la ética en cualquier otro campo del conocimiento:
+los mismos principios morales son aplicables.
+2. Es fundamentalalinear los objetivosdel sistema de IA con los objetivos éticos humanos
+desde la fase de diseño, no como corrección posterior.
+3. Lafiabilidadrequiere que la IA sea simultáneamente lícita, ética y robusta durantetodo
+su ciclo de vida.
+4. La regulación es un procesocontinuo y evolutivo: las normas deben adaptarse al rápido
+avance tecnológico.
+5. Conocer el marco regulatorio facilita saber qué requisitos debe cumplir un diseño según el
+ámbito de aplicación.
+6.2. Comparativa: Principios vs. Requisitos
+4 Principios éticos 7 Requisitos clave
+Respeto autonomía huma-
+na
+Acción y supervisión humanas
+Prevención del daño Solidez técnica y seguridad
+Equidad Diversidad, no discriminación y equidad
+Explicabilidad Transparencia
+— Gestión de la privacidad y los datos
+— Bienestar social y ambiental
+— Rendición de cuentas
+Cuadro 4: Correspondencia entre los 4 principios éticos y los 7 requisitos clave de la IA fiable.
+9
+Las descargas sin publicidad se realizan con las coins
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13602163 
+.
+ 
+ 
+ 
+ 
+
+Tema 8 — Ética en IA Inteligencia Artificial·UJA
+6.3. Puntos Clave para el Examen
+⋆Checklist del examen
+1. Los3 componentes de la fiabilidad: lícita + ética + robusta. Los tres son necesarios;
+ninguno es suficiente por sí solo.
+2. Los4 principios éticos: autonomía, no daño, equidad, explicabilidad. Hay tensiones
+entre ellos que deben gestionarse.
+3. Los7requisitosclave:supervisiónhumana,solideztécnica,privacidad,transparencia,
+no discriminación, bienestar ambiental/social y rendición de cuentas.
+4. Los4 niveles de riesgodel AI Act: inaceptable (prohibido)→alto (obligaciones
+estrictas)→limitado (transparencia)→mínimo (libre).
+5.Identificación biométrica= siempre alto riesgo.
+6. Chatbots= riesgo limitado (deben informar al usuario de que habla con una
+máquina).
+7. LaLey de IAse aprobó en marzo de 2024; laOficina Europea de IAen enero de
+2024.
+10
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13602163 
+.
+ 
+ 
+ 
+ 
+

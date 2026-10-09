@@ -1,0 +1,337 @@
+{
+  "id": "sistemas-concurrentes-examenes-2223",
+  "title": "Sistemas Concurrentes y Distribuidos - Exámenes 2022-23",
+  "description": "Preguntas extraídas de los exámenes de convocatoria ordinaria y extraordinaria del curso 2022-23",
+  "category": "Sistemas Concurrentes y Distribuidos",
+  "difficulty": "mixed",
+  "passThreshold": 0.6,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "En la llamada a procedimiento remoto (RPC):",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Se utilizará el mismo lenguaje de programación para codificar los procesos."
+        },
+        {
+          "id": "a2",
+          "text": "Los dos sistemas deberán tener una misma arquitectura."
+        },
+        {
+          "id": "a3",
+          "text": "Deberá ser el mismo Sistema Operativo en las máquinas remotas."
+        },
+        {
+          "id": "a4",
+          "text": "Se utilizan semáforos para evitar el interbloqueo de los procedimientos invocados."
+        }
+      ],
+      "explanation": "Ninguna de las opciones anteriores es completamente cierta para RPC en general. Las respuestas correctas del examen eran X (sin respuesta correcta entre las dadas) para las preguntas 1 y 2."
+    },
+    {
+      "id": "q2",
+      "text": "¿Cuál de las siguientes condiciones se requiere para construir el mecanismo de RPC?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Los programas deben haberse escrito usando el mismo lenguaje."
+        },
+        {
+          "id": "a2",
+          "text": "Mismo tratamiento de RPC en todas las máquinas implicadas."
+        },
+        { "id": "a3", "text": "Más de una máquina.", "correct": true },
+        { "id": "a4", "text": "Iguales arquitectura de máquinas." }
+      ],
+      "explanation": "La condición fundamental para RPC es la existencia de más de una máquina (sistema distribuido)."
+    },
+    {
+      "id": "q3",
+      "text": "La siguiente solución al problema de los filósofos con semáforos palillo[5]={1,1,1,1,1}:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Puede generar inanición en uno de los filósofos.",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Resuelve el problema cumpliendo todas las propiedades."
+        },
+        {
+          "id": "a3",
+          "text": "No resuelve el problema en ninguna circunstancia."
+        },
+        { "id": "a4", "text": "Puede generar interbloqueo entre los procesos." }
+      ],
+      "explanation": "Esta solución puede generar inanición si la planificación no es justa con algún filósofo."
+    },
+    {
+      "id": "q4",
+      "text": "La inicialización de la variable de un semáforo:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "No se inicializa en el ciclo de vida." },
+        {
+          "id": "a2",
+          "text": "Puede inicializarse tantas veces como se quiera."
+        },
+        { "id": "a3", "text": "Ninguna de las respuestas es correcta." },
+        {
+          "id": "a4",
+          "text": "Sólo puede hacerse una única vez en su ciclo de vida.",
+          "correct": true
+        }
+      ],
+      "explanation": "Un semáforo se inicializa una única vez al principio de su uso; no puede reinicializarse."
+    },
+    {
+      "id": "q5",
+      "text": "La operación wait(s):",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Bloquea al proceso que la ejecuta si s=0." },
+        { "id": "a2", "text": "Bloquea el proceso que la ejecuta si s=1." },
+        {
+          "id": "a3",
+          "text": "Si s=0 decrementa el valor de s y bloquea el proceso."
+        },
+        {
+          "id": "a4",
+          "text": "Decrementa el valor de s y entonces bloquea el proceso si s=0.",
+          "correct": true
+        }
+      ],
+      "explanation": "Wait decrementa s y, si el resultado es negativo (s quedó en 0 antes), bloquea al proceso."
+    },
+    {
+      "id": "q6",
+      "text": "El algoritmo de Hyman para exclusión mutua basado en espera ocupada:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "No garantiza la exclusión mutua." },
+        { "id": "a2", "text": "Puede provocar inanición en los procesos." },
+        {
+          "id": "a3",
+          "text": "En caso de conflicto, concede acceso a la sección crítica de forma aleatoria.",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Cada proceso conoce la intención de acceso a la sección crítica del resto de procesos."
+        }
+      ],
+      "explanation": "El algoritmo de Hyman es incorrecto: puede fallar en garantizar exclusión mutua."
+    },
+    {
+      "id": "q7",
+      "text": "¿Qué es una condición de carrera en la programación concurrente?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Es cuando dos procesos se bloquean mutuamente al esperar un recurso que el otro proceso tiene."
+        },
+        {
+          "id": "a2",
+          "text": "Es cuando un proceso se mantiene esperando indefinidamente por un recurso."
+        },
+        {
+          "id": "a3",
+          "text": "Es cuando el resultado de la ejecución depende del orden específico en el que se ejecutan las instrucciones.",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Es cuando un proceso no recibe suficiente tiempo de CPU para realizar su trabajo."
+        }
+      ],
+      "explanation": "Una condición de carrera ocurre cuando el resultado depende del orden de ejecución de instrucciones concurrentes."
+    },
+    {
+      "id": "q8",
+      "text": "La utilización de un canal de sincronización:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Se utilizarán como elemento de sincronización entre procesos en entornos remotos."
+        },
+        {
+          "id": "a2",
+          "text": "Permite definir un tipo por defecto en la comunicación síncrona.",
+          "correct": true
+        },
+        { "id": "a3", "text": "No existe ese tipo de canales." },
+        {
+          "id": "a4",
+          "text": "Es el tipo de canales habituales en las comunicaciones síncronas."
+        }
+      ],
+      "explanation": "Los canales de sincronización son un tipo especial que permite definir la sincronización como tipo en la comunicación síncrona."
+    },
+    {
+      "id": "q9",
+      "text": "En el direccionamiento asimétrico del paso de mensajes:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "El emisor no identifica al receptor y el receptor no identifica al emisor."
+        },
+        {
+          "id": "a2",
+          "text": "El emisor identifica al receptor y el receptor identifica al emisor."
+        },
+        {
+          "id": "a3",
+          "text": "El emisor identifica al receptor, pero el receptor no identifica al emisor.",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "El emisor no identifica al receptor pero el receptor identifica al emisor."
+        }
+      ],
+      "explanation": "En el direccionamiento asimétrico, el emisor especifica el destinatario pero el receptor puede recibir de cualquiera."
+    },
+    {
+      "id": "q10",
+      "text": "Las variables de condición en un monitor:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Son como los semáforos dentro del monitor." },
+        {
+          "id": "a2",
+          "text": "Son necesarias para poder mantener la sincronización de los procesos dentro del monitor."
+        },
+        {
+          "id": "a3",
+          "text": "Controlan diferentes condiciones dentro del monitor.",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Garantizan la exclusión mutua de las funciones del monitor."
+        }
+      ],
+      "explanation": "Las variables de condición gestionan condiciones específicas de espera dentro del monitor."
+    },
+    {
+      "id": "q11",
+      "text": "Si en la definición de un método de una clase Java aparece la palabra reservada synchronized:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Sólo lo ejecutará un hilo a lo largo de la ejecución de la aplicación."
+        },
+        {
+          "id": "a2",
+          "text": "Sólo podrá ser ejecutado por un único hilo a la vez.",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Java no incluye la palabra reservada synchronized."
+        },
+        {
+          "id": "a4",
+          "text": "No puede formar parte de la definición de un método, solo de bloques de código."
+        }
+      ],
+      "explanation": "Synchronized garantiza exclusión mutua: solo un hilo ejecuta ese método en un momento dado."
+    },
+    {
+      "id": "q12",
+      "text": "El método join(.) de la clase Thread en Java:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Lanzará la ejecución de un hilo." },
+        { "id": "a2", "text": "Ninguna de las respuestas es correcta." },
+        {
+          "id": "a3",
+          "text": "Permite unir las ejecuciones de múltiples hilos.",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Permite conocer la finalización de la aplicación."
+        }
+      ],
+      "explanation": "join() hace que el hilo que lo llama espere hasta que el hilo en cuestión finalice su ejecución."
+    },
+    {
+      "id": "q13",
+      "text": "Los monitores requieren de la utilización y definición de dos tipos de procesos:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Procesos bloqueados y procesos bloqueantes." },
+        {
+          "id": "a2",
+          "text": "Procesos activos y procesos bloqueados.",
+          "correct": true
+        },
+        { "id": "a3", "text": "Procesos padres y procesos hijo." },
+        { "id": "a4", "text": "Proceso monitor y proceso principal." }
+      ],
+      "explanation": "Los monitores distinguen entre procesos activos (ejecutando en el monitor) y procesos bloqueados (esperando)."
+    },
+    {
+      "id": "q14",
+      "text": "En las llamadas a procedimiento remoto (RPC), la invocación al resguardo del cliente:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "No requiere de conexión entre cliente y servidor."
+        },
+        {
+          "id": "a2",
+          "text": "Siempre genera el bloqueo del proceso que realiza la invocación."
+        },
+        {
+          "id": "a3",
+          "text": "La invocación se realiza siempre de un módulo que se encuentra en otro sistema."
+        },
+        {
+          "id": "a4",
+          "text": "Debe garantizar que existe concordancia entre los parámetros.",
+          "correct": true
+        }
+      ],
+      "explanation": "El resguardo del cliente debe validar y garantizar la concordancia de parámetros entre cliente y servidor."
+    },
+    {
+      "id": "q15",
+      "text": "La asignación de procesadores físicos a hilos se realiza:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Directamente, asignando la CPU al proceso del que forma parte un único hilo."
+        },
+        {
+          "id": "a2",
+          "text": "Se hace a dos niveles: hilos de usuario a procesadores lógicos, y procesadores lógicos al procesador físico.",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Indirectamente, asignando los procesadores lógicos a una CPU."
+        },
+        {
+          "id": "a4",
+          "text": "Directamente, por parte del planificador del Sistema Operativo."
+        }
+      ],
+      "explanation": "La asignación es de dos niveles: hilos de usuario → procesadores lógicos → procesadores físicos."
+    }
+  ]
+}

@@ -1,0 +1,426 @@
+Inteligencia Artificial
+Tema 6: Representación del Conocimiento
+Resumen de Estudio
+Ingeniería Informática·Universidad de Jaén
+Basado en las diapositivas oficiales del temario
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13523436 
+.
+ 
+ 
+ 
+ 
+
+IA — Tema 6: Representación del ConocimientoUJA·Ingeniería Informática
+Índice
+1. Introducción: Agentes Basados en Conocimiento 2
+2. El Conocimiento 2
+2.1. Definición . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+2.2. La Jerarquía del Conocimiento (DIKW) . . . . . . . . . . . . . . . . . . . . . . . 2
+2.3. IA Simbólica frente a IA Subsimbólica . . . . . . . . . . . . . . . . . . . . . . . . 2
+3. Clasificación del Conocimiento 3
+3.1. Tácito vs. Explícito . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+3.1.1. Componentes del Conocimiento Explícito . . . . . . . . . . . . . . . . . . 3
+3.2. Declarativo vs. Procedimental . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+3.3. Tipos de Conocimiento Declarativo . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+3.3.1. Conocimiento Relacional . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+3.3.2. Conocimiento Inferencial (Deductivo) . . . . . . . . . . . . . . . . . . . . 4
+3.3.3. Conocimiento Heredable . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+3.4. Conocimiento Tácito y Heurístico . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+4. La Representación del Conocimiento 5
+4.1. Lógica Descriptiva . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+4.1.1. Propiedades de los Métodos de Deducción . . . . . . . . . . . . . . . . . . 5
+4.1.2. Tipos de Lógica . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+4.2. Sistemas Basados en Reglas (SBR) . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+4.2.1. Arquitectura de un SBR . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+4.2.2. Modos de Inferencia . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+4.3. Redes Semánticas y Marcos . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+4.4. Ontologías . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+4.5. Sistemas Basados en Modelos Probabilísticos . . . . . . . . . . . . . . . . . . . . 8
+4.6. Conjuntos Borrosos (Fuzzy Sets) . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+4.7. Razonamiento por Defecto y Mantenimiento de Verdad . . . . . . . . . . . . . . 9
+4.7.1. Razonamiento por Defecto . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+4.7.2. Sistemas de Mantenimiento de Verdad (SMV) . . . . . . . . . . . . . . . . 10
+5. Resumen y Puntos Clave para el Examen 10
+1
+Las descargas sin publicidad se realizan con las coins
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13523436 
+.
+ 
+ 
+ 
+ 
+
+IA — Tema 6: Representación del ConocimientoUJA·Ingeniería Informática
+1 Introducción: Agentes Basados en Conocimiento
+Larepresentación del conocimientoes una de las áreas fundamentales de la IA. Su objetivo
+es codificar el conocimiento humano de forma que pueda ser procesado computacionalmente.
+Idea clave:Modelizar la realidad completa es imposible con las herramientas actuales. Por
+ello, se busca representarde forma eficiente la parte relevantedel dominio para el problema
+concreto.
+Los mecanismos de representación definensímbolosyformalismosque permiten codificar
+hechos, reglas y relaciones del mundo real para su posterior tratamiento automático.
+2 El Conocimiento
+2.1 Definición
+Conocimiento(Oxford Dictionary): Hechos, información y habilidades adquiridas mediante
+la experiencia o el aprendizaje para la comprensión teórica o práctica de un tema.
+2.2 La Jerarquía del Conocimiento (DIKW)
+La información se organiza en cuatro niveles ascendentes:
+Nivel Descripción
+Datos Valores, hechos y evidencias crudas sobre un objeto o
+concepto.
+Información Idea elaborada a partir de la combinación y organiza-
+ción de datos.
+Conocimiento Información contextual que ayuda a entender una si-
+tuación real; define la experiencia.
+Sabiduría Comprensión completa de los efectos y resultados del
+conocimiento (nivel más elevado).
+2.3 IA Simbólica frente a IA Subsimbólica
+Existen dos paradigmas diferenciados en la IA:
+IA Simbólica IA Subsimbólica
+El conocimiento se representa median-
+te unidades discretas (símbolos) que se
+combinan en un formalismo.
+El conocimiento queda implícito en propie-
+dades de los objetos (pesos, probabilidades,
+heurísticas).
+Enfoque clásico/original de la IA. Inclu-
+ye RC, lógica, sistemas de reglas.
+Surge como respuesta a laslimitacionesdel
+enfoque simbólico (incertidumbre, conocimien-
+to espacial...).
+Conocimiento explícito y manipulable.Técnicas: SVM,redes neuronales, aprendi-
+zaje automático.
+Este tema se centra en laIA simbólicay sus métodos de representación.
+2
+Las descargas sin publicidad se realizan con las coins
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13523436 
+.
+ 
+ 
+ 
+ 
+
+IA — Tema 6: Representación del ConocimientoUJA·Ingeniería Informática
+3 Clasificación del Conocimiento
+3.1 Tácito vs. Explícito
+Primera clasificación según laposibilidad de comunicarel conocimiento:
+Conocimiento Tácito Conocimiento Explícito
+Existeencarnadodentro del ser hu-
+mano.
+Puedeexistirfueradelossereshumanos.
+Difícil de expresar en una estructura.Fácil de estructurar y expresar.
+Complicado de comunicar o compartir.Puede ser compartido, procesado y guar-
+dado.
+Se elabora a partir de la experiencia y
+una visión subjetiva.
+Se elabora a partir de conceptos, proce-
+sos, procedimientos y principios.
+3.1.1 Componentes del Conocimiento Explícito
+El conocimiento explícito se construye a partir de los siguientes objetos:
+▶Hechos: Instancias o datos específicos y únicos.
+▶ Objetos/Individuos: Elementos concretos (personas, edificios...) o abstractos (tiempo,
+números...). También denominadosinstancias.
+▶ Conceptos/Clases: Agrupan objetos que comparten características comunes (ej.: clase
+EstudiantesIA).
+▶ Relaciones entre clases: Indican posibles asociaciones entre clases o entre sus instan-
+cias.
+▶Principios: Directrices, reglas y normas que rigen la toma de decisiones.
+▶ Eventos (procesos/procedimientos): Acciones que se pueden llevar a cabo sobre el
+conocimiento; definibles de forma declarativa o procedimental.
+3.2 Declarativo vs. Procedimental
+Segunda clasificación según el tipo de pregunta que responde:
+Declarativo (¿qué?) Procedimental (¿cómo?)
+Enfoque Representahechos y afirmaciones; lo
+que es verdad o falso.
+Especificapasos e instruccionespara
+alcanzar un objetivo.
+Ventajas Fácil de agregar nuevo conocimiento;
+el más utilizado.
+Muy fácil de aplicar directamente.
+DesventajasLimita el proceso de inferencia.Dificulta la inferencia, modificación y
+verificación.
+3
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13523436 
+.
+ 
+ 
+ 
+ 
+
+IA — Tema 6: Representación del ConocimientoUJA·Ingeniería Informática
+3.3 Tipos de Conocimiento Declarativo
+3.3.1 Conocimiento Relacional
+Forma más sencilla: hechos declarativos representados comotablas(al estilo de una base de
+datos). Útil para grandes cantidades de datos, pero limitado en la IA porque solo permite hechos
+simples y razonamientos basados en búsqueda.
+3.3.2 Conocimiento Inferencial (Deductivo)
+Describe el conocimiento mediantelógica formal. Utiliza la semántica de los operadores y
+elmodus ponenspara inferir nuevas conclusiones a partir de premisas.
+3.3.3 Conocimiento Heredable
+Estructurajerárquicaque permite reutilizar y extender el conocimiento de forma incremental:
+•Se organiza encategorías(abstracciones que representan características comunes).
+• Si se anidan categorías en subcategorías mediante un árbol, se obtiene unataxonomía.
+•Las relaciones se representan como árbol (taxonomía) o grafo (red).
+• Usalógica de primer ordeny teoría de conjuntos: pertenencia (∈) para instancias,
+subconjunto (⊆) para subcategorías.
+Herencia: Mecanismo que define relaciones de pertenencia entre categorías, permitiendo
+que una categoría seasubtipode otra (generalización/especialización).
+Superclase→conocimiento general y características comunes.
+Subclase→información más concreta y características específicas.
+Figura 1: Taxonomía de señales de tráfico verticales como ejemplo de conocimiento heredable.
+(Fuente: Diapositiva 22 del temario)
+4
+Las descargas sin publicidad se realizan con las coins
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13523436 
+.
+ 
+ 
+ 
+ 
+
+IA — Tema 6: Representación del ConocimientoUJA·Ingeniería Informática
+3.4 Conocimiento Tácito y Heurístico
+▶ Conocimiento heurístico: Reglas prácticas o «atajos» derivados de la experiencia
+experta. No garantiza resultados óptimos, pero suele ser eficaz.
+▶ Conocimiento incierto: No se puede afirmar con certeza; se maneja con probabilidades
+o lógica borrosa.
+4 La Representación del Conocimiento
+Una vez clasificado el conocimiento, se necesitanformalismos computacionalespara
+representarlo y razonar sobre él. Los principales son:
+Formalismo Características principales
+Lógica Descriptiva Lenguaje formal; inferencia: subsunción, clasifica-
+ción, consistencia.
+Sistemas Basados en ReglasCaptura experiencia experta; separación conoci-
+miento/mecanismo de inferencia.
+Redes Semánticas y MarcosRepresentación gráfica; herencia de propiedades;
+valores por defecto.
+Ontologías Especificación formal compartida; componentes: cla-
+ses, relaciones, axiomas, instancias.
+Modelos Probabilísticos Manejo del conocimiento incierto con grados de
+creencia (Redes Bayesianas).
+Conjuntos Borrosos Predicados vagos (alto, bajo...) con funciones de
+pertenencia continuas.
+4.1 Lógica Descriptiva
+Lenguaje formal para construir y combinardefiniciones de categorías. Proporciona algo-
+ritmos para decidir relaciones de subconjunto y superconjunto entre ellas. Ha evolucionado
+a partir de las redes semánticas para formalizar su significado.
+Tareas básicas de inferencia:
+▷Subsunción: ¿Es la categoría A un subconjunto de B?
+▷Clasificación: ¿Pertenece el objeto X a la categoría C?
+▷ Consistencia: ¿Puede satisfacerse lógicamente el criterio de pertenencia a una categoría?
+Ejemplo en Classic (1989):
+Soltero = Y(NoCasado, Adulto, Masculino)
+En lógica de primer orden:
+Soltero(x)⇔NoCasado(x)∧Adulto(x)∧Masculino(x)
+4.1.1 Propiedades de los Métodos de Deducción
+Un buen método de deducción debe ser evaluado según:
+•Corrección: Solo devuelve conclusiones verdaderas.
+5
+Las descargas sin publicidad se realizan con las coins
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13523436 
+.
+ 
+ 
+ 
+ 
+
+IA — Tema 6: Representación del ConocimientoUJA·Ingeniería Informática
+•Completitud: Devuelvetodaslas conclusiones verdaderas posibles.
+•Poder expresivodel lenguaje.
+•Propiedades computacionales(eficiencia).
+•Grado de síntesisde las expresiones.
+4.1.2 Tipos de Lógica
+▷ Lógica Proposicional (orden 0): El lenguaje más sencillo. Proposiciones atómicas que
+solo pueden ser verdaderas o falsas. Métodos deductivos: árbol semántico, demostración
+por refutación.
+▷ Lógica de Primer Orden: Extensión con variables, cuantificadores (∀,∃) y predicados.
+▷ Lógicas No Monótonas: Permitenvolver atrásen las conclusiones cuando llega nueva
+información (necesarias para el razonamiento por defecto).
+▷Lógicas Modales: Para expresar necesidad, posibilidad, creencias, etc.
+4.2 Sistemas Basados en Reglas (SBR)
+Los SBR capturan laexperiencia humanaen la resolución de problemas para alcanzar
+decisiones consistentes y repetibles. Son especialmente útiles en dominios donde escasean
+los expertos.
+4.2.1 Arquitectura de un SBR
+Un SBR consta de tres componentes principales:
+Figura 2: Arquitectura general de un Sistema Basado en Reglas: Base de Hechos, Base de
+Conocimiento y Motor de Inferencia. (Fuente: Diapositiva 36 del temario)
+6
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13523436 
+.
+ 
+ 
+ 
+ 
+
+IA — Tema 6: Representación del ConocimientoUJA·Ingeniería Informática
+▶ Base de Hechos: Memoria de trabajo con los hechos establecidos; sirve para determinar
+qué reglas pueden aplicarse.
+▶Base de Conocimiento: Reglas de la forma:
+SIantecedente/condiciónENTONCESconsecuente/acción
+▶ Motor de Inferencia: Examina la Base de Hechos y decide qué reglasdisparar
+(equiparación + resolución de conflictos).
+4.2.2 Modos de Inferencia
+Modo Descripción
+Encadenamiento hacia adelante (forward chaining)Parte dehechos conocidosy
+aplica reglas repetidamente has-
+ta no generar nuevos hechos. Di-
+rigido por datos.
+Encadenamiento hacia atrás (backward chaining)Parte dehipótesise intenta ve-
+rificarlas usando hechos de la ba-
+se o datos externos. Dirigido por
+metas.
+Razonamiento mixto Combinación de ambos modos
+según el problema.
+4.3 Redes Semánticas y Marcos
+Las redes semánticas representan el conocimiento de formagráfica, centrando la atención en
+lasrelacionesentre conceptos:
+•Los nodos representan objetos o categorías; las aristas, las relaciones entre ellos.
+• Herencia: Los objetos heredan propiedades de su categoría (ej.: Gatos y Osos tienen
+vértebras porque son Mamíferos→Animales).
+• Son apropiadas para representarvalores por defecto: si un objeto no tiene asignada
+una propiedad, toma la de su categoría.
+•Una propiedad asignada al objetosobrescribeel valor heredado.
+4.4 Ontologías
+Una ontología es unaespecificación formal de una conceptualización compartida:
+define los conceptos de un dominio y sus interrelaciones de forma que puedan ser interpretadas
+por máquinas.
+Los formalismos ontológicos comparten un conjunto mínimo de componentes:
+7
+Las descargas sin publicidad se realizan con las coins
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13523436 
+.
+ 
+ 
+ 
+ 
+
+IA — Tema 6: Representación del ConocimientoUJA·Ingeniería Informática
+Figura 3: Ejemplo de red semántica con relacioneses-un, tieney vive-enentre conceptos del
+mundo animal. (Fuente: Diapositiva 39 del temario)
+ComponenteDescripción
+Clases Representan los conceptos del dominio en su sentido
+más amplio (ej.: lugares, alojamientos).
+Relaciones Tipo de asociación entre conceptos; cualquier subcon-
+junto de un producto denconjuntos.
+Axiomas Afirmaciones siempre ciertas; modelizan conocimiento
+que no puede definirse con otros componentes.
+Instancias Representan elementos o individuos concretos en la
+ontología.
+Las ontologías fomentan lareutilizacióndel conocimiento mediante el ensamblado de
+componentes, lo que permite construir bases de conocimiento más grandes y coherentes.
+4.5 Sistemas Basados en Modelos Probabilísticos
+El conocimiento humano raramente es completamente cierto. Los sistemas probabilísticos
+modelan elconocimiento inciertoasignando a cada oración ungrado de creenciap∈ [0, 1]:
+•p= 0: la oración se cree falsa.
+•p= 1: la oración se cree totalmente cierta.
+•0<p<1: grado de incertidumbre parcial.
+El formalismo más utilizado son lasRedes Bayesianas:
+▷ Grafos Dirigidos Acíclicos (DAG) que representan de forma compacta grandes modelos
+probabilísticos.
+▷El motor de inferencia se basa fundamentalmente en laRegla de Bayes.
+8
+Las descargas sin publicidad se realizan con las coins
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13523436 
+.
+ 
+ 
+ 
+ 
+
+IA — Tema 6: Representación del ConocimientoUJA·Ingeniería Informática
+Figura 4: Red semántica con relacionesSubsetOfy MemberOf: Mary y John como instancias de
+FemalePerson y MalePerson, subconjuntos de Persons⊆Mammals. (Fuente: Diapositiva 40 del
+temario)
+Regla de Bayes:
+P(A|B) = P(B|A)·P(A)
+P(B)
+Permite actualizar la probabilidad deAtras observar la evidenciaB.
+4.6 Conjuntos Borrosos (Fuzzy Sets)
+Las ciencias formales clásicas solo admiten predicadosprecisos(verdadero/falso). Sin embar-
+go, el lenguaje natural está plagado de predicadosvagos:alto, bajo, rápido, caliente...
+▶Un predicado preciso tiene una función de pertenenciaµ:X→{0,1}.
+▶ Unpredicado vagotiene una función de pertenenciaµ :X→ [0,1]cuyaformadebe
+capturar adecuadamente el significado del predicado.
+LaTeoría de Conjuntos Borrosos(Zadeh, 1965) y laLógica Borrosasurgieron como
+herramientas formales para el análisis del lenguaje ordinario y el razonamiento aproximado.
+4.7 Razonamiento por Defecto y Mantenimiento de Verdad
+4.7.1 Razonamiento por Defecto
+Cuando falta información sobre un objeto, se usan losvalores por defectode su categoría.
+Esto introduce un problema: al recibir nueva información, conclusiones anteriores pueden volverse
+falsas→el razonamiento se vuelveno monótono.
+9
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13523436 
+.
+ 
+ 
+ 
+ 
+
+IA — Tema 6: Representación del ConocimientoUJA·Ingeniería Informática
+Figura 5: Distintas funciones de pertenencia para el predicado vago «Alto» según la estatura (en
+metros). De izquierda a derecha: escalonada, trapezoidal, gaussiana suave, sigmoide. (Fuente:
+Diapositiva 44 del temario)
+Tipo de LógicaComportamiento
+Monótona Lo que es cierto se mantiene cierto al añadir
+nuevo conocimiento.
+No Monótona Puederetractarsede conclusiones previas cuando
+aparece nueva información.
+4.7.2 Sistemas de Mantenimiento de Verdad (SMV)
+Cuando se incorpora nuevo conocimiento, el agente deberevisar sus creencias:
+•Se anota unajustificacióna cada sentencia inferida en la base de conocimiento.
+•Alretraerun hecho, se eliminan todas las sentencias que lo tenían en su justificación.
+•Los SMV están diseñados para realizar estas operaciones de formaeficiente.
+5 Resumen y Puntos Clave para el Examen
+1.Lajerarquía DIKW: Datos→Información→Conocimiento→Sabiduría.
+2. IA simbólica vs. subsimbólica: la primera usa símbolos explícitos; la segunda aprende
+representaciones implícitas.
+3. Tácito vs. Explícito: el tácito es difícil de externalizar; el explícito puede compartirse
+y procesarse.
+4. Declarativo (qué)frente aProcedimental (cómo): distintos tipos de representación
+con ventajas e inconvenientes complementarios.
+5.El conocimiento declarativo se subdivide enrelacional,inferencialyheredable.
+6. Laherenciapermite reutilizar conocimiento a través de taxonomías (árbol) o redes
+(grafo).
+10
+Las descargas sin publicidad se realizan con las coins
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13523436 
+.
+ 
+ 
+ 
+ 
+
+IA — Tema 6: Representación del ConocimientoUJA·Ingeniería Informática
+7. Un SBR tiene tres partes:Base de Hechos,Base de ConocimientoyMotor de
+Inferencia.
+8. Los modos de inferencia en SBR sonhacia adelante(datos→conclusiones) yhacia
+atrás(hipótesis→verificación).
+9. LasRedes Semánticasrepresentan conocimiento gráficamente y soportan herencia y
+valores por defecto.
+10. Unaontología= clases + relaciones + axiomas + instancias; promueve la reutilización.
+11.LasRedes Bayesianasmodelan la incertidumbre con grados de creencia∈[0,1].
+12.Lalógica borrosamaneja predicados vagos con funciones de pertenencia continuas.
+13. Elrazonamiento no monótonoy losSMVgestionan la revisión de creencias al
+recibir nueva información.
+11
+Las descargas sin publicidad se realizan con las coins
+Reservados todos los derechos. No se permite la explotación económica ni la transformación de esta obra. Queda permitida la impresión en su totalidad.
+a64b0469ff35958ef4ab887a898bd50bdfbbe91a-13523436 
+.
+ 
+ 
+ 
+ 
+

@@ -1,15 +1,53 @@
-import { useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { HomePage, TestStartPage, QuizPage, ResultsPage } from "./pages";
-import { useSettingsStore } from "./stores/useSettingsStore";
-import { audioManager } from "./services/audioManager";
-import { themeManager } from "./services/themeManager";
-import "./styles/global.css";
-import "./styles/variables.css";
+import { useEffect, useLayoutEffect } from 'react';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from 'react-router-dom';
+import { AnimatePresence, MotionConfig } from 'framer-motion';
+import { HomePage, TestStartPage, QuizPage, ResultsPage } from './pages';
+import { useSettingsStore } from './stores/useSettingsStore';
+import { audioManager } from './services/audioManager';
+import { themeManager } from './services/themeManager';
+import './styles/global.css';
+import './styles/variables.css';
+
+const ROUTE_TITLES: Record<string, string> = {
+  '/': 'QuizMind — Tests Interactivos',
+  '/start': 'QuizMind — Preparar test',
+  '/quiz': 'QuizMind — Test en curso',
+  '/results': 'QuizMind — Resultados',
+};
+
+function AppRoutes() {
+  const location = useLocation();
+
+  useEffect(() => {
+    document.title =
+      ROUTE_TITLES[location.pathname] ?? 'QuizMind — Tests Interactivos';
+    // En /quiz el foco lo gestiona QuestionCard (h2 de la pregunta)
+    if (location.pathname !== '/quiz') {
+      document.getElementById('main-content')?.focus();
+    }
+  }, [location.pathname]);
+
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/start" element={<TestStartPage />} />
+        <Route path="/quiz" element={<QuizPage />} />
+        <Route path="/results" element={<ResultsPage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </AnimatePresence>
+  );
+}
 
 function App() {
   const loadSettings = useSettingsStore((s) => s.loadSettings);
-  const unlockAudio = useSettingsStore((s) => s.unlockAudio);
 
   const theme = useSettingsStore((s) => s.theme);
 
@@ -19,28 +57,27 @@ function App() {
 
     const handleFirstInteraction = () => {
       audioManager.unlock();
-      unlockAudio();
-      document.removeEventListener("click", handleFirstInteraction);
+      document.removeEventListener('click', handleFirstInteraction);
+      document.removeEventListener('keydown', handleFirstInteraction);
     };
-    document.addEventListener("click", handleFirstInteraction);
+    document.addEventListener('click', handleFirstInteraction);
+    document.addEventListener('keydown', handleFirstInteraction);
 
     return () => {
-      document.removeEventListener("click", handleFirstInteraction);
+      document.removeEventListener('click', handleFirstInteraction);
+      document.removeEventListener('keydown', handleFirstInteraction);
     };
-  }, [loadSettings, unlockAudio]);
+  }, [loadSettings]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     themeManager.applyTheme(theme);
   }, [theme]);
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/start" element={<TestStartPage />} />
-        <Route path="/quiz" element={<QuizPage />} />
-        <Route path="/results" element={<ResultsPage />} />
-      </Routes>
+      <MotionConfig reducedMotion="user">
+        <AppRoutes />
+      </MotionConfig>
     </BrowserRouter>
   );
 }

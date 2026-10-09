@@ -1,0 +1,457 @@
+{
+  "id": "sistemas-concurrentes-examenes-2122",
+  "title": "Sistemas Concurrentes y Distribuidos - Exámenes 2021-22",
+  "description": "Preguntas extraídas de los exámenes de convocatoria ordinaria y extraordinaria del curso 2021-22",
+  "category": "Sistemas Concurrentes y Distribuidos",
+  "difficulty": "mixed",
+  "passThreshold": 0.6,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "En la comunicación síncrona entre procesos:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Ninguna primitiva de envío o recepción bloqueará a los procesos implicados"
+        },
+        { "id": "a2", "text": "La primitiva de envío bloqueará al emisor" },
+        {
+          "id": "a3",
+          "text": "Ambas primitivas de envío o recepción bloquearán a los procesos implicados",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "La primitiva de recepción bloqueará al proceso si no hay datos en el buzón"
+        }
+      ],
+      "explanation": "En comunicación síncrona, tanto el emisor como el receptor se bloquean hasta que se establece la sincronización."
+    },
+    {
+      "id": "q2",
+      "text": "¿Cuál de las siguientes afirmaciones es cierta?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "La concurrencia es un tipo de paralelismo" },
+        {
+          "id": "a2",
+          "text": "El paralelismo y la concurrencia son conceptos que no guardan relación alguna"
+        },
+        {
+          "id": "a3",
+          "text": "El paralelismo es un tipo de concurrencia",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "El paralelismo puede desarrollarse en sistemas monoprocesador"
+        }
+      ],
+      "explanation": "El paralelismo es un caso especial de concurrencia donde la ejecución es simultánea en múltiples procesadores."
+    },
+    {
+      "id": "q3",
+      "text": "Un livelock se produce:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "cuando todos los procesos están esperando que ocurra un evento que nunca se producirá"
+        },
+        {
+          "id": "a2",
+          "text": "si el resultado de la secuencia depende de la llegada relativa a algún punto crítico en la secuencia"
+        },
+        {
+          "id": "a3",
+          "text": "cuando existe un grupo de procesos que nunca progresan pues no se les otorga tiempo de procesador para avanzar",
+          "correct": true
+        },
+        { "id": "a4", "text": "ninguna de las otras respuestas es cierta" }
+      ],
+      "explanation": "En un livelock los procesos están activos pero no progresan, cambiando de estado en respuesta a otros procesos sin avanzar."
+    },
+    {
+      "id": "q4",
+      "text": "En el mecanismo de RPC, el resguardo o sustituto del procedimiento invocado se crea:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "en el lado del cliente" },
+        {
+          "id": "a2",
+          "text": "La creación de resguardos o stubs no es una técnica de RPC"
+        },
+        {
+          "id": "a3",
+          "text": "En el lado del cliente y en el lado del servidor"
+        },
+        { "id": "a4", "text": "en el lado del servidor", "correct": true }
+      ],
+      "explanation": "En RPC el resguardo del cliente representa al servidor localmente, pero el stub real del procedimiento invocado se crea en el lado del servidor."
+    },
+    {
+      "id": "q5",
+      "text": "La operación wait(.) de un semáforo:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "No hará nada con la variable del semáforo." },
+        {
+          "id": "a2",
+          "text": "Bloqueará un proceso si el valor de la variable es 0."
+        },
+        {
+          "id": "a3",
+          "text": "Decrementará siempre el valor de la variable del semáforo.",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Si hay procesos bloqueados no incrementará el valor de la variable del semáforo."
+        }
+      ],
+      "explanation": "Wait decrementa siempre el valor del semáforo; si resulta negativo, el proceso se bloquea."
+    },
+    {
+      "id": "q6",
+      "text": "Las variables de condición en un monitor:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Controlan diferentes condiciones dentro del monitor",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Garantizan la exclusión mutua de las funciones del monitor"
+        },
+        { "id": "a3", "text": "Son como los semáforos dentro del monitor" },
+        {
+          "id": "a4",
+          "text": "Son necesarias para poder mantener la sincronización de los procesos dentro del monitor"
+        }
+      ],
+      "explanation": "Las variables de condición permiten a los procesos esperar dentro del monitor condiciones específicas."
+    },
+    {
+      "id": "q7",
+      "text": "Un semáforo 's' inicializado a 1:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Dos procesos podrán ejecutar wait(s) sin bloquearse."
+        },
+        {
+          "id": "a2",
+          "text": "Permite que dos procesos entren simultáneamente en su sección crítica."
+        },
+        {
+          "id": "a3",
+          "text": "El primer proceso que alcance la sentencia wait podrá acceder a su sección crítica.",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Los semáforos se inicializan siempre a valor 1."
+        }
+      ],
+      "explanation": "Con valor inicial 1, solo el primer proceso que ejecute wait puede entrar; los siguientes se bloquean."
+    },
+    {
+      "id": "q8",
+      "text": "La ejecución concurrente de varios procesos implica:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Una arquitectura del Sistema Operativo que la permita.",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "La necesidad de múltiples unidades de procesamiento."
+        },
+        {
+          "id": "a3",
+          "text": "Que existan múltiples programas dentro del sistema."
+        },
+        { "id": "a4", "text": "Un sistema Operativo Monoprogramado." }
+      ],
+      "explanation": "La concurrencia requiere un SO que permita la intercalación de procesos, no necesariamente múltiples procesadores."
+    },
+    {
+      "id": "q9",
+      "text": "El algoritmo de Hyman para exclusión mutua basado en espera ocupada:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "No garantiza la exclusión mutua." },
+        { "id": "a2", "text": "Puede provocar inanición en los procesos." },
+        {
+          "id": "a3",
+          "text": "En caso de conflicto, concede acceso a la sección crítica de forma aleatoria.",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Cada proceso conoce la intención de acceso a la sección crítica del resto de procesos."
+        }
+      ],
+      "explanation": "El algoritmo de Hyman no garantiza correctamente la exclusión mutua y presenta problemas en situaciones de conflicto."
+    },
+    {
+      "id": "q10",
+      "text": "En la semántica 'resume & exit', el proceso desbloqueado por delay(v) es:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "El primer proceso que estuviera bloqueado en la cola de la variable de condición v.",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "El primer proceso que estuviera esperando para acceder al monitor."
+        },
+        {
+          "id": "a3",
+          "text": "Se elige aleatoriamente procesos bloqueados en la variable o en el monitor."
+        },
+        {
+          "id": "a4",
+          "text": "La operación delay no desbloquea ningún proceso."
+        }
+      ],
+      "explanation": "En la semántica resume & exit, delay(v) desbloquea el primero de la cola de la variable de condición v."
+    },
+    {
+      "id": "q11",
+      "text": "En el problema del productor/consumidor, si la primitiva de envío bloquea al productor:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "No hay solución posible con esa suposición de partida."
+        },
+        {
+          "id": "a2",
+          "text": "Deberemos utilizar un buzón de tamaño indefinido."
+        },
+        { "id": "a3", "text": "Ninguna de las respuestas es correcta." },
+        {
+          "id": "a4",
+          "text": "El emisor deberá asegurarse que el consumidor esté disponible.",
+          "correct": true
+        }
+      ],
+      "explanation": "Si el envío bloquea al productor, este debe esperar a que el consumidor esté listo para recibir."
+    },
+    {
+      "id": "q12",
+      "text": "El paso de mensajes asíncrono permite la comunicación:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Muchos a uno" },
+        { "id": "a2", "text": "Uno a muchos" },
+        { "id": "a3", "text": "Muchos a muchos" },
+        {
+          "id": "a4",
+          "text": "Todas las respuestas son correctas",
+          "correct": true
+        }
+      ],
+      "explanation": "El paso de mensajes asíncrono es flexible y permite comunicación uno a uno, uno a muchos, muchos a uno y muchos a muchos."
+    },
+    {
+      "id": "q13",
+      "text": "Si en la definición de un método de una clase Java aparece la palabra reservada synchronized:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Sólo lo ejecutará un hilo a lo largo de la ejecución de la aplicación."
+        },
+        {
+          "id": "a2",
+          "text": "Sólo podrá ser ejecutado por un único hilo a la vez.",
+          "correct": true
+        },
+        { "id": "a3", "text": "Ninguna de las respuestas es correcta." },
+        {
+          "id": "a4",
+          "text": "No puede formar parte de la definición de un método."
+        }
+      ],
+      "explanation": "Synchronized garantiza que solo un hilo a la vez puede ejecutar ese método, implementando exclusión mutua."
+    },
+    {
+      "id": "q14",
+      "text": "Para poder seguir la ejecución de un hilo será necesario almacenar:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Una cantidad de información similar a la necesaria para gestionar un proceso."
+        },
+        {
+          "id": "a2",
+          "text": "Al menos la información de contexto y pila.",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "La información de contexto, pila y recursos asignados."
+        },
+        { "id": "a4", "text": "Ninguna de las anteriores es correcta." }
+      ],
+      "explanation": "Un hilo necesita al menos su contexto de ejecución y su pila para poder continuar su ejecución."
+    },
+    {
+      "id": "q15",
+      "text": "En la instrucción de espera selectiva select, el proceso que la ejecuta se bloquea si:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "La instrucción select no genera bloqueo del proceso."
+        },
+        { "id": "a2", "text": "No disponga de alternativa else." },
+        {
+          "id": "a3",
+          "text": "No se cumple ninguna de las guardas, si las tuviera."
+        },
+        {
+          "id": "a4",
+          "text": "No existe ningún mensaje en los buzones/canales que se manejan.",
+          "correct": true
+        }
+      ],
+      "explanation": "El select se bloquea cuando no hay ningún mensaje disponible en ninguno de los buzones o canales que monitoriza."
+    },
+    {
+      "id": "q16",
+      "text": "Si en nuestra aplicación se produce una división por 0:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "La aplicación continuará con la siguiente sentencia."
+        },
+        {
+          "id": "a2",
+          "text": "Finalizará la ejecución del hilo asociado a esa operación.",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Finalizará la ejecución de todos los hilos de la aplicación."
+        },
+        {
+          "id": "a4",
+          "text": "Se pedirá al usuario que introduzca otro valor para el denominador."
+        }
+      ],
+      "explanation": "La excepción de división por cero termina únicamente el hilo donde se produce, no toda la aplicación."
+    },
+    {
+      "id": "q17",
+      "text": "La sentencia delay de un monitor:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Tiene la misma lógica de funcionamiento que la operación signal de un semáforo."
+        },
+        {
+          "id": "a2",
+          "text": "Permite bloquear a un proceso en el monitor dentro de una variable de condición.",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Sólo se aplica a una variable de condición del monitor si hay procesos bloqueados en la misma."
+        },
+        {
+          "id": "a4",
+          "text": "Librará a un proceso bloqueado en la variable de condición del monitor. Si no hay, no tiene efecto."
+        }
+      ],
+      "explanation": "Delay bloquea al proceso invocante en la cola de la variable de condición del monitor."
+    },
+    {
+      "id": "q18",
+      "text": "En las llamadas a procedimiento remoto (RPC), la invocación al resguardo del cliente:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "No requiere de conexión entre cliente y servidor."
+        },
+        {
+          "id": "a2",
+          "text": "Siempre genera el bloqueo del proceso que realiza la invocación."
+        },
+        {
+          "id": "a3",
+          "text": "La invocación se realiza siempre de un módulo que se encuentra en otro sistema."
+        },
+        {
+          "id": "a4",
+          "text": "Debe garantizar que existe concordancia entre los parámetros.",
+          "correct": true
+        }
+      ],
+      "explanation": "El resguardo del cliente debe asegurar que los parámetros enviados al servidor son correctos y concordantes."
+    },
+    {
+      "id": "q19",
+      "text": "La asignación de procesadores físicos a hilos se realiza:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Directamente, asignando la CPU al proceso del que forma parte un único hilo."
+        },
+        {
+          "id": "a2",
+          "text": "Indirectamente, asignando los procesadores lógicos a una CPU."
+        },
+        {
+          "id": "a3",
+          "text": "Directamente, por parte del planificador del Sistema Operativo."
+        },
+        {
+          "id": "a4",
+          "text": "Se hace a dos niveles: asignando hilos de usuario a procesadores lógicos, y procesadores lógicos a procesadores físicos.",
+          "correct": true
+        }
+      ],
+      "explanation": "La asignación de procesadores es un proceso de dos niveles: hilos de usuario → procesadores lógicos → procesadores físicos."
+    },
+    {
+      "id": "q20",
+      "text": "La siguiente solución al problema de los filósofos con semáforos palillo[5]={1,1,1,1,1} donde cada filósofo hace wait(palillo[i]) y wait(palillo[(i+1)mod 5]):",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Resuelve el problema cumpliendo todas las propiedades."
+        },
+        {
+          "id": "a2",
+          "text": "Puede generar interbloqueo entre los procesos.",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Puede generar inanición en uno de los filósofos."
+        },
+        { "id": "a4", "text": "Ninguna de las respuestas es correcta." }
+      ],
+      "explanation": "Si todos los filósofos toman su palillo izquierdo simultáneamente, ninguno puede tomar el derecho: interbloqueo."
+    }
+  ]
+}

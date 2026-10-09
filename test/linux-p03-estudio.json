@@ -1,0 +1,204 @@
+{
+  "id": "linux-p03-estudio",
+  "title": "Aprendiendo Linux - P03: Sistema de Ficheros y Permisos (Estudio)",
+  "description": "Preguntas básicas con explicación tras cada respuesta sobre trayectorias, permisos, chmod y umask. Primera vuelta de estudio del tema.",
+  "category": "Sistemas Operativos",
+  "difficulty": "easy",
+  "passThreshold": 0.5,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "¿Cuáles son los tres tipos de ficheros en UNIX?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Ordinarios, directorios y especiales", "correct": true },
+        { "id": "a2", "text": "Texto, binarios y carpetas" },
+        { "id": "a3", "text": "Locales, remotos y compartidos" },
+        { "id": "a4", "text": "Ficheros, enlaces y procesos" }
+      ],
+      "explanation": "Los especiales son dispositivos (de carácter y de bloque) que viven en /dev."
+    },
+    {
+      "id": "q2",
+      "text": "¿Cuál es el directorio raíz del sistema de ficheros?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "/", "correct": true },
+        { "id": "a2", "text": "/root" },
+        { "id": "a3", "text": "/home" },
+        { "id": "a4", "text": "/usr" }
+      ],
+      "explanation": "/root es el home del administrador y /home contiene los homes de los usuarios."
+    },
+    {
+      "id": "q3",
+      "text": "¿Qué diferencia hay entre una trayectoria absoluta y una relativa?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "La absoluta empieza por / y la relativa parte del directorio actual", "correct": true },
+        { "id": "a2", "text": "La absoluta es siempre más corta" },
+        { "id": "a3", "text": "La relativa empieza por /" },
+        { "id": "a4", "text": "No hay ninguna diferencia" }
+      ],
+      "explanation": "/usr/humberto es absoluta; dir/f es relativa al directorio actual."
+    },
+    {
+      "id": "q4",
+      "text": "¿A qué hacen referencia '.' y '..' en una trayectoria?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Al directorio actual y al directorio padre", "correct": true },
+        { "id": "a2", "text": "Al directorio padre y a la raíz" },
+        { "id": "a3", "text": "A la raíz y al home" },
+        { "id": "a4", "text": "A los ficheros ocultos" }
+      ],
+      "explanation": "En la raíz, .. apunta a sí misma (es su propio padre)."
+    },
+    {
+      "id": "q5",
+      "text": "¿Qué añade la opción -a a la orden ls?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Muestra también los ficheros ocultos (los que empiezan por .)", "correct": true },
+        { "id": "a2", "text": "Añade los permisos a la salida" },
+        { "id": "a3", "text": "Ordena por fecha de modificación" },
+        { "id": "a4", "text": "Muestra el número de inodo" }
+      ],
+      "explanation": "Ocultos = los que empiezan por punto (.perfil). Para inodos está -i y para formato largo -l."
+    },
+    {
+      "id": "q6",
+      "text": "¿Qué hace la orden `ls -d directorio`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Muestra información del directorio en sí, sin listar su contenido", "correct": true },
+        { "id": "a2", "text": "Lista solo los subdirectorios que contiene" },
+        { "id": "a3", "text": "Ordena el contenido por fecha" },
+        { "id": "a4", "text": "Elimina el directorio" }
+      ],
+      "explanation": "Sin -d, ls lista el CONTENIDO del directorio; con -d muestra la entrada del propio directorio."
+    },
+    {
+      "id": "q7",
+      "text": "¿Cuántos caracteres forman los permisos en ls -l y cómo se agrupan?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "9 caracteres: propietario, grupo y otros (3 grupos de 3)", "correct": true },
+        { "id": "a2", "text": "3 caracteres: lectura, escritura y ejecución" },
+        { "id": "a3", "text": "6 caracteres: propietario y grupo" },
+        { "id": "a4", "text": "9 caracteres: otros, grupo y propietario, en ese orden" }
+      ],
+      "explanation": "Ejemplo: -rwxr-xr-- → rwx (propietario), r-x (grupo), r-- (otros)."
+    },
+    {
+      "id": "q8",
+      "text": "En un directorio, ¿qué permiso permite listar su contenido?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "r", "correct": true },
+        { "id": "a2", "text": "w" },
+        { "id": "a3", "text": "x" },
+        { "id": "a4", "text": "s" }
+      ],
+      "explanation": "r permite ver los nombres; w crear/borrar entradas; x atravesarlo y acceder a un fichero si se conoce su nombre."
+    },
+    {
+      "id": "q9",
+      "text": "¿Qué permisos establece `chmod 644 fichero`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "rw-r--r--", "correct": true },
+        { "id": "a2", "text": "rwxr-xr-x" },
+        { "id": "a3", "text": "rw-rw-rw-" },
+        { "id": "a4", "text": "r--r--r--" }
+      ],
+      "explanation": "6 = rw para el propietario; 4 = r para grupo y otros."
+    },
+    {
+      "id": "q10",
+      "text": "¿Qué es la umask?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Una máscara que indica qué permisos NO se conceden al crear ficheros y directorios", "correct": true },
+        { "id": "a2", "text": "Los permisos por defecto que se conceden siempre" },
+        { "id": "a3", "text": "El usuario propietario de un fichero" },
+        { "id": "a4", "text": "Un tipo de enlace entre ficheros" }
+      ],
+      "explanation": "Permisos finales = base AND NOT umask. Base: 666 ficheros, 777 directorios. Ubuntu usa 0002."
+    },
+    {
+      "id": "q11",
+      "text": "¿Qué hace el bit set-uid de un fichero ejecutable?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Al ejecutarlo, el proceso toma los permisos del propietario del fichero", "correct": true },
+        { "id": "a2", "text": "Impide que otros usuarios lo borren" },
+        { "id": "a3", "text": "Da permiso de escritura al grupo" },
+        { "id": "a4", "text": "Marca el fichero como ejecutable para todos" }
+      ],
+      "explanation": "Ejemplo clásico: passwd (set-uid de root) puede escribir en /etc/shadow. Aparece como s en el trío del propietario."
+    },
+    {
+      "id": "q12",
+      "text": "¿Qué efecto tiene el sticky bit en un directorio como /tmp?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Solo el propietario del fichero (o root) puede borrarlo o renombrarlo", "correct": true },
+        { "id": "a2", "text": "Todos los usuarios pueden leer todos los ficheros" },
+        { "id": "a3", "text": "Los ficheros se ejecutan como root" },
+        { "id": "a4", "text": "Los ficheros se borran solos al cerrar sesión" }
+      ],
+      "explanation": "Se muestra como t al final: drwxrwxrwt. Típico en /tmp, /var/tmp y /run/lock."
+    },
+    {
+      "id": "q13",
+      "text": "¿Qué diferencia hay entre `ls -ld d` y `ls -l d`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "`ls -ld d` muestra los permisos del directorio d; `ls -l d` lista el contenido de d", "correct": true },
+        { "id": "a2", "text": "Son exactamente iguales" },
+        { "id": "a3", "text": "`ls -ld d` lista el contenido; `ls -l d` muestra el directorio" },
+        { "id": "a4", "text": "`ls -ld d` falla siempre" }
+      ],
+      "explanation": "-d evita que ls liste el contenido del directorio y muestra la entrada del propio directorio."
+    },
+    {
+      "id": "q14",
+      "text": "¿A qué permisos equivale 750?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "rwxr-x---", "correct": true },
+        { "id": "a2", "text": "rwxr-xr-x" },
+        { "id": "a3", "text": "rw-r-----" },
+        { "id": "a4", "text": "rwxrwx---" }
+      ],
+      "explanation": "7 = rwx (propietario), 5 = r-x (grupo), 0 = --- (otros)."
+    },
+    {
+      "id": "q15",
+      "text": "¿Qué orden se usa para cambiar los permisos de un fichero?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "chmod", "correct": true },
+        { "id": "a2", "text": "chown" },
+        { "id": "a3", "text": "chgrp" },
+        { "id": "a4", "text": "umask" }
+      ],
+      "explanation": "chmod admite forma simbólica (u+rwx, g-w, o=rx...) y octal (644, 750...). chown cambia el propietario y chgrp el grupo."
+    },
+    {
+      "id": "q16",
+      "text": "¿Qué contiene el fichero /etc/passwd?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Las cuentas de usuario: nombre, uid, gid, directorio base y shell", "correct": true },
+        { "id": "a2", "text": "Las contraseñas en texto claro" },
+        { "id": "a3", "text": "Los grupos del sistema" },
+        { "id": "a4", "text": "Los procesos en ejecución" }
+      ],
+      "explanation": "Formato: nombre:x:uid:gid:...:home:shell. La x indica que la contraseña cifrada está en /etc/shadow."
+    }
+  ]
+}

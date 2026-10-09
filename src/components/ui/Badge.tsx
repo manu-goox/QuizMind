@@ -2,10 +2,12 @@ import { type ReactNode } from 'react';
 import styles from './Badge.module.css';
 
 interface BadgeProps {
-  variant?: 'default' | 'success' | 'warning' | 'error';
+  variant?: 'default' | 'success' | 'warning' | 'error' | 'info' | 'outline';
   children: ReactNode;
 }
 
 export function Badge({ variant = 'default', children }: BadgeProps) {
-  return <span className={`${styles.badge} ${styles[variant]}`}>{children}</span>;
+  return (
+    <span className={`${styles.badge} ${styles[variant]}`}>{children}</span>
+  );
 }

@@ -1,0 +1,860 @@
+{
+  "id": "sistemas-concurrentes-examen-junio-2019",
+  "title": "Sistemas Concurrentes y Distribuidos - Examen Junio 2019",
+  "description": "Preguntas extraídas del examen de 40 preguntas de respuesta múltiple del 3 de junio de 2019",
+  "category": "Sistemas Concurrentes y Distribuidos",
+  "difficulty": "mixed",
+  "passThreshold": 0.6,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "La ejecución concurrente de varios procesos implica:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "La necesidad de múltiples unidades de procesamiento."
+        },
+        {
+          "id": "a2",
+          "text": "Que existan múltiples programas dentro del sistema."
+        },
+        {
+          "id": "a3",
+          "text": "Una arquitectura del Sistema Operativo que la permita.",
+          "correct": true
+        },
+        { "id": "a4", "text": "Un Sistema Operativo monoprogramado." }
+      ],
+      "explanation": "La concurrencia requiere un SO que soporte la gestión de múltiples procesos, no necesariamente múltiples procesadores."
+    },
+    {
+      "id": "q2",
+      "text": "Para un correcto funcionamiento de los procesos concurrentes se debe asegurar:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "La exclusión mutua y la sincronización." },
+        { "id": "a2", "text": "Sólo la exclusión mutua." },
+        {
+          "id": "a3",
+          "text": "La exclusión mutua, la sincronización y evitar el interbloqueo."
+        },
+        {
+          "id": "a4",
+          "text": "Ninguna de las respuestas es correcta.",
+          "correct": true
+        }
+      ],
+      "explanation": "Los programas concurrentes correctos deben garantizar viveza y seguridad, conceptos más amplios que los enumerados."
+    },
+    {
+      "id": "q3",
+      "text": "La posibilidad que nos permite un sistema multihilo es:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "No ofrece ninguna ventaja sobre un sistema multiproceso."
+        },
+        {
+          "id": "a2",
+          "text": "Permite una mejor paralelización de un problema sin necesidad de crear nuevos procesos.",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Son un elemento presente en todos los Sistemas Operativos."
+        },
+        { "id": "a4", "text": "Ninguna de las respuestas es correcta." }
+      ],
+      "explanation": "Los hilos permiten paralelizar dentro de un proceso sin la sobrecarga de crear procesos nuevos."
+    },
+    {
+      "id": "q4",
+      "text": "Para poder seguir la ejecución de un hilo será necesario almacenar:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Una cantidad de información similar a la necesaria para gestionar un proceso."
+        },
+        {
+          "id": "a2",
+          "text": "Al menos la información de contexto y pila.",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "La información de contexto, pila y recursos asignados."
+        },
+        { "id": "a4", "text": "Ninguna de las respuestas es correcta." }
+      ],
+      "explanation": "Un hilo necesita mínimamente su contexto de ejecución (registros, PC) y su propia pila."
+    },
+    {
+      "id": "q5",
+      "text": "El algoritmo de Dekker:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Soluciona el problema de sincronización entre procesos."
+        },
+        {
+          "id": "a2",
+          "text": "Es un algoritmo incorrecto para la solución de la exclusión mutua."
+        },
+        {
+          "id": "a3",
+          "text": "Soluciona mediante espera ocupada el problema de la exclusión mutua.",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Sufre de inanición para el problema de la exclusión mutua."
+        }
+      ],
+      "explanation": "Dekker es el primer algoritmo correcto de exclusión mutua para dos procesos, basado en espera ocupada."
+    },
+    {
+      "id": "q6",
+      "text": "El algoritmo de Peterson frente al de Dekker:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Tiene una mejor solución para el problema de sincronización entre procesos."
+        },
+        {
+          "id": "a2",
+          "text": "No tiene el problema de espera ocupada que sí tiene el de Dekker."
+        },
+        { "id": "a3", "text": "Es más eficiente que el algoritmo de Dekker." },
+        {
+          "id": "a4",
+          "text": "Ninguna de las respuestas es correcta.",
+          "correct": true
+        }
+      ],
+      "explanation": "Peterson también usa espera ocupada y no es intrínsecamente más eficiente; simplemente es más simple de implementar."
+    },
+    {
+      "id": "q7",
+      "text": "¿Cuándo hablamos que dos o más procesos son concurrentes?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Cuando tenemos al menos tantas unidades de procesamiento como procesos."
+        },
+        {
+          "id": "a2",
+          "text": "Es suficiente si las instrucciones de los procesos se intercalan en la ejecución.",
+          "correct": true
+        },
+        { "id": "a3", "text": "Cuando se ejecutan en ordenadores diferentes." },
+        { "id": "a4", "text": "Sólo en el caso de ejecución paralela." }
+      ],
+      "explanation": "La concurrencia se logra con la intercalación de instrucciones, sin requerir paralelismo real."
+    },
+    {
+      "id": "q8",
+      "text": "¿Qué son las condiciones de Bernstein?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Indican si dos o más procesos pueden ejecutarse concurrentemente."
+        },
+        {
+          "id": "a2",
+          "text": "Sirven para determinar las secciones críticas de los procesos."
+        },
+        {
+          "id": "a3",
+          "text": "Determinan si un conjunto de instrucciones pueden ejecutarse concurrentemente.",
+          "correct": true
+        },
+        { "id": "a4", "text": "Ayudan a la sincronización de los procesos." }
+      ],
+      "explanation": "Las condiciones de Bernstein determinan si dos conjuntos de instrucciones son independientes y pueden ejecutarse en paralelo."
+    },
+    {
+      "id": "q9",
+      "text": "En los programas concurrentes:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Podemos determinar de forma clara el orden de ejecución de las diferentes instrucciones que lo componen."
+        },
+        {
+          "id": "a2",
+          "text": "El tiempo empleado para terminar la ejecución siempre es la misma."
+        },
+        {
+          "id": "a3",
+          "text": "Se pueden producir resultados diferentes para el mismo conjunto de datos de entrada.",
+          "correct": true
+        },
+        { "id": "a4", "text": "Ninguna de las respuestas es correcta." }
+      ],
+      "explanation": "Los programas concurrentes pueden producir resultados no deterministas dependiendo del orden de ejecución."
+    },
+    {
+      "id": "q10",
+      "text": "Para que un programa concurrente sea correcto, deben cumplirse las siguientes propiedades:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Seguridad e inanición." },
+        { "id": "a2", "text": "Viveza y seguridad.", "correct": true },
+        { "id": "a3", "text": "Interbloqueo e inanición." },
+        { "id": "a4", "text": "Exclusión mutua y viveza." }
+      ],
+      "explanation": "Un programa concurrente correcto debe garantizar seguridad (nada malo ocurre) y viveza (algo bueno eventualmente ocurre)."
+    },
+    {
+      "id": "q11",
+      "text": "El algoritmo de Dekker (segunda mención):",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Está orientado a entornos distribuidos." },
+        {
+          "id": "a2",
+          "text": "Está orientado a entornos centralizados.",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Es válido para n procesos con ligeras modificaciones."
+        },
+        {
+          "id": "a4",
+          "text": "Presenta situaciones en las que puede no garantizar las propiedades de viveza."
+        }
+      ],
+      "explanation": "El algoritmo de Dekker está diseñado para memoria compartida, es decir, entornos centralizados."
+    },
+    {
+      "id": "q12",
+      "text": "En términos de eficiencia:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Los algoritmos de espera ocupada son más eficientes que los semáforos."
+        },
+        {
+          "id": "a2",
+          "text": "Los monitores son más eficientes que los semáforos."
+        },
+        {
+          "id": "a3",
+          "text": "A priori, no puede determinarse qué técnica de sincronización es la más eficiente.",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "La eficiencia de los semáforos depende exclusivamente de la CPU."
+        }
+      ],
+      "explanation": "La eficiencia depende del contexto de uso; no puede generalizarse qué técnica es siempre mejor."
+    },
+    {
+      "id": "q13",
+      "text": "La solución al problema de los filósofos con wait(palillo[i]) y wait(palillo[(i+5) MOD 5]):",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Resuelve el problema cumpliendo todas las propiedades."
+        },
+        {
+          "id": "a2",
+          "text": "Puede generar inanición en uno de los filósofos."
+        },
+        {
+          "id": "a3",
+          "text": "Puede generar interbloqueo entre los procesos.",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "No resuelve el problema en ninguna circunstancia."
+        }
+      ],
+      "explanation": "Todos los filósofos tomando su palillo izquierdo a la vez genera un deadlock clásico."
+    },
+    {
+      "id": "q14",
+      "text": "Dada la configuración de procesos P0 (A; signal(s); B;), P1 (C; wait(s); wait(t); D;), P2 (E; signal(t); F;), ¿qué se puede afirmar?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "B se ejecutará siempre después de C." },
+        {
+          "id": "a2",
+          "text": "D se ejecutará después de E y A.",
+          "correct": true
+        },
+        { "id": "a3", "text": "D se ejecutará siempre después de B y C." },
+        { "id": "a4", "text": "A se ejecutará antes de F." }
+      ],
+      "explanation": "D requiere que tanto wait(s) como wait(t) se desbloqueen, lo que ocurre después de A (signal(s)) y E (signal(t))."
+    },
+    {
+      "id": "q15",
+      "text": "¿Cuál de las siguientes afirmaciones es cierta?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "La concurrencia es un tipo de paralelismo." },
+        {
+          "id": "a2",
+          "text": "El paralelismo es un tipo de concurrencia.",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "El paralelismo y la concurrencia son conceptos que no guardan relación alguna."
+        },
+        {
+          "id": "a4",
+          "text": "El paralelismo puede desarrollarse en sistemas monoprocesador."
+        }
+      ],
+      "explanation": "El paralelismo es un subtipo de concurrencia donde la ejecución es simultánea en múltiples núcleos/procesadores."
+    },
+    {
+      "id": "q16",
+      "text": "Un interbloqueo (deadlock) se produce:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Cuando todos los procesos están esperando que ocurra un evento que nunca se producirá.",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Si el resultado de la secuencia depende de la llegada relativa a algún punto crítico en la secuencia."
+        },
+        {
+          "id": "a3",
+          "text": "Cuando existe un grupo de procesos que nunca progresan pues no se les otorga tiempo de procesador para avanzar."
+        },
+        { "id": "a4", "text": "Ninguna de las otras respuestas es cierta." }
+      ],
+      "explanation": "En un deadlock, todos los procesos involucrados esperan un evento que ninguno puede desencadenar."
+    },
+    {
+      "id": "q17",
+      "text": "Los semáforos son:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Herramientas que solucionan el problema de la exclusión mutua."
+        },
+        {
+          "id": "a2",
+          "text": "Herramientas para solucionar el problema de la concurrencia en Sistemas Distribuidos."
+        },
+        {
+          "id": "a3",
+          "text": "Una estructura de datos con operaciones atómicas para su manejo.",
+          "correct": true
+        },
+        { "id": "a4", "text": "Ninguna de las respuestas es correcta." }
+      ],
+      "explanation": "Los semáforos son estructuras de datos cuyas operaciones (wait/signal) son atómicas."
+    },
+    {
+      "id": "q18",
+      "text": "La inicialización de la variable de un semáforo:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Sólo puede hacerse una única vez en su ciclo de vida.",
+          "correct": true
+        },
+        { "id": "a2", "text": "No se inicializa en el ciclo de vida." },
+        {
+          "id": "a3",
+          "text": "Puede inicializarse tantas veces como se quiera."
+        },
+        { "id": "a4", "text": "Ninguna de las respuestas es correcta." }
+      ],
+      "explanation": "Un semáforo se inicializa una única vez; reinicializarlo durante su uso podría romper la sincronización."
+    },
+    {
+      "id": "q19",
+      "text": "La operación signal(.) de un semáforo:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Incrementará siempre el valor de la variable del semáforo."
+        },
+        { "id": "a2", "text": "Es una operación idempotente." },
+        { "id": "a3", "text": "Permite el bloqueo de un proceso." },
+        {
+          "id": "a4",
+          "text": "Ninguna de las respuestas es correcta.",
+          "correct": true
+        }
+      ],
+      "explanation": "Signal no siempre incrementa el valor (en implementaciones con procesos bloqueados puede no cambiar el contador) y no es idempotente."
+    },
+    {
+      "id": "q20",
+      "text": "Los monitores en relación a los semáforos:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Son herramientas de más bajo nivel de programación."
+        },
+        {
+          "id": "a2",
+          "text": "Son herramientas de más alto nivel de programación con una estructura que ayuda a la corrección del programa.",
+          "correct": true
+        },
+        { "id": "a3", "text": "No ayudan más que los semáforos." },
+        { "id": "a4", "text": "Ninguna de las respuestas es correcta." }
+      ],
+      "explanation": "Los monitores encapsulan datos y procedimientos, siendo una abstracción de más alto nivel que los semáforos."
+    },
+    {
+      "id": "q21",
+      "text": "Los semáforos:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Están presentes en todas las herramientas de programación."
+        },
+        {
+          "id": "a2",
+          "text": "Las herramientas de programación garantizan su uso correcto para solucionar el problema de la exclusión mutua."
+        },
+        {
+          "id": "a3",
+          "text": "Las herramientas de programación garantizan su uso correcto para solucionar el problema de la sincronización entre procesos."
+        },
+        {
+          "id": "a4",
+          "text": "Son herramientas de programación para el uso de los programadores en los problemas de concurrencia.",
+          "correct": true
+        }
+      ],
+      "explanation": "Los semáforos son primitivas de programación que los desarrolladores usan para resolver problemas de concurrencia."
+    },
+    {
+      "id": "q22",
+      "text": "En el problema del productor/consumidor resuelto mediante semáforos:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Los procesos productores deben sincronizarse entre sí para garantizar la corrección del problema."
+        },
+        {
+          "id": "a2",
+          "text": "Los procesos productores deben sincronizarse con los procesos consumidores para garantizar la corrección del problema.",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Los procesos productores deben sincronizarse con los procesos consumidores para garantizar la corrección del problema (igual que b)."
+        },
+        { "id": "a4", "text": "Ninguna de las respuestas es correcta." }
+      ],
+      "explanation": "La sincronización entre productores y consumidores es esencial para evitar que produzcan cuando el buffer está lleno o consuman cuando está vacío."
+    },
+    {
+      "id": "q23",
+      "text": "El problema del interbloqueo:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Se resuelve mediante el uso de semáforos." },
+        { "id": "a2", "text": "Se resuelve mediante el uso de monitores." },
+        {
+          "id": "a3",
+          "text": "No es un problema que se da en la programación concurrente."
+        },
+        {
+          "id": "a4",
+          "text": "Ninguna de las respuestas es correcta.",
+          "correct": true
+        }
+      ],
+      "explanation": "El interbloqueo no se resuelve automáticamente con semáforos o monitores; requiere diseño específico para su prevención o detección."
+    },
+    {
+      "id": "q24",
+      "text": "La sentencia resume de un monitor:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Tiene la misma lógica de funcionamiento que la operación signal de un semáforo."
+        },
+        {
+          "id": "a2",
+          "text": "Permite bloquear a un proceso en el monitor dentro de una variable de condición."
+        },
+        {
+          "id": "a3",
+          "text": "Solo se aplica a una variable de condición del monitor si hay procesos bloqueados en la misma."
+        },
+        {
+          "id": "a4",
+          "text": "Librará a un proceso bloqueado en la variable de condición del monitor. Si no hay, no tiene efecto.",
+          "correct": true
+        }
+      ],
+      "explanation": "Resume/signal en monitores desbloquea un proceso de la cola de la variable de condición; si no hay ninguno, no hace nada."
+    },
+    {
+      "id": "q25",
+      "text": "La operación wait(s):",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Bloquea el proceso que la ejecuta si s=1." },
+        {
+          "id": "a2",
+          "text": "Bloquea al proceso que la ejecuta si s=0.",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Decrementa el valor de s y entonces bloquea el proceso si s=0."
+        },
+        {
+          "id": "a4",
+          "text": "Si s=0 decrementa el valor de s y bloquea el proceso."
+        }
+      ],
+      "explanation": "Wait bloquea al proceso cuando el semáforo tiene valor 0 (no hay recursos disponibles)."
+    },
+    {
+      "id": "q26",
+      "text": "La gestión de los procesos bloqueados en un semáforo:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Debe ser siempre FIFO para evitar la inanición."
+        },
+        { "id": "a2", "text": "Puede ser FIFO o LIFO.", "correct": true },
+        {
+          "id": "a3",
+          "text": "El Sistema Operativo desbloqueará los procesos en función de la prioridad."
+        },
+        {
+          "id": "a4",
+          "text": "Mediante el uso de semáforos, los procesos no pasan a estado bloqueado."
+        }
+      ],
+      "explanation": "La política de la cola del semáforo puede ser FIFO, LIFO u otras; el estándar no lo especifica."
+    },
+    {
+      "id": "q27",
+      "text": "Un semáforo s inicializado a 2:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Permite que dos procesos estén simultáneamente en su sección crítica."
+        },
+        {
+          "id": "a2",
+          "text": "Dos procesos podrán ejecutar wait(s) sin bloquearse.",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Los semáforos se inicializan siempre a valor 1."
+        },
+        {
+          "id": "a4",
+          "text": "El primer proceso que alcance la sentencia wait podrá acceder a su sección crítica."
+        }
+      ],
+      "explanation": "Con valor inicial 2, dos procesos pueden hacer wait sin bloquearse; el tercero se bloqueará."
+    },
+    {
+      "id": "q28",
+      "text": "Los monitores requieren de la utilización y definición de dos tipos de procesos:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Procesos bloqueados y procesos bloqueantes." },
+        {
+          "id": "a2",
+          "text": "Procesos activos y procesos bloqueados.",
+          "correct": true
+        },
+        { "id": "a3", "text": "Procesos padres y procesos hijo." },
+        { "id": "a4", "text": "Proceso monitor y proceso principal." }
+      ],
+      "explanation": "En un monitor coexisten procesos activos (dentro del monitor) y bloqueados (en colas de condición o de entrada)."
+    },
+    {
+      "id": "q29",
+      "text": "En los monitores los procesos bloqueados:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Se bloquean en las colas asociadas a variables de condición."
+        },
+        {
+          "id": "a2",
+          "text": "Se bloquean en las colas de acceso al propio monitor."
+        },
+        {
+          "id": "a3",
+          "text": "Podemos tener múltiples procesos bloqueados dentro del monitor."
+        },
+        {
+          "id": "a4",
+          "text": "Todas las respuestas son correctas.",
+          "correct": true
+        }
+      ],
+      "explanation": "Los procesos pueden bloquearse tanto en la cola de entrada al monitor como en las colas de variables de condición."
+    },
+    {
+      "id": "q30",
+      "text": "En la semántica resume & exit, el proceso desbloqueado por resume(v) es:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "El primer proceso que estuviera bloqueado en la cola de la variable de condición v.",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "El primer proceso que estuviera esperando para acceder al monitor."
+        },
+        {
+          "id": "a3",
+          "text": "Se elige aleatoriamente procesos bloqueados en la variable o en el monitor."
+        },
+        { "id": "a4", "text": "Ninguna de las respuestas es correcta." }
+      ],
+      "explanation": "En esta semántica, resume(v) desbloquea al primer proceso de la cola de la condición v y el proceso que llama a resume sale del monitor."
+    },
+    {
+      "id": "q31",
+      "text": "En los sistemas distribuidos el problema de exclusión mutua:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Nunca puede producirse." },
+        { "id": "a2", "text": "Aparece por el uso de variables compartidas." },
+        { "id": "a3", "text": "Aparece por el uso de la memoria compartida." },
+        {
+          "id": "a4",
+          "text": "Ninguna de las respuestas es correcta.",
+          "correct": true
+        }
+      ],
+      "explanation": "En sistemas distribuidos no hay memoria compartida, pero sí pueden existir recursos compartidos que requieren exclusión mutua."
+    },
+    {
+      "id": "q32",
+      "text": "Las primitivas de envío y recepción de mensajes:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Tienen una ejecución atómica.",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Son necesarias en los problemas de memoria compartida."
+        },
+        { "id": "a3", "text": "Siempre serán asíncronas." },
+        { "id": "a4", "text": "Ninguna de las respuestas es correcta." }
+      ],
+      "explanation": "Las primitivas de envío y recepción son operaciones atómicas desde el punto de vista del proceso."
+    },
+    {
+      "id": "q33",
+      "text": "En los sistemas distribuidos debemos:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Garantizar la exclusión mutua de las secciones críticas."
+        },
+        {
+          "id": "a2",
+          "text": "Garantizar la correcta sincronización de los procesos.",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Garantizar el acceso de los procesos a los recursos locales."
+        },
+        { "id": "a4", "text": "Todas las respuestas son correctas." }
+      ],
+      "explanation": "En sistemas distribuidos la sincronización correcta de procesos es el objetivo principal."
+    },
+    {
+      "id": "q34",
+      "text": "En la instrucción de espera selectiva select, el proceso que la ejecuta se bloquea si:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "No se cumple ninguna de las guardas, si las tuviera."
+        },
+        { "id": "a2", "text": "No disponga de alternativa else." },
+        {
+          "id": "a3",
+          "text": "No existe ningún mensaje en los buzones/canales de las cláusulas.",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "La instrucción select no genera bloqueo del proceso."
+        }
+      ],
+      "explanation": "El select se bloquea cuando ninguna de sus ramas tiene un mensaje disponible para procesar."
+    },
+    {
+      "id": "q35",
+      "text": "En la comunicación directa entre procesos es necesario:",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Conocer el destinatario del mensaje." },
+        { "id": "a2", "text": "Conocer el remitente del mensaje." },
+        { "id": "a3", "text": "No se requiere ningún tipo de identificación." },
+        {
+          "id": "a4",
+          "text": "El emisor debe conocer al destinatario y el receptor al remitente.",
+          "correct": true
+        }
+      ],
+      "explanation": "En comunicación directa simétrica, tanto emisor como receptor deben identificarse mutuamente."
+    },
+    {
+      "id": "q36",
+      "text": "En la comunicación asíncrona entre procesos:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "La primitiva de recepción bloqueará al proceso si no hay datos en el buzón.",
+          "correct": true
+        },
+        { "id": "a2", "text": "La primitiva de envío bloqueará al emisor." },
+        {
+          "id": "a3",
+          "text": "Ninguna primitiva de envío o recepción bloquearán a los procesos implicados."
+        },
+        {
+          "id": "a4",
+          "text": "Ambas primitivas de envío o recepción bloquearán a los procesos implicados."
+        }
+      ],
+      "explanation": "En comunicación asíncrona el envío no bloquea, pero la recepción sí bloquea si no hay datos disponibles."
+    },
+    {
+      "id": "q37",
+      "text": "En el problema del productor/consumidor, si la primitiva de envío no bloquea al productor:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "El emisor deberá asegurarse que el consumidor esté disponible."
+        },
+        {
+          "id": "a2",
+          "text": "Siempre será necesario un buzón de tamaño indefinido."
+        },
+        {
+          "id": "a3",
+          "text": "No hay solución posible con esa suposición de partida."
+        },
+        {
+          "id": "a4",
+          "text": "Ninguna de las respuestas es correcta.",
+          "correct": true
+        }
+      ],
+      "explanation": "Si el envío no bloquea, se puede resolver el problema con un buzón de capacidad suficiente, entre otras soluciones."
+    },
+    {
+      "id": "q38",
+      "text": "La utilización de un canal:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Establecerá el tipo de información que se transmitirán emisor y receptor en una comunicación síncrona.",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Establecerá el tipo de sincronización necesaria en la comunicación."
+        },
+        {
+          "id": "a3",
+          "text": "Permitirá el almacenamiento de información para la comunicación entre procesos."
+        },
+        { "id": "a4", "text": "Ninguna de las respuestas es correcta." }
+      ],
+      "explanation": "Un canal define el tipo de datos que fluyen entre emisor y receptor en comunicación síncrona."
+    },
+    {
+      "id": "q39",
+      "text": "La utilización de un canal de sincronización:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Se utilizarán como elemento de sincronización entre procesos en entornos remotos.",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "Permite definir un tipo por defecto en la comunicación síncrona."
+        },
+        { "id": "a3", "text": "No existe ese tipo de canales." },
+        {
+          "id": "a4",
+          "text": "Es el tipo de canales habituales en las comunicaciones síncronas."
+        }
+      ],
+      "explanation": "Los canales de sincronización permiten sincronizar procesos en entornos remotos sin transmitir datos."
+    },
+    {
+      "id": "q40",
+      "text": "En la comunicación asíncrona entre procesos (segunda mención):",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "La primitiva de recepción bloqueará al proceso si no hay datos en el buzón.",
+          "correct": true
+        },
+        { "id": "a2", "text": "La primitiva de envío bloqueará al emisor." },
+        {
+          "id": "a3",
+          "text": "Ninguna primitiva de envío o recepción bloquearán a los procesos implicados."
+        },
+        {
+          "id": "a4",
+          "text": "Ambas primitivas de envío o recepción bloquearán a los procesos implicados."
+        }
+      ],
+      "explanation": "En asíncrona: el envío no bloquea (deja el mensaje en el buzón), pero la recepción bloquea si el buzón está vacío."
+    }
+  ]
+}

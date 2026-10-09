@@ -1,3 +1,5 @@
+export type Difficulty = 'easy' | 'medium' | 'hard' | 'mixed';
+
 export interface Answer {
   id: string;
   text: string;
@@ -17,8 +19,10 @@ export interface Test {
   title: string;
   description?: string;
   category?: string;
-  difficulty: 'easy' | 'medium' | 'hard';
+  tags?: string[];
+  difficulty: Difficulty;
   passThreshold: number;
+  timeLimit?: number;
   shuffleQuestions: boolean;
   shuffleAnswers: boolean;
   questions: Question[];
@@ -29,12 +33,9 @@ export interface TestMetadata {
   file: string;
   title: string;
   category?: string;
-  difficulty: 'easy' | 'medium' | 'hard';
+  tags?: string[];
+  difficulty: Difficulty;
   questionCount: number;
-}
-
-export interface TestsIndex {
-  tests: TestMetadata[];
 }
 
 export interface QuizState {
@@ -43,7 +44,9 @@ export interface QuizState {
   skipped: Set<string>;
   startTime: number | null;
   activeTest: Test | null;
-  status: 'idle' | 'starting' | 'in-progress' | 'reviewing' | 'finished';
+  status: 'idle' | 'in-progress' | 'reviewing' | 'finished';
+  practiceMode: boolean;
+  result: QuizResult | null;
 }
 
 export interface QuizResult {
@@ -52,12 +55,14 @@ export interface QuizResult {
   correct: number;
   wrong: number;
   blank: number;
+  annulled: number;
   percentage: number;
   passed: boolean;
   timeSpent: number;
 }
 
-export type SoundType = 'click' | 'correct' | 'wrong' | 'skip' | 'win' | 'complete' | 'start';
+export type SoundType =
+  'click' | 'skip' | 'win' | 'complete' | 'start' | 'correct' | 'incorrect';
 
 export interface Theme {
   id: string;

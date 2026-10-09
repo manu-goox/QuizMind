@@ -1,0 +1,512 @@
+{
+  "id": "ia-test-1",
+  "title": "Inteligencia Artificial - Test 1: Agentes, Búsqueda y Juegos",
+  "description": "Preguntas sobre agentes inteligentes (T2), resolución de problemas mediante búsqueda (T3) y teoría de juegos aplicada a IA (T4)",
+  "category": "Inteligencia Artificial",
+  "difficulty": "mixed",
+  "passThreshold": 0.6,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "¿Qué define la ecuación Agente = Arquitectura + Programa?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "La arquitectura es el soporte físico y el programa es la implementación que procesa percepciones",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "La arquitectura es el software y el programa es el hardware"
+        },
+        {
+          "id": "a3",
+          "text": "Ambos términos son sinónimos"
+        },
+        {
+          "id": "a4",
+          "text": "El programa define el soporte físico y la arquitectura la lógica"
+        }
+      ],
+      "explanation": "Agente = Arquitectura (soporte físico) + Programa (implementación que procesa percepciones y genera acciones)."
+    },
+    {
+      "id": "q2",
+      "text": "¿Cuál de los siguientes NO es un determinante de la racionalidad de un agente?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "La omnisciencia del agente sobre el resultado real",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "La medida de rendimiento que define el éxito"
+        },
+        {
+          "id": "a3",
+          "text": "La secuencia de percepciones acumulada"
+        },
+        {
+          "id": "a4",
+          "text": "El conocimiento a priori del diseñador sobre el entorno"
+        }
+      ],
+      "explanation": "La racionalidad no equivale a omnisciencia. Un agente racional maximiza el resultado esperado con la información disponible."
+    },
+    {
+      "id": "q3",
+      "text": "En la metodología REAS, ¿qué representa la 'E'?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Ejecución"
+        },
+        {
+          "id": "a2",
+          "text": "Entorno",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Estrategia"
+        },
+        {
+          "id": "a4",
+          "text": "Evaluación"
+        }
+      ],
+      "explanation": "REAS son las siglas de Rendimiento, Entorno, Actuadores y Sensores."
+    },
+    {
+      "id": "q4",
+      "text": "¿Qué tipo de agente mantiene un estado interno para gestionar la visibilidad parcial del entorno?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Agente reactivo simple"
+        },
+        {
+          "id": "a2",
+          "text": "Agente basado en utilidad"
+        },
+        {
+          "id": "a3",
+          "text": "Agente reactivo basado en modelos",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Agente basado en objetivos"
+        }
+      ],
+      "explanation": "El agente reactivo basado en modelos mantiene un estado interno como modelo simbólico del mundo para entornos parcialmente observables."
+    },
+    {
+      "id": "q5",
+      "text": "¿Qué componente del agente que aprende evalúa la actuación comparándola con un estándar externo?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Generador de problemas"
+        },
+        {
+          "id": "a2",
+          "text": "Elemento de aprendizaje"
+        },
+        {
+          "id": "a3",
+          "text": "Elemento de actuación"
+        },
+        {
+          "id": "a4",
+          "text": "Crítica",
+          "correct": true
+        }
+      ],
+      "explanation": "La Crítica evalúa la actuación del agente comparándola con un Estándar de actuación (Performance Standard) externo."
+    },
+    {
+      "id": "q6",
+      "text": "En la formulación de un problema de búsqueda, ¿qué define la función sucesor junto con el estado inicial?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "El costo del camino óptimo"
+        },
+        {
+          "id": "a2",
+          "text": "La función heurística"
+        },
+        {
+          "id": "a3",
+          "text": "El espacio de estados",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "El test objetivo"
+        }
+      ],
+      "explanation": "La función sucesor junto con el estado inicial define implícitamente el espacio de estados, el conjunto de todos los estados alcanzables."
+    },
+    {
+      "id": "q7",
+      "text": "¿Qué diferencia fundamental existe entre un estado y un nodo en búsqueda?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "El estado tiene profundidad y costo; el nodo es la configuración física"
+        },
+        {
+          "id": "a2",
+          "text": "El estado es la configuración física; el nodo es la estructura de datos en el árbol",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Ambos conceptos son equivalentes"
+        },
+        {
+          "id": "a4",
+          "text": "El nodo es la configuración física; el estado es la estructura de datos"
+        }
+      ],
+      "explanation": "El estado es la configuración física del mundo; el nodo es una estructura de datos con padre, acción, profundidad y costo g(n)."
+    },
+    {
+      "id": "q8",
+      "text": "La búsqueda primero en profundidad (DFS) tiene como principal ventaja frente a BFS:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Ser completa en espacios infinitos"
+        },
+        {
+          "id": "a2",
+          "text": "Ser siempre óptima"
+        },
+        {
+          "id": "a3",
+          "text": "Su complejidad espacial lineal O(bm)",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Expandir primero el nodo de menor costo"
+        }
+      ],
+      "explanation": "DFS tiene complejidad espacial O(bm), mucho menor que BFS (O(b^d)), aunque no es completa ni óptima."
+    },
+    {
+      "id": "q9",
+      "text": "¿Qué propiedad debe cumplir una heurística h(n) para que A* sea óptimo en árboles?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Ser consistente"
+        },
+        {
+          "id": "a2",
+          "text": "Ser maximal"
+        },
+        {
+          "id": "a3",
+          "text": "Ser admisible",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Ser monótona"
+        }
+      ],
+      "explanation": "A* es óptimo en árboles si h(n) es admisible: nunca sobrestima el costo real h(n) ≤ h*(n)."
+    },
+    {
+      "id": "q10",
+      "text": "En búsqueda de costo uniforme (UCS), ¿cómo se selecciona el siguiente nodo a expandir?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "El nodo con menor profundidad"
+        },
+        {
+          "id": "a2",
+          "text": "El nodo con menor costo acumulado g(n)",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "El nodo con menor valor heurístico h(n)"
+        },
+        {
+          "id": "a4",
+          "text": "El nodo más recientemente generado"
+        }
+      ],
+      "explanation": "UCS expande el nodo con el menor costo acumulado g(n) usando una cola de prioridad."
+    },
+    {
+      "id": "q11",
+      "text": "¿Cuál es la complejidad temporal de la búsqueda de profundidad iterativa (IDS)?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "O(bm)"
+        },
+        {
+          "id": "a2",
+          "text": "O(b^d)",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "O(b^{C*/epsilon})"
+        },
+        {
+          "id": "a4",
+          "text": "O(bd)"
+        }
+      ],
+      "explanation": "IDS tiene complejidad temporal O(b^d) y espacial O(bd), combinando completitud de BFS con espacio lineal de DFS."
+    },
+    {
+      "id": "q12",
+      "text": "En el algoritmo Minimax, los nodos MAX seleccionan:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "El valor mínimo de sus sucesores"
+        },
+        {
+          "id": "a2",
+          "text": "El valor máximo de sus sucesores",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "El valor medio de sus sucesores"
+        },
+        {
+          "id": "a4",
+          "text": "Un valor aleatorio entre los sucesores"
+        }
+      ],
+      "explanation": "Los nodos MAX seleccionan el valor máximo de sus sucesores; los nodos MIN seleccionan el valor mínimo."
+    },
+    {
+      "id": "q13",
+      "text": "¿Cuál es la complejidad temporal del algoritmo Minimax sin poda?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "O(bm)"
+        },
+        {
+          "id": "a2",
+          "text": "O(b^m)",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "O(m^b)"
+        },
+        {
+          "id": "a4",
+          "text": "O(m log b)"
+        }
+      ],
+      "explanation": "Minimax tiene complejidad O(b^m), donde b es el factor de ramificación y m la profundidad máxima."
+    },
+    {
+      "id": "q14",
+      "text": "Con ordenación perfecta de nodos, la poda alfa-beta reduce la complejidad de Minimax a:",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "O(b^{m/2})",
+          "correct": true
+        },
+        {
+          "id": "a2",
+          "text": "O(b^{2m})"
+        },
+        {
+          "id": "a3",
+          "text": "O(b log m)"
+        },
+        {
+          "id": "a4",
+          "text": "O(m^2)"
+        }
+      ],
+      "explanation": "Con ordenación perfecta, la poda alfa-beta reduce la complejidad a O(b^{m/2}), duplicando la profundidad alcanzable."
+    },
+    {
+      "id": "q15",
+      "text": "En juegos con azar, ¿cómo se calcula el valor de un nodo de posibilidad?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Tomando el mínimo de las utilidades de sus sucesores"
+        },
+        {
+          "id": "a2",
+          "text": "Tomando el máximo de las utilidades de sus sucesores"
+        },
+        {
+          "id": "a3",
+          "text": "Sumatorio de utilidades ponderadas por su probabilidad",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Media aritmética sin ponderar"
+        }
+      ],
+      "explanation": "El Minimax Esperado calcula el valor como Σ P(s) · Minimaxesperado(s), ponderando cada sucesor por su probabilidad."
+    },
+    {
+      "id": "q16",
+      "text": "En el dilema del prisionero, ¿cuál es la estrategia dominante para cada jugador individual?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Rechazar (no testificar)"
+        },
+        {
+          "id": "a2",
+          "text": "Testificar",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "No existe estrategia dominante"
+        },
+        {
+          "id": "a4",
+          "text": "Cooperar siempre"
+        }
+      ],
+      "explanation": "Testificar es la estrategia dominante: ofrece el mejor resultado individual independientemente de la decisión del otro."
+    },
+    {
+      "id": "q17",
+      "text": "¿Qué es un equilibrio de Nash?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Un perfil donde todos los jugadores obtienen la misma utilidad"
+        },
+        {
+          "id": "a2",
+          "text": "Un perfil donde ningún jugador mejora cambiando unilateralmente su estrategia",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Un perfil donde la suma de utilidades es siempre cero"
+        },
+        {
+          "id": "a4",
+          "text": "Un perfil donde todos cooperan"
+        }
+      ],
+      "explanation": "El equilibrio de Nash es un perfil de estrategias donde ningún jugador puede mejorar cambiando unilateralmente su decisión."
+    },
+    {
+      "id": "q18",
+      "text": "¿Qué sistema logró maestría en Ajedrez, Shogi y Go aprendiendo desde cero solo con las reglas?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Deep Blue"
+        },
+        {
+          "id": "a2",
+          "text": "AlphaGo"
+        },
+        {
+          "id": "a3",
+          "text": "MuZero"
+        },
+        {
+          "id": "a4",
+          "text": "AlphaZero",
+          "correct": true
+        }
+      ],
+      "explanation": "AlphaZero (2017) logró maestría en Ajedrez, Shogi y Go desde cero (tabula rasa) solo con las reglas y partidas contra sí mismo."
+    },
+    {
+      "id": "q19",
+      "text": "¿Qué técnica mitiga el 'efecto horizonte' en juegos con límite de profundidad?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Poda alfa-beta"
+        },
+        {
+          "id": "a2",
+          "text": "Búsqueda estable (Quiescence Search)",
+          "correct": true
+        },
+        {
+          "id": "a3",
+          "text": "Minimax Esperado"
+        },
+        {
+          "id": "a4",
+          "text": "Estrategia mixta"
+        }
+      ],
+      "explanation": "La búsqueda estable expande nodos inestables más allá del límite hasta alcanzar un estado con evaluación fiable."
+    },
+    {
+      "id": "q20",
+      "text": "¿Cuál NO es una propiedad necesaria del entorno para aplicar técnicas de búsqueda?",
+      "type": "single",
+      "answers": [
+        {
+          "id": "a1",
+          "text": "Discreto"
+        },
+        {
+          "id": "a2",
+          "text": "Observable"
+        },
+        {
+          "id": "a3",
+          "text": "Multiagente",
+          "correct": true
+        },
+        {
+          "id": "a4",
+          "text": "Estático"
+        }
+      ],
+      "explanation": "Las propiedades críticas son: discreto, observable, estático y determinista. Multiagente no es un requisito."
+    }
+  ]
+}

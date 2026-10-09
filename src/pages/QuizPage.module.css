@@ -7,13 +7,29 @@
 }
 
 /* ================================================================
-   Top bar — counter + progress
+   Top bar — sticky counter + progress
    ================================================================ */
-.header {
+.topBar {
+  position: sticky;
+  top: var(--header-height);
+  z-index: 40;
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+}
+
+.headerInfo {
+  display: flex;
   align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
 }
 
 /* ================================================================
@@ -29,8 +45,51 @@
   font-variant-numeric: tabular-nums;
 }
 
+.timer {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.timerWarning {
+  color: var(--wrong);
+}
+
+/* ================================================================
+   Keyboard shortcuts hint
+   ================================================================ */
+.hint {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-align: center;
+}
+
 @media (max-width: 640px) {
   .container {
     gap: var(--space-4);
+  }
+
+  .topBar {
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-lg);
+  }
+
+  /* El contador se mantiene para lectores de pantalla (aria-live) */
+  .counter {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+}
+
+/* Atajos de teclado — ocultos en dispositivos táctiles */
+@media (pointer: coarse) {
+  .hint {
+    display: none;
   }
 }

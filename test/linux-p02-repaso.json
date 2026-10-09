@@ -1,0 +1,156 @@
+{
+  "id": "linux-p02-repaso",
+  "title": "Aprendiendo Linux - P02: El Shell (Repaso)",
+  "description": "Segunda vuelta: preguntas nuevas de aplicación sobre órdenes, redirección, pipes y comodines para comprobar que dominas el tema tras estudiarlo.",
+  "category": "Sistemas Operativos",
+  "difficulty": "mixed",
+  "passThreshold": 0.6,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "¿Qué orden usarías para ver un fichero largo página a página?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "less", "correct": true },
+        { "id": "a2", "text": "cat" },
+        { "id": "a3", "text": "man" },
+        { "id": "a4", "text": "ls" }
+      ],
+      "explanation": "less (y more) paginan; cat volcaría todo de golpe."
+    },
+    {
+      "id": "q2",
+      "text": "Si en el directorio existen cap1, cap10 y cap2, ¿qué expande `echo cap?`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "cap1 cap2", "correct": true },
+        { "id": "a2", "text": "cap1 cap10 cap2" },
+        { "id": "a3", "text": "cap10" },
+        { "id": "a4", "text": "Da error" }
+      ],
+      "explanation": "? casa exactamente un carácter: cap10 no coincide."
+    },
+    {
+      "id": "q3",
+      "text": "¿Qué diferencia hay entre `>` y `2>`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "`>` redirige la salida estándar y `2>` la salida de errores", "correct": true },
+        { "id": "a2", "text": "Ambos redirigen la salida estándar" },
+        { "id": "a3", "text": "`2>` redirige la entrada estándar" },
+        { "id": "a4", "text": "`>` añade al final del fichero" }
+      ],
+      "explanation": "stdout es el descriptor 1 y stderr el 2. Para añadir en vez de sobrescribir: >> y 2>>."
+    },
+    {
+      "id": "q4",
+      "text": "¿Qué guarda `ls -l /usr/include &> pepe.txt`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "La salida normal y los mensajes de error", "correct": true },
+        { "id": "a2", "text": "Solo los mensajes de error" },
+        { "id": "a3", "text": "Solo la salida normal" },
+        { "id": "a4", "text": "Nada, porque la orden es inválida" }
+      ],
+      "explanation": "&> equivale a > pepe.txt 2>&1."
+    },
+    {
+      "id": "q5",
+      "text": "¿Qué hace `cat f1 f2 >> x`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Añade el contenido de f1 y f2 al final del fichero x", "correct": true },
+        { "id": "a2", "text": "Crea x con el contenido de f1 y f2, borrando lo anterior" },
+        { "id": "a3", "text": "Muestra f1, f2 y x por pantalla" },
+        { "id": "a4", "text": "Es un error de sintaxis" }
+      ],
+      "explanation": ">> añade; > habría sobrescrito x."
+    },
+    {
+      "id": "q6",
+      "text": "Si escribes una orden que no está en el PATH ni en el directorio actual, ¿qué ocurre?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El shell responde «orden no encontrada»", "correct": true },
+        { "id": "a2", "text": "La busca automáticamente en todo el disco" },
+        { "id": "a3", "text": "La ejecuta con permisos de root" },
+        { "id": "a4", "text": "La descarga e instala" }
+      ],
+      "explanation": "echo $PATH muestra los directorios de búsqueda; type y which localizan órdenes. Para el directorio actual: ./programa."
+    },
+    {
+      "id": "q7",
+      "text": "¿Qué hace el comando punto (`.`) en bash?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Ejecuta un script en el propio shell, sin crear un proceso hijo", "correct": true },
+        { "id": "a2", "text": "Ejecuta el script en un proceso hijo" },
+        { "id": "a3", "text": "Crea un directorio" },
+        { "id": "a4", "text": "Muestra el directorio actual" }
+      ],
+      "explanation": "Por eso los cambios que hace el script (variables, cd) afectan a la sesión actual."
+    },
+    {
+      "id": "q8",
+      "text": "¿Qué hace `ls | wc -l > num`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Guarda en el fichero num el número de entradas del directorio", "correct": true },
+        { "id": "a2", "text": "Muestra el número de entradas por pantalla" },
+        { "id": "a3", "text": "Cuenta los procesos en ejecución" },
+        { "id": "a4", "text": "Es un error: no se pueden combinar pipe y redirección" }
+      ],
+      "explanation": "wc -l cuenta líneas: ls produce una línea por entrada y el resultado se redirige a num."
+    },
+    {
+      "id": "q9",
+      "text": "¿De dónde viene el nombre de la orden grep?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Del comando g/re/p del editor ed: buscar globalmente un patrón e imprimir", "correct": true },
+        { "id": "a2", "text": "De General REPort" },
+        { "id": "a3", "text": "De Great Expression Parser" },
+        { "id": "a4", "text": "De Global Regular Expression Program" }
+      ],
+      "explanation": "grep busca líneas que casan un patrón; combinado con wc -l cuenta coincidencias."
+    },
+    {
+      "id": "q10",
+      "text": "¿Qué diferencia hay entre `who | sort` y `sort < fichero`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El primero ordena la salida de who; el segundo ordena el contenido del fichero", "correct": true },
+        { "id": "a2", "text": "Son exactamente iguales" },
+        { "id": "a3", "text": "El primero guarda el resultado en un fichero" },
+        { "id": "a4", "text": "El segundo no es válido" }
+      ],
+      "explanation": "| conecta procesos (pipe); < redirige la entrada estándar desde un fichero."
+    },
+    {
+      "id": "q11",
+      "text": "¿Qué ocurre al ejecutar `cat *` en un directorio que contiene subdirectorios?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "cat muestra los ficheros y da error («Es un directorio») con los subdirectorios", "correct": true },
+        { "id": "a2", "text": "Falla por completo sin mostrar nada" },
+        { "id": "a3", "text": "Omite los subdirectorios silenciosamente" },
+        { "id": "a4", "text": "Solo lista los nombres" }
+      ],
+      "explanation": "cat lee ficheros ordinarios; los directorios no se leen así (para listarlos, ls)."
+    },
+    {
+      "id": "q12",
+      "text": "¿Cuánto vale argc en la ejecución de `ls -l /usr/include`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "3", "correct": true },
+        { "id": "a2", "text": "2" },
+        { "id": "a3", "text": "4" },
+        { "id": "a4", "text": "1" }
+      ],
+      "explanation": "argv[0] = ls, argv[1] = -l, argv[2] = /usr/include. Las redirecciones no cuentan como argumentos."
+    }
+  ]
+}

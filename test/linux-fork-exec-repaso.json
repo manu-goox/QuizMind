@@ -1,0 +1,132 @@
+{
+  "id": "linux-fork-exec-repaso",
+  "title": "Aprendiendo Linux - Fork, Exec, Wait y Exit (Repaso)",
+  "description": "Segunda vuelta: preguntas nuevas de aplicación sobre el ciclo fork/exec/wait: ramas del código, PPID, zombis y sincronización.",
+  "category": "Sistemas Operativos",
+  "difficulty": "mixed",
+  "passThreshold": 0.6,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "¿Qué condición del código identifica al proceso hijo tras fork()?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "if (pid == 0)", "correct": true },
+        { "id": "a2", "text": "if (pid > 0)" },
+        { "id": "a3", "text": "if (pid == -1)" },
+        { "id": "a4", "text": "if (pid == 1)" }
+      ],
+      "explanation": "El hijo recibe 0; el padre recibe el PID del hijo (> 0); -1 es error."
+    },
+    {
+      "id": "q2",
+      "text": "¿Qué rama del código ejecuta el padre tras fork()?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El else: llama a waitpid() para esperar al hijo", "correct": true },
+        { "id": "a2", "text": "El if (pid == 0): llama a execlp()" },
+        { "id": "a3", "text": "Ninguna: el padre termina" },
+        { "id": "a4", "text": "Ambas ramas a la vez" }
+      ],
+      "explanation": "Padre e hijo continúan en la instrucción siguiente a fork(), cada uno por su rama."
+    },
+    {
+      "id": "q3",
+      "text": "Si el padre no llamara nunca a waitpid(), ¿qué pasaría con el hijo terminado?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Quedaría zombi: su BCP seguiría en la tabla de procesos", "correct": true },
+        { "id": "a2", "text": "Desaparecería inmediatamente" },
+        { "id": "a3", "text": "Se convertiría en huérfano" },
+        { "id": "a4", "text": "El núcleo lo reiniciaría" }
+      ],
+      "explanation": "El estado de salida se guarda hasta que el padre lo recoge; sin wait, el zombi permanece."
+    },
+    {
+      "id": "q4",
+      "text": "¿Qué es el PPID de un proceso?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El PID de su proceso padre", "correct": true },
+        { "id": "a2", "text": "El PID del propio proceso" },
+        { "id": "a3", "text": "El número de procesos hijos" },
+        { "id": "a4", "text": "El identificador del grupo de usuarios" }
+      ],
+      "explanation": "En fork(), el hijo hereda PPID = PID del padre (en la imagen: hijo 1002, PPID 1001)."
+    },
+    {
+      "id": "q5",
+      "text": "En `execlp(\"ls\", \"ls\", \"-l\", NULL)`, ¿cuál es el argv[0] del programa ls?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "\"ls\" (el segundo argumento)", "correct": true },
+        { "id": "a2", "text": "\"-l\"" },
+        { "id": "a3", "text": "NULL" },
+        { "id": "a4", "text": "La trayectoria /bin/ls" }
+      ],
+      "explanation": "El primer argumento es el fichero a ejecutar (se busca en el PATH); el segundo pasa a ser argv[0]."
+    },
+    {
+      "id": "q6",
+      "text": "¿Qué parte del proceso se descarta al ejecutar exec?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "La imagen anterior: código, datos, heap y pila", "correct": true },
+        { "id": "a2", "text": "El PID" },
+        { "id": "a3", "text": "Los descriptores de fichero abiertos" },
+        { "id": "a4", "text": "El directorio de trabajo" }
+      ],
+      "explanation": "Se conservan el BCP, el PID y los descriptores; solo cambia la imagen del programa."
+    },
+    {
+      "id": "q7",
+      "text": "Tras fork(), ¿dónde continúa la ejecución de padre e hijo?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "En la instrucción siguiente a la llamada fork()", "correct": true },
+        { "id": "a2", "text": "Al principio del programa" },
+        { "id": "a3", "text": "En el main del núcleo" },
+        { "id": "a4", "text": "Solo el padre continúa" }
+      ],
+      "explanation": "Ambos procesos siguen desde el mismo punto; quién se ejecuta antes lo decide el planificador."
+    },
+    {
+      "id": "q8",
+      "text": "¿Qué recurso mantiene ocupado un proceso zombi?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Su entrada en la tabla de procesos (el BCP con el estado de salida)", "correct": true },
+        { "id": "a2", "text": "Toda su memoria" },
+        { "id": "a3", "text": "La CPU al 100 %" },
+        { "id": "a4", "text": "Un descriptor de fichero abierto" }
+      ],
+      "explanation": "El zombi ya no ejecuta nada: solo espera a que el padre recoja su estado."
+    },
+    {
+      "id": "q9",
+      "text": "¿Qué hace el núcleo cuando el padre recoge el estado del hijo con waitpid()?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Libera el BCP del hijo y este desaparece", "correct": true },
+        { "id": "a2", "text": "Reinicia el hijo" },
+        { "id": "a3", "text": "Convierte al hijo en huérfano" },
+        { "id": "a4", "text": "Envía SIGCHLD al hijo" }
+      ],
+      "explanation": "SIGCHLD se envía al padre; tras el wait, el hijo desaparece de la tabla de procesos."
+    },
+    {
+      "id": "q10",
+      "text": "¿Por qué la orden cd no se puede ejecutar en un proceso hijo como las demás?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Porque cambiaría el directorio del hijo, no el del shell", "correct": true },
+        { "id": "a2", "text": "Porque cd es demasiado lenta" },
+        { "id": "a3", "text": "Porque necesita permisos de root" },
+        { "id": "a4", "text": "Porque no existe en Ubuntu" }
+      ],
+      "explanation": "El directorio de trabajo es propiedad del proceso: por eso cd (y el comando punto) los ejecuta el propio shell."
+    }
+  ]
+}

@@ -1,14 +1,78 @@
 :root {
-  --bg-primary: #f8f9fa;
-  --bg-secondary: #ffffff;
-  --bg-hover: #e9ecef;
-  --text-primary: #212529;
-  --text-secondary: #6c757d;
-  --accent: #e94560;
-  --accent-hover: #c73e54;
-  --border: #dee2e6;
-  --correct: #10b981;
-  --wrong: #ef4444;
-  --progress-fill: #e94560;
+  /* ================================================================
+     CORE THEME VARIABLES
+     ================================================================ */
+  --bg-primary: #dfe5ee;
+  --bg-secondary: #f7f9fc;
+  --bg-hover: #d7dee9;
+  --text-primary: #1a202c;
+  --text-secondary: #47515e;
+  --accent: #d93b56;
+  --accent-hover: #bd2f49;
+  --border: #aab8c9;
+  --correct: #059669;
+  --wrong: #dc2626;
   --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* ================================================================
+     Capas de fondo adicionales
+     ================================================================ */
+  --bg-tertiary: #d3dbe7;
+  --bg-elevated: #ffffff;
+
+  /* ================================================================
+     Variantes de color (glows y fondos sutiles)
+     ================================================================ */
+  --accent-glow: rgba(217, 59, 86, 0.28);
+  --accent-subtle: rgba(217, 59, 86, 0.12);
+  --correct-glow: rgba(5, 150, 105, 0.22);
+  --correct-subtle: rgba(5, 150, 105, 0.12);
+  --wrong-glow: rgba(220, 38, 38, 0.22);
+  --wrong-subtle: rgba(220, 38, 38, 0.12);
+
+  /* ================================================================
+     Texto muted y glassmorphism
+     ================================================================ */
+  --text-muted: #566176;
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(15, 23, 42, 0.18);
+
+  /* ================================================================
+     Sombras — más definidas para fondos claros
+     ================================================================ */
+  --shadow-sm:
+    0 1px 3px rgba(15, 23, 42, 0.12), 0 1px 2px rgba(15, 23, 42, 0.07);
+  --shadow-md:
+    0 4px 8px -1px rgba(15, 23, 42, 0.14), 0 2px 4px -2px rgba(15, 23, 42, 0.1);
+  --shadow-lg:
+    0 12px 20px -4px rgba(15, 23, 42, 0.16),
+    0 6px 8px -4px rgba(15, 23, 42, 0.1);
+  --shadow-xl:
+    0 20px 25px -5px rgba(15, 23, 42, 0.16),
+    0 8px 10px -6px rgba(15, 23, 42, 0.1);
+  --shadow-glow: 0 0 20px -5px var(--accent-glow);
+  --shadow-inner: inset 0 2px 4px 0 rgba(15, 23, 42, 0.08);
+
+  /* ================================================================
+     AURORA — Color
+     ================================================================ */
+  --accent-2: #8b5cf6;
+  --accent-3: #0284c7;
+  --accent-gradient: linear-gradient(
+    135deg,
+    var(--accent) 0%,
+    var(--accent-2) 100%
+  );
+  --warning: #b45309;
+  --warning-glow: rgba(180, 83, 9, 0.2);
+  --warning-subtle: rgba(217, 119, 6, 0.1);
+  --correct-2: #10b981;
+  --overlay: rgba(15, 23, 42, 0.45);
+  --on-accent: #ffffff;
+  --border-strong: #93a3b8;
+  --glass-highlight: rgba(255, 255, 255, 0.85);
+  --aurora-1: rgba(217, 59, 86, 0.13);
+  --aurora-2: rgba(139, 92, 246, 0.11);
+  --aurora-3: rgba(56, 189, 248, 0.08);
+  --grain-opacity: 0.028;
 }

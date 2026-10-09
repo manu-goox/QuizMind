@@ -1,5 +1,6 @@
 import { type ReactNode } from 'react';
 import { useSettingsStore } from '../../stores/useSettingsStore';
+import { audioManager } from '../../services/audioManager';
 import styles from './AudioPanel.module.css';
 
 interface AudioPanelProps {
@@ -20,7 +21,9 @@ export function AudioPanel({ children }: AudioPanelProps) {
           className={`${styles.toggle} ${audio.effectsEnabled ? styles.active : ''}`}
           onClick={toggleEffects}
           title={audio.effectsEnabled ? 'Silenciar efectos' : 'Activar efectos'}
-          aria-label={audio.effectsEnabled ? 'Silenciar efectos' : 'Activar efectos'}
+          aria-label={
+            audio.effectsEnabled ? 'Silenciar efectos' : 'Activar efectos'
+          }
         >
           <svg
             width="16"
@@ -54,20 +57,29 @@ export function AudioPanel({ children }: AudioPanelProps) {
           max="1"
           step="0.05"
           value={audio.effectsVolume}
-          onChange={(e) => setEffectsVolume(parseFloat(e.target.value))}
+          onChange={(e) => {
+            setEffectsVolume(parseFloat(e.target.value));
+            audioManager.play('click');
+          }}
           disabled={!audio.effectsEnabled}
           aria-label="Volumen de efectos"
+          aria-valuetext={`${Math.round(audio.effectsVolume * 100)}%`}
         />
-        </div>
+        <span className={styles.volumeValue} aria-hidden="true">
+          {Math.round(audio.effectsVolume * 100)}%
+        </span>
+      </div>
 
-        <div className={styles.divider} />
+      <div className={styles.divider} />
 
-        <div className={styles.row}>
+      <div className={styles.row}>
         <button
           className={`${styles.toggle} ${audio.musicEnabled ? styles.active : ''}`}
           onClick={toggleMusic}
           title={audio.musicEnabled ? 'Silenciar música' : 'Activar música'}
-          aria-label={audio.musicEnabled ? 'Silenciar música' : 'Activar música'}
+          aria-label={
+            audio.musicEnabled ? 'Silenciar música' : 'Activar música'
+          }
         >
           {audio.musicEnabled ? (
             <svg
@@ -112,7 +124,11 @@ export function AudioPanel({ children }: AudioPanelProps) {
           onChange={(e) => setMusicVolume(parseFloat(e.target.value))}
           disabled={!audio.musicEnabled}
           aria-label="Volumen de música"
+          aria-valuetext={`${Math.round(audio.musicVolume * 100)}%`}
         />
+        <span className={styles.volumeValue} aria-hidden="true">
+          {Math.round(audio.musicVolume * 100)}%
+        </span>
       </div>
 
       {children}

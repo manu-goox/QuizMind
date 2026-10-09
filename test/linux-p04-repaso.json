@@ -1,0 +1,156 @@
+{
+  "id": "linux-p04-repaso",
+  "title": "Aprendiendo Linux - P04: Gestión de Ficheros (Repaso)",
+  "description": "Segunda vuelta: preguntas nuevas de aplicación sobre enlaces, cp/mv/rm, inodos y find para comprobar que dominas el tema tras estudiarlo.",
+  "category": "Sistemas Operativos",
+  "difficulty": "mixed",
+  "passThreshold": 0.6,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "Al hacer mv entre dos sistemas de ficheros distintos, ¿qué ocurre?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Se copian los datos y se borra el origen; la propiedad pasa a quien ejecuta mv", "correct": true },
+        { "id": "a2", "text": "Solo se cambian los enlaces, como dentro del mismo sistema" },
+        { "id": "a3", "text": "Falla siempre" },
+        { "id": "a4", "text": "Se crea un enlace simbólico automáticamente" }
+      ],
+      "explanation": "Dentro del mismo sistema mv no mueve datos; entre sistemas distintos debe copiar."
+    },
+    {
+      "id": "q2",
+      "text": "¿Qué muestra `cat es` si es un enlace simbólico roto?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "«No existe el fichero o el directorio»", "correct": true },
+        { "id": "a2", "text": "El contenido del fichero original" },
+        { "id": "a3", "text": "Una lista vacía" },
+        { "id": "a4", "text": "El número de inodo" }
+      ],
+      "explanation": "El enlace guarda la trayectoria; si el destino no existe, el acceso falla."
+    },
+    {
+      "id": "q3",
+      "text": "¿Cuántos enlaces duros tiene un directorio con 2 subdirectorios?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "4 (2 + 2)", "correct": true },
+        { "id": "a2", "text": "2" },
+        { "id": "a3", "text": "3" },
+        { "id": "a4", "text": "5" }
+      ],
+      "explanation": "Entrada en el directorio padre + '.' + el '..' de cada subdirectorio: 2 + nº de subdirectorios."
+    },
+    {
+      "id": "q4",
+      "text": "Sin -p, ¿de quién es el fichero copiado con cp?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Del usuario que ejecuta la copia", "correct": true },
+        { "id": "a2", "text": "Del propietario del fichero origen" },
+        { "id": "a3", "text": "De root" },
+        { "id": "a4", "text": "Del grupo del origen" }
+      ],
+      "explanation": "Sin -p la copia se crea con la identidad de quien copia y con el modo del origen filtrado por la umask. -p conserva propietario, modo y fechas (el propietario solo root)."
+    },
+    {
+      "id": "q5",
+      "text": "¿Qué hace `rmdir -p a/b/c`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Elimina c y después b y a si quedan vacíos", "correct": true },
+        { "id": "a2", "text": "Elimina solo c" },
+        { "id": "a3", "text": "Elimina a, b y c aunque tengan contenido" },
+        { "id": "a4", "text": "Muestra un mensaje detallado" }
+      ],
+      "explanation": "-p elimina los padres mientras queden vacíos. -v muestra información de cada borrado."
+    },
+    {
+      "id": "q6",
+      "text": "¿Qué hace `find ~ -name 'f*' | wc -l`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Cuenta los ficheros cuyo nombre empieza por f en el home", "correct": true },
+        { "id": "a2", "text": "Muestra las trayectorias y su tamaño" },
+        { "id": "a3", "text": "Busca la letra f en el contenido" },
+        { "id": "a4", "text": "Borra los ficheros encontrados" }
+      ],
+      "explanation": "find lista y wc -l cuenta las líneas (una por resultado)."
+    },
+    {
+      "id": "q7",
+      "text": "¿Qué busca `find . -type f -size +10M`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Ficheros mayores de 10 megabytes", "correct": true },
+        { "id": "a2", "text": "Ficheros de exactamente 10 MB" },
+        { "id": "a3", "text": "Ficheros modificados hace 10 minutos" },
+        { "id": "a4", "text": "Los 10 ficheros más grandes" }
+      ],
+      "explanation": "+ mayor que, - menor que, sin signo exacto. -mtime se usa para fechas."
+    },
+    {
+      "id": "q8",
+      "text": "¿Qué guarda el inodo sobre los datos de un fichero?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Los punteros a los bloques de disco que contienen los datos", "correct": true },
+        { "id": "a2", "text": "Una copia de los datos" },
+        { "id": "a3", "text": "El nombre del fichero" },
+        { "id": "a4", "text": "El contenido comprimido" }
+      ],
+      "explanation": "El inodo no guarda ni el nombre ni los datos: guarda metadatos y punteros a bloques."
+    },
+    {
+      "id": "q9",
+      "text": "¿Qué muestra `ls -li` para un enlace duro y su original?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El mismo número de inodo y el contador de enlaces incrementado", "correct": true },
+        { "id": "a2", "text": "Inodos distintos y enlaces independientes" },
+        { "id": "a3", "text": "Solo el enlace duro" },
+        { "id": "a4", "text": "Un error" }
+      ],
+      "explanation": "Ambos nombres comparten inodo; el contador (columna tras los permisos) cuenta todos los nombres."
+    },
+    {
+      "id": "q10",
+      "text": "¿Qué orden crea con una sola línea los directorios d, d2 y d3/d4 dentro de dir?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "mkdir -p dir/{d,d2,d3/d4}", "correct": true },
+        { "id": "a2", "text": "mkdir dir/d dir/d2 dir/d3/d4 sin -p" },
+        { "id": "a3", "text": "mkdir -r dir/d d2 d3/d4" },
+        { "id": "a4", "text": "find dir -type d" }
+      ],
+      "explanation": "Las llaves {} expanden a varias palabras (expansión del shell) y -p crea los intermedios."
+    },
+    {
+      "id": "q11",
+      "text": "¿Qué hace la opción -n de cp?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "No sobrescribe el destino si ya existe", "correct": true },
+        { "id": "a2", "text": "Pide confirmación siempre" },
+        { "id": "a3", "text": "Hace una copia de seguridad del destino" },
+        { "id": "a4", "text": "Copia solo si el origen es más reciente" }
+      ],
+      "explanation": "-i pregunta, -b hace backup con ~, -u copia solo si el origen es más reciente o el destino no existe."
+    },
+    {
+      "id": "q12",
+      "text": "¿Qué hace la opción -i de mv?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Pide confirmación antes de sobrescribir el destino", "correct": true },
+        { "id": "a2", "text": "Impide mover directorios" },
+        { "id": "a3", "text": "Fuerza sin preguntar" },
+        { "id": "a4", "text": "Muestra información del movimiento" }
+      ],
+      "explanation": "-f no pregunta nunca y tiene precedencia. Sin opciones, mv pregunta solo si el destino no tiene permiso de escritura."
+    }
+  ]
+}
