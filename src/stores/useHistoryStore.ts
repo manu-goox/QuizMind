@@ -36,12 +36,12 @@ function readHistory(): HistoryEntry[] {
         typeof entry.id === 'string' &&
         typeof entry.testId === 'string' &&
         typeof entry.testTitle === 'string' &&
-        typeof entry.date === 'number' &&
-        typeof entry.correct === 'number' &&
-        typeof entry.total === 'number' &&
-        typeof entry.percentage === 'number' &&
+        Number.isFinite(entry.date) &&
+        Number.isFinite(entry.correct) &&
+        Number.isFinite(entry.total) &&
+        Number.isFinite(entry.percentage) &&
         typeof entry.passed === 'boolean' &&
-        typeof entry.timeSpent === 'number' &&
+        Number.isFinite(entry.timeSpent) &&
         (entry.mode === 'normal' || entry.mode === 'practice'),
     );
   } catch {

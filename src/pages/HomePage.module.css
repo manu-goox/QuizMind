@@ -96,6 +96,16 @@
   white-space: pre-line;
 }
 
+.loadError {
+  background: var(--wrong-subtle);
+  border: 1px solid var(--wrong-glow);
+  color: var(--wrong);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-4);
+  font-size: var(--text-sm);
+}
+
 /* ================================================================
    Toolbar — search + filters + tags
    ================================================================ */

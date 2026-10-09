@@ -5,6 +5,7 @@ interface NavigationBarProps {
   canGoBack: boolean;
   canGoNext: boolean;
   canSkip?: boolean;
+  disableSkip?: boolean;
   isLastQuestion: boolean;
   skippedCount: number;
   onBack: () => void;
@@ -17,6 +18,7 @@ export function NavigationBar({
   canGoBack,
   canGoNext,
   canSkip = true,
+  disableSkip = false,
   isLastQuestion,
   skippedCount,
   onBack,
@@ -29,7 +31,11 @@ export function NavigationBar({
       <Button variant="ghost" onClick={onBack} disabled={!canGoBack}>
         ← Anterior
       </Button>
-      <Button variant="secondary" onClick={onSkip} disabled={!canSkip}>
+      <Button
+        variant="secondary"
+        onClick={onSkip}
+        disabled={!canSkip || disableSkip}
+      >
         Saltar
         {skippedCount > 0 && <Badge variant="info">{skippedCount}</Badge>}
       </Button>

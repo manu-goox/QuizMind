@@ -13,7 +13,7 @@ interface QuizStore extends QuizState {
   startReviewing: () => void;
   resumeQuiz: () => void;
   setPracticeMode: (enabled: boolean) => void;
-  finishTest: () => QuizResult;
+  finishTest: (pausedMs?: number) => QuizResult;
   resetQuiz: () => void;
   getResults: () => QuizResult | null;
 }
@@ -29,7 +29,7 @@ const initialState: QuizState = {
   practiceMode: false,
 };
 
-const PERSIST_KEY = 'quizmind-active-quiz';
+export const PERSIST_KEY = 'quizmind-active-quiz';
 
 function loadPersistedQuiz(): Partial<QuizState> | null {
   try {
@@ -45,6 +45,22 @@ function loadPersistedQuiz(): Partial<QuizState> | null {
       return null;
     }
     const maxIndex = test.questions.length - 1;
+    const questionIds = new Set(test.questions.map((q) => q.id));
+    const rawAnswers =
+      data.answers && typeof data.answers === 'object'
+        ? (data.answers as Record<string, string>)
+        : {};
+    const answers: Record<string, string> = {};
+    for (const [questionId, answerId] of Object.entries(rawAnswers)) {
+      if (questionIds.has(questionId) && typeof answerId === 'string') {
+        answers[questionId] = answerId;
+      }
+    }
+    const skipped = new Set(
+      (Array.isArray(data.skipped) ? (data.skipped as string[]) : []).filter(
+        (id) => typeof id === 'string' && questionIds.has(id),
+      ),
+    );
     return {
       activeTest: test,
       currentQuestionIndex: Math.min(
@@ -56,13 +72,8 @@ function loadPersistedQuiz(): Partial<QuizState> | null {
         ),
         maxIndex,
       ),
-      answers:
-        data.answers && typeof data.answers === 'object'
-          ? (data.answers as Record<string, string>)
-          : {},
-      skipped: new Set(
-        Array.isArray(data.skipped) ? (data.skipped as string[]) : [],
-      ),
+      answers,
+      skipped,
       startTime: typeof data.startTime === 'number' ? data.startTime : null,
       status: 'in-progress',
       result: null,
@@ -161,16 +172,19 @@ export const useQuizStore = create<QuizStore>((set, get) => ({
 
   setPracticeMode: (enabled: boolean) => set({ practiceMode: enabled }),
 
-  finishTest: () => {
+  finishTest: (pausedMs = 0) => {
     const state = get();
     if (!state.activeTest) {
       throw new Error('No active test');
     }
-    const results = calculateResults(
-      state.activeTest,
-      state.answers,
-      state.startTime ? Date.now() - state.startTime : 0,
-    );
+    let elapsed = state.startTime
+      ? Date.now() - state.startTime - Math.max(0, pausedMs)
+      : 0;
+    if (elapsed < 0) elapsed = 0;
+    if (state.activeTest.timeLimit) {
+      elapsed = Math.min(elapsed, state.activeTest.timeLimit * 60 * 1000);
+    }
+    const results = calculateResults(state.activeTest, state.answers, elapsed);
     set({ status: 'finished', result: results });
     return results;
   },

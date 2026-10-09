@@ -13,7 +13,10 @@ class AudioManager {
   }
 
   unlock() {
-    if (this.unlocked) return;
+    if (this.unlocked) {
+      if (this.enabled.music && !this.musicPlaying) this.playMusic();
+      return;
+    }
     this.unlocked = true;
     try {
       this.ctx = new AudioContext();
@@ -129,6 +132,7 @@ class AudioManager {
   private musicFiles: string[] = [];
   private currentMusicIndex = -1;
   private musicPlaying = false;
+  private trackFailures = 0;
 
   async loadMusicFiles() {
     try {
@@ -151,19 +155,26 @@ class AudioManager {
     if (this.musicPlaying) return;
     if (this.musicFiles.length === 0) return;
 
-    this.musicPlaying = true;
-
     if (!this.musicAudio) {
       this.musicAudio = new Audio();
       this.musicAudio.volume = this.volume.music;
       this.musicAudio.addEventListener('ended', () => this.playRandomTrack());
+      this.musicAudio.addEventListener('error', () => {
+        if (!this.musicPlaying) return;
+        this.trackFailures += 1;
+        if (this.trackFailures >= this.musicFiles.length) {
+          this.stopMusic();
+          return;
+        }
+        this.playRandomTrack();
+      });
     }
 
     this.playRandomTrack();
   }
 
   private playRandomTrack() {
-    if (!this.musicPlaying || this.musicFiles.length === 0 || !this.musicAudio)
+    if (!this.enabled.music || this.musicFiles.length === 0 || !this.musicAudio)
       return;
 
     let nextIndex: number;
@@ -177,7 +188,15 @@ class AudioManager {
 
     this.currentMusicIndex = nextIndex;
     this.musicAudio.src = this.musicFiles[nextIndex];
-    this.musicAudio.play().catch(() => {});
+    this.musicAudio
+      .play()
+      .then(() => {
+        this.musicPlaying = true;
+        this.trackFailures = 0;
+      })
+      .catch(() => {
+        this.musicPlaying = false;
+      });
   }
 
   stopMusic() {

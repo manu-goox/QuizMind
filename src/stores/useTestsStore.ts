@@ -80,6 +80,22 @@ async function buildRegistry(): Promise<TestRegistry> {
 }
 
 let registry: TestRegistry = { entries: [], warning: null };
+let registryPromise: Promise<TestRegistry> | null = null;
+
+function getRegistry(): Promise<TestRegistry> {
+  if (!registryPromise) {
+    registryPromise = buildRegistry()
+      .then((loaded) => {
+        registry = loaded;
+        return loaded;
+      })
+      .catch((error: unknown) => {
+        registryPromise = null;
+        throw error;
+      });
+  }
+  return registryPromise;
+}
 
 interface TestsStore {
   tests: TestMetadata[];
@@ -105,14 +121,23 @@ export const useTestsStore = create<TestsStore>((set, get) => ({
     set({ selectedId: id, loadError: null }),
 
   loadTests: async () => {
-    set({ loading: true });
-    const loaded = await buildRegistry();
-    registry = loaded;
-    set({
-      tests: loaded.entries.map((entry) => entry.metadata),
-      warning: loaded.warning,
-      loading: false,
-    });
+    set({ loading: true, loadError: null });
+    try {
+      const loaded = await getRegistry();
+      set({
+        tests: loaded.entries.map((entry) => entry.metadata),
+        warning: loaded.warning,
+        loading: false,
+      });
+    } catch (error) {
+      set({
+        loadError:
+          error instanceof Error
+            ? `No se pudieron cargar los tests: ${error.message}`
+            : 'No se pudieron cargar los tests',
+        loading: false,
+      });
+    }
   },
 
   loadTest: (id: string) => {

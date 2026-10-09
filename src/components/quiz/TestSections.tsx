@@ -47,7 +47,10 @@ export function TestSections({
               aria-expanded={!isCollapsed}
               aria-controls={sectionId}
             >
-              <span className={`${styles.dot} ${dotClass}`} aria-hidden="true" />
+              <span
+                className={`${styles.dot} ${dotClass}`}
+                aria-hidden="true"
+              />
               <span className={styles.category}>{group.category}</span>
               <span className={styles.count}>{group.tests.length}</span>
               <span className={styles.chevron} aria-hidden="true">

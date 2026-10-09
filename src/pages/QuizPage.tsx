@@ -6,6 +6,7 @@ import { ProgressBar, Modal, Button, Badge } from '../components/ui';
 import { useQuizStore } from '../stores/useQuizStore';
 import { useHistoryStore } from '../stores/useHistoryStore';
 import { audioManager } from '../services/audioManager';
+import { formatTime } from '../utils/formatTime';
 import { getRemainingSeconds } from '../utils/timer';
 import styles from './QuizPage.module.css';
 
@@ -28,11 +29,18 @@ export function QuizPage() {
     startTime,
   } = useQuizStore();
   const [showFinishModal, setShowFinishModal] = useState(false);
+  const [pausedMs, setPausedMs] = useState(0);
+  const [pauseStartedAt, setPauseStartedAt] = useState<number | null>(null);
   const [now, setNow] = useState(() => Date.now());
 
   const question = activeTest?.questions[currentQuestionIndex] ?? null;
+  const scorableQuestions = activeTest
+    ? activeTest.questions.filter((q) => q.answers.some((a) => a.correct))
+    : [];
+  const pausedOffset =
+    pausedMs + (pauseStartedAt !== null ? now - pauseStartedAt : 0);
   const remainingSeconds = getRemainingSeconds(
-    startTime,
+    startTime !== null ? startTime + pausedOffset : null,
     activeTest?.timeLimit,
     now,
   );
@@ -74,31 +82,37 @@ export function QuizPage() {
     skipQuestion(question.id);
   }, [question, skipQuestion]);
 
-  const doFinish = useCallback(() => {
-    if (!activeTest) return;
-    if (useQuizStore.getState().status === 'finished') return;
-    const results = finishTest();
-    if (!practiceMode) {
-      useHistoryStore.getState().addEntry({
-        testId: activeTest.id,
-        testTitle: activeTest.title,
-        correct: results.correct,
-        total: results.total,
-        percentage: results.percentage,
-        passed: results.passed,
-        timeSpent: results.timeSpent,
-        mode: 'normal',
-      });
-    }
-    audioManager.play(results.passed ? 'win' : 'complete');
-    navigate('/results');
-  }, [activeTest, finishTest, practiceMode, navigate]);
+  const doFinish = useCallback(
+    (extraPauseMs = 0) => {
+      if (!activeTest) return;
+      if (useQuizStore.getState().status === 'finished') return;
+      const results = finishTest(pausedMs + extraPauseMs);
+      if (!practiceMode) {
+        useHistoryStore.getState().addEntry({
+          testId: activeTest.id,
+          testTitle: activeTest.title,
+          correct: results.correct,
+          total: results.total,
+          percentage: results.percentage,
+          passed: results.passed,
+          timeSpent: results.timeSpent,
+          mode: 'normal',
+        });
+      }
+      audioManager.play(results.passed ? 'win' : 'complete');
+      navigate('/results');
+    },
+    [activeTest, finishTest, practiceMode, navigate, pausedMs],
+  );
 
   const handleFinish = useCallback(() => {
     if (!activeTest) return;
-    const blanks = activeTest.questions.length - Object.keys(answers).length;
+    const blanks = activeTest.questions.filter(
+      (q) => q.answers.some((a) => a.correct) && !answers[q.id],
+    ).length;
     if (blanks > 0) {
       startReviewing();
+      setPauseStartedAt(Date.now());
       setShowFinishModal(true);
       return;
     }
@@ -126,6 +140,7 @@ export function QuizPage() {
         return;
       }
       if (event.metaKey || event.ctrlKey || event.altKey) return;
+      if (event.repeat) return;
 
       if (
         (event.key === 'Enter' || event.key === ' ') &&
@@ -204,41 +219,54 @@ export function QuizPage() {
   useEffect(() => {
     if (!activeTest || remainingSeconds === null || remainingSeconds > 0)
       return;
+    if (showFinishModal) return;
     if (useQuizStore.getState().status !== 'finished') {
       doFinish();
     }
-  }, [activeTest, remainingSeconds, doFinish]);
+  }, [activeTest, remainingSeconds, showFinishModal, doFinish]);
 
   if (!activeTest || !question) return null;
 
   const totalQuestions = activeTest.questions.length;
   const currentAnswer = answers[question.id];
   const isLastQuestion = currentQuestionIndex === totalQuestions - 1;
-  const skippedCount = skipped.size;
-  const blankCount = totalQuestions - Object.keys(answers).length;
-  const formatTime = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60);
-    const remaining = seconds % 60;
-    return `${minutes}:${remaining.toString().padStart(2, '0')}`;
+  const answeredScorable = scorableQuestions.filter(
+    (q) => answers[q.id],
+  ).length;
+  const skippedScorable = scorableQuestions.filter((q) =>
+    skipped.has(q.id),
+  ).length;
+  const blankCount = scorableQuestions.length - answeredScorable;
+  const endPause = () => {
+    if (pauseStartedAt !== null) {
+      setPausedMs((prev) => prev + (Date.now() - pauseStartedAt));
+      setPauseStartedAt(null);
+    }
+    setNow(Date.now());
   };
 
   const closeFinishModal = () => {
     setShowFinishModal(false);
+    endPause();
     resumeQuiz();
   };
 
   const handleReviewBlanks = () => {
     setShowFinishModal(false);
+    endPause();
     resumeQuiz();
     const firstBlankIndex = activeTest.questions.findIndex(
-      (q) => !answers[q.id],
+      (q) => q.answers.some((a) => a.correct) && !answers[q.id],
     );
     if (firstBlankIndex >= 0) goToQuestion(firstBlankIndex);
   };
 
   const handleConfirmFinish = () => {
     setShowFinishModal(false);
-    doFinish();
+    const openPauseMs =
+      pauseStartedAt !== null ? Date.now() - pauseStartedAt : 0;
+    setPauseStartedAt(null);
+    doFinish(openPauseMs);
   };
 
   return (
@@ -253,16 +281,16 @@ export function QuizPage() {
             {remainingSeconds !== null && (
               <span
                 className={`${styles.timer} ${remainingSeconds <= 60 ? styles.timerWarning : ''}`}
-                aria-label={`Tiempo restante: ${formatTime(remainingSeconds)}`}
+                aria-label={`Tiempo restante: ${formatTime(remainingSeconds * 1000)}`}
               >
-                {formatTime(remainingSeconds)}
+                {formatTime(remainingSeconds * 1000)}
               </span>
             )}
           </div>
           <ProgressBar
-            current={Object.keys(answers).length}
-            total={totalQuestions}
-            skipped={skippedCount}
+            current={answeredScorable}
+            total={scorableQuestions.length}
+            skipped={skippedScorable}
           />
         </div>
 
@@ -277,8 +305,9 @@ export function QuizPage() {
           canGoBack={currentQuestionIndex > 0}
           canGoNext={!!currentAnswer || isLastQuestion}
           canSkip={!currentAnswer}
+          disableSkip={isLastQuestion}
           isLastQuestion={isLastQuestion}
-          skippedCount={skippedCount}
+          skippedCount={skippedScorable}
           onBack={handleBack}
           onSkip={handleSkip}
           onNext={handleNext}

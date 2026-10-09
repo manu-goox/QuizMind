@@ -14,8 +14,24 @@ import { themeManager } from './services/themeManager';
 import './styles/global.css';
 import './styles/variables.css';
 
+const ROUTE_TITLES: Record<string, string> = {
+  '/': 'QuizMind — Tests Interactivos',
+  '/start': 'QuizMind — Preparar test',
+  '/quiz': 'QuizMind — Test en curso',
+  '/results': 'QuizMind — Resultados',
+};
+
 function AppRoutes() {
   const location = useLocation();
+
+  useEffect(() => {
+    document.title =
+      ROUTE_TITLES[location.pathname] ?? 'QuizMind — Tests Interactivos';
+    // En /quiz el foco lo gestiona QuestionCard (h2 de la pregunta)
+    if (location.pathname !== '/quiz') {
+      document.getElementById('main-content')?.focus();
+    }
+  }, [location.pathname]);
 
   return (
     <AnimatePresence mode="wait" initial={false}>

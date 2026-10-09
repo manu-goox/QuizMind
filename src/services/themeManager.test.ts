@@ -9,12 +9,18 @@ interface FakeLink {
   onload: (() => void) | null;
   onerror: (() => void) | null;
   remove: () => void;
+  getAttribute: (name: string) => string | null;
 }
 
 const links: FakeLink[] = [];
 
 vi.stubGlobal('document', {
   getElementById: (id: string) => links.find((link) => link.id === id) ?? null,
+  querySelectorAll: (selector: string) =>
+    selector === '#theme-css'
+      ? links.filter((link) => link.id === 'theme-css')
+      : [],
+  querySelector: () => null,
   createElement: () => {
     const link: FakeLink = {
       id: '',
@@ -22,6 +28,7 @@ vi.stubGlobal('document', {
       href: '',
       onload: null,
       onerror: null,
+      getAttribute: (name: string) => (name === 'href' ? link.href : null),
       remove: () => {
         const index = links.indexOf(link);
         if (index >= 0) links.splice(index, 1);

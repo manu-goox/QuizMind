@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactNode } from 'react';
+import { useEffect, useId, useRef, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import styles from './Modal.module.css';
@@ -16,6 +16,7 @@ const FOCUSABLE_SELECTOR =
 
 export function Modal({ open, title, onClose, children, actions }: ModalProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
+  const titleId = useId();
   const onCloseRef = useRef(onClose);
 
   useEffect(() => {
@@ -71,7 +72,7 @@ export function Modal({ open, title, onClose, children, actions }: ModalProps) {
             className={styles.dialog}
             role="dialog"
             aria-modal="true"
-            aria-labelledby="modal-title"
+            aria-labelledby={titleId}
             tabIndex={-1}
             initial={{ opacity: 0, scale: 0.96, y: 8 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -99,7 +100,7 @@ export function Modal({ open, title, onClose, children, actions }: ModalProps) {
                 <line x1="6" y1="6" x2="18" y2="18" />
               </svg>
             </button>
-            <h2 id="modal-title" className={styles.title}>
+            <h2 id={titleId} className={styles.title}>
               {title}
             </h2>
             <div className={styles.body}>{children}</div>

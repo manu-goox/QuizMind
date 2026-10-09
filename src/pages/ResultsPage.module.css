@@ -31,11 +31,7 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(
-      circle at 50% 0%,
-      var(--accent-subtle) 0%,
-      transparent 60%
-    ),
+    radial-gradient(circle at 50% 0%, var(--accent-subtle) 0%, transparent 60%),
     radial-gradient(
       ellipse 70% 50% at 85% -10%,
       var(--aurora-2) 0%,
@@ -256,5 +252,13 @@
 
   .container {
     gap: var(--space-6);
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .actions > * {
+    width: 100%;
   }
 }

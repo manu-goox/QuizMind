@@ -9,6 +9,7 @@ import { QuestionCard } from '../components/quiz';
 import { useQuizStore } from '../stores/useQuizStore';
 import { useTestsStore } from '../stores/useTestsStore';
 import { collectFailedQuestions } from '../utils/failedQuestions';
+import { formatTime } from '../utils/formatTime';
 import { useHistoryStore } from '../stores/useHistoryStore';
 import {
   getTestHistory,
@@ -57,13 +58,6 @@ export function ResultsPage() {
   const bestPercentage = getBestPercentage(testHistory);
   const averagePercentage = getAveragePercentage(testHistory);
 
-  const formatTime = (ms: number) => {
-    const seconds = Math.floor(ms / 1000);
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
-  };
-
   const handleRestart = () => {
     resetQuiz();
     if (selectedId) useTestsStore.getState().setSelectedTestId(selectedId);
@@ -72,7 +66,8 @@ export function ResultsPage() {
 
   const handleRetry = () => {
     if (!activeTest) return;
-    useQuizStore.getState().startTest(activeTest);
+    const fullTest = useTestsStore.getState().loadTest(activeTest.id);
+    useQuizStore.getState().startTest(fullTest ?? activeTest);
     navigate('/start');
   };
 
@@ -85,6 +80,7 @@ export function ResultsPage() {
       questions: failedQuestions,
       shuffleQuestions: false,
       shuffleAnswers: false,
+      timeLimit: undefined,
     });
     store.setPracticeMode(true);
     navigate('/quiz');
@@ -107,7 +103,11 @@ export function ResultsPage() {
               }
             />
             <h1 className={styles.resultTitle}>
-              {results.passed ? 'Felicidades' : 'Test completado'}
+              {practiceMode
+                ? 'Práctica completada'
+                : results.passed
+                  ? 'Felicidades'
+                  : 'Test completado'}
             </h1>
             {!practiceMode && (
               <>

@@ -133,7 +133,7 @@ npm run preview
 
 ### Requirements
 
-- **Node.js** ≥ 18
+- **Node.js** ≥ 22.12
 - Modern browser with Web Audio API support (Chrome, Firefox, Edge, Safari)
 
 ---
@@ -324,7 +324,7 @@ See `docs/TEST_FORMAT.md` for the full reference.
 | CSS                |  25 kB | 5.3 kB |
 | HTML               | 0.9 kB | 0.4 kB |
 
-Tests are lazy-loaded as individual chunks; only the test you open is downloaded.
+Test data is bundled as individual chunks and precached for offline use; the registry is parsed once per session.
 
 No external CSS framework. No runtime icon library. No audio-file dependencies for effects. Just the essentials.
 

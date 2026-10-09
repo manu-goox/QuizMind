@@ -1,6 +1,6 @@
 .bar {
   position: sticky;
-  bottom: var(--space-4);
+  bottom: calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
   z-index: 10;
   display: flex;
   justify-content: space-between;

@@ -2,6 +2,12 @@ import type { Theme } from '../types';
 
 const DEFAULT_THEME_ID = 'dark';
 
+const THEME_COLORS: Record<string, string> = {
+  dark: '#0a0a18',
+  light: '#e8edf3',
+  catppuccin: '#1e1e2e',
+};
+
 class ThemeManager {
   private currentTheme: Theme | null = null;
 
@@ -40,18 +46,34 @@ class ThemeManager {
   async applyTheme(theme: Theme) {
     const existing = document.getElementById('theme-css');
 
+    if (existing?.getAttribute('href') === theme.file) {
+      this.currentTheme = theme;
+      this.updateThemeColor(theme.id);
+      return;
+    }
+
     const link = document.createElement('link');
     link.id = 'theme-css';
     link.rel = 'stylesheet';
     link.href = theme.file;
     link.onload = () => {
-      existing?.remove();
+      document.querySelectorAll('#theme-css').forEach((el) => {
+        if (el !== link) el.remove();
+      });
       this.currentTheme = theme;
+      this.updateThemeColor(theme.id);
     };
     link.onerror = () => {
       link.remove();
     };
     document.head.appendChild(link);
+  }
+
+  private updateThemeColor(themeId: string) {
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) {
+      meta.setAttribute('content', THEME_COLORS[themeId] ?? '#0a0a18');
+    }
   }
 
   getCurrentTheme() {

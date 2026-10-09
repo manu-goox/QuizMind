@@ -47,6 +47,32 @@ function isValidTheme(value: unknown): value is Theme {
   );
 }
 
+function clampVolume(value: unknown, fallback: number): number {
+  return typeof value === 'number' && Number.isFinite(value)
+    ? Math.min(1, Math.max(0, value))
+    : fallback;
+}
+
+function sanitizeAudio(value: unknown): AudioSettings {
+  const audio =
+    value && typeof value === 'object' ? (value as Partial<AudioSettings>) : {};
+  return {
+    musicVolume: clampVolume(audio.musicVolume, DEFAULT_AUDIO.musicVolume),
+    effectsVolume: clampVolume(
+      audio.effectsVolume,
+      DEFAULT_AUDIO.effectsVolume,
+    ),
+    musicEnabled:
+      typeof audio.musicEnabled === 'boolean'
+        ? audio.musicEnabled
+        : DEFAULT_AUDIO.musicEnabled,
+    effectsEnabled:
+      typeof audio.effectsEnabled === 'boolean'
+        ? audio.effectsEnabled
+        : DEFAULT_AUDIO.effectsEnabled,
+  };
+}
+
 function readStoredSettings(): { theme: Theme; audio: AudioSettings } | null {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
@@ -54,7 +80,7 @@ function readStoredSettings(): { theme: Theme; audio: AudioSettings } | null {
     const parsed = JSON.parse(saved);
     return {
       theme: isValidTheme(parsed.theme) ? parsed.theme : DEFAULT_THEME,
-      audio: { ...DEFAULT_AUDIO, ...parsed.audio },
+      audio: sanitizeAudio(parsed.audio),
     };
   } catch {
     return null;
@@ -116,7 +142,7 @@ export const useSettingsStore = create<SettingsStore>((set, get) => ({
       if (saved) {
         const parsed = JSON.parse(saved);
         const theme = isValidTheme(parsed.theme) ? parsed.theme : DEFAULT_THEME;
-        const audio = { ...DEFAULT_AUDIO, ...parsed.audio };
+        const audio = sanitizeAudio(parsed.audio);
         set({ theme, audio });
         audioManager.setEffectsEnabled(audio.effectsEnabled);
         audioManager.setEffectsVolume(audio.effectsVolume);

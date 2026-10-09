@@ -1,6 +1,7 @@
 import { Component, type ErrorInfo, type ReactNode } from 'react';
 import { Button } from '../ui';
 import styles from './ErrorBoundary.module.css';
+import { PERSIST_KEY } from '../../stores/useQuizStore';
 
 interface ErrorBoundaryProps {
   children: ReactNode;
@@ -28,7 +29,7 @@ export class ErrorBoundary extends Component<
     // El quiz persistido puede ser la causa del error: se descarta
     // para evitar un bucle de fallos al recargar.
     try {
-      sessionStorage.removeItem('quizmind-active-quiz');
+      sessionStorage.removeItem(PERSIST_KEY);
     } catch {
       // sessionStorage no disponible: se ignora
     }

@@ -61,7 +61,11 @@ export function AudioMenu() {
       </button>
 
       {open && (
-        <div className={styles.menu} role="dialog" aria-label="Ajustes de audio">
+        <div
+          className={styles.menu}
+          role="dialog"
+          aria-label="Ajustes de audio"
+        >
           <AudioPanel />
         </div>
       )}
