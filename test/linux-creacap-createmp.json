@@ -1,0 +1,156 @@
+{
+  "id": "linux-creacap-createmp",
+  "title": "Aprendiendo Linux - Scripts creacap y createmp",
+  "description": "Los scripts que generan ficheros de prueba para practicar comodines: cuántos ficheros crean, con qué nombres y qué borra cada patrón. Basado en la Práctica 02 §5.3 y P04.",
+  "category": "Sistemas Operativos",
+  "difficulty": "mixed",
+  "passThreshold": 0.6,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "¿Para qué sirven los scripts creacap y createmp?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Generar ficheros de prueba para practicar los comodines del shell", "correct": true },
+        { "id": "a2", "text": "Hacer copias de seguridad del directorio base" },
+        { "id": "a3", "text": "Instalar programas del repositorio de prácticas" },
+        { "id": "a4", "text": "Comprimir y empaquetar ficheros" }
+      ],
+      "explanation": "Crean muchos ficheros con nombres parecidos (cap1, cap10.2, tempa…) para que los patrones * ? [ ] sean interesantes de practicar."
+    },
+    {
+      "id": "q2",
+      "text": "¿Cuántos ficheros crea el script creacap?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "30", "correct": true },
+        { "id": "a2", "text": "10" },
+        { "id": "a3", "text": "108" },
+        { "id": "a4", "text": "78" }
+      ],
+      "explanation": "El bucle da 10 vueltas y crea 3 ficheros por vuelta: 10 × 3 = 30."
+    },
+    {
+      "id": "q3",
+      "text": "¿Qué nombres de fichero crea creacap?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "cap1…cap10, cap1.1…cap10.1 y cap1.2…cap10.2", "correct": true },
+        { "id": "a2", "text": "capitulo1…capitulo30" },
+        { "id": "a3", "text": "cap1…cap30" },
+        { "id": "a4", "text": "Solo cap1…cap10" }
+      ],
+      "explanation": "Por cada i crea cap$i, cap$i.1 y cap$i.2."
+    },
+    {
+      "id": "q4",
+      "text": "¿Qué contenido tienen los ficheros que crea creacap?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "capituloN (y capituloN.1 / capituloN.2)", "correct": true },
+        { "id": "a2", "text": "Están vacíos" },
+        { "id": "a3", "text": "Su propio nombre" },
+        { "id": "a4", "text": "La fecha actual" }
+      ],
+      "explanation": "echo capitulo$i >cap$i escribe ese texto en el fichero correspondiente."
+    },
+    {
+      "id": "q5",
+      "text": "¿Cuántos ficheros crea createmp en total?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "108", "correct": true },
+        { "id": "a2", "text": "30" },
+        { "id": "a3", "text": "78" },
+        { "id": "a4", "text": "36" }
+      ],
+      "explanation": "30 numéricos (temp1…temp10 con .1/.2) + 78 alfabéticos = 108."
+    },
+    {
+      "id": "q6",
+      "text": "¿De dónde salen los 78 ficheros alfabéticos de createmp?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Del bucle for i in {a..z}: 26 letras × 3 ficheros", "correct": true },
+        { "id": "a2", "text": "De 78 letras distintas" },
+        { "id": "a3", "text": "De 3 bucles de 26 ficheros" },
+        { "id": "a4", "text": "De 10 × 8 combinaciones" }
+      ],
+      "explanation": "La expansión de llaves {a..z} genera las 26 letras; por cada una se crean temp$i, temp$i.1 y temp$i.2."
+    },
+    {
+      "id": "q7",
+      "text": "¿Cómo se ejecutan estos scripts?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "chmod +x creacap y después ./creacap (o bash creacap)", "correct": true },
+        { "id": "a2", "text": "Simplemente ./creacap, aunque no tenga permiso de ejecución" },
+        { "id": "a3", "text": "Compilándolos antes con g++" },
+        { "id": "a4", "text": "Con make creacap" }
+      ],
+      "explanation": "Al ser scripts bash necesitan permiso de ejecución (o ejecutarse con bash/sh explícitamente)."
+    },
+    {
+      "id": "q8",
+      "text": "En una carpeta con los 108 ficheros de createmp, ¿cuántos borra rm temp?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "35: temp1…temp9 y tempa…tempz", "correct": true },
+        { "id": "a2", "text": "36" },
+        { "id": "a3", "text": "26" },
+        { "id": "a4", "text": "30" }
+      ],
+      "explanation": "? casa exactamente 1 carácter: temp10 no entra (2 caracteres). 9 dígitos + 26 letras = 35."
+    },
+    {
+      "id": "q9",
+      "text": "¿Cuántos ficheros borra rm temp[a-z]?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "26: tempa…tempz", "correct": true },
+        { "id": "a2", "text": "35" },
+        { "id": "a3", "text": "10" },
+        { "id": "a4", "text": "108" }
+      ],
+      "explanation": "[a-z] casa solo una letra minúscula tras temp; los temp1…temp10 no coinciden."
+    },
+    {
+      "id": "q10",
+      "text": "Tras mv cap* temp, ¿qué muestra cat temp/cap?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El contenido de cap1…cap9 (nombres de exactamente 4 caracteres)", "correct": true },
+        { "id": "a2", "text": "El contenido de los 30 ficheros cap" },
+        { "id": "a3", "text": "Solo cap10" },
+        { "id": "a4", "text": "Nada: no existe ningún fichero así" }
+      ],
+      "explanation": "cap10 tiene 5 caracteres y no casa con ?; cap1.1 tampoco (tiene punto)."
+    },
+    {
+      "id": "q11",
+      "text": "¿Por qué mv cap* capitulo* no renombra los ficheros?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Los comodines solo se expanden a ficheros existentes: capitulo* no coincide con nada", "correct": true },
+        { "id": "a2", "text": "Porque mv no acepta comodines en el destino" },
+        { "id": "a3", "text": "Porque falta la opción -r" },
+        { "id": "a4", "text": "Porque «capitulo» es una palabra reservada del shell" }
+      ],
+      "explanation": "Para renombrar en lote hay que usar un bucle: for f in cap*; do mv \"$f\" \"capitulo${f#cap}\"; done"
+    },
+    {
+      "id": "q12",
+      "text": "En la carpeta generada por creacap, ¿qué imprime echo cap1.*?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "cap1.1 cap1.2", "correct": true },
+        { "id": "a2", "text": "cap1 cap1.1 cap1.2" },
+        { "id": "a3", "text": "cap1", "correct": false },
+        { "id": "a4", "text": "Todos los ficheros cap*" }
+      ],
+      "explanation": "El shell expande el patrón cap1.* a los ficheros que empiezan por cap1. (cap1 no coincide: le falta el punto)."
+    }
+  ]
+}

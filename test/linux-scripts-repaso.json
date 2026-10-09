@@ -1,0 +1,108 @@
+{
+  "id": "linux-scripts-repaso",
+  "title": "Aprendiendo Linux - Scripts creacap y createmp (Repaso)",
+  "description": "Segunda vuelta: aplica comodines sobre los ficheros de creacap y createmp: conteos exactos, expansiones y errores típicos.",
+  "category": "Sistemas Operativos",
+  "difficulty": "mixed",
+  "passThreshold": 0.6,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "¿Qué lista la orden `ls cap*.2` tras ejecutar creacap?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "cap1.2, cap2.2, ..., cap10.2 (10 ficheros)", "correct": true },
+        { "id": "a2", "text": "cap1.2 .. cap9.2 (9 ficheros)" },
+        { "id": "a3", "text": "Solo cap10.2" },
+        { "id": "a4", "text": "Todos los ficheros cap" }
+      ],
+      "explanation": "cap*.2 casa cualquier nombre cap + cualquier cosa + .2; incluye cap10.2."
+    },
+    {
+      "id": "q2",
+      "text": "¿Qué borra la orden `rm cap?`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "cap1..cap9 (9 ficheros)", "correct": true },
+        { "id": "a2", "text": "cap1..cap10 (10 ficheros)" },
+        { "id": "a3", "text": "Los .1 y .2 de cada cap" },
+        { "id": "a4", "text": "Nada" }
+      ],
+      "explanation": "cap? exige exactamente 4 caracteres: cap1..cap9. cap10 tiene 5 y no coincide."
+    },
+    {
+      "id": "q3",
+      "text": "¿Cuántos ficheros borra `rm cap*`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "30", "correct": true },
+        { "id": "a2", "text": "10" },
+        { "id": "a3", "text": "9" },
+        { "id": "a4", "text": "20" }
+      ],
+      "explanation": "cap* casa capN, capN.1 y capN.2 de los 10 capítulos: 30."
+    },
+    {
+      "id": "q4",
+      "text": "¿Qué expande `echo temp[a-c].1`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "tempa.1 tempb.1 tempc.1", "correct": true },
+        { "id": "a2", "text": "temp1.1 temp2.1 temp3.1" },
+        { "id": "a3", "text": "tempa.1 tempa.2" },
+        { "id": "a4", "text": "Todos los temp" }
+      ],
+      "explanation": "[a-c] casa una letra entre a y c."
+    },
+    {
+      "id": "q5",
+      "text": "¿Cuántos ficheros lista `ls temp*` tras ejecutar createmp?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "108", "correct": true },
+        { "id": "a2", "text": "30" },
+        { "id": "a3", "text": "78" },
+        { "id": "a4", "text": "35" }
+      ],
+      "explanation": "temp* casa todo lo que empieza por temp: los 108 ficheros."
+    },
+    {
+      "id": "q6",
+      "text": "Tras `mv cap* temp`, ¿qué muestra `cat temp/cap10`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "capitulo10", "correct": true },
+        { "id": "a2", "text": "cap10" },
+        { "id": "a3", "text": "10" },
+        { "id": "a4", "text": "Error: no existe" }
+      ],
+      "explanation": "El contenido de cap10 es capitulo10 (echo capitulo$i > cap$i)."
+    },
+    {
+      "id": "q7",
+      "text": "¿Qué ocurre al ejecutar `./creacap` sin haber hecho chmod +x?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "«Permiso denegado»: el fichero no es ejecutable", "correct": true },
+        { "id": "a2", "text": "Se ejecuta igualmente" },
+        { "id": "a3", "text": "Se ejecuta como root" },
+        { "id": "a4", "text": "Se compila solo" }
+      ],
+      "explanation": "Los scripts necesitan permiso x. Alternativa: bash creacap."
+    },
+    {
+      "id": "q8",
+      "text": "¿Qué contenido tiene el fichero tempa.2?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "temporala.2", "correct": true },
+        { "id": "a2", "text": "tempa.2" },
+        { "id": "a3", "text": "temporal2" },
+        { "id": "a4", "text": "a.2" }
+      ],
+      "explanation": "El segundo bucle escribe temporal$i.2 en temp$i.2; con i=a: temporala.2."
+    }
+  ]
+}

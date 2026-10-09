@@ -32,8 +32,13 @@
   background: transparent;
   color: var(--text-muted);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all var(--dur-fast) var(--ease-out);
   flex-shrink: 0;
+}
+
+.toggle:focus-visible {
+  outline: none;
+  box-shadow: var(--ring-focus);
 }
 
 .toggle:hover {
@@ -64,6 +69,14 @@
   cursor: pointer;
 }
 
+.slider:focus-visible::-webkit-slider-thumb {
+  box-shadow: var(--ring-focus);
+}
+
+.slider:focus-visible::-moz-range-thumb {
+  box-shadow: var(--ring-focus);
+}
+
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
@@ -73,7 +86,7 @@
   background: var(--text-primary);
   border: 2px solid var(--bg-elevated);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all var(--dur-fast) var(--ease-out);
 }
 
 .slider::-webkit-slider-thumb:hover {
@@ -97,6 +110,14 @@
 
 .slider:disabled::-webkit-slider-thumb {
   cursor: not-allowed;
+}
+
+.volumeValue {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  min-width: 4ch;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
 }
 
 @media (max-width: 640px) {

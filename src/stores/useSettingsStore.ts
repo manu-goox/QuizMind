@@ -12,14 +12,12 @@ interface AudioSettings {
 interface SettingsStore {
   theme: Theme;
   audio: AudioSettings;
-  audioUnlocked: boolean;
   setTheme: (theme: Theme) => void;
   setMusicVolume: (volume: number) => void;
   setEffectsVolume: (volume: number) => void;
   toggleMusic: () => void;
   toggleEffects: () => void;
   muteAll: () => void;
-  unlockAudio: () => void;
   loadSettings: () => void;
   saveSettings: () => void;
 }
@@ -37,10 +35,37 @@ const DEFAULT_AUDIO: AudioSettings = {
   effectsEnabled: true,
 };
 
+const STORAGE_KEY = 'quizmind-settings';
+
+function isValidTheme(value: unknown): value is Theme {
+  if (!value || typeof value !== 'object') return false;
+  const theme = value as Theme;
+  return (
+    typeof theme.id === 'string' &&
+    typeof theme.name === 'string' &&
+    typeof theme.file === 'string'
+  );
+}
+
+function readStoredSettings(): { theme: Theme; audio: AudioSettings } | null {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) return null;
+    const parsed = JSON.parse(saved);
+    return {
+      theme: isValidTheme(parsed.theme) ? parsed.theme : DEFAULT_THEME,
+      audio: { ...DEFAULT_AUDIO, ...parsed.audio },
+    };
+  } catch {
+    return null;
+  }
+}
+
+const storedSettings = readStoredSettings();
+
 export const useSettingsStore = create<SettingsStore>((set, get) => ({
-  theme: DEFAULT_THEME,
-  audio: DEFAULT_AUDIO,
-  audioUnlocked: false,
+  theme: storedSettings?.theme ?? DEFAULT_THEME,
+  audio: storedSettings?.audio ?? DEFAULT_AUDIO,
 
   setTheme: (theme: Theme) => {
     set({ theme });
@@ -85,16 +110,12 @@ export const useSettingsStore = create<SettingsStore>((set, get) => ({
     get().saveSettings();
   },
 
-  unlockAudio: () => {
-    set({ audioUnlocked: true });
-  },
-
   loadSettings: () => {
     try {
-      const saved = localStorage.getItem('quizmind-settings');
+      const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
         const parsed = JSON.parse(saved);
-        const theme = parsed.theme || DEFAULT_THEME;
+        const theme = isValidTheme(parsed.theme) ? parsed.theme : DEFAULT_THEME;
         const audio = { ...DEFAULT_AUDIO, ...parsed.audio };
         set({ theme, audio });
         audioManager.setEffectsEnabled(audio.effectsEnabled);
@@ -108,7 +129,11 @@ export const useSettingsStore = create<SettingsStore>((set, get) => ({
   },
 
   saveSettings: () => {
-    const { theme, audio } = get();
-    localStorage.setItem('quizmind-settings', JSON.stringify({ theme, audio }));
+    try {
+      const { theme, audio } = get();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ theme, audio }));
+    } catch {
+      console.warn('Failed to save settings to localStorage');
+    }
   },
 }));

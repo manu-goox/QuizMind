@@ -1,4 +1,7 @@
 :root {
+  /* ================================================================
+     CORE THEME VARIABLES
+     ================================================================ */
   --bg-primary: #1e1e2e;
   --bg-secondary: #313244;
   --bg-hover: #45475a;
@@ -9,6 +12,51 @@
   --border: #45475a;
   --correct: #a6e3a1;
   --wrong: #f38ba8;
-  --progress-fill: #cba6f7;
   --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* ================================================================
+     Capas de fondo adicionales (paleta Catppuccin Mocha)
+     ================================================================ */
+  --bg-tertiary: #181825;
+  --bg-elevated: #292c3c;
+
+  /* ================================================================
+     Variantes de color (glows y fondos sutiles)
+     ================================================================ */
+  --accent-glow: rgba(203, 166, 247, 0.3);
+  --accent-subtle: rgba(203, 166, 247, 0.1);
+  --correct-glow: rgba(166, 227, 161, 0.25);
+  --correct-subtle: rgba(166, 227, 161, 0.1);
+  --wrong-glow: rgba(243, 139, 168, 0.25);
+  --wrong-subtle: rgba(243, 139, 168, 0.1);
+
+  /* ================================================================
+     Texto muted y glassmorphism
+     ================================================================ */
+  --text-muted: #858aa3;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.06);
+
+  /* ================================================================
+     AURORA — Color
+     ================================================================ */
+  --accent-2: #f5c2e7;
+  --accent-3: #89dceb;
+  --accent-gradient: linear-gradient(
+    135deg,
+    var(--accent) 0%,
+    var(--accent-2) 100%
+  );
+  --warning: #f9e2af;
+  --warning-glow: rgba(249, 226, 175, 0.25);
+  --warning-subtle: rgba(249, 226, 175, 0.12);
+  --correct-2: #c7f0c4;
+  --overlay: rgba(17, 17, 27, 0.6);
+  --on-accent: #1e1e2e;
+  --border-strong: rgba(205, 214, 244, 0.18);
+  --glass-highlight: rgba(205, 214, 244, 0.07);
+  --aurora-1: rgba(203, 166, 247, 0.14);
+  --aurora-2: rgba(245, 194, 231, 0.1);
+  --aurora-3: rgba(137, 220, 235, 0.08);
+  --grain-opacity: 0;
 }

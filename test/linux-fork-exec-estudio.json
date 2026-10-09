@@ -1,0 +1,156 @@
+{
+  "id": "linux-fork-exec-estudio",
+  "title": "Aprendiendo Linux - Fork, Exec, Wait y Exit (Estudio)",
+  "description": "Preguntas básicas con explicación sobre el ciclo fork/exec/wait/exit del shell: BCP, copy-on-write, zombis y huérfanos. Primera vuelta de estudio.",
+  "category": "Sistemas Operativos",
+  "difficulty": "easy",
+  "passThreshold": 0.5,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "¿Qué es el BCP?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El Bloque de Control de Proceso: la estructura que guarda la información de un proceso", "correct": true },
+        { "id": "a2", "text": "Un tipo especial de fichero" },
+        { "id": "a3", "text": "Una orden del shell" },
+        { "id": "a4", "text": "Un fichero de configuración del núcleo" }
+      ],
+      "explanation": "Contiene PID, PPID, estado, descriptores, directorio de trabajo, etc. El núcleo crea uno nuevo con cada fork."
+    },
+    {
+      "id": "q2",
+      "text": "¿Qué devuelve fork() en el proceso hijo?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "0", "correct": true },
+        { "id": "a2", "text": "El PID del hijo" },
+        { "id": "a3", "text": "El PID del padre" },
+        { "id": "a4", "text": "-1" }
+      ],
+      "explanation": "El hijo recibe 0 y el padre recibe el PID del hijo. Si falla, el padre recibe -1 y no hay hijo."
+    },
+    {
+      "id": "q3",
+      "text": "¿Qué devuelve fork() en el proceso padre?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El PID del hijo", "correct": true },
+        { "id": "a2", "text": "0" },
+        { "id": "a3", "text": "1" },
+        { "id": "a4", "text": "El PID del padre" }
+      ],
+      "explanation": "Por eso el padre puede usar ese PID para esperar con waitpid(pid, &estado, 0)."
+    },
+    {
+      "id": "q4",
+      "text": "¿Qué es copy-on-write en fork()?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Las páginas de memoria se comparten entre padre e hijo hasta que uno de los dos las modifica", "correct": true },
+        { "id": "a2", "text": "Una copia de seguridad del disco" },
+        { "id": "a3", "text": "Un tipo de enlace entre procesos" },
+        { "id": "a4", "text": "Un mecanismo para copiar ficheros" }
+      ],
+      "explanation": "fork() no duplica toda la memoria de golpe: es una optimización del núcleo para que fork sea barato."
+    },
+    {
+      "id": "q5",
+      "text": "¿Qué conserva execlp() del proceso que lo llama?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El PID y el BCP (descriptores abiertos, etc.)", "correct": true },
+        { "id": "a2", "text": "Absolutamente nada" },
+        { "id": "a3", "text": "La memoria del programa anterior" },
+        { "id": "a4", "text": "El nombre del programa anterior" }
+      ],
+      "explanation": "exec reemplaza la imagen (código, datos, heap y pila) pero el proceso sigue siendo el mismo."
+    },
+    {
+      "id": "q6",
+      "text": "¿Por qué execlp() no retorna si tiene éxito?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Porque el código que la llamó ya no existe tras el reemplazo de la imagen", "correct": true },
+        { "id": "a2", "text": "Porque espera al proceso padre" },
+        { "id": "a3", "text": "Porque es una llamada asíncrona" },
+        { "id": "a4", "text": "Sí retorna siempre" }
+      ],
+      "explanation": "Solo retorna -1 si falla (por eso el shell hace perror y _exit(127) tras ella)."
+    },
+    {
+      "id": "q7",
+      "text": "¿Qué significan la 'l' y la 'p' en execlp?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "'l' = argumentos como lista acabada en NULL; 'p' = busca el programa en el PATH", "correct": true },
+        { "id": "a2", "text": "'l' = local; 'p' = proceso" },
+        { "id": "a3", "text": "'l' = largo; 'p' = padre" },
+        { "id": "a4", "text": "'l' = listado; 'p' = pipe" }
+      ],
+      "explanation": "La familia exec (execl, execv, execvp...) acaba siempre en la llamada al sistema execve()."
+    },
+    {
+      "id": "q8",
+      "text": "¿Qué hace waitpid()?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Bloquea al padre hasta que el hijo termina y recoge su estado", "correct": true },
+        { "id": "a2", "text": "Crea un proceso hijo" },
+        { "id": "a3", "text": "Ejecuta un programa nuevo" },
+        { "id": "a4", "text": "Termina el proceso hijo por la fuerza" }
+      ],
+      "explanation": "Es el mecanismo de sincronización padre-hijo del shell."
+    },
+    {
+      "id": "q9",
+      "text": "¿Qué es un proceso zombi?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Un proceso que ya terminó pero cuyo estado de salida aún no ha recogido el padre", "correct": true },
+        { "id": "a2", "text": "Un proceso que no tiene padre" },
+        { "id": "a3", "text": "Un proceso bloqueado esperando E/S" },
+        { "id": "a4", "text": "Un proceso del sistema que nunca muere" }
+      ],
+      "explanation": "Su BCP sigue en la tabla de procesos (estado Z en ps) hasta que el padre hace wait."
+    },
+    {
+      "id": "q10",
+      "text": "¿Qué ocurre si el padre termina antes que el hijo?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El hijo queda huérfano y lo adopta init/systemd (PID 1), que recogerá su estado", "correct": true },
+        { "id": "a2", "text": "El hijo muere inmediatamente" },
+        { "id": "a3", "text": "El hijo se queda zombi para siempre" },
+        { "id": "a4", "text": "Nada: el hijo se convierte en padre" }
+      ],
+      "explanation": "El sistema nunca deja hijos sin responsable: PID 1 los adopta."
+    },
+    {
+      "id": "q11",
+      "text": "¿Qué es SIGCHLD?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "La señal que el núcleo envía al padre cuando un hijo cambia de estado", "correct": true },
+        { "id": "a2", "text": "Una llamada al sistema para crear procesos" },
+        { "id": "a3", "text": "El estado de salida del hijo" },
+        { "id": "a4", "text": "Un fichero de /proc" }
+      ],
+      "explanation": "Gracias a ella el padre bloqueado en waitpid() se despierta cuando el hijo termina."
+    },
+    {
+      "id": "q12",
+      "text": "¿Con qué variable consulta bash el estado de salida de la última orden?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "$?", "correct": true },
+        { "id": "a2", "text": "$!" },
+        { "id": "a3", "text": "$#" },
+        { "id": "a4", "text": "$HOME" }
+      ],
+      "explanation": "exit(0) → $? = 0 (éxito). En C se interpreta con WIFEXITED(estado) y WEXITSTATUS(estado)."
+    }
+  ]
+}

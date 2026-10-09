@@ -14,7 +14,7 @@
   cursor: pointer;
   font-size: var(--text-sm);
   font-family: var(--font-family);
-  transition: all 0.15s ease;
+  transition: all var(--dur-fast) var(--ease-out);
 }
 
 .trigger:hover {
@@ -23,12 +23,17 @@
   border-color: var(--border);
 }
 
+.trigger:focus-visible {
+  outline: none;
+  box-shadow: var(--ring-focus);
+}
+
 .label {
   white-space: nowrap;
 }
 
 .chevron {
-  transition: transform 0.2s ease;
+  transition: transform var(--dur-med) var(--ease-out);
 }
 
 .chevronOpen {
@@ -47,8 +52,8 @@
   box-shadow: var(--shadow-lg);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
-  z-index: 100;
-  animation: slideIn 0.15s ease;
+  z-index: var(--z-dropdown);
+  animation: slideIn var(--dur-fast) var(--ease-out);
 }
 
 @keyframes slideIn {
@@ -75,7 +80,7 @@
   cursor: pointer;
   font-size: var(--text-sm);
   font-family: var(--font-family);
-  transition: all 0.12s ease;
+  transition: all var(--dur-fast) var(--ease-out);
 }
 
 .option:hover {
@@ -96,17 +101,17 @@
   border: 1px solid var(--border);
 }
 
-.dot[data-theme="dark"] {
-  background: #11112a;
+.dot[data-theme='dark'] {
+  background: var(--theme-preview-dark);
 }
 
-.dot[data-theme="light"] {
-  background: #f8f9fa;
-  border-color: #d1d5db;
+.dot[data-theme='light'] {
+  background: var(--theme-preview-light);
+  border-color: var(--theme-preview-light-border);
 }
 
-.dot[data-theme="catppuccin"] {
-  background: #1e1e2e;
+.dot[data-theme='catppuccin'] {
+  background: var(--theme-preview-catppuccin);
 }
 
 .check {

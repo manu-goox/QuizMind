@@ -1,34 +1,52 @@
 import type { TestMetadata } from '../../types';
 import { Badge } from '../ui';
+import { difficultyVariants, getDifficultyLabel } from '../../utils/difficulty';
 import styles from './TestCard.module.css';
 
 interface TestCardProps {
   test: TestMetadata;
   selected: boolean;
   onClick: () => void;
+  bestPercentage?: number;
+  attempts?: number;
 }
 
-const difficultyColors = {
-  easy: 'success',
-  medium: 'warning',
-  hard: 'error',
-} as const;
+export function TestCard({
+  test,
+  selected,
+  onClick,
+  bestPercentage,
+  attempts = 0,
+}: TestCardProps) {
+  const completed = attempts > 0;
 
-export function TestCard({ test, selected, onClick }: TestCardProps) {
   return (
-    <div
+    <button
+      type="button"
       className={`${styles.card} ${selected ? styles.selected : ''}`}
       onClick={onClick}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => e.key === 'Enter' && onClick()}
+      aria-label={`${test.title} — ${test.questionCount} preguntas`}
     >
-      <div className={styles.header}>
+      <span className={styles.header}>
         <span className={styles.category}>{test.category || 'General'}</span>
-        <Badge variant={difficultyColors[test.difficulty]}>{test.difficulty}</Badge>
-      </div>
-      <h3 className={styles.title}>{test.title}</h3>
-      <p className={styles.questions}>{test.questionCount} preguntas</p>
-    </div>
+        <span className={styles.headerBadges}>
+          {completed && (
+            <span className={styles.completedMark} aria-hidden="true">
+              ✓
+            </span>
+          )}
+          <Badge variant={difficultyVariants[test.difficulty]}>
+            {getDifficultyLabel(test.difficulty)}
+          </Badge>
+        </span>
+      </span>
+      <span className={styles.title}>{test.title}</span>
+      <span className={styles.meta}>
+        <span className={styles.questions}>{test.questionCount} preguntas</span>
+        {completed && bestPercentage !== undefined && (
+          <span className={styles.bestScore}>Mejor {bestPercentage}%</span>
+        )}
+      </span>
+    </button>
   );
 }

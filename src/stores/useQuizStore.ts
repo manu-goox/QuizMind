@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { Test, QuizState, QuizResult, Question } from '../types';
+import type { Test, QuizState, QuizResult } from '../types';
 import { calculateResults } from '../utils/scoring';
 import { shuffle } from '../utils/shuffle';
 
@@ -9,11 +9,13 @@ interface QuizStore extends QuizState {
   skipQuestion: (questionId: string) => void;
   goToNext: () => void;
   goToPrevious: () => void;
+  goToQuestion: (index: number) => void;
+  startReviewing: () => void;
+  resumeQuiz: () => void;
+  setPracticeMode: (enabled: boolean) => void;
   finishTest: () => QuizResult;
   resetQuiz: () => void;
-  getCurrentQuestion: () => Question | null;
   getResults: () => QuizResult | null;
-  getAnswerOrder: (questionId: string) => string[];
 }
 
 const initialState: QuizState = {
@@ -23,26 +25,72 @@ const initialState: QuizState = {
   startTime: null,
   activeTest: null,
   status: 'idle',
-  answerOrder: {},
+  result: null,
+  practiceMode: false,
 };
+
+const PERSIST_KEY = 'quizmind-active-quiz';
+
+function loadPersistedQuiz(): Partial<QuizState> | null {
+  try {
+    const raw = sessionStorage.getItem(PERSIST_KEY);
+    if (!raw) return null;
+    const data = JSON.parse(raw) as Record<string, unknown>;
+    const test = data.activeTest as QuizState['activeTest'];
+    if (
+      !test ||
+      !Array.isArray(test.questions) ||
+      test.questions.length === 0
+    ) {
+      return null;
+    }
+    const maxIndex = test.questions.length - 1;
+    return {
+      activeTest: test,
+      currentQuestionIndex: Math.min(
+        Math.max(
+          typeof data.currentQuestionIndex === 'number'
+            ? data.currentQuestionIndex
+            : 0,
+          0,
+        ),
+        maxIndex,
+      ),
+      answers:
+        data.answers && typeof data.answers === 'object'
+          ? (data.answers as Record<string, string>)
+          : {},
+      skipped: new Set(
+        Array.isArray(data.skipped) ? (data.skipped as string[]) : [],
+      ),
+      startTime: typeof data.startTime === 'number' ? data.startTime : null,
+      status: 'in-progress',
+      result: null,
+      practiceMode: data.practiceMode === true,
+    };
+  } catch {
+    return null;
+  }
+}
+
+const persistedQuiz = loadPersistedQuiz();
 
 export const useQuizStore = create<QuizStore>((set, get) => ({
   ...initialState,
+  ...(persistedQuiz ?? {}),
 
   startTest: (test: Test) => {
     let questions = [...test.questions];
-    
+
     if (test.shuffleQuestions) {
       questions = shuffle(questions);
     }
 
-    const answerOrder: Record<string, string[]> = {};
     const shuffledQuestions = questions.map((q) => {
       let answers = [...q.answers];
       if (test.shuffleAnswers) {
         answers = shuffle(answers);
       }
-      answerOrder[q.id] = answers.map((a) => a.id);
       return { ...q, answers };
     });
 
@@ -58,7 +106,8 @@ export const useQuizStore = create<QuizStore>((set, get) => ({
       skipped: new Set(),
       startTime: Date.now(),
       status: 'in-progress',
-      answerOrder,
+      result: null,
+      practiceMode: false,
     });
   },
 
@@ -72,9 +121,10 @@ export const useQuizStore = create<QuizStore>((set, get) => ({
   },
 
   skipQuestion: (questionId: string) => {
-    set((state) => ({
-      skipped: new Set([...state.skipped, questionId]),
-    }));
+    set((state) => {
+      if (state.answers[questionId]) return state;
+      return { skipped: new Set([...state.skipped, questionId]) };
+    });
     get().goToNext();
   },
 
@@ -94,40 +144,66 @@ export const useQuizStore = create<QuizStore>((set, get) => ({
     });
   },
 
+  goToQuestion: (index: number) => {
+    set((state) => {
+      if (!state.activeTest) return state;
+      const maxIndex = state.activeTest.questions.length - 1;
+      const clamped = Math.min(Math.max(index, 0), maxIndex);
+      return { currentQuestionIndex: clamped };
+    });
+  },
+
+  startReviewing: () => set({ status: 'reviewing' }),
+
+  resumeQuiz: () => {
+    if (get().status === 'reviewing') set({ status: 'in-progress' });
+  },
+
+  setPracticeMode: (enabled: boolean) => set({ practiceMode: enabled }),
+
   finishTest: () => {
     const state = get();
     if (!state.activeTest) {
       throw new Error('No active test');
     }
-    set({ status: 'finished' });
     const results = calculateResults(
       state.activeTest,
       state.answers,
-      state.startTime ? Date.now() - state.startTime : 0
+      state.startTime ? Date.now() - state.startTime : 0,
     );
+    set({ status: 'finished', result: results });
     return results;
   },
 
   resetQuiz: () => set(initialState),
 
-  getCurrentQuestion: () => {
-    const state = get();
-    if (!state.activeTest) return null;
-    return state.activeTest.questions[state.currentQuestionIndex] || null;
-  },
-
   getResults: () => {
-    const state = get();
-    if (!state.activeTest || state.status !== 'finished') return null;
-    return calculateResults(
-      state.activeTest,
-      state.answers,
-      state.startTime ? Date.now() - state.startTime : 0
-    );
-  },
-
-  getAnswerOrder: (questionId: string) => {
-    const state = get();
-    return state.answerOrder[questionId] || [];
+    return get().result;
   },
 }));
+
+useQuizStore.subscribe((state) => {
+  try {
+    if (
+      state.activeTest &&
+      (state.status === 'in-progress' || state.status === 'reviewing')
+    ) {
+      sessionStorage.setItem(
+        PERSIST_KEY,
+        JSON.stringify({
+          activeTest: state.activeTest,
+          currentQuestionIndex: state.currentQuestionIndex,
+          answers: state.answers,
+          skipped: Array.from(state.skipped),
+          startTime: state.startTime,
+          status: state.status,
+          practiceMode: state.practiceMode,
+        }),
+      );
+    } else {
+      sessionStorage.removeItem(PERSIST_KEY);
+    }
+  } catch {
+    // sessionStorage no disponible (modo privado / cuota): se ignora
+  }
+});

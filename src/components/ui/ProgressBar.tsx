@@ -11,7 +11,14 @@ export function ProgressBar({ current, total, skipped = 0 }: ProgressBarProps) {
 
   return (
     <div className={styles.container}>
-      <div className={styles.bar}>
+      <div
+        className={styles.bar}
+        role="progressbar"
+        aria-valuemin={0}
+        aria-valuemax={total}
+        aria-valuenow={answered}
+        aria-label={`Progreso del test: ${answered} de ${total} preguntas respondidas`}
+      >
         <div
           className={styles.answered}
           style={{ width: `${(answered / total) * 100}%` }}

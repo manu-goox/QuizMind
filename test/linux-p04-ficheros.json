@@ -1,0 +1,324 @@
+{
+  "id": "linux-p04-ficheros",
+  "title": "Aprendiendo Linux - P04: Gestión de Ficheros",
+  "description": "Sistemas de ficheros y montajes, inodos, enlaces duros y simbólicos, ln, mv, cp, mkdir, rm/rmdir y find. Basado en la Práctica 04.",
+  "category": "Sistemas Operativos",
+  "difficulty": "mixed",
+  "passThreshold": 0.6,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "¿Qué es un punto de montaje?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Un directorio que se corresponde con la raíz de otro sistema de ficheros", "correct": true },
+        { "id": "a2", "text": "El primer sector de un disco duro" },
+        { "id": "a3", "text": "Una partición sin formatear" },
+        { "id": "a4", "text": "El directorio /mnt en todos los casos" }
+      ],
+      "explanation": "Al montar un sistema de ficheros, su raíz «aparece» dentro del árbol en el directorio elegido como punto de montaje."
+    },
+    {
+      "id": "q2",
+      "text": "¿Qué orden muestra los sistemas de ficheros montados actualmente?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "mount", "correct": true },
+        { "id": "a2", "text": "df -h" },
+        { "id": "a3", "text": "pwd" },
+        { "id": "a4", "text": "fsck" }
+      ],
+      "explanation": "mount (sin argumentos) lista los montajes; df -h muestra el espacio libre de cada uno."
+    },
+    {
+      "id": "q3",
+      "text": "¿Cuál de estos es un sistema de ficheros VIRTUAL?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "procfs (/proc)", "correct": true },
+        { "id": "a2", "text": "ext4" },
+        { "id": "a3", "text": "NTFS" },
+        { "id": "a4", "text": "FAT32" }
+      ],
+      "explanation": "Virtuales: procfs, sysfs, tmpfs, devtmpfs, cgroupfs. Reales: ext4 (por defecto en Ubuntu), XFS, Btrfs, NTFS, FAT32."
+    },
+    {
+      "id": "q4",
+      "text": "¿Qué es un nodo-i (inodo)?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "La estructura de datos única de cada fichero: permisos, fechas, ubicación, nº de enlaces…", "correct": true },
+        { "id": "a2", "text": "El nombre completo del fichero" },
+        { "id": "a3", "text": "Un bloque de datos del fichero" },
+        { "id": "a4", "text": "Una copia de seguridad del directorio" }
+      ],
+      "explanation": "Cada fichero tiene un inodo con sus características y la ubicación de sus bloques; el nombre no está en él."
+    },
+    {
+      "id": "q5",
+      "text": "¿Dónde se guarda el NOMBRE de un fichero?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "En el directorio, como par (nombre, nº de inodo)", "correct": true },
+        { "id": "a2", "text": "En su propio inodo" },
+        { "id": "a3", "text": "En el superbloque del sistema de ficheros" },
+        { "id": "a4", "text": "En /etc/passwd" }
+      ],
+      "explanation": "Un directorio es un fichero especial que contiene entradas o enlaces: pares (nombre, número de inodo)."
+    },
+    {
+      "id": "q6",
+      "text": "¿Qué información muestra la orden df -i?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Inodos usados y libres de cada sistema montado (IUse%)", "correct": true },
+        { "id": "a2", "text": "El espacio libre en MB" },
+        { "id": "a3", "text": "Los ficheros abiertos por los procesos" },
+        { "id": "a4", "text": "Los puntos de montaje disponibles" }
+      ],
+      "explanation": "El sistema puede quedarse sin espacio por disco lleno o por agotar los inodos."
+    },
+    {
+      "id": "q7",
+      "text": "¿Qué es un enlace duro?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Otro nombre para el MISMO inodo (el mismo fichero)", "correct": true },
+        { "id": "a2", "text": "Un fichero que contiene una trayectoria" },
+        { "id": "a3", "text": "Una copia física independiente del fichero" },
+        { "id": "a4", "text": "Un tipo de enlace exclusivo para directorios" }
+      ],
+      "explanation": "Todos los enlaces duros de un inodo son equivalentes: no hay original ni copia."
+    },
+    {
+      "id": "q8",
+      "text": "¿Qué es un enlace simbólico?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Un fichero pequeño cuyo contenido es una trayectoria", "correct": true },
+        { "id": "a2", "text": "Otro nombre del mismo inodo" },
+        { "id": "a3", "text": "Una partición montada" },
+        { "id": "a4", "text": "Un fichero de dispositivo" }
+      ],
+      "explanation": "Al abrirlo, el SO lee la trayectoria que contiene y busca el inodo destino; por eso es algo más lento."
+    },
+    {
+      "id": "q9",
+      "text": "El enlace simbólico es -> /home/x1111111/f muestra tamaño 16. ¿Por qué?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Porque su contenido es la trayectoria, y esa cadena mide 16 bytes", "correct": true },
+        { "id": "a2", "text": "Porque el fichero destino ocupa 16 bloques" },
+        { "id": "a3", "text": "Porque todos los enlaces simbólicos ocupan 16 bytes" },
+        { "id": "a4", "text": "Porque es el número de enlaces del fichero" }
+      ],
+      "explanation": "El tamaño de un symlink es la longitud de la trayectoria almacenada."
+    },
+    {
+      "id": "q10",
+      "text": "¿Se puede crear un enlace DURO a un fichero de otro sistema de ficheros (otra partición)?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "No: los inodos se numeran de forma independiente en cada sistema", "correct": true },
+        { "id": "a2", "text": "Sí, siempre" },
+        { "id": "a3", "text": "Solo si lo hace root" },
+        { "id": "a4", "text": "Solo con ln -s" }
+      ],
+      "explanation": "El número de inodo no es único entre sistemas distintos, así que un enlace duro no puede cruzar de uno a otro."
+    },
+    {
+      "id": "q11",
+      "text": "¿Y un enlace SIMBÓLICO entre sistemas de ficheros distintos?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Sí, porque guarda una trayectoria (una cadena), no un inodo", "correct": true },
+        { "id": "a2", "text": "No, nunca" },
+        { "id": "a3", "text": "Solo dentro de /tmp" },
+        { "id": "a4", "text": "Solo para directorios" }
+      ],
+      "explanation": "Al ser un fichero con una trayectoria, puede apuntar a cualquier ubicación accesible."
+    },
+    {
+      "id": "q12",
+      "text": "¿Cuándo se elimina realmente un fichero (su inodo y su contenido)?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Cuando se quita su último enlace duro (contador de enlaces = 0)", "correct": true },
+        { "id": "a2", "text": "Al hacer rm la primera vez" },
+        { "id": "a3", "text": "Al cerrar la sesión" },
+        { "id": "a4", "text": "Cuando lo ordena fsck" }
+      ],
+      "explanation": "rm elimina un enlace; mientras quede otro nombre apuntando al inodo, el fichero sigue existiendo."
+    },
+    {
+      "id": "q13",
+      "text": "Tras ln f ed y después rm f, ¿qué ocurre con el fichero?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Sigue existiendo como ed: solo se quitó uno de sus enlaces", "correct": true },
+        { "id": "a2", "text": "Se borra por completo" },
+        { "id": "a3", "text": "ed queda roto" },
+        { "id": "a4", "text": "ed se convierte en un enlace simbólico" }
+      ],
+      "explanation": "El inodo tenía 2 enlaces; al quitar uno, el fichero continúa accesible por el otro nombre."
+    },
+    {
+      "id": "q14",
+      "text": "En el ejemplo de la práctica, tras borrar f el enlace simbólico es deja de funcionar. ¿Por qué?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "es apunta a la trayectoria ~/f, que ya no existe: es un enlace roto", "correct": true },
+        { "id": "a2", "text": "Porque los enlaces simbólicos caducan con el tiempo" },
+        { "id": "a3", "text": "Porque rm también borra los enlaces simbólicos" },
+        { "id": "a4", "text": "Porque hay que reinstalar el paquete" }
+      ],
+      "explanation": "cat es daría «no existe el fichero o el directorio»: el symlink guarda una trayectoria, no protege al destino."
+    },
+    {
+      "id": "q15",
+      "text": "¿Qué hace mv de un fichero DENTRO del mismo sistema de ficheros?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Solo cambia los enlaces (las entradas de directorio); no se transfieren datos", "correct": true },
+        { "id": "a2", "text": "Copia los datos y borra el origen" },
+        { "id": "a3", "text": "Duplica el fichero" },
+        { "id": "a4", "text": "Cambia el número de inodo" }
+      ],
+      "explanation": "Al estar en el mismo sistema, basta con quitar una entrada y crear otra apuntando al mismo inodo."
+    },
+    {
+      "id": "q16",
+      "text": "¿Y si el origen y el destino de mv están en sistemas de ficheros distintos?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Copia los datos al destino y borra el origen (la propiedad pasa a quien ejecuta mv)", "correct": true },
+        { "id": "a2", "text": "Solo cambia el enlace, como en el mismo sistema" },
+        { "id": "a3", "text": "Falla siempre con un error" },
+        { "id": "a4", "text": "Crea un enlace simbólico automáticamente" }
+      ],
+      "explanation": "Al no poder cruzar inodos entre sistemas, mv hace una copia real y elimina el original."
+    },
+    {
+      "id": "q17",
+      "text": "¿Qué hace la opción -p de cp?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Conserva modo, propiedad y marcas de tiempo del original", "correct": true },
+        { "id": "a2", "text": "Pide confirmación antes de copiar" },
+        { "id": "a3", "text": "Copia solo si el origen es más reciente" },
+        { "id": "a4", "text": "Hace una copia de seguridad con ~" }
+      ],
+      "explanation": "-i confirma, -n no sobrescribe, -b hace backup, -u solo si es más reciente y -p preserva los atributos."
+    },
+    {
+      "id": "q18",
+      "text": "Sin la opción -p, ¿cómo se fijan los permisos de la copia?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Con el modo del fichero origen filtrado por la umask del que copia", "correct": true },
+        { "id": "a2", "text": "Siempre 777" },
+        { "id": "a3", "text": "Exactamente iguales a los del origen" },
+        { "id": "a4", "text": "Los del directorio destino" }
+      ],
+      "explanation": "cp crea el destino con el modo del origen menos los bits que quite la umask; el dueño pasa a ser quien copia."
+    },
+    {
+      "id": "q19",
+      "text": "¿Qué hace cp -r origen/. destino?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Copia SOLO el contenido de origen dentro de destino", "correct": true },
+        { "id": "a2", "text": "Copia el directorio origen dentro de destino (destino/origen)" },
+        { "id": "a3", "text": "Borra el origen tras copiar" },
+        { "id": "a4", "text": "Copia solo los ficheros ocultos" }
+      ],
+      "explanation": "El truco del /. evita crear un nivel extra de directorios en el destino."
+    },
+    {
+      "id": "q20",
+      "text": "¿Qué opción de mkdir crea los directorios intermedios que falten?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "-p", "correct": true },
+        { "id": "a2", "text": "-m" },
+        { "id": "a3", "text": "-r" },
+        { "id": "a4", "text": "-i" }
+      ],
+      "explanation": "mkdir -p proyecto/documentos/informes crea toda la ruta. -m fija los permisos (mkdir -m 700 privado)."
+    },
+    {
+      "id": "q21",
+      "text": "¿Cuántos enlaces duros tiene un directorio que contiene 3 subdirectorios?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "5: su entrada en el padre, su propio . y los .. de sus 3 subdirectorios", "correct": true },
+        { "id": "a2", "text": "3" },
+        { "id": "a3", "text": "4" },
+        { "id": "a4", "text": "6" }
+      ],
+      "explanation": "Regla general: nº de enlaces de un directorio = 2 + nº de subdirectorios."
+    },
+    {
+      "id": "q22",
+      "text": "¿Qué hace rmdir?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Elimina directorios, pero solo si están VACÍOS", "correct": true },
+        { "id": "a2", "text": "Elimina directorios con todo su contenido" },
+        { "id": "a3", "text": "Renombra directorios" },
+        { "id": "a4", "text": "Elimina enlaces simbólicos" }
+      ],
+      "explanation": "rm -r borra ramas enteras; rmdir -p elimina también los directorios padre que queden vacíos."
+    },
+    {
+      "id": "q23",
+      "text": "¿Por qué se entrecomilla el patrón en find . -name 'f*'?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Para que el comodín lo interprete find y no el shell", "correct": true },
+        { "id": "a2", "text": "Porque find no acepta comodines" },
+        { "id": "a3", "text": "Para que busque también en subdirectorios" },
+        { "id": "a4", "text": "Para buscar solo ficheros regulares" }
+      ],
+      "explanation": "Sin comillas, el shell expandiría f* antes de ejecutar find, cambiando el significado de la búsqueda."
+    },
+    {
+      "id": "q24",
+      "text": "¿Qué encuentra la orden find / -type f -perm -4000?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Ficheros con el bit set-uid activado", "correct": true },
+        { "id": "a2", "text": "Ficheros de más de 4000 bytes" },
+        { "id": "a3", "text": "Directorios con el sticky bit" },
+        { "id": "a4", "text": "Ficheros modificados hace 4000 minutos" }
+      ],
+      "explanation": "-perm -4000 busca el bit set-uid; es un chequeo clásico de seguridad."
+    },
+    {
+      "id": "q25",
+      "text": "En la figura 1.3 de la práctica, el directorio /d3 tiene 3 enlaces duros. ¿Cuáles son?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Su entrada en /, el . dentro de /d3 y el .. dentro de /d3/d4", "correct": true },
+        { "id": "a2", "text": "Sus tres subdirectorios" },
+        { "id": "a3", "text": "Sus tres ficheros" },
+        { "id": "a4", "text": "Su entrada y dos copias de seguridad" }
+      ],
+      "explanation": "Todo directorio recibe un enlace desde su padre, más los enlaces . y .. de cada subdirectorio."
+    },
+    {
+      "id": "q26",
+      "text": "En un sistema de ficheros ext2/3/4 real, ¿qué número de inodo tiene el directorio raíz /?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "2", "correct": true },
+        { "id": "a2", "text": "0" },
+        { "id": "a3", "text": "1" },
+        { "id": "a4", "text": "5" }
+      ],
+      "explanation": "En ext real: el inodo 0 no se usa, el 1 suele reservarse para bloques defectuosos y la raíz es el 2 (en la figura didáctica aparece como 0)."
+    }
+  ]
+}

@@ -7,13 +7,29 @@
 }
 
 /* ================================================================
-   Top bar — counter + progress
+   Top bar — sticky counter + progress
    ================================================================ */
-.header {
+.topBar {
+  position: sticky;
+  top: 64px;
+  z-index: 40;
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+}
+
+.headerInfo {
+  display: flex;
   align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
 }
 
 /* ================================================================
@@ -27,6 +43,26 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-variant-numeric: tabular-nums;
+}
+
+.timer {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.timerWarning {
+  color: var(--wrong);
+}
+
+/* ================================================================
+   Keyboard shortcuts hint
+   ================================================================ */
+.hint {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-align: center;
 }
 
 @media (max-width: 640px) {

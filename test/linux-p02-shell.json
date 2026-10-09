@@ -1,0 +1,288 @@
+{
+  "id": "linux-p02-shell",
+  "title": "Aprendiendo Linux - P02: El Shell",
+  "description": "Entrada al sistema, órdenes básicas, el shell como ejecutor (fork/exec/wait), comodines, redirección de E/S y pipes. Basado en la Práctica 02 de Sistemas Operativos.",
+  "category": "Sistemas Operativos",
+  "difficulty": "mixed",
+  "passThreshold": 0.6,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "¿Qué significa que Linux sea un sistema multiusuario y multiproceso?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Que varios usuarios pueden ejecutar varios procesos simultáneamente", "correct": true },
+        { "id": "a2", "text": "Que solo un usuario puede tener varios procesos abiertos" },
+        { "id": "a3", "text": "Que varios usuarios comparten un único proceso" },
+        { "id": "a4", "text": "Que los procesos se ejecutan obligatoriamente de uno en uno" }
+      ],
+      "explanation": "Linux permite que varios usuarios usen el sistema a la vez, cada uno con múltiples procesos en ejecución."
+    },
+    {
+      "id": "q2",
+      "text": "¿Qué prompt muestra por defecto el shell bash?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "$", "correct": true },
+        { "id": "a2", "text": "%" },
+        { "id": "a3", "text": "#" },
+        { "id": "a4", "text": ">" }
+      ],
+      "explanation": "bash usa el prompt $; tcsh usa %. El símbolo # suele aparecer en la sesión de root."
+    },
+    {
+      "id": "q3",
+      "text": "¿Qué combinación de teclas envía el carácter de fin de fichero (EOF) y cierra la sesión del shell?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Ctrl+D", "correct": true },
+        { "id": "a2", "text": "Ctrl+C" },
+        { "id": "a3", "text": "Ctrl+Z" },
+        { "id": "a4", "text": "Ctrl+L" }
+      ],
+      "explanation": "Ctrl+D envía EOF (equivale a salir). Ctrl+C interrumpe la orden en curso y Ctrl+Z la suspende."
+    },
+    {
+      "id": "q4",
+      "text": "¿Qué orden muestra el target (objetivo) por defecto de systemd en Ubuntu?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "systemctl get-default", "correct": true },
+        { "id": "a2", "text": "systemd --default" },
+        { "id": "a3", "text": "systemctl status" },
+        { "id": "a4", "text": "targetctl get" }
+      ],
+      "explanation": "El resultado es multi-user.target (arranque en modo texto) o graphical.target (con entorno gráfico)."
+    },
+    {
+      "id": "q5",
+      "text": "¿En qué sección del manual (man) se encuentran las llamadas al sistema como fork()?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Sección 2", "correct": true },
+        { "id": "a2", "text": "Sección 1" },
+        { "id": "a3", "text": "Sección 3" },
+        { "id": "a4", "text": "Sección 8" }
+      ],
+      "explanation": "Sección 1: órdenes de usuario. Sección 2: llamadas al sistema. Sección 3: funciones de biblioteca."
+    },
+    {
+      "id": "q6",
+      "text": "¿Qué orden muestra la página del manual de la llamada al sistema fork()?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "man 2 fork", "correct": true },
+        { "id": "a2", "text": "man 3 fork" },
+        { "id": "a3", "text": "man -2 fork" },
+        { "id": "a4", "text": "fork --manual" }
+      ],
+      "explanation": "Se indica el número de sección para elegir la página correcta: man 2 fork (llamada al sistema)."
+    },
+    {
+      "id": "q7",
+      "text": "En el shell.cpp de la práctica, ¿qué hace el proceso PADRE después de crear al hijo con fork()?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Esperar al hijo con waitpid(pid, &status, 0)", "correct": true },
+        { "id": "a2", "text": "Ejecutar execlp con la orden leída" },
+        { "id": "a3", "text": "Volver a llamar a fork()" },
+        { "id": "a4", "text": "Terminar con exit(0)" }
+      ],
+      "explanation": "El padre se bloquea en waitpid hasta que el hijo termina y después recoge su estado de salida."
+    },
+    {
+      "id": "q8",
+      "text": "¿Qué hace el proceso HIJO para convertirse en la orden que se ha leído?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "execlp(comando, comando, nullptr): reemplaza su imagen por la del programa", "correct": true },
+        { "id": "a2", "text": "waitpid(...): espera al padre" },
+        { "id": "a3", "text": "fork() de nuevo para duplicarse" },
+        { "id": "a4", "text": "getline(...) para releer la orden" }
+      ],
+      "explanation": "fork + exec: el hijo cambia su imagen de memoria por la del nuevo programa, conservando el PID."
+    },
+    {
+      "id": "q9",
+      "text": "¿Qué devuelve fork() dentro del proceso hijo?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "0", "correct": true },
+        { "id": "a2", "text": "El PID del hijo" },
+        { "id": "a3", "text": "El PID del padre" },
+        { "id": "a4", "text": "-1" }
+      ],
+      "explanation": "El hijo recibe 0; así el código distingue quién es quién con if (pid == 0)."
+    },
+    {
+      "id": "q10",
+      "text": "¿Qué devuelve fork() dentro del proceso padre?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El PID del proceso hijo", "correct": true },
+        { "id": "a2", "text": "0" },
+        { "id": "a3", "text": "Siempre 1" },
+        { "id": "a4", "text": "El PID del padre" }
+      ],
+      "explanation": "El padre recibe el PID del hijo (para poder esperarlo con waitpid); si falla, recibe -1."
+    },
+    {
+      "id": "q11",
+      "text": "En shell.cpp, si execlp() no consigue cargar el programa, ¿con qué código termina el hijo?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "126", "correct": true },
+        { "id": "a2", "text": "127" },
+        { "id": "a3", "text": "125" },
+        { "id": "a4", "text": "0" }
+      ],
+      "explanation": "127 si falla fork, 126 si falla exec y 125 si falla waitpid."
+    },
+    {
+      "id": "q12",
+      "text": "¿Por qué el shell debe esperar al hijo con waitpid antes de pedir la siguiente orden?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Para sincronizarse con él y recoger su estado de salida (y evitar que quede zombi)", "correct": true },
+        { "id": "a2", "text": "Porque el hijo no puede ejecutarse sin el padre" },
+        { "id": "a3", "text": "Para liberar la memoria del hijo antes de crearlo" },
+        { "id": "a4", "text": "Porque execlp lo exige obligatoriamente" }
+      ],
+      "explanation": "waitpid es el mecanismo de sincronización entre padre e hijo del ejemplo."
+    },
+    {
+      "id": "q13",
+      "text": "¿Quién expande los comodines en una orden como cat cap*?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El shell, antes de ejecutar la orden", "correct": true },
+        { "id": "a2", "text": "El programa cat" },
+        { "id": "a3", "text": "El núcleo del sistema operativo" },
+        { "id": "a4", "text": "El fichero /etc/passwd" }
+      ],
+      "explanation": "cat nunca ve el asterisco: recibe ya la lista de nombres expandida por el shell."
+    },
+    {
+      "id": "q14",
+      "text": "¿Qué carácter comodín casa exactamente con UN carácter?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "?", "correct": true },
+        { "id": "a2", "text": "*" },
+        { "id": "a3", "text": "[" },
+        { "id": "a4", "text": "!" }
+      ],
+      "explanation": "* casa cualquier cadena (incluida la vacía) y ? casa un único carácter."
+    },
+    {
+      "id": "q15",
+      "text": "¿Qué imprime la orden echo \\* ?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El carácter * literal", "correct": true },
+        { "id": "a2", "text": "La lista de todos los ficheros del directorio" },
+        { "id": "a3", "text": "Un error de sintaxis" },
+        { "id": "a4", "text": "El PID del shell" }
+      ],
+      "explanation": "El escape \\ (o las comillas) desactiva el significado especial del comodín."
+    },
+    {
+      "id": "q16",
+      "text": "¿Qué operador de redirección AÑADE al final de un fichero sin borrar su contenido?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": ">>", "correct": true },
+        { "id": "a2", "text": ">" },
+        { "id": "a3", "text": "2>" },
+        { "id": "a4", "text": "<" }
+      ],
+      "explanation": "> crea o sobrescribe; >> añade al final."
+    },
+    {
+      "id": "q17",
+      "text": "¿A qué descriptor de fichero corresponde la salida de error estándar (stderr)?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "2", "correct": true },
+        { "id": "a2", "text": "0" },
+        { "id": "a3", "text": "1" },
+        { "id": "a4", "text": "3" }
+      ],
+      "explanation": "0 = entrada estándar, 1 = salida estándar, 2 = error estándar."
+    },
+    {
+      "id": "q18",
+      "text": "¿Qué redirección envía la salida estándar Y la de error al mismo fichero?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "&>", "correct": true },
+        { "id": "a2", "text": "2>" },
+        { "id": "a3", "text": "<" },
+        { "id": "a4", "text": ">>" }
+      ],
+      "explanation": "&> es equivalente a escribir > fichero 2>&1."
+    },
+    {
+      "id": "q19",
+      "text": "¿Qué hace la orden who | grep pepe | wc -l?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Cuenta cuántas líneas de who contienen «pepe» (usuarios conectados con ese nombre)", "correct": true },
+        { "id": "a2", "text": "Muestra los procesos del usuario pepe" },
+        { "id": "a3", "text": "Cuenta todos los usuarios conectados al sistema" },
+        { "id": "a4", "text": "Busca el fichero pepe en el sistema" }
+      ],
+      "explanation": "El pipe conecta la salida de una orden con la entrada de la siguiente; wc -l cuenta líneas."
+    },
+    {
+      "id": "q20",
+      "text": "Si compilas un programa miprograma y lo dejas en tu directorio actual, ¿por qué al escribir miprograma dice «orden no encontrada»?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Porque el directorio actual no está en la variable PATH; hay que ejecutar ./miprograma", "correct": true },
+        { "id": "a2", "text": "Porque el fichero no tiene permisos de lectura" },
+        { "id": "a3", "text": "Porque PATH solo contiene /bin" },
+        { "id": "a4", "text": "Porque hay que reiniciar la sesión" }
+      ],
+      "explanation": "El shell busca las órdenes en los directorios de PATH. Con ./ se indica explícitamente el directorio actual."
+    },
+    {
+      "id": "q21",
+      "text": "En la orden vi pepe.txt, ¿cuánto vale argc dentro del programa?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "2", "correct": true },
+        { "id": "a2", "text": "1" },
+        { "id": "a3", "text": "3" },
+        { "id": "a4", "text": "0" }
+      ],
+      "explanation": "argv[0] = nombre del programa (vi) y argv[1] = pepe.txt; argc cuenta ambos."
+    },
+    {
+      "id": "q22",
+      "text": "¿Qué forma de ejecución realiza un script en el shell actual, SIN crear un proceso hijo?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": ". script (el comando punto)", "correct": true },
+        { "id": "a2", "text": "./script" },
+        { "id": "a3", "text": "bash script" },
+        { "id": "a4", "text": "sh script &" }
+      ],
+      "explanation": "El comando punto ejecuta las órdenes en el propio shell; ./script y bash script crean un proceso hijo."
+    },
+    {
+      "id": "q23",
+      "text": "Tras un fork(), ¿qué ocurre con las variables del padre y del hijo?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Cada proceso tiene su propia copia de la memoria: los cambios son independientes", "correct": true },
+        { "id": "a2", "text": "Comparten la misma memoria y los cambios se ven en ambos" },
+        { "id": "a3", "text": "El hijo no tiene variables hasta que hace exec" },
+        { "id": "a4", "text": "Las variables se copian solo al hacer exit" }
+      ],
+      "explanation": "fork crea una copia del espacio de direcciones (copy-on-write): padre e hijo no comparten variables."
+    }
+  ]
+}

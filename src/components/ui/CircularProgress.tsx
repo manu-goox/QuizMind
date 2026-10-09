@@ -1,15 +1,32 @@
 import { motion } from 'framer-motion';
+import styles from './CircularProgress.module.css';
+
+type CircularProgressStatus = 'neutral' | 'success' | 'error';
 
 interface CircularProgressProps {
   percentage: number;
   size?: number;
   strokeWidth?: number;
+  status?: CircularProgressStatus;
 }
+
+const STATUS_COLORS: Record<CircularProgressStatus, string> = {
+  neutral: 'var(--accent)',
+  success: 'var(--correct)',
+  error: 'var(--wrong)',
+};
+
+const STATUS_GLOWS: Record<CircularProgressStatus, string> = {
+  neutral: 'var(--accent-glow)',
+  success: 'var(--correct-glow)',
+  error: 'var(--wrong-glow)',
+};
 
 export function CircularProgress({
   percentage,
   size = 160,
   strokeWidth = 8,
+  status = 'neutral',
 }: CircularProgressProps) {
   const radius = (size - strokeWidth) / 2;
   const circumference = radius * 2 * Math.PI;
@@ -17,24 +34,14 @@ export function CircularProgress({
 
   return (
     <div
-      style={{
-        position: 'relative',
-        width: size,
-        height: size,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
+      className={styles.container}
+      style={{ width: size, height: size }}
       role="progressbar"
       aria-valuenow={percentage}
       aria-valuemin={0}
       aria-valuemax={100}
     >
-      <svg
-        width={size}
-        height={size}
-        style={{ transform: 'rotate(-90deg)', position: 'absolute' }}
-      >
+      <svg className={styles.svg} width={size} height={size}>
         <circle
           cx={size / 2}
           cy={size / 2}
@@ -48,24 +55,18 @@ export function CircularProgress({
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke="var(--accent)"
+          stroke={STATUS_COLORS[status]}
           strokeWidth={strokeWidth}
           strokeLinecap="round"
           strokeDasharray={circumference}
           initial={{ strokeDashoffset: circumference }}
           animate={{ strokeDashoffset: offset }}
           transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1], delay: 0.3 }}
-          style={{ filter: 'drop-shadow(0 0 6px var(--accent-glow))' }}
+          style={{ filter: `drop-shadow(0 0 6px ${STATUS_GLOWS[status]})` }}
         />
       </svg>
       <motion.span
-        style={{
-          fontSize: '2.5rem',
-          fontWeight: 800,
-          color: 'var(--text-primary)',
-          letterSpacing: '-0.03em',
-          lineHeight: 1,
-        }}
+        className={styles.value}
         initial={{ opacity: 0, scale: 0.6 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.8, duration: 0.4, ease: 'easeOut' }}

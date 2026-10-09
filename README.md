@@ -1,10 +1,9 @@
-
- ██████╗ ██╗   ██╗██╗███████╗███╗   ███╗██╗███╗   ██╗██████╗
-██╔═══██╗██║   ██║██║╚══███╔╝████╗ ████║██║████╗  ██║██╔══██╗
-██║   ██║██║   ██║██║  ███╔╝ ██╔████╔██║██║██╔██╗ ██║██║  ██║
-██║▄▄ ██║██║   ██║██║ ███╔╝  ██║╚██╔╝██║██║██║╚██╗██║██║  ██║
+██████╗ ██╗ ██╗██╗███████╗███╗ ███╗██╗███╗ ██╗██████╗
+██╔═══██╗██║ ██║██║╚══███╔╝████╗ ████║██║████╗ ██║██╔══██╗
+██║ ██║██║ ██║██║ ███╔╝ ██╔████╔██║██║██╔██╗ ██║██║ ██║
+██║▄▄ ██║██║ ██║██║ ███╔╝ ██║╚██╔╝██║██║██║╚██╗██║██║ ██║
 ╚██████╔╝╚██████╔╝██║███████╗██║ ╚═╝ ██║██║██║ ╚████║██████╔╝
- ╚══▀▀═╝  ╚═════╝ ╚═╝╚══════╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═════╝
+╚══▀▀═╝ ╚═════╝ ╚═╝╚══════╝╚═╝ ╚═╝╚═╝╚═╝ ╚═══╝╚═════╝
 
 ### A premium, interactive quiz experience — dark, fast, beautiful.
 
@@ -23,18 +22,23 @@
 
 QuizMind is a sleek, single-page quiz application crafted with **React + Vite + TypeScript**. It loads quiz tests from JSON files, presents questions with multiple answer modes, tracks your progress in real time, and delivers a polished results page with animated statistics.
 
-Built with a **premium dark UI** inspired by Linear and Raycast — glassmorphism panels, smooth microinteractions, gradient accents, and a carefully tuned design system. No Tailwind. No Bootstrap. Pure CSS Modules and CSS Variables.
+Built with a **premium "Aurora" UI** inspired by Linear and Raycast — layered aurora glows, glassmorphism surfaces, gradient accents, Space Grotesk display type, and smooth microinteractions. No Tailwind. No Bootstrap. Pure CSS Modules and CSS Variables.
 
-> **Drop new quiz JSON files into `public/tests/` and they appear automatically. Drop MP3 files into `public/sounds/` and the music player picks them up.**
+> **Drop quiz JSON files into the `test/` folder and they are loaded automatically — no index, no registration. Drop MP3 files into `public/sounds/` and the music player picks them up.**
 
 ---
 
 ## ✨ Features
 
 ```
-🎯 Quiz Engine          │  Single & multiple choice, skip, review
+🎯 Quiz Engine          │  Single choice, skip, review
 📊 Live Progress        │  Bar + counter with skipped tracking
 🎉 Results Page         │  Animated SVG gauge, stats breakdown
+🧠 Practice Mode        │  Instant feedback, no grade, not recorded
+🔁 Failed Review        │  Retry only the questions you missed
+📚 Test History         │  Local stats: attempts, best & average
+⏱️ Time Limit           │  Optional per‑test countdown + auto‑finish
+🏷️ Tags & Sections      │  Collapsible categories + tag chips
 🎨 3 Themes             │  Dark · Light · Catppuccin
 🔊 Audio System         │  Sound effects (Web Audio API) + Music (MP3)
 🎵 Music Rotation       │  Random track on end, toggle per‑file
@@ -42,6 +46,14 @@ Built with a **premium dark UI** inspired by Linear and Raycast — glassmorphis
 🧭 Animated Navigation  │  Page transitions with blur & fade
 📱 Responsive           │  Mobile‑first, clean on all screens
 🧩 JSON‑driven Tests    │  Add tests without touching the code
+🔍 Filters & Search     │  Filter by category/difficulty, search by title
+⏸️ Resume Quiz          │  Refresh‑safe: continue where you left off
+⌨️ Keyboard Shortcuts   │  1‑9 answer · ← → navigate · Enter advance · S skip
+✅ Pass Threshold       │  Configurable per test, shown on results
+🛡️ Validated JSON      │  Friendly errors for malformed tests
+⚠️ Blank Warning        │  Review unanswered questions before finishing
+📦 Code Splitting       │  Lazy‑loaded tests, vendor chunks
+📲 PWA                  │  Installable + offline (auto‑update)
 ```
 
 ### Quiz flow
@@ -58,8 +70,8 @@ HomePage ──▶ TestStartPage ──▶ QuizPage ──▶ ResultsPage
 
 ## 🛠️ Tech stack
 
-| Layer            | Technology                   |
-| ---------------- | ---------------------------- |
+| Layer            | Technology                  |
+| ---------------- | --------------------------- |
 | Framework        | React 19                    |
 | Language         | TypeScript 6 (strict)       |
 | Bundler          | Vite 8                      |
@@ -67,6 +79,9 @@ HomePage ──▶ TestStartPage ──▶ QuizPage ──▶ ResultsPage
 | Animations       | Framer Motion 12            |
 | Routing          | React Router DOM 7          |
 | Validation       | Zod 4                       |
+| PWA              | vite-plugin-pwa             |
+| Testing          | Vitest 5 + coverage-v8      |
+| Lint / Format    | ESLint 10 + Prettier 3      |
 | Audio (effects)  | Web Audio API (no deps)     |
 | Audio (music)    | HTML5 Audio + JSON index    |
 | Styling          | CSS Modules + CSS Variables |
@@ -76,11 +91,12 @@ HomePage ──▶ TestStartPage ──▶ QuizPage ──▶ ResultsPage
 ```css
 --bg-primary: #0a0a18;
 --accent: #e94560;
---text-primary: #f1f4f9;
+--accent-gradient: linear-gradient(135deg, var(--accent), var(--accent-2));
+--font-display: 'Space Grotesk', var(--font-family);
 --glass-bg: rgba(255, 255, 255, 0.02);
 --radius-md: 10px;
 --space-8: 2rem;
-/* + 40 more variables */
+/* + 70 more variables */
 ```
 
 ---
@@ -95,8 +111,18 @@ cd QuizMind
 # install
 npm install
 
-# dev
+# dev — drop .json files in test/ and they reload automatically
 npm run dev        # → http://localhost:5173
+
+# unit tests (Vitest)
+npm test
+
+# coverage (thresholds enforced)
+npm run test:coverage
+
+# lint & format
+npm run lint
+npm run format
 
 # build
 npm run build      # → dist/
@@ -116,11 +142,13 @@ npm run preview
 
 ```
 quiz-app/
+├── test/                    ← Quiz JSON files (auto‑loaded, no index)
+├── documents/               ← Source material (PDFs, notes — not bundled)
+├── docs/                    ← Project documentation
+│
 ├── public/
 │   ├── themes/              ← Dark, Light, Catppuccin CSS
 │   │   └── index.json       ← Theme registry
-│   ├── tests/               ← Quiz JSON files (auto‑loaded)
-│   │   └── index.json       ← Test catalog
 │   └── sounds/              ← MP3 background music
 │       ├── index.json       ← Track list
 │       └── music-background.mp3
@@ -128,11 +156,11 @@ quiz-app/
 ├── src/
 │   ├── components/
 │   │   ├── layout/          ← Header, PageWrapper, AnimatedPage
-│   │   ├── quiz/            ← TestCard, TestGrid, AnswerOption,
-│   │   │                      QuestionCard, NavigationBar
-│   │   ├── settings/        ← AudioPanel, ThemeSelector
-│   │   └── ui/              ← Button, Badge, ProgressBar,
-│   │                          CircularProgress
+│   │   ├── quiz/            ← TestCard, TestGrid, TestSections,
+│   │   │                      QuestionCard, AnswerOption, NavigationBar
+│   │   ├── settings/        ← AudioPanel, AudioMenu, ThemeSelector
+│   │   └── ui/              ← Button, Badge, ProgressBar, Modal,
+│   │                          CircularProgress, Select
 │   │
 │   ├── pages/               ← HomePage, TestStartPage,
 │   │   │                      QuizPage, ResultsPage
@@ -140,25 +168,29 @@ quiz-app/
 │   ├── services/
 │   │   ├── audioManager.ts  ← Sound effects + music playback
 │   │   ├── themeManager.ts  ← Theme loading & application
-│   │   ├── testLoader.ts    ← JSON test loader
 │   │   └── testValidator.ts ← Zod schema validation
 │   │
 │   ├── stores/
-│   │   ├── useQuizStore.ts      ← Quiz state (Zustand)
+│   │   ├── useQuizStore.ts      ← Quiz state (Zustand + sessionStorage)
 │   │   ├── useSettingsStore.ts  ← Theme + audio settings
-│   │   └── useTestsStore.ts     ← Test catalog + selection
+│   │   ├── useHistoryStore.ts   ← Attempt history (localStorage)
+│   │   └── useTestsStore.ts     ← Test catalog (loaded from test/)
 │   │
 │   ├── styles/
 │   │   ├── variables.css    ← Design system
 │   │   └── global.css       ← Reset + defaults
 │   │
 │   ├── types/               ← TypeScript interfaces
-│   └── utils/               ← shuffle, scoring
+│   └── utils/               ← shuffle, scoring, difficulty,
+│                              failedQuestions, historyStats, testGroups
 │
+├── .github/workflows/ci.yml ← CI: lint + tsc + test + build
+├── eslint.config.js         ← ESLint flat config
+├── pwa-assets.config.ts     ← PWA icon generation
 ├── index.html
 ├── package.json
 ├── tsconfig.json
-└── vite.config.ts
+└── vite.config.ts           ← Vite + Vitest + PWA + chunking
 ```
 
 ---
@@ -167,10 +199,10 @@ quiz-app/
 
 Switch themes from the **header dropdown** — no page reload required.
 
-| Theme      | Preview          |
-| ---------- | ---------------- |
-| **Dark**   | Deep navy base with magenta accents |
-| **Light**  | Clean white with soft shadows |
+| Theme          | Preview                             |
+| -------------- | ----------------------------------- |
+| **Dark**       | Deep navy base with magenta accents |
+| **Light**      | Clean white with soft shadows       |
 | **Catppuccin** | Mocha base with lavender highlights |
 
 ### Add your own theme
@@ -192,14 +224,15 @@ Switch themes from the **header dropdown** — no page reload required.
 
 QuizMind has a dual audio architecture:
 
-| System          | Engine              | What it does                     |
-| --------------- | ------------------- | -------------------------------- |
-| **Sound effects** | Web Audio API      | Click, correct, skip, win tones  |
-| **Background music** | HTML5 Audio    | MP3 playback with random rotation |
+| System               | Engine        | What it does                      |
+| -------------------- | ------------- | --------------------------------- |
+| **Sound effects**    | Web Audio API | Click, skip, win, start tones     |
+| **Background music** | HTML5 Audio   | MP3 playback with random rotation |
 
 ### Controls
 
-The **AudioPanel** (visible on every page) lets you:
+The **audio menu** (speaker icon in the header, available on every page) opens the AudioPanel controls:
+
 - Toggle sound effects ON/OFF
 - Toggle background music ON/OFF
 - Adjust volume for each independently
@@ -225,22 +258,11 @@ The **AudioPanel** (visible on every page) lets you:
 
 ## 📝 Adding quiz tests
 
-Place JSON files in `public/tests/` and register them in `public/tests/index.json`:
+Drop a `.json` file into the root **`test/`** folder — that's it. There is no index to maintain:
 
-```json
-{
-  "tests": [
-    {
-      "id": "math-101",
-      "file": "/tests/math-101.json",
-      "title": "Basic Math",
-      "category": "Mathematics",
-      "difficulty": "easy",
-      "questionCount": 10
-    }
-  ]
-}
-```
+1. With `npm run dev` running, the app reloads automatically and the test shows up.
+2. For production, run `npm run build` again so the embedded tests include the new file.
+3. Files that fail validation are ignored with a warning on the home page — malformed JSON never breaks the app.
 
 ### Test JSON schema
 
@@ -250,8 +272,10 @@ Place JSON files in `public/tests/` and register them in `public/tests/index.jso
   "title": "Basic Math",
   "description": "Arithmetic fundamentals",
   "category": "Mathematics",
+  "tags": ["math", "basics"],
   "difficulty": "easy",
-  "passThreshold": 70,
+  "passThreshold": 0.7,
+  "timeLimit": 30,
   "shuffleQuestions": true,
   "shuffleAnswers": true,
   "questions": [
@@ -270,17 +294,37 @@ Place JSON files in `public/tests/` and register them in `public/tests/index.jso
 }
 ```
 
-Supported question types: `single` (one answer) and `multiple` (select several).
+- `difficulty`: `easy`, `medium`, `hard` or `mixed`.
+- `passThreshold`: fraction from 0 to 1 (default `0.6`) used for the pass/fail verdict on the results page.
+- `timeLimit`: optional time limit in minutes; adds a countdown and auto-finishes at zero.
+- `tags`: optional labels (max 10, 1-30 chars each) shown as filter chips on the home page.
+- Question types: `single` is supported. `multiple` is rejected at validation (the file is skipped with a warning).
+
+See `docs/TEST_FORMAT.md` for the full reference.
+
+---
+
+## ⌨️ Keyboard shortcuts (quiz screen)
+
+| Key       | Action                                |
+| --------- | ------------------------------------- |
+| `1`–`9`   | Select answer by position             |
+| `←` / `→` | Previous / next question              |
+| `Enter`   | Next question / finish the test       |
+| `S`       | Skip current question (if unanswered) |
 
 ---
 
 ## 📊 Bundle size
 
-| File          | Size  | Gzip      |
-| ------------- | ----: | --------: |
-| JS            | 379 kB | 121 kB   |
-| CSS           | 17 kB  | 4.1 kB   |
-| HTML          | 0.5 kB | 0.3 kB   |
+| File               |   Size |   Gzip |
+| ------------------ | -----: | -----: |
+| JS (initial load)  | 469 kB | 148 kB |
+| JS (largest chunk) | 220 kB |  70 kB |
+| CSS                |  25 kB | 5.3 kB |
+| HTML               | 0.9 kB | 0.4 kB |
+
+Tests are lazy-loaded as individual chunks; only the test you open is downloaded.
 
 No external CSS framework. No runtime icon library. No audio-file dependencies for effects. Just the essentials.
 

@@ -1,0 +1,156 @@
+{
+  "id": "linux-p03-repaso",
+  "title": "Aprendiendo Linux - P03: Sistema de Ficheros y Permisos (Repaso)",
+  "description": "Segunda vuelta: preguntas nuevas de aplicación sobre tipos de fichero, permisos especiales, chmod y umask para comprobar que dominas el tema.",
+  "category": "Sistemas Operativos",
+  "difficulty": "mixed",
+  "passThreshold": 0.6,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "¿Qué tipo de fichero especial es /dev/tty?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Un dispositivo de caracteres (c)", "correct": true },
+        { "id": "a2", "text": "Un dispositivo de bloque (b)" },
+        { "id": "a3", "text": "Un fichero ordinario" },
+        { "id": "a4", "text": "Un directorio" }
+      ],
+      "explanation": "c = acceso crudo carácter a carácter (terminales); b = por bloques (discos como /dev/sda)."
+    },
+    {
+      "id": "q2",
+      "text": "¿Qué indica la 'd' al principio de una línea de `ls -l`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Que la entrada es un directorio", "correct": true },
+        { "id": "a2", "text": "Que es un dispositivo" },
+        { "id": "a3", "text": "Que es un enlace simbólico" },
+        { "id": "a4", "text": "Que es un fichero ordinario" }
+      ],
+      "explanation": "- fichero ordinario, d directorio, l enlace simbólico, b/c dispositivos, p pipe."
+    },
+    {
+      "id": "q3",
+      "text": "Un fichero tiene set-uid activado pero su dueño no tiene permiso x. ¿Cómo se muestra la 's'?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Como S mayúscula: el permiso especial no tiene efecto", "correct": true },
+        { "id": "a2", "text": "Como s minúscula igualmente" },
+        { "id": "a3", "text": "Como t" },
+        { "id": "a4", "text": "No se muestra nada" }
+      ],
+      "explanation": "El set-uid requiere el bit de ejecución activo; si no, se ve S y no funciona."
+    },
+    {
+      "id": "q4",
+      "text": "¿Qué hace `chmod g-w fichero`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Quita el permiso de escritura al grupo", "correct": true },
+        { "id": "a2", "text": "Da escritura al grupo" },
+        { "id": "a3", "text": "Quita escritura a todos" },
+        { "id": "a4", "text": "Quita lectura al grupo" }
+      ],
+      "explanation": "Sintaxis simbólica: quién (u/g/o/a) + operador (+/-/=) + permisos (rwxst)."
+    },
+    {
+      "id": "q5",
+      "text": "¿Qué hace `chmod o=rx directorio`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Deja a 'otros' exactamente r-x, reemplazando sus permisos anteriores", "correct": true },
+        { "id": "a2", "text": "Añade r y x a otros sin quitar nada" },
+        { "id": "a3", "text": "Da rwx a otros" },
+        { "id": "a4", "text": "Quita r y x a otros" }
+      ],
+      "explanation": "= asigna exactamente esos permisos (los demás del trío se eliminan); + y - añaden o quitan."
+    },
+    {
+      "id": "q6",
+      "text": "Con umask 022, ¿qué permisos tiene un directorio recién creado?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "755 (rwxr-xr-x)", "correct": true },
+        { "id": "a2", "text": "644 (rw-r--r--)" },
+        { "id": "a3", "text": "777 (rwxrwxrwx)" },
+        { "id": "a4", "text": "700 (rwx------)" }
+      ],
+      "explanation": "Base de directorios 777; 777 AND NOT 022 = 755. Los ficheros parten de 666 → 644."
+    },
+    {
+      "id": "q7",
+      "text": "¿Puede el propietario cambiar los permisos con chmod aunque el fichero no tenga permiso de lectura?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Sí: chmod depende de la propiedad, no de los permisos rwx del fichero", "correct": true },
+        { "id": "a2", "text": "No: necesita permiso r para leer el inodo" },
+        { "id": "a3", "text": "Solo si es root" },
+        { "id": "a4", "text": "Solo si el fichero es ejecutable" }
+      ],
+      "explanation": "Solo el propietario (o root) puede cambiar permisos; los bits rwx no se lo impiden."
+    },
+    {
+      "id": "q8",
+      "text": "¿Qué permisos necesitas en un directorio para poder borrar un fichero que está dentro?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "w y x en el directorio", "correct": true },
+        { "id": "a2", "text": "w en el fichero" },
+        { "id": "a3", "text": "r y x en el directorio" },
+        { "id": "a4", "text": "x en el fichero" }
+      ],
+      "explanation": "Borrar es quitar una entrada del directorio: hace falta w (modificar entradas) y x (atravesar). Los permisos del fichero no importan."
+    },
+    {
+      "id": "q9",
+      "text": "¿Qué significa el modo `drwxrwxrwt`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Directorio con todos los permisos y sticky bit activo", "correct": true },
+        { "id": "a2", "text": "Directorio con set-uid" },
+        { "id": "a3", "text": "Directorio solo para el propietario" },
+        { "id": "a4", "text": "Enlace simbólico a un directorio" }
+      ],
+      "explanation": "La t final es el sticky bit: solo el dueño de cada fichero puede borrarlo (típico en /tmp)."
+    },
+    {
+      "id": "q10",
+      "text": "¿Qué efecto tiene set-gid aplicado a un directorio?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Los ficheros creados dentro heredan el grupo del directorio", "correct": true },
+        { "id": "a2", "text": "Los ficheros se ejecutan como el grupo del dueño" },
+        { "id": "a3", "text": "Nadie puede borrar los ficheros" },
+        { "id": "a4", "text": "El directorio pasa a ser de solo lectura" }
+      ],
+      "explanation": "Se usa en directorios compartidos como /var/local o /var/mail."
+    },
+    {
+      "id": "q11",
+      "text": "¿Dónde están las contraseñas cifradas de los usuarios?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "En /etc/shadow", "correct": true },
+        { "id": "a2", "text": "En /etc/passwd, en el segundo campo" },
+        { "id": "a3", "text": "En /etc/group" },
+        { "id": "a4", "text": "En /proc/passwd" }
+      ],
+      "explanation": "En /etc/passwd el campo de la clave es una x; el hash real está en /etc/shadow, solo legible por root."
+    },
+    {
+      "id": "q12",
+      "text": "¿Qué nombres casa el patrón `[!0-9]*`?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Los que NO empiezan por dígito", "correct": true },
+        { "id": "a2", "text": "Los que empiezan por dígito" },
+        { "id": "a3", "text": "Los que terminan en dígito" },
+        { "id": "a4", "text": "Los de un solo carácter" }
+      ],
+      "explanation": "! dentro de corchetes niega el conjunto. [0-9] casa un dígito."
+    }
+  ]
+}

@@ -1,0 +1,336 @@
+{
+  "id": "linux-p03-permisos",
+  "title": "Aprendiendo Linux - P03: Sistema de Ficheros y Permisos",
+  "description": "Tipos de fichero, trayectorias, jerarquía de directorios, permisos rwx, bits especiales (setuid/setgid/sticky), chmod y umask. Basado en la Práctica 03.",
+  "category": "Sistemas Operativos",
+  "difficulty": "mixed",
+  "passThreshold": 0.6,
+  "shuffleQuestions": true,
+  "shuffleAnswers": true,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "¿Qué tipo de fichero especial es /dev/sda (un disco duro)?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "De bloque (b)", "correct": true },
+        { "id": "a2", "text": "De caracteres (c)" },
+        { "id": "a3", "text": "Ordinario (-)" },
+        { "id": "a4", "text": "Directorio (d)" }
+      ],
+      "explanation": "Los dispositivos de bloque (discos) se acceden por bloques; los de caracteres (p. ej. /dev/tty) carácter a carácter."
+    },
+    {
+      "id": "q2",
+      "text": "¿Cuál es la longitud máxima de un nombre de fichero en ext4 (NAME_MAX)?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "255 bytes", "correct": true },
+        { "id": "a2", "text": "256 bytes" },
+        { "id": "a3", "text": "1024 bytes" },
+        { "id": "a4", "text": "4096 bytes" }
+      ],
+      "explanation": "ext4 admite nombres de hasta 255 bytes (se puede consultar con getconf NAME_MAX)."
+    },
+    {
+      "id": "q3",
+      "text": "¿Qué carácter NO puede formar parte de un nombre de fichero?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "/", "correct": true },
+        { "id": "a2", "text": "_" },
+        { "id": "a3", "text": "-" },
+        { "id": "a4", "text": "." }
+      ],
+      "explanation": "El carácter / separa los componentes de la trayectoria; el resto de caracteres están permitidos."
+    },
+    {
+      "id": "q4",
+      "text": "¿Cómo se consigue que un fichero sea «oculto»?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Empezando su nombre por punto (.)", "correct": true },
+        { "id": "a2", "text": "Con chmod 000" },
+        { "id": "a3", "text": "Moviéndolo a /tmp" },
+        { "id": "a4", "text": "Escribiendo su nombre en mayúsculas" }
+      ],
+      "explanation": "Los ficheros que empiezan por punto no aparecen en ls salvo que se use la opción -a."
+    },
+    {
+      "id": "q5",
+      "text": "¿Cuál de estas trayectorias es absoluta?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "/usr/humberto", "correct": true },
+        { "id": "a2", "text": "usr/humberto" },
+        { "id": "a3", "text": "../humberto" },
+        { "id": "a4", "text": "./humberto" }
+      ],
+      "explanation": "Las trayectorias absolutas comienzan por / (la raíz); las relativas parten del directorio actual."
+    },
+    {
+      "id": "q6",
+      "text": "¿Qué representa el directorio ..?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El directorio padre del actual", "correct": true },
+        { "id": "a2", "text": "El directorio actual" },
+        { "id": "a3", "text": "El directorio base del usuario" },
+        { "id": "a4", "text": "La raíz del sistema" }
+      ],
+      "explanation": ". es el directorio actual y .. el padre; en la raíz, .. es la propia raíz."
+    },
+    {
+      "id": "q7",
+      "text": "¿Quién es el directorio padre de la raíz (/)?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Ella misma: / es su propio padre", "correct": true },
+        { "id": "a2", "text": "El directorio /root" },
+        { "id": "a3", "text": "No tiene padre" },
+        { "id": "a4", "text": "El directorio /home" }
+      ],
+      "explanation": "La raíz está en lo más alto del árbol invertido y su .. apunta a sí misma."
+    },
+    {
+      "id": "q8",
+      "text": "¿Qué muestra el carácter ~ en el shell?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El directorio base del usuario (~usuario, para otro usuario)", "correct": true },
+        { "id": "a2", "text": "La raíz /" },
+        { "id": "a3", "text": "El directorio temporal /tmp" },
+        { "id": "a4", "text": "La variable PATH" }
+      ],
+      "explanation": "~ se expande al valor de HOME; ~root sería /root, por ejemplo."
+    },
+    {
+      "id": "q9",
+      "text": "¿Qué opción de ls muestra información del directorio en sí, y no de su contenido?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "-d", "correct": true },
+        { "id": "a2", "text": "-a" },
+        { "id": "a3", "text": "-R" },
+        { "id": "a4", "text": "-i" }
+      ],
+      "explanation": "ls -ld . muestra los permisos del directorio actual; -a incluye ocultos, -R es recursivo y -i muestra el inodo."
+    },
+    {
+      "id": "q10",
+      "text": "¿Qué opción de ls incluye los ficheros ocultos?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "-a", "correct": true },
+        { "id": "a2", "text": "-l" },
+        { "id": "a3", "text": "-d" },
+        { "id": "a4", "text": "-F" }
+      ],
+      "explanation": "ls -a muestra también los ficheros cuyo nombre empieza por punto."
+    },
+    {
+      "id": "q11",
+      "text": "En el formato largo de ls (-l), ¿cuántos caracteres ocupan los permisos y en qué orden?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "9: propietario, grupo y otros (3 cada uno)", "correct": true },
+        { "id": "a2", "text": "3: lectura, escritura y ejecución", "correct": false },
+        { "id": "a3", "text": "9: otros, grupo y propietario" },
+        { "id": "a4", "text": "12: tipo de fichero y permisos especiales" }
+      ],
+      "explanation": "Son 9 letras agrupadas de 3 en 3: propietario (u), grupo (g) y otros (o)."
+    },
+    {
+      "id": "q12",
+      "text": "En la línea -rw-r--r-- 1 root root 940 /etc/passwd, ¿qué permiso tiene el grupo?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Solo lectura (r--)", "correct": true },
+        { "id": "a2", "text": "Lectura y escritura (rw-)" },
+        { "id": "a3", "text": "Ninguno (---)" },
+        { "id": "a4", "text": "Lectura y ejecución (r-x)" }
+      ],
+      "explanation": "El segundo trío (r--) corresponde al grupo; el primero (rw-) al propietario y el tercero (r--) a otros."
+    },
+    {
+      "id": "q13",
+      "text": "¿Qué regla especial cumplen los comodines con los ficheros ocultos?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El punto inicial debe coincidir explícitamente: * no casa los ficheros que empiezan por .", "correct": true },
+        { "id": "a2", "text": "* también casa los ficheros ocultos" },
+        { "id": "a3", "text": "Los ocultos no se pueden abreviar nunca" },
+        { "id": "a4", "text": "Solo ? casa los ficheros ocultos" }
+      ],
+      "explanation": "Para que el patrón casa un fichero oculto hay que escribir el punto: .*, .a*…"
+    },
+    {
+      "id": "q14",
+      "text": "¿Por qué la orden cd está implementada por el propio shell y no como programa externo?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Porque el directorio de trabajo es propiedad del proceso: un hijo no podría cambiarlo en el shell", "correct": true },
+        { "id": "a2", "text": "Porque así es más rápida" },
+        { "id": "a3", "text": "Porque necesita permisos de root" },
+        { "id": "a4", "text": "Porque no existe ningún fichero /bin/cd" }
+      ],
+      "explanation": "cd debe cambiar el directorio del propio shell; si se ejecutara en un hijo, al terminar este el shell seguiría igual."
+    },
+    {
+      "id": "q15",
+      "text": "¿Qué diferencia hay entre pwd -L y pwd -P?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "-L (lógico) muestra la trayectoria con enlaces simbólicos; -P (físico) la ruta real", "correct": true },
+        { "id": "a2", "text": "-L lista ficheros y -P procesos" },
+        { "id": "a3", "text": "Son idénticas en todos los casos" },
+        { "id": "a4", "text": "-P muestra la contraseña del usuario" }
+      ],
+      "explanation": "bash usa -L por defecto; -P resuelve los enlaces simbólicos."
+    },
+    {
+      "id": "q16",
+      "text": "¿Qué contiene el directorio /proc?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Información virtual del sistema y de los procesos (subdirectorios con PIDs)", "correct": true },
+        { "id": "a2", "text": "Los programas instalados" },
+        { "id": "a3", "text": "Los ficheros de configuración" },
+        { "id": "a4", "text": "Los registros (logs) del sistema" }
+      ],
+      "explanation": "/proc es un sistema de ficheros virtual (procfs): /proc/cpuinfo, /proc/net, /proc/PID…"
+    },
+    {
+      "id": "q17",
+      "text": "¿Cuál es el formato de una línea de /etc/passwd?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "nombre:clave:uid:gid:información:dirbase:shell", "correct": true },
+        { "id": "a2", "text": "nombre:contraseña:grupo:home" },
+        { "id": "a3", "text": "uid:gid:nombre" },
+        { "id": "a4", "text": "nombre:uid:gid:shell" }
+      ],
+      "explanation": "Ejemplo: alumno:x:1000:1000:Alumno,,,:/home/alumno:/bin/bash"
+    },
+    {
+      "id": "q18",
+      "text": "¿Qué permiso es necesario para atravesar un directorio y acceder a un fichero por su nombre?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "x (ejecución)", "correct": true },
+        { "id": "a2", "text": "r (lectura)" },
+        { "id": "a3", "text": "w (escritura)" },
+        { "id": "a4", "text": "s (setuid)" }
+      ],
+      "explanation": "En directorios: r permite listar, w crear/borrar entradas y x atravesar/acceder a los ficheros."
+    },
+    {
+      "id": "q19",
+      "text": "Con chmod 400 d, ¿qué puede hacer un usuario en el directorio d, que contiene ficheros?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Ver los nombres (ls d) pero no abrir ni leer los ficheros (cat d/f falla)", "correct": true },
+        { "id": "a2", "text": "Nada en absoluto" },
+        { "id": "a3", "text": "Leer los ficheros pero no listar sus nombres" },
+        { "id": "a4", "text": "Crear ficheros nuevos dentro" }
+      ],
+      "explanation": "400 = r--: sin x no se puede atravesar el directorio para acceder a los ficheros."
+    },
+    {
+      "id": "q20",
+      "text": "¿Qué hace el permiso especial set-uid (chmod u+s)?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "El programa se ejecuta con los permisos (uid) del propietario del fichero", "correct": true },
+        { "id": "a2", "text": "Solo el propietario puede ejecutar el programa" },
+        { "id": "a3", "text": "El fichero no se puede borrar" },
+        { "id": "a4", "text": "El programa se ejecuta con los permisos del grupo" }
+      ],
+      "explanation": "Ejemplo clásico: passwd es set-uid para poder modificar /etc/shadow. Se ve como s en el trío del propietario."
+    },
+    {
+      "id": "q21",
+      "text": "¿Para qué sirve el sticky bit en directorios como /tmp?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Solo el dueño de cada fichero (o root) puede borrarlo o renombrarlo", "correct": true },
+        { "id": "a2", "text": "Los ficheros del directorio son de solo lectura" },
+        { "id": "a3", "text": "El directorio se borra al cerrar la sesión" },
+        { "id": "a4", "text": "Los programas se ejecutan con permisos del propietario" }
+      ],
+      "explanation": "/tmp es drwxrwxrwt: todos pueden crear ficheros, pero cada uno solo borra los suyos."
+    },
+    {
+      "id": "q22",
+      "text": "¿Qué valor octal corresponde a los permisos rwxr-x---?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "750", "correct": true },
+        { "id": "a2", "text": "755" },
+        { "id": "a3", "text": "640" },
+        { "id": "a4", "text": "705" }
+      ],
+      "explanation": "rwx = 7, r-x = 5, --- = 0 → 750."
+    },
+    {
+      "id": "q23",
+      "text": "¿Qué máscara (umask) hace que los ficheros nuevos se creen como máximo con permisos rwxr-x---?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "027", "correct": true },
+        { "id": "a2", "text": "022" },
+        { "id": "a3", "text": "002" },
+        { "id": "a4", "text": "755" }
+      ],
+      "explanation": "Con umask 027: ficheros 666 AND NOT 027 = 640 y directorios 777 AND NOT 027 = 750; nada supera rwxr-x---."
+    },
+    {
+      "id": "q24",
+      "text": "Con umask 022, ¿qué permisos tendrá un fichero nuevo creado con echo hola > f?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "rw-r--r-- (644)", "correct": true },
+        { "id": "a2", "text": "rwxr-xr-x (755)" },
+        { "id": "a3", "text": "rw-rw-rw- (666)" },
+        { "id": "a4", "text": "rwxrwxrwx (777)" }
+      ],
+      "explanation": "El shell crea el fichero con base 666: 666 AND NOT 022 = 644."
+    },
+    {
+      "id": "q25",
+      "text": "¿Por qué un fichero nuevo no nace con permisos de ejecución aunque umask sea 000?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Porque el programa que lo crea parte de una base 666 para ficheros (la ejecución no está en esa base)", "correct": true },
+        { "id": "a2", "text": "Porque el sistema lo prohíbe siempre" },
+        { "id": "a3", "text": "Porque umask 000 no existe" },
+        { "id": "a4", "text": "Porque haría falta setuid" }
+      ],
+      "explanation": "Los ficheros parten de 666 y los directorios de 777; después se aplica umask. Por eso un fichero nunca sale con x."
+    },
+    {
+      "id": "q26",
+      "text": "Un fichero tiene permisos -wxrwxrwx. ¿Puede el PROPIETARIO leerlo?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "No: se aplica solo su trío (-wx), que no incluye lectura", "correct": true },
+        { "id": "a2", "text": "Sí, porque el grupo tiene r" },
+        { "id": "a3", "text": "Sí, porque otros tienen r" },
+        { "id": "a4", "text": "Sí, el propietario siempre puede leer sus ficheros" }
+      ],
+      "explanation": "UNIX aplica la primera categoría que coincide (propietario > grupo > otros), no combina los tríos."
+    },
+    {
+      "id": "q27",
+      "text": "¿Cómo se representa el sticky bit en la salida de ls -l?",
+      "type": "single",
+      "answers": [
+        { "id": "a1", "text": "Una t en el campo de otros (p. ej. drwxrwxrwt)", "correct": true },
+        { "id": "a2", "text": "Una s en el campo del propietario" },
+        { "id": "a3", "text": "Un asterisco * al final del nombre" },
+        { "id": "a4", "text": "Un signo + al final del nombre" }
+      ],
+      "explanation": "set-uid → s en propietario; set-gid → s en grupo; sticky → t en otros. La mayúscula (S) indica que falta el bit x."
+    }
+  ]
+}

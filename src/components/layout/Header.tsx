@@ -1,4 +1,5 @@
 import { type ReactNode } from 'react';
+import { AudioMenu } from '../settings/AudioMenu';
 import { ThemeSelector } from '../settings/ThemeSelector';
 import styles from './Header.module.css';
 
@@ -12,6 +13,7 @@ export function Header({ children }: HeaderProps) {
       <div className={styles.logo}>QuizMind</div>
       <div className={styles.actions}>
         {children}
+        <AudioMenu />
         <ThemeSelector />
       </div>
     </header>

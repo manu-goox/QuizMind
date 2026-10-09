@@ -1,9 +1,10 @@
-import { Button } from '../ui';
+import { Badge, Button } from '../ui';
 import styles from './NavigationBar.module.css';
 
 interface NavigationBarProps {
   canGoBack: boolean;
   canGoNext: boolean;
+  canSkip?: boolean;
   isLastQuestion: boolean;
   skippedCount: number;
   onBack: () => void;
@@ -14,6 +15,8 @@ interface NavigationBarProps {
 
 export function NavigationBar({
   canGoBack,
+  canGoNext,
+  canSkip = true,
   isLastQuestion,
   skippedCount,
   onBack,
@@ -26,10 +29,15 @@ export function NavigationBar({
       <Button variant="ghost" onClick={onBack} disabled={!canGoBack}>
         ← Anterior
       </Button>
-      <Button variant="secondary" onClick={onSkip}>
-        Saltar {skippedCount > 0 && <span className={styles.badge}>{skippedCount}</span>}
+      <Button variant="secondary" onClick={onSkip} disabled={!canSkip}>
+        Saltar
+        {skippedCount > 0 && <Badge variant="info">{skippedCount}</Badge>}
       </Button>
-      <Button variant="primary" onClick={isLastQuestion ? onFinish : onNext}>
+      <Button
+        variant="primary"
+        onClick={isLastQuestion ? onFinish : onNext}
+        disabled={!isLastQuestion && !canGoNext}
+      >
         {isLastQuestion ? 'Finalizar' : 'Siguiente →'}
       </Button>
     </div>
