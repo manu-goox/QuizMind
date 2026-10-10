@@ -89,7 +89,7 @@ export function ResultsPage() {
   return (
     <PageWrapper>
       <div className={styles.container}>
-        <AnimatedPage>
+        <AnimatedPage className={styles.sections}>
           <motion.div
             className={styles.scoreCard}
             initial={{ opacity: 0, scale: 0.9 }}

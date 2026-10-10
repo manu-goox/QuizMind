@@ -15,6 +15,9 @@ dist-ssr
 # Generated output
 coverage
 
+# Notas locales de trabajo (no commitear)
+PENDIENTE-revision-fallos.md
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
