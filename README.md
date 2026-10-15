@@ -261,7 +261,9 @@ The webview is detected at runtime (`src/utils/desktop.ts`): desktop builds use 
 hash router so reloading any route (e.g. resuming a quiz) keeps working, while the
 web build keeps clean URLs. Needs the Rust MSVC toolchain and the WebView2 runtime
 (preinstalled on Windows 10/11). Desktop builds auto-update from GitHub
-Releases — see below.
+Releases — see below. They ship without the PWA service worker (the frontend is
+embedded in the executable) and clear stale webview caches on startup, so an
+update can never serve an outdated frontend.
 
 ## 🔄 Releases & auto-updates
 

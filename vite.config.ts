@@ -1,7 +1,14 @@
 /// <reference types="vitest/config" />
+import process from 'node:process';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
+
+// Desktop (Tauri) builds embed the frontend in the executable: the PWA
+// service worker would only serve stale copies of the app, so it is disabled.
+const isDesktopBuild = Boolean(
+  process.env.TAURI_ENV_PLATFORM ?? process.env.TAURI_ENV_TARGET_TRIPLE,
+);
 
 export default defineConfig({
   // Tauri: keep the cargo output visible and pin the dev port to devUrl
@@ -14,6 +21,7 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
+      disable: isDesktopBuild,
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'apple-touch-icon-180x180.png'],
       workbox: {
