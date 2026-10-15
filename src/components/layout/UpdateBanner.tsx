@@ -88,48 +88,62 @@ export function UpdateBanner() {
     };
   }, [demo]);
 
+  const progressPercent =
+    status === null || status.phase === 'restart'
+      ? null
+      : status.phase === 'installing'
+        ? 100
+        : status.percent;
+
   return (
     <AnimatePresence>
       {status !== null && (
         <motion.div
-          className={styles.banner}
-          role="status"
-          initial={{ opacity: 0, y: 24, x: '-50%' }}
-          animate={{ opacity: 1, y: 0, x: '-50%' }}
-          exit={{ opacity: 0, y: 24, x: '-50%' }}
+          className={styles.overlay}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
         >
-          <div className={styles.text}>
-            <span className={styles.title}>{title(status)}</span>
-            <span className={styles.subtitle}>{subtitle(status)}</span>
-            {status.phase === 'downloading' && status.percent !== null && (
+          <motion.div
+            className={styles.dialog}
+            role="status"
+            initial={{ opacity: 0, scale: 0.96, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.97, y: 10 }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+          >
+            <div className={styles.text}>
+              <span className={styles.title}>{title(status)}</span>
+              <span className={styles.subtitle}>{subtitle(status)}</span>
+            </div>
+            {progressPercent !== null && (
               <div
                 className={styles.progress}
                 role="progressbar"
                 aria-label="Progreso de la actualización"
                 aria-valuemin={0}
                 aria-valuemax={100}
-                aria-valuenow={status.percent}
+                aria-valuenow={progressPercent}
               >
                 <div
                   className={styles.progressFill}
-                  style={{ width: `${status.percent}%` }}
+                  style={{ width: `${progressPercent}%` }}
                 />
               </div>
             )}
-          </div>
-          {status.phase === 'restart' && (
-            <div className={styles.actions}>
-              <Button
-                size="small"
-                onClick={() => {
-                  void relaunchApp();
-                }}
-              >
-                Reiniciar ahora
-              </Button>
-            </div>
-          )}
+            {status.phase === 'restart' && (
+              <div className={styles.actions}>
+                <Button
+                  onClick={() => {
+                    void relaunchApp();
+                  }}
+                >
+                  Reiniciar ahora
+                </Button>
+              </div>
+            )}
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>

@@ -1,47 +1,57 @@
-.banner {
+.overlay {
   position: fixed;
-  left: 50%;
-  bottom: calc(var(--space-5) + env(safe-area-inset-bottom, 0px));
+  inset: 0;
   z-index: var(--z-toast);
   display: flex;
   align-items: center;
-  gap: var(--space-4);
-  max-width: min(var(--container-sm), calc(100vw - var(--space-8)));
-  padding: var(--space-3) var(--space-4);
+  justify-content: center;
+  padding: var(--space-4);
+  /* Fondo gris difuminado: oculta la interfaz mientras se actualiza */
+  background: rgb(107 114 128 / 0.38);
+  backdrop-filter: blur(12px) saturate(120%);
+}
+
+.dialog {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  width: 100%;
+  max-width: 480px;
+  padding: var(--space-8);
   border: 1px solid var(--border-strong);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   background: var(--bg-elevated);
-  box-shadow: var(--shadow-xl);
+  box-shadow:
+    inset 0 1px 0 0 var(--glass-highlight),
+    var(--shadow-xl);
+  text-align: center;
 }
 
 .text {
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
-  min-width: 0;
+  gap: var(--space-2);
 }
 
 .title {
-  font-size: var(--text-sm);
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
   color: var(--text-primary);
 }
 
 .subtitle {
-  font-size: var(--text-xs);
+  font-size: var(--text-sm);
   color: var(--text-secondary);
 }
 
 .actions {
   display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  gap: var(--space-2);
+  justify-content: center;
 }
 
 .progress {
-  height: 4px;
-  margin-top: var(--space-1);
+  height: 6px;
   overflow: hidden;
   border-radius: var(--radius-full);
   background: var(--bg-secondary);
