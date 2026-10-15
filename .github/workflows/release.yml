@@ -71,6 +71,8 @@ jobs:
           includeUpdaterJson: true
       # The updater must download straight from the release page: API asset URLs
       # are rate limited for anonymous requests and would fail silently.
+      # Paths stay relative on purpose: git-bash /tmp paths are not understood
+      # by native Windows tools (gh, node) and broke a previous run.
       - name: Point updater JSON at direct download URLs
         shell: bash
         env:
@@ -80,7 +82,16 @@ jobs:
           version=$(node -p "require('./src-tauri/tauri.conf.json').version")
           asset="QuizMind_${version}_x64-setup.exe"
           direct="https://github.com/${GITHUB_REPOSITORY}/releases/download/${tag}/${asset}"
-          dir=$(mktemp -d)
-          gh release download "$tag" --pattern 'latest.json' --dir "$dir" --clobber
-          node -e "const fs=require('fs');const p='$dir/latest.json';const j=JSON.parse(fs.readFileSync(p,'utf8'));for(const k of Object.keys(j.platforms)){j.platforms[k].url='$direct';}fs.writeFileSync(p,JSON.stringify(j,null,2));"
-          gh release upload "$tag" "$dir/latest.json" --clobber
+          mkdir -p updater-json
+          gh release download "$tag" --pattern 'latest.json' --dir updater-json --clobber
+          node -e "const fs=require('fs');const p='updater-json/latest.json';const j=JSON.parse(fs.readFileSync(p,'utf8'));for(const k of Object.keys(j.platforms)){j.platforms[k].url='${direct}';}fs.writeFileSync(p,JSON.stringify(j,null,2));"
+          gh release upload "$tag" updater-json/latest.json --clobber
+      - name: Verify updater JSON points at direct download URLs
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          tag="${{ steps.release.outputs.tag }}"
+          mkdir -p verify-json
+          gh release download "$tag" --pattern 'latest.json' --dir verify-json --clobber
+          node -e "const j=require('./verify-json/latest.json');let bad=0;for(const k of Object.keys(j.platforms)){const u=j.platforms[k].url;if(!u.startsWith('https://github.com/')){console.error('BAD URL',k,u);bad=1;}else{console.log('OK',k,u);}}process.exit(bad);"
