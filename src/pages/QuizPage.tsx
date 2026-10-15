@@ -27,6 +27,7 @@ export function QuizPage() {
     finishTest,
     practiceMode,
     startTime,
+    status,
   } = useQuizStore();
   const [showFinishModal, setShowFinishModal] = useState(false);
   const [pausedMs, setPausedMs] = useState(0);
@@ -100,9 +101,8 @@ export function QuizPage() {
         });
       }
       audioManager.play(results.passed ? 'win' : 'complete');
-      navigate('/results');
     },
-    [activeTest, finishTest, practiceMode, navigate, pausedMs],
+    [activeTest, finishTest, practiceMode, pausedMs],
   );
 
   const handleFinish = useCallback(() => {
@@ -121,9 +121,15 @@ export function QuizPage() {
 
   useEffect(() => {
     if (!activeTest) {
-      navigate('/');
+      navigate('/', { replace: true });
     }
   }, [activeTest, navigate]);
+
+  useEffect(() => {
+    if (activeTest && status === 'finished') {
+      navigate('/results', { replace: true });
+    }
+  }, [activeTest, status, navigate]);
 
   useEffect(() => {
     if (!activeTest || showFinishModal) return;

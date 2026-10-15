@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { PageWrapper } from '../components/layout';
@@ -8,7 +8,10 @@ import { CircularProgress } from '../components/ui/CircularProgress';
 import { QuestionCard } from '../components/quiz';
 import { useQuizStore } from '../stores/useQuizStore';
 import { useTestsStore } from '../stores/useTestsStore';
-import { collectFailedQuestions } from '../utils/failedQuestions';
+import {
+  buildFailureReviewTest,
+  collectFailedQuestions,
+} from '../utils/failedQuestions';
 import { formatTime } from '../utils/formatTime';
 import { useHistoryStore } from '../stores/useHistoryStore';
 import {
@@ -44,10 +47,12 @@ export function ResultsPage() {
   const selectedId = useTestsStore((s) => s.selectedId);
   const practiceMode = useQuizStore((s) => s.practiceMode);
   const historyEntries = useHistoryStore((s) => s.entries);
+  const navigatingAwayRef = useRef(false);
 
   useEffect(() => {
+    if (navigatingAwayRef.current) return;
     if (status !== 'finished' || !activeTest) {
-      navigate('/');
+      navigate('/', { replace: true });
     }
   }, [status, activeTest, navigate]);
 
@@ -59,6 +64,7 @@ export function ResultsPage() {
   const averagePercentage = getAveragePercentage(testHistory);
 
   const handleRestart = () => {
+    navigatingAwayRef.current = true;
     resetQuiz();
     if (selectedId) useTestsStore.getState().setSelectedTestId(selectedId);
     navigate('/');
@@ -66,6 +72,7 @@ export function ResultsPage() {
 
   const handleRetry = () => {
     if (!activeTest) return;
+    navigatingAwayRef.current = true;
     const fullTest = useTestsStore.getState().loadTest(activeTest.id);
     useQuizStore.getState().startTest(fullTest ?? activeTest);
     navigate('/start');
@@ -73,15 +80,9 @@ export function ResultsPage() {
 
   const handleReviewFailures = () => {
     if (!activeTest || failedQuestions.length === 0) return;
+    navigatingAwayRef.current = true;
     const store = useQuizStore.getState();
-    store.startTest({
-      ...activeTest,
-      title: `${activeTest.title} (repaso de fallos)`,
-      questions: failedQuestions,
-      shuffleQuestions: false,
-      shuffleAnswers: false,
-      timeLimit: undefined,
-    });
+    store.startTest(buildFailureReviewTest(activeTest, answers));
     store.setPracticeMode(true);
     navigate('/quiz');
   };
@@ -245,7 +246,6 @@ export function ResultsPage() {
                   question={question}
                   selectedAnswerId={answers[question.id] || null}
                   showResult={true}
-                  onSelectAnswer={() => {}}
                 />
               ))}
             </motion.div>

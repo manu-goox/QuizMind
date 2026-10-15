@@ -8,7 +8,7 @@ interface QuestionCardProps {
   question: Question;
   selectedAnswerId: string | null;
   showResult: boolean;
-  onSelectAnswer: (answerId: string) => void;
+  onSelectAnswer?: (answerId: string) => void;
 }
 
 export function QuestionCard({
@@ -55,7 +55,7 @@ export function QuestionCard({
             correct={answer.correct}
             annulled={annulled}
             showResult={showResult}
-            onClick={() => onSelectAnswer(answer.id)}
+            onClick={() => onSelectAnswer?.(answer.id)}
           />
         ))}
       </div>
