@@ -267,8 +267,9 @@ update can never serve an outdated frontend.
 
 ## 🔄 Releases & auto-updates
 
-Installed desktop builds check for newer releases on every launch, download the
-update in the background and offer a restart (`src/utils/autoUpdate.ts`).
+Installed desktop builds check for newer releases on every launch and install
+them automatically, showing live download progress in a banner before the app
+restarts itself (`src/utils/autoUpdate.ts`).
 Releases are therefore always built from `main`:
 
 1. Bump `version` in `src-tauri/tauri.conf.json`.
