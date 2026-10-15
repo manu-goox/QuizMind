@@ -3,3 +3,4 @@ export { ErrorBoundary } from './ErrorBoundary';
 export { Header } from './Header';
 export { PageWrapper } from './PageWrapper';
 export { UpdateBanner } from './UpdateBanner';
+export { WindowControls } from './WindowControls';

@@ -133,7 +133,7 @@ QuizMind/
 ├── src/
 │   ├── components/
 │   │   ├── layout/             # Header, PageWrapper, AnimatedPage, ErrorBoundary,
-│   │   │                       # UpdateBanner
+│   │   │                       # UpdateBanner, WindowControls
 │   │   ├── quiz/               # TestCard, TestGrid, TestSections, QuestionCard,
 │   │   │                       # AnswerOption, NavigationBar
 │   │   ├── settings/           # AudioMenu, AudioPanel, ThemeSelector
@@ -263,7 +263,9 @@ web build keeps clean URLs. Needs the Rust MSVC toolchain and the WebView2 runti
 (preinstalled on Windows 10/11). Desktop builds auto-update from GitHub
 Releases — see below. They ship without the PWA service worker (the frontend is
 embedded in the executable) and clear stale webview caches on startup, so an
-update can never serve an outdated frontend.
+update can never serve an outdated frontend. The window is frameless: the app
+header doubles as the title bar (drag it to move the window) and hosts the
+minimize/maximize/close buttons (`src/components/layout/WindowControls.tsx`).
 
 ## 🔄 Releases & auto-updates
 
