@@ -8,6 +8,7 @@ import {
   useLocation,
 } from 'react-router-dom';
 import { AnimatePresence, MotionConfig } from 'framer-motion';
+import { UpdateBanner } from './components/layout';
 import { HomePage, TestStartPage, QuizPage, ResultsPage } from './pages';
 import { useSettingsStore } from './stores/useSettingsStore';
 import { audioManager } from './services/audioManager';
@@ -84,6 +85,7 @@ function App() {
     <Router>
       <MotionConfig reducedMotion="user">
         <AppRoutes />
+        <UpdateBanner />
       </MotionConfig>
     </Router>
   );

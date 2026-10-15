@@ -5,3 +5,5 @@ package-lock.json
 documents
 test
 public
+src-tauri/target
+src-tauri/gen

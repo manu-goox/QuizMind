@@ -132,7 +132,8 @@ QuizMind/
 │   └── sounds/                 # Music tracks + index.json
 ├── src/
 │   ├── components/
-│   │   ├── layout/             # Header, PageWrapper, AnimatedPage, ErrorBoundary
+│   │   ├── layout/             # Header, PageWrapper, AnimatedPage, ErrorBoundary,
+│   │   │                       # UpdateBanner
 │   │   ├── quiz/               # TestCard, TestGrid, TestSections, QuestionCard,
 │   │   │                       # AnswerOption, NavigationBar
 │   │   ├── settings/           # AudioMenu, AudioPanel, ThemeSelector
@@ -145,8 +146,10 @@ QuizMind/
 │   ├── styles/                 # variables.css, global.css
 │   ├── types/
 │   └── utils/                  # scoring, shuffle, timer, formatTime, difficulty,
-│                               # failedQuestions, historyStats, testGroups
+│                               # failedQuestions, historyStats, testGroups,
+│                               # desktop, autoUpdate
 ├── .github/workflows/ci.yml    # CI: quality · test + coverage · build
+├── .github/workflows/release.yml  # Signed desktop release from main
 ├── eslint.config.js
 ├── pwa-assets.config.ts
 └── vite.config.ts
@@ -257,7 +260,31 @@ npm run tauri build   # .exe + NSIS installer (src-tauri/target/release/bundle/)
 The webview is detected at runtime (`src/utils/desktop.ts`): desktop builds use a
 hash router so reloading any route (e.g. resuming a quiz) keeps working, while the
 web build keeps clean URLs. Needs the Rust MSVC toolchain and the WebView2 runtime
-(preinstalled on Windows 10/11).
+(preinstalled on Windows 10/11). Desktop builds auto-update from GitHub
+Releases — see below.
+
+## 🔄 Releases & auto-updates
+
+Installed desktop builds check for newer releases on every launch, download the
+update in the background and offer a restart (`src/utils/autoUpdate.ts`).
+Releases are therefore always built from `main`:
+
+1. Bump `version` in `src-tauri/tauri.conf.json`.
+2. Merge into `main` (CI must be green).
+3. Push a `vX.Y.Z` tag **or** run the **Release** workflow on `main`
+   (Actions → Release → Run workflow). The version in the config decides the tag
+   when running the workflow manually.
+
+The workflow rejects any tag/commit that is not an ancestor of `main`, then
+builds the signed NSIS installer on `windows-latest` and publishes the GitHub
+release together with `latest.json`, the feed the updater reads.
+
+**One-time setup (repo secret):** add `TAURI_SIGNING_PRIVATE_KEY` in
+Settings → Secrets and variables → Actions with the contents of your private
+updater key. The keypair lives outside the repo (private key in `~/.tauri/`,
+public key pinned in `src-tauri/tauri.conf.json`); local builds pick the private
+key up from the `TAURI_SIGNING_PRIVATE_KEY` environment variable. Never commit
+it — losing the key means installed apps can no longer receive updates.
 
 ## 🧪 Quality & CI
 
@@ -266,7 +293,7 @@ web build keeps clean URLs. Needs the Rust MSVC toolchain and the WebView2 runti
 | Lint     | ESLint 10 flat config                                         |
 | Format   | Prettier check                                                |
 | Types    | `tsc --noEmit` (strict)                                       |
-| Tests    | Vitest — 145 tests across 16 files                            |
+| Tests    | Vitest — 160 tests across 18 files                            |
 | Coverage | Statements 85 · Branches 70 · Functions 90 · Lines 85 (gated) |
 
 CI runs three parallel jobs on every push and PR — `quality`, `test` (coverage
