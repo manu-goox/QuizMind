@@ -4,6 +4,13 @@ import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
+  // Tauri: keep the cargo output visible and pin the dev port to devUrl
+  clearScreen: false,
+  server: {
+    port: 5173,
+    strictPort: true,
+    watch: { ignored: ['**/src-tauri/**'] },
+  },
   plugins: [
     react(),
     VitePWA({

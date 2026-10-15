@@ -14,10 +14,12 @@
     "test:coverage": "vitest run --coverage",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "tauri": "tauri"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@tauri-apps/cli": "^2.12.3",
     "@types/node": "^26.6.4",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",

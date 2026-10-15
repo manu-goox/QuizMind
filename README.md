@@ -244,6 +244,21 @@ QuizMind is an installable PWA with a generated service worker:
 - Updates apply automatically and the page reloads once on `controllerchange`
 - The `<meta name="theme-color">` tracks the active theme at runtime
 
+## 🖥️ Desktop app (Tauri)
+
+QuizMind also runs as a native desktop app built with [Tauri 2](https://v2.tauri.app)
+(WebView2 on Windows — no browser chrome, everything local):
+
+```bash
+npm run tauri dev     # native window with HMR
+npm run tauri build   # .exe + NSIS installer (src-tauri/target/release/bundle/)
+```
+
+The webview is detected at runtime (`src/utils/desktop.ts`): desktop builds use a
+hash router so reloading any route (e.g. resuming a quiz) keeps working, while the
+web build keeps clean URLs. Needs the Rust MSVC toolchain and the WebView2 runtime
+(preinstalled on Windows 10/11).
+
 ## 🧪 Quality & CI
 
 | Check    | Detail                                                        |

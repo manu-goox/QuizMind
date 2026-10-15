@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect } from 'react';
 import {
   BrowserRouter,
+  HashRouter,
   Routes,
   Route,
   Navigate,
@@ -11,8 +12,14 @@ import { HomePage, TestStartPage, QuizPage, ResultsPage } from './pages';
 import { useSettingsStore } from './stores/useSettingsStore';
 import { audioManager } from './services/audioManager';
 import { themeManager } from './services/themeManager';
+import { isTauri } from './utils/desktop';
 import './styles/global.css';
 import './styles/variables.css';
+
+// Inside the Tauri webview the app is served over a custom protocol; a hash
+// router keeps reloads working on any route (e.g. resuming a quiz), while the
+// web build keeps clean URLs.
+const Router = isTauri() ? HashRouter : BrowserRouter;
 
 const ROUTE_TITLES: Record<string, string> = {
   '/': 'QuizMind — Tests Interactivos',
@@ -74,11 +81,11 @@ function App() {
   }, [theme]);
 
   return (
-    <BrowserRouter>
+    <Router>
       <MotionConfig reducedMotion="user">
         <AppRoutes />
       </MotionConfig>
-    </BrowserRouter>
+    </Router>
   );
 }
 
