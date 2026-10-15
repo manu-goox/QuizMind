@@ -69,3 +69,18 @@ jobs:
           releaseDraft: false
           prerelease: false
           includeUpdaterJson: true
+      # The updater must download straight from the release page: API asset URLs
+      # are rate limited for anonymous requests and would fail silently.
+      - name: Point updater JSON at direct download URLs
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          tag="${{ steps.release.outputs.tag }}"
+          version=$(node -p "require('./src-tauri/tauri.conf.json').version")
+          asset="QuizMind_${version}_x64-setup.exe"
+          direct="https://github.com/${GITHUB_REPOSITORY}/releases/download/${tag}/${asset}"
+          dir=$(mktemp -d)
+          gh release download "$tag" --pattern 'latest.json' --dir "$dir" --clobber
+          node -e "const fs=require('fs');const p='$dir/latest.json';const j=JSON.parse(fs.readFileSync(p,'utf8'));for(const k of Object.keys(j.platforms)){j.platforms[k].url='$direct';}fs.writeFileSync(p,JSON.stringify(j,null,2));"
+          gh release upload "$tag" "$dir/latest.json" --clobber
